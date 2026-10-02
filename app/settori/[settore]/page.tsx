@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { LinkList } from "@/components/LinkList";
 import { Mdx } from "@/components/Mdx";
 import { TrialForm } from "@/components/TrialForm";
-import { getGuide, getSettore, getSettori, resolve, settoreOptions } from "@/lib/content";
+import { getSettore, getSettori, guidePerSettore, settoreOptions } from "@/lib/content";
 import { faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -31,7 +31,7 @@ export default async function SettorePage({ params }: PageProps<"/settori/[setto
   const s = getSettore(settore);
   if (!s) notFound();
 
-  const guide = resolve(getGuide(), s.guideCorrelate, `settori/${s.slug}`);
+  const guide = guidePerSettore(s);
   const altri = getSettori().filter((x) => x.slug !== s.slug);
   const haInglese = s.domande.some((d) => d.lingua === "en");
 

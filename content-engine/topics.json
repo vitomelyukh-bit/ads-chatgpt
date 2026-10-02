@@ -1,0 +1,241 @@
+{
+  "nota": "Backlog argomenti per le guide. La routine prende il primo 'da-fare' che non si sovrappone a guide esistenti, poi lo segna 'fatto' con slug e data. Si possono aggiungere argomenti seguendo content-engine/WRITING.md.",
+  "argomenti": [
+    {
+      "titolo": "Come sceglie ChatGPT chi consigliare?",
+      "stato": "fatto",
+      "slug": "come-sceglie-chatgpt-chi-consigliare",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Come capire se l'AI consiglia la tua attività",
+      "stato": "fatto",
+      "slug": "come-capire-se-ai-consiglia-tua-attivita",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Perché l'AI consiglia un tuo concorrente e non te?",
+      "stato": "fatto",
+      "slug": "perche-ai-consiglia-concorrente-e-non-te",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Essere consigliati o essere sponsorizzati su ChatGPT",
+      "stato": "fatto",
+      "slug": "consigliati-o-sponsorizzati-su-chatgpt",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Le AI stanno sostituendo Google per le ricerche locali?",
+      "stato": "fatto",
+      "slug": "ai-sostituiscono-google-ricerche-locali",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Cosa guarda l'AI della tua scheda Google?",
+      "stato": "fatto",
+      "slug": "cosa-guarda-ai-scheda-google",
+      "data": "2026-10-03"
+    },
+    {
+      "titolo": "Perché l'AI dice cose sbagliate sulla tua attività, e cosa puoi fare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "ChatGPT, Gemini e Perplexity: perché danno risposte diverse alla stessa domanda?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa legge l'AI del tuo sito web?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le recensioni contano per l'AI? Cosa dice davvero una recensione utile",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Orari sbagliati online: perché sono un problema anche con l'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il tuo sito si legge bene anche da chi non è una persona? Cosa controllare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perplexity mostra le fonti: come usarle per capire chi consiglia e perché",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Gemini e Google Maps: cosa cambia per un'attività locale",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Chi promette di farti consigliare da ChatGPT: le domande da fare prima di fidarti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Si possono comprare recensioni per piacere all'AI? Perché è una pessima idea",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Nome, indirizzo e telefono diversi online: perché confondono l'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come scrivere la descrizione dei tuoi servizi in modo che l'AI la capisca",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Menu in PDF o in foto: perché l'AI potrebbe non leggerlo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Rispondere alle recensioni serve anche con l'AI?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa sono le fonti di una risposta dell'AI e perché ti riguardano",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "L'AI conosce la tua attività se hai aperto da poco?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Hai cambiato nome o indirizzo: cosa succede con l'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perché una sola domanda all'AI non basta per capire se ti consiglia",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Clienti stranieri e AI: perché le informazioni in inglese contano",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Portali di prenotazione e AI: aiutano o tolgono clienti?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Articoli sui giornali locali: contano per l'AI?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede un turista all'AI prima di scegliere dove mangiare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede un paziente all'AI prima di scegliere un dentista",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi ha un guasto in casa",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi deve traslocare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi cerca un hotel o un B&B",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi deve noleggiare un'auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi cerca un centro estetico",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiede all'AI chi cerca uno specialista medico",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Pagine 'chi siamo' e AI: cosa scriverci davvero",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le domande frequenti sul tuo sito aiutano l'AI a capirti?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le foto contano per l'AI?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "I social contano per essere consigliati dall'AI?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ricerca vocale e assistenti AI: cosa cambia per chi cerca un'attività vicina",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "L'AI consiglia solo le attività grandi?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ogni quanto cambiano le risposte dell'AI?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "La memoria di ChatGPT: perché due persone vedono risposte diverse",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "AI e Google: devo scegliere dove essere presente?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le informazioni sui prezzi online: cosa considera l'AI quando un cliente chiede 'economico'",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Urgenze e orari speciali: come farli capire all'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Elenchi 'i migliori 10 a…': perché l'AI li legge e come comparirci in modo corretto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa sono i crawler degli assistenti AI e perché non bloccarli per errore",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Accessibilità, parcheggio, animali: i dettagli che rispondono alle domande dei clienti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come capire quali concorrenti l'AI consiglia nella tua zona",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito vecchio o senza sito: cosa succede quando un cliente chiede all'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le risposte dell'AI dipendono dalla città da cui si scrive?",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa significa che l'AI 'cerca sul web' prima di rispondere",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perché l'AI a volte consiglia attività chiuse",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come segnalare a Google informazioni sbagliate sulla tua attività",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni negative: cosa può succedere quando un cliente chiede all'AI",
+      "stato": "da-fare"
+    }
+  ]
+}

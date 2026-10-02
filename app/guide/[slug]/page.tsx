@@ -6,7 +6,7 @@ import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { LinkList } from "@/components/LinkList";
 import { Mdx } from "@/components/Mdx";
-import { getGuida, getGuide, getSettori, resolve } from "@/lib/content";
+import { getGuida, getGuide, getSettori, guideCorrelateA, resolve } from "@/lib/content";
 import { article, faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -39,7 +39,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
   if (!g) notFound();
   const path = `/guide/${g.slug}`;
   const settori = resolve(getSettori(), g.settoriCorrelati, `guide/${g.slug}`);
-  const altre = resolve(getGuide(), g.guideCorrelate, `guide/${g.slug}`);
+  const altre = guideCorrelateA(g);
 
   return (
     <>

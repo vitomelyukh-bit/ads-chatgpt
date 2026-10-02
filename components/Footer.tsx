@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   const settori = getSettori();
-  const guide = getGuide();
+  const guide = getGuide().slice(0, 6);
   const link = "text-ink-soft hover:text-accent";
   return (
     <footer className="mt-24 border-t border-line/70 bg-paper-alt">
@@ -32,6 +32,7 @@ export function Footer() {
             {guide.map((g) => (
               <li key={g.slug}><Link href={`/guide/${g.slug}`} className={link}>{g.h1}</Link></li>
             ))}
+            <li><Link href="/guide" className="font-semibold text-accent hover:underline">Tutte le guide →</Link></li>
           </ul>
         </div>
         <div>

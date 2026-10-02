@@ -70,7 +70,10 @@ export function getSettori(): Settore[] {
 }
 
 export function getGuide(): Guida[] {
-  guideCache ??= load("guide", guidaSchema).sort((a, b) => a.ordine - b.ordine);
+  // Le più recenti prima; a parità di data conta "ordine".
+  guideCache ??= load("guide", guidaSchema).sort(
+    (a, b) => b.datePublished.localeCompare(a.datePublished) || a.ordine - b.ordine,
+  );
   return guideCache;
 }
 
@@ -84,6 +87,26 @@ export function resolve<T extends { slug: string }>(all: T[], slugs: string[], f
     if (!hit) console.warn(`[content] ${from}: collegamento a "${s}" inesistente, ignorato.`);
     return hit ? [hit] : [];
   });
+}
+
+// Guide da mostrare su un settore: prima quelle scelte a mano, poi quelle che
+// indicano questo settore tra i correlati.
+export function guidePerSettore(s: Settore, max = 6): Guida[] {
+  const manuali = resolve(getGuide(), s.guideCorrelate, `settori/${s.slug}`);
+  const auto = getGuide().filter((g) => g.settoriCorrelati.includes(s.slug) && !manuali.includes(g));
+  return [...manuali, ...auto].slice(0, max);
+}
+
+// "Leggi anche" di una guida: quelle scelte a mano, poi quelle con settori in comune.
+export function guideCorrelateA(g: Guida, max = 4): Guida[] {
+  const manuali = resolve(getGuide(), g.guideCorrelate, `guide/${g.slug}`);
+  const auto = getGuide().filter(
+    (x) =>
+      x.slug !== g.slug &&
+      !manuali.includes(x) &&
+      x.settoriCorrelati.some((s) => g.settoriCorrelati.includes(s)),
+  );
+  return [...manuali, ...auto].slice(0, max);
 }
 
 // Valori della select "settore" del form: i settori del sito più "Altro".

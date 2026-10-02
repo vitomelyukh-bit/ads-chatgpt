@@ -30,7 +30,7 @@ const domandeHome = [
 
 export default function Home() {
   const settori = getSettori();
-  const guide = getGuide();
+  const guide = getGuide().slice(0, 6);
   return (
     <>
       <JsonLd data={[organization(), website(), breadcrumbList([]), faqPage(faqHome)]} />
@@ -130,6 +130,9 @@ export default function Home() {
           <div className="mt-8">
             <LinkList items={guide.map((g) => ({ href: `/guide/${g.slug}`, label: g.h1 }))} />
           </div>
+          <p className="mt-6">
+            <Link href="/guide" className="font-semibold text-accent hover:underline">Tutte le guide →</Link>
+          </p>
         </Container>
       </section>
 
