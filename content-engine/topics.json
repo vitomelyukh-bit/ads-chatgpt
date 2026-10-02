@@ -39,7 +39,9 @@
     },
     {
       "titolo": "Perché l'AI dice cose sbagliate sulla tua attività, e cosa puoi fare",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "perche-ai-dice-cose-sbagliate-tua-attivita",
+      "data": "2026-10-03"
     },
     {
       "titolo": "ChatGPT, Gemini e Perplexity: perché danno risposte diverse alla stessa domanda?",
