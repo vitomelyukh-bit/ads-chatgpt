@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getGuide, getSettori } from "@/lib/content";
+import { titolare } from "@/lib/titolare";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -46,7 +47,8 @@ export function Footer() {
       </div>
       <div className="border-t border-line/70">
         <p className="mx-auto max-w-5xl px-4 py-6 text-xs text-ink-mute sm:px-6">
-          © {new Date().getFullYear()} TiTrovano. ChatGPT, Gemini e Perplexity sono marchi dei rispettivi proprietari.
+          © {new Date().getFullYear()} TiTrovano è un progetto di {titolare.nome} · P.IVA {titolare.piva} ·{" "}
+          {titolare.citta}. ChatGPT, Gemini e Perplexity sono marchi dei rispettivi proprietari.
           TiTrovano non è affiliato a nessuno di loro.
         </p>
       </div>

@@ -63,6 +63,6 @@ Regole di scrittura: niente statistiche, casi studio o recensioni inventati; nie
 - JSON-LD (`lib/jsonld.ts`): Organization e WebSite in home, Article sulle guide, FAQPage dove c'è una FAQ visibile, BreadcrumbList su ogni pagina.
 - Immagine Open Graph generata in build (`app/opengraph-image.tsx`).
 
-## Da completare prima del lancio
+## Privacy e cookie
 
-- `app/privacy/page.tsx` e `app/cookie/page.tsx` sono segnaposto marcati "Da completare" e sono in `noindex`.
+I dati del titolare (nome, P.IVA, città, email) stanno in `lib/titolare.ts` e compaiono nel footer, nella privacy e nella cookie policy. Le due pagine sono in `noindex`. Se cambi fornitori (hosting, email, statistiche) aggiorna i testi e la data `policyAggiornata`.
