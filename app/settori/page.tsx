@@ -17,7 +17,7 @@ export default function SettoriPage() {
   return (
     <Container className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Settori", path: "/settori" }]} />
-      <h1 className="mt-8 text-4xl font-semibold tracking-tight sm:text-5xl">Cosa chiedono i tuoi clienti all&apos;AI</h1>
+      <h1 className="mt-10 max-w-4xl font-serif text-5xl leading-[1] tracking-tight sm:text-7xl">Cosa chiedono i tuoi clienti all&apos;AI</h1>
       <p className="mt-6 max-w-2xl text-lg text-ink-soft">
         Ogni settore ha le sue domande. Scegli il tuo e guarda cosa scrivono i clienti a ChatGPT, Gemini e
         Perplexity prima di decidere a chi rivolgersi.

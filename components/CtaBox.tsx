@@ -8,15 +8,21 @@ export function CtaBox({
   testo?: string;
 }) {
   return (
-    <aside className="rounded-2xl bg-accent px-6 py-10 text-white sm:px-10">
-      <h2 className="text-2xl font-semibold tracking-tight">{titolo}</h2>
-      <p className="mt-3 max-w-xl text-white/85">{testo}</p>
+    <aside className="relative overflow-hidden rounded-2xl bg-ink px-6 py-10 text-paper sm:px-10 sm:py-12">
+      <h2 className="max-w-xl font-serif text-4xl leading-tight">{titolo}</h2>
+      <p className="mt-4 max-w-xl text-paper/80">{testo}</p>
       <Link
         href="/prova-gratuita"
-        className="mt-6 inline-flex rounded-xl bg-white px-6 py-3.5 font-semibold text-accent hover:bg-accent-soft"
+        className="mt-7 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-semibold text-ink transition hover:bg-paper"
       >
-        Richiedi la prova gratuita
+        Richiedi la prova gratuita <span aria-hidden="true">→</span>
       </Link>
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-6 -bottom-10 select-none font-serif text-[11rem] leading-none text-paper/[0.06] italic"
+      >
+        ?
+      </span>
     </aside>
   );
 }

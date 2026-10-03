@@ -15,14 +15,14 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: "#ffffff",
-          color: "#14201e",
+          background: "#f5f1e8",
+          color: "#151411",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 40, fontWeight: 700 }}>
-          <div style={{ width: 40, height: 40, borderRadius: 40, border: "8px solid #0f5e54", display: "flex" }} />
-          TiTrovano
+        <div style={{ display: "flex", alignItems: "center", gap: 0, fontSize: 44, fontWeight: 700 }}>
+          <span style={{ display: "flex" }}>Ti</span>
+          <span style={{ display: "flex", background: "#ffdf3d", padding: "0 6px" }}>Trovano</span>
         </div>
         <div style={{ display: "flex", fontSize: 72, fontWeight: 700, lineHeight: 1.1, letterSpacing: -2, maxWidth: 1000 }}>
           Quando un cliente chiede all&apos;AI, esce il tuo nome?
@@ -31,12 +31,12 @@ export default function OgImage() {
           <div
             style={{
               display: "flex",
-              background: "#0f5e54",
-              color: "#ffffff",
+              background: "#151411",
+              color: "#f5f1e8",
               fontSize: 32,
               fontWeight: 700,
               padding: "16px 32px",
-              borderRadius: 16,
+              borderRadius: 999,
             }}
           >
             Scoprilo con la prova gratuita

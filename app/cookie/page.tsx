@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <Container narrow className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Cookie policy", path: "/cookie" }]} />
-      <h1 className="mt-8 text-4xl font-semibold tracking-tight">Cookie policy</h1>
+      <h1 className="mt-10 font-serif text-5xl tracking-tight sm:text-6xl">Cookie policy</h1>
       <p className="mt-4 text-sm text-ink-mute">
         Aggiornata il <time dateTime={policyAggiornata}>{data}</time>
       </p>

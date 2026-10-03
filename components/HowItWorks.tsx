@@ -10,21 +10,20 @@ const passi = [
   },
   {
     titolo: "Ti consegniamo una pagina",
-    testo:
-      "Quante volte esce il tuo nome, quante volte escono i concorrenti, e perché l'AI sceglie loro.",
+    testo: "Quante volte esce il tuo nome, quante volte escono i concorrenti, e perché l'AI sceglie loro.",
   },
 ];
 
 export function HowItWorks({ headingLevel = 3 }: { headingLevel?: 2 | 3 }) {
   const H = `h${headingLevel}` as "h2" | "h3";
   return (
-    <ol className="grid gap-6 sm:grid-cols-3">
+    <ol className="grid gap-px overflow-hidden rounded-2xl border border-ink/15 bg-ink/15 sm:grid-cols-3">
       {passi.map((p, i) => (
-        <li key={p.titolo} className="rounded-2xl border border-line bg-white p-6">
-          <span className="flex size-9 items-center justify-center rounded-full bg-accent-soft text-sm font-bold text-accent">
+        <li key={p.titolo} className="bg-card p-6 sm:p-7">
+          <span className="flex size-14 items-center justify-center rounded-full bg-accent font-serif text-4xl leading-none text-ink">
             {i + 1}
           </span>
-          <H className="mt-4 text-lg font-semibold text-ink">{p.titolo}</H>
+          <H className="mt-6 text-lg font-semibold text-ink">{p.titolo}</H>
           <p className="mt-2 text-ink-soft">{p.testo}</p>
         </li>
       ))}

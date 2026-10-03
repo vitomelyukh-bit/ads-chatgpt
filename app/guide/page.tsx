@@ -16,7 +16,7 @@ export default function GuidePage() {
   return (
     <Container className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Guide", path: "/guide" }]} />
-      <h1 className="mt-8 text-4xl font-semibold tracking-tight sm:text-5xl">Guide</h1>
+      <h1 className="mt-10 font-serif text-5xl leading-[1] tracking-tight sm:text-7xl">Guide</h1>
       <p className="mt-6 max-w-2xl text-lg text-ink-soft">
         Come ragionano ChatGPT, Gemini e Perplexity quando un cliente chiede a chi rivolgersi. Spiegato senza
         parole tecniche.

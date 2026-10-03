@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
+import { proseClass } from "./Prose";
 
 const components = {
   a: ({ href = "", ...props }: React.ComponentProps<"a">) =>
@@ -12,7 +13,7 @@ const components = {
 
 export function Mdx({ source }: { source: string }) {
   return (
-    <div className="prose prose-lg max-w-none prose-headings:tracking-tight prose-headings:text-ink prose-p:text-ink-soft prose-li:text-ink-soft prose-a:text-accent prose-a:underline-offset-2 prose-strong:text-ink">
+    <div className={proseClass}>
       <MDXRemote source={source} components={components} />
     </div>
   );

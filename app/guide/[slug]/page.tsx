@@ -6,6 +6,7 @@ import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { LinkList } from "@/components/LinkList";
 import { Mdx } from "@/components/Mdx";
+import { SectionLabel } from "@/components/SectionLabel";
 import { getGuida, getGuide, getSettori, guideCorrelateA, resolve } from "@/lib/content";
 import { article, faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
@@ -53,20 +54,21 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
         <Breadcrumbs items={[{ name: "Guide", path: "/guide" }, { name: g.h1, path }]} />
         <article className="mt-8">
           <header>
-            <h1 className="text-4xl font-semibold leading-[1.15] tracking-tight sm:text-[2.75rem]">{g.h1}</h1>
-            <p className="mt-4 text-sm text-ink-mute">
-              Aggiornata il <time dateTime={g.dateModified}>{formatData(g.dateModified)}</time>
-            </p>
+            <SectionLabel>
+              Guida · <time dateTime={g.dateModified}>{formatData(g.dateModified)}</time>
+            </SectionLabel>
+            <h1 className="mt-5 font-serif text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl">{g.h1}</h1>
           </header>
-          <p className="mt-8 rounded-2xl border-l-4 border-accent bg-accent-soft px-5 py-5 text-lg leading-relaxed text-ink sm:px-6">
-            {g.rispostaBreve}
-          </p>
-          <div className="mt-10">
+          <div className="relative mt-10 rounded-2xl border-2 border-ink bg-card p-6 shadow-[6px_6px_0_var(--color-ink)] sm:p-8">
+            <p className="label-mono absolute -top-3 left-5 bg-accent px-2 py-0.5 text-ink">In breve</p>
+            <p className="text-lg leading-relaxed text-ink sm:text-xl">{g.rispostaBreve}</p>
+          </div>
+          <div className="mt-12">
             <Mdx source={g.body} />
           </div>
           {g.faq.length > 0 && (
             <section className="mt-14">
-              <h2 className="text-2xl font-semibold tracking-tight">Domande frequenti</h2>
+              <h2 className="font-serif text-4xl tracking-tight">Domande frequenti</h2>
               <div className="mt-6">
                 <Faq items={g.faq} />
               </div>
@@ -80,7 +82,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
 
         {altre.length > 0 && (
           <section className="mt-16">
-            <h2 className="text-2xl font-semibold tracking-tight">Leggi anche</h2>
+            <h2 className="font-serif text-3xl tracking-tight">Leggi anche</h2>
             <div className="mt-6">
               <LinkList items={altre.map((x) => ({ href: `/guide/${x.slug}`, label: x.h1 }))} />
             </div>
@@ -88,7 +90,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
         )}
         {settori.length > 0 && (
           <section className="mt-14">
-            <h2 className="text-2xl font-semibold tracking-tight">Cosa chiedono all&apos;AI i clienti di questi settori</h2>
+            <h2 className="font-serif text-3xl tracking-tight">Cosa chiedono all&apos;AI i clienti di questi settori</h2>
             <div className="mt-6">
               <LinkList items={settori.map((x) => ({ href: `/settori/${x.slug}`, label: x.nome }))} />
             </div>
