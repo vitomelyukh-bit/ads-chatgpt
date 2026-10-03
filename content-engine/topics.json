@@ -51,7 +51,9 @@
     },
     {
       "titolo": "Cosa legge l'AI del tuo sito web?",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "cosa-legge-ai-del-tuo-sito",
+      "data": "2026-10-03"
     },
     {
       "titolo": "Le recensioni contano per l'AI? Cosa dice davvero una recensione utile",
