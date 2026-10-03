@@ -1,5 +1,5 @@
 {
-  "nota": "Backlog argomenti per le guide. Priorità agli annunci su ChatGPT (in cima). La routine prende il primo 'da-fare' che non si sovrappone a guide esistenti, poi lo segna 'fatto' con slug e data.",
+  "nota": "Backlog. Priorità: articoli VERTICALI per settore (campo 'settore' = slug in content/settori), poi generali sugli annunci, poi quelli sull'AI organica. La routine prende il primo 'da-fare' non sovrapposto a guide esistenti, lo segna 'fatto' con slug e data.",
   "argomenti": [
     {
       "titolo": "Come sceglie ChatGPT chi consigliare?",
@@ -54,6 +54,256 @@
       "stato": "fatto",
       "slug": "cosa-legge-ai-del-tuo-sito",
       "data": "2026-10-03"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per hotel: prenotazioni dirette o commissioni dei portali?",
+      "settore": "hotel-bed-and-breakfast",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per avvocati: cosa permette la deontologia e cosa no",
+      "settore": "studi-legali",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per e-commerce: quali prodotti funzionano meglio nelle domande d'acquisto",
+      "settore": "e-commerce",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiedono a ChatGPT le famiglie prima di scegliere un'impresa di ristrutturazione",
+      "settore": "ristrutturazioni-edilizie",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per noleggi auto: come intercettare i turisti prima che atterrino",
+      "settore": "noleggio-auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per software: prova gratuita o demo, cosa chiedere a chi clicca",
+      "settore": "software-saas",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per agenzie immobiliari: puntare su chi vende casa",
+      "settore": "agenzie-immobiliari",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Fotovoltaico e annunci su ChatGPT: come parlare di risparmio senza promettere troppo",
+      "settore": "fotovoltaico",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per traslochi: come ottenere richieste di preventivo già filtrate",
+      "settore": "traslochi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per commercialisti: trovare clienti che aprono la partita IVA",
+      "settore": "commercialisti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per location di matrimoni: coppie italiane e straniere",
+      "settore": "location-matrimoni",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT nel B2B: entrare nella lista dei fornitori da valutare",
+      "settore": "aziende-b2b",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per serramentisti: portare clienti in showroom",
+      "settore": "serramenti-infissi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Agenzie viaggi e ChatGPT: dove un esperto vale ancora più di una risposta automatica",
+      "settore": "agenzie-viaggi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per concessionarie: prova su strada, permuta o usato garantito?",
+      "settore": "concessionarie-auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per scuole e corsi: quando partire rispetto alle iscrizioni",
+      "settore": "scuole-formazione",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per installatori: puntare su caldaie e pompe di calore, non sulle piccole riparazioni",
+      "settore": "idraulici-elettricisti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per ristoranti: quando conviene (eventi, gruppi, turismo) e quando no",
+      "settore": "ristoranti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per centri estetici: percorsi e pacchetti invece del singolo trattamento",
+      "settore": "centri-estetici",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Dentisti e annunci su ChatGPT: cosa dicono le regole sulla salute e cosa fare se non si può",
+      "settore": "dentisti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiedono a ChatGPT i viaggiatori stranieri prima di prenotare una struttura in Italia",
+      "settore": "hotel-bed-and-breakfast",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa chiedono le persone a ChatGPT prima di chiamare un avvocato",
+      "settore": "studi-legali",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come misurare le vendite che arrivano dagli annunci su ChatGPT in un e-commerce",
+      "settore": "e-commerce",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per imprese edili: il modulo giusto per sopralluoghi seri",
+      "settore": "ristrutturazioni-edilizie",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Noleggio auto: franchigia, deposito e carta di debito, le domande da cui partire negli annunci",
+      "settore": "noleggio-auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Gestionali e CRM: le domande che le PMI italiane fanno a ChatGPT prima di scegliere",
+      "settore": "software-saas",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Valutazione gratuita della casa: come presentarla a chi arriva da ChatGPT",
+      "settore": "agenzie-immobiliari",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Privati o aziende? Dove conviene puntare con gli annunci per il fotovoltaico",
+      "settore": "fotovoltaico",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Traslochi tra città e all'estero: le domande più preziose da intercettare",
+      "settore": "traslochi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Studi professionali online: annunci su ChatGPT per clienti in tutta Italia",
+      "settore": "commercialisti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Eventi aziendali in villa: come intercettare le aziende che chiedono a ChatGPT",
+      "settore": "location-matrimoni",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ciclo di vendita lungo e annunci su ChatGPT: cosa misurare nel B2B",
+      "settore": "aziende-b2b",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Infissi e incentivi: come parlarne negli annunci senza informazioni sbagliate",
+      "settore": "serramenti-infissi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Viaggi di nozze e di gruppo: gli annunci su ChatGPT per i viaggi di valore alto",
+      "settore": "agenzie-viaggi",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ibrido o elettrico: le domande che i clienti fanno a ChatGPT prima di entrare in concessionaria",
+      "settore": "concessionarie-auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Corsi online e annunci su ChatGPT: raggiungere studenti in tutta Italia",
+      "settore": "scuole-formazione",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Artigiani e annunci su ChatGPT: quante richieste puoi gestire davvero?",
+      "settore": "idraulici-elettricisti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cliniche private e ChatGPT: cosa si può fare se gli annunci sulla salute sono limitati",
+      "settore": "cliniche-studi-medici",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Bassa stagione: quando ha senso usare gli annunci su ChatGPT per una struttura ricettiva",
+      "settore": "hotel-bed-and-breakfast",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Pagine prodotto pronte per chi arriva da ChatGPT: cosa controllare",
+      "settore": "e-commerce",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Diritto di famiglia, successioni, lavoro: su quali materie un annuncio ha più senso",
+      "settore": "studi-legali",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Bagni, cucine, chiavi in mano: su quali lavori puntare con gli annunci",
+      "settore": "ristrutturazioni-edilizie",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per SaaS italiani che vogliono vendere all'estero",
+      "settore": "software-saas",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Affitti brevi e gestione immobili: gli annunci su ChatGPT per i proprietari",
+      "settore": "agenzie-immobiliari",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wedding in Italia per coppie straniere: gli annunci in inglese su ChatGPT",
+      "settore": "location-matrimoni",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Noleggio a lungo termine per professionisti: un pubblico da intercettare su ChatGPT",
+      "settore": "concessionarie-auto",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Catering e menu per eventi: quando l'annuncio su ChatGPT conviene a un ristorante",
+      "settore": "ristoranti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Trucco sposa e servizi per matrimoni: gli annunci su ChatGPT per i centri estetici",
+      "settore": "centri-estetici",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Fornitori industriali e ChatGPT: come le aziende cercano partner oggi",
+      "settore": "aziende-b2b",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Traslochi di uffici: un mercato B2B da intercettare con gli annunci su ChatGPT",
+      "settore": "traslochi",
+      "stato": "da-fare"
     },
     {
       "titolo": "Come funzionano gli annunci su ChatGPT, spiegato a un titolare",

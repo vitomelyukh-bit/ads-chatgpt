@@ -30,8 +30,8 @@ export default function AnalisiPage() {
               Richiedi l&apos;<span className="text-accent">analisi gratuita</span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-fg-soft">
-              Ti diciamo cosa chiedono i tuoi clienti a ChatGPT, se gli annunci hanno senso per te e con quale budget di
-              partenza. Se non ne hanno, te lo diciamo.
+              Lasciaci i tuoi dati e ti chiamiamo per una breve call: vediamo cosa chiedono i tuoi clienti a ChatGPT, se gli
+              annunci hanno senso per te e con quale budget di partenza. Se non ne hanno, te lo diciamo.
             </p>
           </div>
           <div className="card p-6 sm:p-10">

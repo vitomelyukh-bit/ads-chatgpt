@@ -36,8 +36,8 @@ export default function Home() {
   const guide = getGuide().slice(0, 6);
   const domande = settori.flatMap((s) => s.domande.slice(0, 2));
   const alternate = [...domande.filter((_, i) => i % 2 === 0), ...domande.filter((_, i) => i % 2 === 1)];
-  const locali = settori.filter((s) => !["e-commerce", "aziende-b2b"].includes(s.slug));
-  const aziende = settori.filter((s) => ["e-commerce", "aziende-b2b"].includes(s.slug));
+  const locali = settori.filter((s) => s.tipo === "locale");
+  const aziende = settori.filter((s) => s.tipo === "azienda");
 
   return (
     <>
@@ -63,7 +63,7 @@ export default function Home() {
               <Link href="#analisi" className="btn-accent">Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></Link>
               <Link href="#come-funziona" className="btn-ghost">Come funziona</Link>
             </div>
-            <p className="mt-6 text-sm text-fg-mute">Analisi gratuita e senza impegno. Se non fa per te, te lo diciamo.</p>
+            <p className="mt-6 text-sm text-fg-mute">L&apos;analisi gratuita è una breve call, senza impegno. Se non fa per te, te lo diciamo.</p>
           </div>
           <AdMock />
         </div>
@@ -155,7 +155,7 @@ export default function Home() {
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
             <div className="card p-7">
               <h3 className="text-2xl font-semibold tracking-tight">Attività locali</h3>
-              <p className="mt-3 text-fg-soft">Quando un cliente vale molto e lo cerca nella sua zona: studi medici, dentisti, hotel, noleggi, traslochi, artigiani.</p>
+              <p className="mt-3 text-fg-soft">Quando un cliente vale molto e lo cerca nella sua zona: studi professionali, immobiliari, imprese edili, hotel, noleggi, location, artigiani.</p>
               <div className="mt-6"><LinkList items={locali.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} /></div>
             </div>
             <div className="card p-7">
@@ -195,9 +195,9 @@ export default function Home() {
             <div className="relative">
               <SectionLabel>Analisi gratuita</SectionLabel>
               <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Scopri se gli annunci su ChatGPT fanno per te.</h2>
-              <p className="mt-5 text-fg-soft">Ti diciamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</p>
+              <p className="mt-5 text-fg-soft">Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</p>
               <ul className="mt-8 space-y-3 text-sm text-fg-soft">
-                {["Gratis e senza impegno", "Risposta da una persona, non da un bot", "Se non ha senso per te, te lo diciamo"].map((x) => (
+                {["Gratis e senza impegno", "Una call con una persona, non un bot", "Se non ha senso per te, te lo diciamo"].map((x) => (
                   <li key={x} className="flex gap-3"><span className="text-accent">✓</span>{x}</li>
                 ))}
               </ul>

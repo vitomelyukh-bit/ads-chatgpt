@@ -76,6 +76,10 @@ for (const g of guide) {
   for (const s of d.settoriCorrelati ?? []) if (!settoriSlugs.has(s)) err(g.file, `settoriCorrelati: "${s}" non esiste`);
   for (const s of d.guideCorrelate ?? []) if (!guideSlugs.has(s) || s === g.slug) err(g.file, `guideCorrelate: "${s}" non valida`);
   if (!(d.settoriCorrelati ?? []).length) err(g.file, `indica almeno un settore in settoriCorrelati`);
+  // Articoli nuovi: verticali, con link alla pagina del loro settore.
+  if (String(d.datePublished) > "2026-10-03" && d.settoriCorrelati?.[0] && !g.body.includes(`](/settori/${d.settoriCorrelati[0]})`)) {
+    err(g.file, `articolo verticale: linka la pagina del settore principale (/settori/${d.settoriCorrelati[0]})`);
+  }
   for (const k of ["title", "h1"]) {
     const v = String(d[k] ?? "").toLowerCase();
     if (titoli.has(v)) err(g.file, `${k} uguale a ${titoli.get(v)}`);

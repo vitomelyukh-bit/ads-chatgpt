@@ -46,7 +46,7 @@ export function LeadForm({
           Ti abbiamo mandato una email di conferma. Se non la vedi, controlla nella posta indesiderata.
         </p>
         <p className="mt-3 text-fg-soft">
-          Guardiamo il tuo settore e ti ricontattiamo per parlarne. Se gli annunci su ChatGPT non fanno per te, te lo diciamo.
+          Ti chiamiamo per fissare una breve call in cui guardiamo insieme il tuo caso. Se gli annunci su ChatGPT non fanno per te, te lo diciamo.
         </p>
       </div>
     );

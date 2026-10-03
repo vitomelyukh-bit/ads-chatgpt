@@ -127,7 +127,7 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
       "Cosa succede adesso:",
       "1. Guardiamo il tuo settore e le domande che i tuoi clienti fanno a ChatGPT.",
       "2. Valutiamo se gli annunci su ChatGPT hanno senso per te e con quale budget di partenza.",
-      "3. Ti ricontattiamo per parlarne. Se non fanno per te, te lo diciamo.",
+      "3. Ti chiamiamo per fissare una breve call e parlarne. Se non fanno per te, te lo diciamo.",
       "",
       "Se vuoi aggiungere qualcosa, rispondi a questa email.",
       "",

@@ -89,11 +89,24 @@ Settori esistenti: guarda i file in `content/settori/`. Non creare nuovi settori
 6. In `content-engine/topics.json` segna l'argomento come `"stato": "fatto"` con `"slug"` e `"data"`.
 7. Esegui i controlli (sotto). Se falliscono, correggi e riprova.
 
+## Articoli verticali: la priorità
+
+L'obiettivo della SEO è portare in **call** attività e aziende interessate agli annunci su ChatGPT. Per questo la priorità sono **articoli verticali**: un settore preciso (quelli in \`content/settori/\`) e una domanda precisa che si fa un titolare o un responsabile marketing di quel settore.
+
+Ogni articolo verticale deve:
+
+- avere il settore nel titolo e in \`settoriCorrelati\` (solo quel settore, al massimo uno affine);
+- contenere **almeno 4 domande realistiche** che i clienti di quel settore fanno a ChatGPT, scritte in un elenco;
+- spiegare in modo concreto **quando conviene e quando no** per quel settore: valore di un cliente, stagionalità, zona, tipo di servizio, regole del settore;
+- dire cosa serve per partire (pagina di destinazione, modo di contatto, misurazione) con esempi del settore;
+- linkare la pagina del settore (\`/settori/<slug>\`) nel testo e chiudere invitando all'[analisi gratuita](/analisi-gratuita), che è una breve call;
+- essere **davvero diverso** dagli altri articoli: niente testi uguali con il nome del settore cambiato. Se l'articolo potrebbe valere per qualsiasi settore, non è verticale: riscrivilo o scegli un altro argomento.
+
 ## Nuovi argomenti per il backlog
 
-Priorità agli **annunci su ChatGPT**: come funzionano, quanto costano (con fonti), per chi convengono e per chi no, come si misurano, come si scrivono, differenze con Google Ads e Meta, regole e settori sensibili, errori da evitare, domande che i clienti fanno all'AI in un settore. Restano utili anche le guide su come l'AI sceglie chi consigliare.
+Quando il backlog finisce, aggiungi argomenti verticali per i settori esistenti (uno per settore alla volta, alternando i settori), poi argomenti generali sugli annunci su ChatGPT (costi con fonti, misurazione, differenze con Google e Meta, regole, errori).
 
-Non vanno bene: notizie che invecchiano in un giorno, argomenti tecnici per addetti ai lavori, varianti della stessa guida con una parola cambiata, pagine per città.
+Non vanno bene: notizie che invecchiano in un giorno, argomenti tecnici per addetti ai lavori, varianti della stessa guida, pagine per città.
 
 ## Controlli obbligatori prima del push
 

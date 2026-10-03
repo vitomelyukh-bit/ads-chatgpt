@@ -39,7 +39,7 @@ export const faqHome: Faq[] = [
   {
     domanda: "Cos'è l'analisi gratuita?",
     risposta:
-      "Una valutazione del tuo caso: cosa chiedono i tuoi clienti a ChatGPT, se e come conviene fare annunci, con quale budget di partenza. È gratis e senza impegno.",
+      "Una breve call in cui valutiamo il tuo caso: cosa chiedono i tuoi clienti a ChatGPT, se e come conviene fare annunci, con quale budget di partenza. È gratis e senza impegno.",
   },
 ];
 

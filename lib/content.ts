@@ -9,6 +9,7 @@ const faqItem = z.object({ domanda: z.string(), risposta: z.string() });
 
 const settoreSchema = z.object({
   nome: z.string(),
+  tipo: z.enum(["locale", "azienda"]).default("locale"),
   title: z.string().max(70),
   description: z.string().max(170),
   h1: z.string(),
