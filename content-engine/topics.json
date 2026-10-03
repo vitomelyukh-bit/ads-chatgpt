@@ -1,5 +1,5 @@
 {
-  "nota": "Backlog argomenti per le guide. La routine prende il primo 'da-fare' che non si sovrappone a guide esistenti, poi lo segna 'fatto' con slug e data. Si possono aggiungere argomenti seguendo content-engine/WRITING.md.",
+  "nota": "Backlog argomenti per le guide. Priorità agli annunci su ChatGPT (in cima). La routine prende il primo 'da-fare' che non si sovrappone a guide esistenti, poi lo segna 'fatto' con slug e data.",
   "argomenti": [
     {
       "titolo": "Come sceglie ChatGPT chi consigliare?",
@@ -54,6 +54,66 @@
       "stato": "fatto",
       "slug": "cosa-legge-ai-del-tuo-sito",
       "data": "2026-10-03"
+    },
+    {
+      "titolo": "Come funzionano gli annunci su ChatGPT, spiegato a un titolare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Quanto costano gli annunci su ChatGPT in Italia (con fonti aggiornate)",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT o Google Ads: cosa cambia per un'attività locale",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Per chi conviene fare annunci su ChatGPT, e per chi no",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come si misura se un annuncio su ChatGPT porta clienti",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come scrivere un annuncio per ChatGPT: messaggi chiari per chi fa una domanda",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT nei settori sensibili: salute, finanza e cosa non è ammesso",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Chi vede gli annunci su ChatGPT: piani Free, Go e abbonati",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT per e-commerce: quando hanno senso",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT nel B2B: come entrare nella lista dei fornitori valutati",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "La pagina di destinazione per gli annunci su ChatGPT: cosa deve avere",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Errori da evitare con i primi annunci su ChatGPT",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT e Meta Ads: due momenti diversi del cliente",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Budget di partenza per un test di annunci su ChatGPT: come ragionare",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Annunci su ChatGPT in inglese per attività turistiche",
+      "stato": "da-fare"
     },
     {
       "titolo": "Le recensioni contano per l'AI? Cosa dice davvero una recensione utile",

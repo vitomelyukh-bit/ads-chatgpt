@@ -20,9 +20,11 @@ export type FormState =
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Scrivi il tuo nome.").max(80),
-  attivita: z.string().trim().min(2, "Scrivi il nome della tua attività.").max(120),
+  attivita: z.string().trim().min(2, "Scrivi il nome dell'attività o dell'azienda.").max(120),
+  sito: z.string().trim().max(200).optional().default(""),
   settore: z.string({ message: "Scegli un settore." }).trim().min(1, "Scegli un settore.").max(80),
-  citta: z.string().trim().min(2, "Scrivi la città.").max(80),
+  citta: z.string().trim().max(80).optional().default(""),
+  budget: z.string({ message: "Scegli un'opzione." }).trim().min(1, "Scegli un'opzione.").max(60),
   email: z.string().trim().email("Controlla l'indirizzo email.").max(160),
   telefono: z
     .string()
@@ -34,10 +36,10 @@ const schema = z.object({
 const escape = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-export async function richiediProva(prev: FormState, formData: FormData): Promise<FormState> {
+export async function richiediAnalisi(prev: FormState, formData: FormData): Promise<FormState> {
   const attempt = (prev.status === "error" ? prev.attempt : 0) + 1;
   const values = Object.fromEntries(
-    ["nome", "attivita", "settore", "citta", "email", "telefono", "privacy"].map((k) => [k, String(formData.get(k) ?? "")]),
+    ["nome", "attivita", "sito", "settore", "citta", "budget", "email", "telefono", "privacy"].map((k) => [k, String(formData.get(k) ?? "")]),
   );
 
   // Honeypot: un campo invisibile che solo i bot compilano. Rispondiamo
@@ -84,9 +86,11 @@ export async function richiediProva(prev: FormState, formData: FormData): Promis
   const resend = new Resend(apiKey);
   const righe: [string, string][] = [
     ["Nome", d.nome],
-    ["Attività", d.attivita],
+    ["Attività / azienda", d.attivita],
+    ["Sito", d.sito || "—"],
     ["Settore", d.settore],
-    ["Città", d.citta],
+    ["Città / zona", d.citta || "—"],
+    ["Budget pubblicitario indicativo", d.budget],
     ["Email", d.email],
     ["Telefono", d.telefono],
   ];
@@ -95,10 +99,10 @@ export async function richiediProva(prev: FormState, formData: FormData): Promis
     from,
     to,
     replyTo: d.email,
-    subject: `Nuova richiesta di prova: ${d.attivita} (${d.citta})`,
+    subject: `Nuova richiesta di analisi: ${d.attivita}${d.citta ? ` (${d.citta})` : ""}`,
     text: righe.map(([k, v]) => `${k}: ${v}`).join("\n") + `\n\nConsenso privacy: sì\nInviata il: ${new Date().toISOString()}`,
     html:
-      `<h2>Nuova richiesta di prova gratuita</h2><table cellpadding="6">` +
+      `<h2>Nuova richiesta di analisi gratuita</h2><table cellpadding="6">` +
       righe.map(([k, v]) => `<tr><td><strong>${k}</strong></td><td>${escape(v)}</td></tr>`).join("") +
       `</table><p>Consenso privacy: sì<br>Inviata il: ${new Date().toISOString()}</p>`,
   });
@@ -118,14 +122,14 @@ export async function richiediProva(prev: FormState, formData: FormData): Promis
     text: [
       `Ciao ${d.nome},`,
       "",
-      `abbiamo ricevuto la richiesta di prova gratuita per ${d.attivita} (${d.citta}).`,
+      `abbiamo ricevuto la richiesta di analisi gratuita per ${d.attivita}.`,
       "",
       "Cosa succede adesso:",
-      "1. Prepariamo 20 domande che i clienti di un'attività come la tua farebbero a ChatGPT, Gemini e Perplexity.",
-      "2. Le facciamo davvero e annotiamo chi viene consigliato.",
-      "3. Ti consegniamo una pagina con quante volte esce il tuo nome, quante quello dei concorrenti, e perché.",
+      "1. Guardiamo il tuo settore e le domande che i tuoi clienti fanno a ChatGPT.",
+      "2. Valutiamo se gli annunci su ChatGPT hanno senso per te e con quale budget di partenza.",
+      "3. Ti ricontattiamo per parlarne. Se non fanno per te, te lo diciamo.",
       "",
-      "Ti ricontattiamo noi. Se vuoi aggiungere qualcosa, rispondi a questa email.",
+      "Se vuoi aggiungere qualcosa, rispondi a questa email.",
       "",
       `${site.name}`,
       site.url,

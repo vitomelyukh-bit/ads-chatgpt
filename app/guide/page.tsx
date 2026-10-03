@@ -6,9 +6,9 @@ import { getGuide } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Guide: come l'AI sceglie chi consigliare · TiTrovano",
+  title: "Guide su ChatGPT, AI e annunci · TiTrovano",
   description:
-    "Guide semplici per capire come ChatGPT, Gemini e Perplexity scelgono quali attività consigliare, e come verificare se consigliano la tua.",
+    "Guide semplici su come ChatGPT, Gemini e Perplexity rispondono ai clienti, su come funzionano gli annunci su ChatGPT e su quando conviene usarli.",
   path: "/guide",
 });
 
@@ -16,10 +16,9 @@ export default function GuidePage() {
   return (
     <Container className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Guide", path: "/guide" }]} />
-      <h1 className="mt-10 font-serif text-5xl leading-[1] tracking-tight sm:text-7xl">Guide</h1>
-      <p className="mt-6 max-w-2xl text-lg text-ink-soft">
-        Come ragionano ChatGPT, Gemini e Perplexity quando un cliente chiede a chi rivolgersi. Spiegato senza
-        parole tecniche.
+      <h1 className="mt-10 text-4xl font-semibold tracking-tight sm:text-6xl">Guide</h1>
+      <p className="mt-6 max-w-2xl text-lg text-fg-soft">
+        Come rispondono ChatGPT, Gemini e Perplexity ai clienti e come funzionano gli annunci su ChatGPT. Spiegato senza gergo.
       </p>
       <div className="mt-12">
         <LinkList items={getGuide().map((g) => ({ href: `/guide/${g.slug}`, label: g.h1, sub: g.description }))} />

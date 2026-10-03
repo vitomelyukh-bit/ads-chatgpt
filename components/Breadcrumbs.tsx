@@ -7,17 +7,17 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   const all = [{ name: "Home", path: "/" }, ...items];
   return (
     <>
-      <nav aria-label="Percorso" className="label-mono text-ink-mute">
+      <nav aria-label="Percorso" className="label-mono text-fg-mute">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {all.map((c, i) => {
             const last = i === all.length - 1;
             return (
               <li key={c.path} className="flex items-center gap-2">
                 {last ? (
-                  <span aria-current="page" className="line-clamp-1 text-ink">{c.name}</span>
+                  <span aria-current="page" className="line-clamp-1 text-fg-soft">{c.name}</span>
                 ) : (
                   <>
-                    <Link href={c.path} className="hover:text-ink">{c.name}</Link>
+                    <Link href={c.path} className="hover:text-fg">{c.name}</Link>
                     <span aria-hidden="true">/</span>
                   </>
                 )}

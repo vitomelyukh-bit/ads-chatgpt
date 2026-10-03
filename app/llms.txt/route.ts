@@ -8,18 +8,18 @@ export function GET() {
   const guide = getGuide();
   const body = `# ${site.name}
 
-> ${site.name} offre una prova gratuita per le attività locali italiane: facciamo 20 domande reali, come le farebbero i loro clienti, a tre assistenti AI (ChatGPT, Gemini e Perplexity) e consegniamo una pagina con quante volte l'attività viene consigliata, quante volte vengono consigliati i concorrenti e perché.
+> ${site.name} progetta e gestisce annunci su ChatGPT per attività locali e aziende italiane: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget e report mensili. Si parte da un'analisi gratuita.
 
-Il sito non vende servizi: l'unica cosa che si può fare è richiedere la prova gratuita. Nessuno può garantire che un assistente AI consigli una certa attività, e ${site.name} non lo promette.
+Gli annunci su ChatGPT sono in Italia dal 24 agosto 2026. Secondo OpenAI sono mostrati separati dalle risposte, segnalati come sponsorizzati, e non influenzano ciò che ChatGPT risponde. ${site.name} non garantisce risultati: misura la spesa e i risultati e li riporta con trasparenza. ${site.name} è indipendente e non è affiliato a OpenAI.
 
 ## Pagine principali
 
-- [Home](${absoluteUrl("/")}): cosa chiedono i clienti all'AI e come funziona la prova gratuita
-- [Prova gratuita](${absoluteUrl("/prova-gratuita")}): modulo di richiesta (nome, attività, settore, città, email, telefono)
+- [Home](${absoluteUrl("/")}): cosa sono gli annunci su ChatGPT, cosa fa ${site.name} e come funziona
+- [Analisi gratuita](${absoluteUrl("/analisi-gratuita")}): richiesta di valutazione gratuita (attività, sito, settore, budget indicativo, contatti)
 
 ## Settori
 
-Per ogni settore: le domande specifiche che i clienti fanno agli assistenti AI.
+Per ogni settore: le domande che i clienti fanno a ChatGPT e quando gli annunci hanno senso.
 
 ${settori.map((s) => `- [${s.nome}](${absoluteUrl(`/settori/${s.slug}`)}): ${s.description}`).join("\n")}
 

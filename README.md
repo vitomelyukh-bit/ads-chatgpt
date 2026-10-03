@@ -1,6 +1,6 @@
 # TiTrovano
 
-Sito di [titrovano.it](https://titrovano.it). Ha un solo obiettivo: far richiedere la prova gratuita, cioè 20 domande reali fatte a ChatGPT, Gemini e Perplexity per vedere se l'AI consiglia un'attività.
+Sito di [titrovano.it](https://titrovano.it): gestione di annunci su ChatGPT per attività locali e aziende. Obiettivo: far richiedere l'analisi gratuita (`/analisi-gratuita`).
 
 Stack: Next.js 16 (App Router) con TypeScript, Tailwind CSS 4 e contenuti MDX. Tutte le pagine sono generate staticamente, quindi il testo è nell'HTML iniziale anche per i crawler che non eseguono JavaScript.
 
@@ -28,17 +28,17 @@ In produzione, se manca una delle tre variabili Resend, il form mostra un errore
 
 ## Il form
 
-- Campi: nome, attività, settore, città, email, telefono, consenso privacy.
-- Server action in `actions/richiedi-prova.ts`. Invia due email con Resend:
+- Campi: nome, attività/azienda, sito (facoltativo), settore, città (facoltativa), budget indicativo, email, telefono, consenso privacy.
+- Server action in `actions/richiedi-analisi.ts`. Invia due email con Resend:
   1. una a `LEAD_TO_EMAIL` con i dati della richiesta, con Reply-To uguale all'email di chi ha compilato;
   2. una ricevuta a chi ha compilato, con Reply-To uguale al primo indirizzo di `LEAD_TO_EMAIL`.
 - **Honeypot**: c'è un campo `sito_web` invisibile. Se viene compilato, la richiesta viene ignorata ma al bot si risponde "ok".
 - **Limite per IP**: 3 invii ogni 10 minuti (`lib/rate-limit.ts`). Il limite vive nella memoria della funzione: su Vercel ogni istanza ha il suo contatore, quindi frena gli invii ripetuti ma non è un blocco assoluto. Per un limite condiviso tra istanze si può usare Upstash Redis (`@upstash/ratelimit`).
-- **Analytics**: a invio riuscito parte l'evento `Prova richiesta` con la proprietà `settore`.
+- **Analytics**: a invio riuscito parte l'evento `Analisi richiesta` con la proprietà `settore`.
 
 ## Analytics
 
-Vercel Analytics non usa cookie, quindi non serve un banner. Da attivare in Vercel → progetto → Analytics. Gli eventi personalizzati come `Prova richiesta` sono disponibili solo su alcuni piani Vercel: controlla il tuo.
+Vercel Analytics non usa cookie, quindi non serve un banner. Da attivare in Vercel → progetto → Analytics. Gli eventi personalizzati come `Analisi richiesta` sono disponibili solo su alcuni piani Vercel: controlla il tuo.
 
 ## Contenuti
 
@@ -53,7 +53,7 @@ Per aggiungere un settore o una guida basta copiare un file esistente e cambiarn
 
 I link a guide o settori correlati che non esistono vengono ignorati e segnalati nel log di build.
 
-Regole di scrittura: niente statistiche, casi studio o recensioni inventati; niente promesse di essere consigliati dall'AI; niente prezzi; niente loghi di marchi terzi; non usare "citare/citato", ma "trovare", "consigliare" o "esce il tuo nome".
+Regole di scrittura: vedi `content-engine/WRITING.md` (niente numeri o clienti inventati, niente risultati garantiti, niente prezzi del servizio, consigliati ≠ sponsorizzati, mai "citare/citato").
 
 ## SEO tecnica
 

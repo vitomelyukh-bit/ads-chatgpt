@@ -57,18 +57,18 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
             <SectionLabel>
               Guida · <time dateTime={g.dateModified}>{formatData(g.dateModified)}</time>
             </SectionLabel>
-            <h1 className="mt-5 font-serif text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl">{g.h1}</h1>
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">{g.h1}</h1>
           </header>
-          <div className="relative mt-10 rounded-2xl border-2 border-ink bg-card p-6 shadow-[6px_6px_0_var(--color-ink)] sm:p-8">
-            <p className="label-mono absolute -top-3 left-5 bg-accent px-2 py-0.5 text-ink">In breve</p>
-            <p className="text-lg leading-relaxed text-ink sm:text-xl">{g.rispostaBreve}</p>
+          <div className="relative mt-10 rounded-2xl border border-line bg-surface p-6  sm:p-8">
+            <p className="label-mono absolute -top-3 left-5 rounded bg-accent px-2 py-0.5 text-bg">In breve</p>
+            <p className="text-lg leading-relaxed text-fg sm:text-xl">{g.rispostaBreve}</p>
           </div>
           <div className="mt-12">
             <Mdx source={g.body} />
           </div>
           {g.faq.length > 0 && (
             <section className="mt-14">
-              <h2 className="font-serif text-4xl tracking-tight">Domande frequenti</h2>
+              <h2 className="text-3xl font-semibold tracking-tight">Domande frequenti</h2>
               <div className="mt-6">
                 <Faq items={g.faq} />
               </div>
@@ -82,7 +82,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
 
         {altre.length > 0 && (
           <section className="mt-16">
-            <h2 className="font-serif text-3xl tracking-tight">Leggi anche</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Leggi anche</h2>
             <div className="mt-6">
               <LinkList items={altre.map((x) => ({ href: `/guide/${x.slug}`, label: x.h1 }))} />
             </div>
@@ -90,7 +90,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
         )}
         {settori.length > 0 && (
           <section className="mt-14">
-            <h2 className="font-serif text-3xl tracking-tight">Cosa chiedono all&apos;AI i clienti di questi settori</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Cosa chiedono all&apos;AI i clienti di questi settori</h2>
             <div className="mt-6">
               <LinkList items={settori.map((x) => ({ href: `/settori/${x.slug}`, label: x.nome }))} />
             </div>

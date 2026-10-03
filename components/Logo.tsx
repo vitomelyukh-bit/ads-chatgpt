@@ -1,10 +1,8 @@
-export function Logo({ inverse = false }: { inverse?: boolean }) {
+export function Logo() {
   return (
-    <span className={`font-serif text-[1.65rem] leading-none tracking-tight ${inverse ? "text-paper" : "text-ink"}`}>
-      Ti
-      <span className={`bg-[linear-gradient(transparent_58%,var(--color-accent)_58%,var(--color-accent)_92%,transparent_92%)] ${inverse ? "text-paper" : "text-ink"}`}>
-        Trovano
-      </span>
+    <span className="inline-flex items-center gap-2 text-[1.05rem] font-semibold tracking-tight text-fg">
+      <span aria-hidden="true" className="relative inline-block size-3.5 rounded-[4px] bg-accent shadow-[0_0_18px_#d7ff3f88]" />
+      TiTrovano
     </span>
   );
 }

@@ -7,7 +7,7 @@ export const site = {
   locale: "it_IT",
   lang: "it-IT",
   description:
-    "Oggi i clienti chiedono a ChatGPT, Gemini e Perplexity a chi rivolgersi. L'AI risponde con due o tre nomi. Scopri gratis se c'è anche il tuo.",
+    "Annunci su ChatGPT per attività locali e aziende italiane: strategia, campagne, ottimizzazione e report. Richiedi un'analisi gratuita.",
 };
 
 export function absoluteUrl(path = "/") {

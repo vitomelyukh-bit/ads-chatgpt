@@ -3,11 +3,13 @@
 import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
-import { richiediProva, type FormState } from "@/actions/richiedi-prova";
+import { richiediAnalisi, type FormState } from "@/actions/richiedi-analisi";
 
 const initial: FormState = { status: "idle" };
 
-export function TrialForm({
+export const BUDGET = ["Non lo so ancora", "Meno di 500 € al mese", "500–1.500 € al mese", "1.500–5.000 € al mese", "Oltre 5.000 € al mese"];
+
+export function LeadForm({
   settori,
   defaultSettore = "",
   headingLevel = 2,
@@ -16,7 +18,7 @@ export function TrialForm({
   defaultSettore?: string;
   headingLevel?: 2 | 3;
 }) {
-  const [state, action, pending] = useActionState(richiediProva, initial);
+  const [state, action, pending] = useActionState(richiediAnalisi, initial);
   const id = useId();
   const confermaRef = useRef<HTMLDivElement>(null);
   const tracked = useRef(false);
@@ -24,7 +26,7 @@ export function TrialForm({
   useEffect(() => {
     if (state.status === "success" && !tracked.current) {
       tracked.current = true;
-      if (state.settore) track("Prova richiesta", { settore: state.settore });
+      if (state.settore) track("Analisi richiesta", { settore: state.settore });
       confermaRef.current?.focus();
     }
   }, [state]);
@@ -37,15 +39,14 @@ export function TrialForm({
         ref={confermaRef}
         tabIndex={-1}
         role="status"
-        className="rounded-2xl border-2 border-ink bg-accent-soft p-6 outline-none sm:p-8"
+        className="rounded-2xl border border-accent/50 bg-accent-soft p-6 outline-none sm:p-8"
       >
-        <Heading className="font-serif text-4xl leading-tight text-ink"><span className="hl">Richiesta ricevuta.</span> Grazie.</Heading>
-        <p className="mt-3 text-ink-soft">
+        <Heading className="text-3xl font-semibold tracking-tight text-fg">Richiesta ricevuta. Grazie.</Heading>
+        <p className="mt-3 text-fg-soft">
           Ti abbiamo mandato una email di conferma. Se non la vedi, controlla nella posta indesiderata.
         </p>
-        <p className="mt-3 text-ink-soft">
-          Adesso prepariamo le domande e le facciamo a ChatGPT, Gemini e Perplexity. Poi ti ricontattiamo noi
-          con il risultato.
+        <p className="mt-3 text-fg-soft">
+          Guardiamo il tuo settore e ti ricontattiamo per parlarne. Se gli annunci su ChatGPT non fanno per te, te lo diciamo.
         </p>
       </div>
     );
@@ -62,14 +63,14 @@ export function TrialForm({
   });
   const errorText = (name: string) =>
     err[name] ? (
-      <p id={`${id}-${name}-err`} className="mt-1.5 text-sm text-red-700">
+      <p id={`${id}-${name}-err`} className="mt-1.5 text-sm text-red-400">
         {err[name]}
       </p>
     ) : null;
 
   const input =
-    "mt-2 block w-full rounded-xl border border-ink/20 bg-paper/60 px-4 py-3 text-base text-ink placeholder:text-ink-mute focus:border-ink focus:bg-card focus:outline-none focus:ring-4 focus:ring-accent/60 aria-[invalid=true]:border-red-700";
-  const label = "label-mono block text-ink-soft";
+    "mt-2 block w-full rounded-xl border border-line-strong bg-surface-2 px-4 py-3 text-base text-fg placeholder:text-fg-mute focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/20 aria-[invalid=true]:border-red-400";
+  const label = "label-mono block text-fg-mute";
 
   return (
     <form
@@ -80,7 +81,7 @@ export function TrialForm({
       className="space-y-5"
     >
       {state.status === "error" && (
-        <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800">
+        <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
           {state.message}
         </p>
       )}
@@ -92,7 +93,7 @@ export function TrialForm({
           {errorText("nome")}
         </div>
         <div>
-          <label htmlFor={`${id}-attivita`} className={label}>Nome dell&apos;attività</label>
+          <label htmlFor={`${id}-attivita`} className={label}>Attività o azienda</label>
           <input {...field("attivita")} type="text" autoComplete="organization" required className={input} />
           {errorText("attivita")}
         </div>
@@ -107,9 +108,22 @@ export function TrialForm({
           {errorText("settore")}
         </div>
         <div>
-          <label htmlFor={`${id}-citta`} className={label}>Città</label>
-          <input {...field("citta")} type="text" autoComplete="address-level2" required className={input} />
+          <label htmlFor={`${id}-citta`} className={label}>Città o zona <span className="normal-case tracking-normal">(se locale)</span></label>
+          <input {...field("citta")} type="text" autoComplete="address-level2" className={input} />
           {errorText("citta")}
+        </div>
+        <div>
+          <label htmlFor={`${id}-sito`} className={label}>Sito web <span className="normal-case tracking-normal">(se c&apos;è)</span></label>
+          <input {...field("sito")} type="text" inputMode="url" autoComplete="url" placeholder="esempio.it" className={input} />
+          {errorText("sito")}
+        </div>
+        <div>
+          <label htmlFor={`${id}-budget`} className={label}>Budget pubblicitario indicativo</label>
+          <select {...field("budget")} required defaultValue={val.budget || ""} className={input}>
+            <option value="" disabled>Scegli…</option>
+            {BUDGET.map((b) => <option key={b} value={b}>{b}</option>)}
+          </select>
+          {errorText("budget")}
         </div>
         <div>
           <label htmlFor={`${id}-email`} className={label}>Email</label>
@@ -137,11 +151,11 @@ export function TrialForm({
             defaultChecked={val.privacy === "on"}
             type="checkbox"
             required
-            className="mt-1 size-5 shrink-0 rounded border-ink accent-[var(--color-ink)]"
+            className="mt-1 size-5 shrink-0 rounded accent-[var(--color-accent)]"
           />
-          <label htmlFor={`${id}-privacy`} className="text-sm text-ink-soft">
-            Ho letto l&apos;<Link href="/privacy" className="link-ul text-ink">informativa privacy</Link>{" "}
-            e acconsento a essere ricontattato per la prova gratuita.
+          <label htmlFor={`${id}-privacy`} className="text-sm text-fg-soft">
+            Ho letto l&apos;<Link href="/privacy" className="link-ul text-fg">informativa privacy</Link>{" "}
+            e acconsento a essere ricontattato per l&apos;analisi gratuita.
           </label>
         </div>
         {errorText("privacy")}
@@ -150,11 +164,11 @@ export function TrialForm({
       <button
         type="submit"
         disabled={pending}
-        className="btn-ink w-full text-base disabled:opacity-60 sm:w-auto"
+        className="btn-accent w-full text-base disabled:opacity-60 sm:w-auto"
       >
-        {pending ? "Invio in corso…" : <>Richiedi la prova gratuita <span aria-hidden="true">→</span></>}
+        {pending ? "Invio in corso…" : <>Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></>}
       </button>
-      <p className="text-sm text-ink-mute">Gratis e senza impegno. Ti ricontattiamo noi.</p>
+      <p className="text-sm text-fg-mute">Gratis e senza impegno. Ti ricontattiamo noi.</p>
     </form>
   );
 }

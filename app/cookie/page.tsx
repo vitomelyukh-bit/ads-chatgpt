@@ -21,8 +21,8 @@ export default function Page() {
   return (
     <Container narrow className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Cookie policy", path: "/cookie" }]} />
-      <h1 className="mt-10 font-serif text-5xl tracking-tight sm:text-6xl">Cookie policy</h1>
-      <p className="mt-4 text-sm text-ink-mute">
+      <h1 className="mt-10 text-4xl font-semibold tracking-tight sm:text-5xl">Cookie policy</h1>
+      <p className="mt-4 text-sm text-fg-mute">
         Aggiornata il <time dateTime={policyAggiornata}>{data}</time>
       </p>
       <div className="mt-10">
@@ -44,7 +44,7 @@ export default function Page() {
           <p>
             Per contare le visite usiamo Vercel Web Analytics. Lo strumento non salva cookie nel tuo browser e non ci
             permette di riconoscerti: vediamo solo numeri aggregati, come le visite a ogni pagina e il numero di
-            richieste di prova.
+            richieste di analisi.
           </p>
 
           <h2>Cookie tecnici</h2>

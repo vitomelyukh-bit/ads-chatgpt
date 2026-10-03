@@ -77,3 +77,18 @@ export function article(a: {
     publisher: { "@type": "Organization", "@id": orgId, name: site.name },
   };
 }
+
+export function service() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Gestione annunci su ChatGPT",
+    serviceType: "Pubblicità su ChatGPT",
+    description:
+      "Strategia, configurazione, creazione e ottimizzazione di campagne pubblicitarie su ChatGPT per attività locali e aziende in Italia.",
+    areaServed: { "@type": "Country", name: "Italia" },
+    availableLanguage: "it",
+    provider: { "@id": orgId },
+    url: absoluteUrl("/"),
+  };
+}

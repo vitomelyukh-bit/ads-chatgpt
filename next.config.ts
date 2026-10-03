@@ -28,5 +28,8 @@ export default function config(phase: string): NextConfig {
   return {
     poweredByHeader: false,
     reactStrictMode: true,
+    async redirects() {
+      return [{ source: "/prova-gratuita", destination: "/analisi-gratuita", permanent: true }];
+    },
   };
 }

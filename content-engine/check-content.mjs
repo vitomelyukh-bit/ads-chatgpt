@@ -23,7 +23,7 @@ const VIETATE = /(?<![\p{L}])cit(?:a|o|i|e|ò|ar\p{L}*|at\p{L}*|az\p{L}*|and\p{L
 const PREZZO = /(€\s?\d|\d\s?€|\beuro\b|\bEUR\b)/i;
 const PERCENTUALE = /\d+([.,]\d+)?\s?%|\bper cento\b/i;
 const SOSPETTI = /\b(secondo (uno|un) studio|una ricerca (ha|di)|i dati (mostrano|dicono)|statistiche (dicono|mostrano))\b/i;
-const VENDITA = /\b(i nostri pacchetti|il nostro pacchetto|il nostro servizio|i nostri servizi|la nostra consulenza|le nostre consulenze|preventivo gratuito|garantiamo|risultati garantiti|posizionamento garantito)\b/i;
+const VENDITA = /\b(garantiamo (risultati|vendite|clienti|il)|risultati garantiti|posizionamento garantito|ritorno garantito|partner (ufficiale )?di openai|certificati openai|i nostri clienti (ottengono|hanno ottenuto))\b/i;
 const CITTA = ["roma","milano","napoli","torino","palermo","genova","bologna","firenze","bari","catania","venezia","verona","messina","padova","trieste","brescia","parma","taranto","prato","modena","reggio","perugia","livorno","ravenna","cagliari","foggia","rimini","salerno","ferrara","sassari","latina","monza","siracusa","pescara","bergamo","vicenza","trento","bolzano","lecce","matera","olbia","siena","taormina"];
 
 const testo = (x) =>
@@ -36,7 +36,7 @@ for (const x of [...settori, ...guide]) {
   const m = t.match(VIETATE);
   if (m) err(x.file, `parola vietata "${m[0]}" (usa trovare/consigliare/"esce il tuo nome")`);
   if (/\bciTati\b|\bCitati\b/.test(t)) err(x.file, `vecchio marchio "Citati"`);
-  if (PREZZO.test(t)) err(x.file, `sembra contenere un prezzo: "${t.match(PREZZO)[0]}"`);
+  if (PREZZO.test(t) && !/budget|annunc/i.test(t.slice(Math.max(0, t.search(PREZZO) - 200), t.search(PREZZO) + 50))) err(x.file, `sembra contenere un prezzo: "${t.match(PREZZO)[0]}"`);
   if (VENDITA.test(t)) err(x.file, `linguaggio da vendita: "${t.match(VENDITA)[0]}"`);
   if (/^#\s/m.test(x.body)) err(x.file, `titolo "# " nel corpo: parti da "##"`);
   if (/^\s*\|.*\|\s*$/m.test(x.body)) err(x.file, `tabella Markdown non supportata: usa una lista`);
@@ -46,7 +46,7 @@ for (const x of [...settori, ...guide]) {
   for (const [, href] of x.body.matchAll(/\]\((\/[^)\s#]*)/g)) {
     const [, tipo, slug] = href.split("/");
     const ok =
-      href === "/" || href === "/prova-gratuita" || href === "/settori" || href === "/guide" ||
+      href === "/" || href === "/analisi-gratuita" || href === "/settori" || href === "/guide" ||
       (tipo === "settori" && settoriSlugs.has(slug)) || (tipo === "guide" && guideSlugs.has(slug));
     if (!ok) err(x.file, `link interno rotto: ${href}`);
   }
@@ -71,7 +71,7 @@ for (const g of guide) {
   // Le prime 6 guide (3 ottobre 2026) sono più brevi: la soglia vale per le nuove.
   const n = parole(g.body);
   if (String(d.datePublished) > "2026-10-03" && (n < 450 || n > 1400)) err(g.file, `corpo di ${n} parole: deve stare tra 500 e 1.200 circa`);
-  if (!/\]\(\/prova-gratuita\)/.test(g.body)) err(g.file, `manca il link alla [prova gratuita](/prova-gratuita)`);
+  if (!/\]\(\/analisi-gratuita\)/.test(g.body)) err(g.file, `manca il link all'[analisi gratuita](/analisi-gratuita)`);
   if (!/\]\(\/(guide|settori)\/[a-z0-9-]+\)/.test(g.body)) err(g.file, `serve almeno un link interno a una guida o a un settore`);
   for (const s of d.settoriCorrelati ?? []) if (!settoriSlugs.has(s)) err(g.file, `settoriCorrelati: "${s}" non esiste`);
   for (const s of d.guideCorrelate ?? []) if (!guideSlugs.has(s) || s === g.slug) err(g.file, `guideCorrelate: "${s}" non valida`);

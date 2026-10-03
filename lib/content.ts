@@ -18,6 +18,7 @@ const settoreSchema = z.object({
     .array(z.object({ testo: z.string(), lingua: z.enum(["it", "en"]).default("it") }))
     .min(4),
   esempioRisposta: z.object({ domanda: z.string(), lingua: z.enum(["it", "en"]).default("it") }),
+  annuncio: z.object({ inserzionista: z.string(), descrizione: z.string() }),
   faq: z.array(faqItem).default([]),
   guideCorrelate: z.array(z.string()).default([]),
 });

@@ -6,9 +6,9 @@ import { getSettori } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Cosa chiedono i clienti all'AI, settore per settore · TiTrovano",
+  title: "Annunci su ChatGPT per settore · TiTrovano",
   description:
-    "Le domande che i clienti fanno a ChatGPT, Gemini e Perplexity prima di scegliere un dentista, un hotel, un idraulico o un ristorante.",
+    "Annunci su ChatGPT per attività locali, e-commerce e aziende B2B: cosa chiedono i clienti all'AI in ogni settore e quando conviene comparire.",
   path: "/settori",
 });
 
@@ -17,10 +17,9 @@ export default function SettoriPage() {
   return (
     <Container className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Settori", path: "/settori" }]} />
-      <h1 className="mt-10 max-w-4xl font-serif text-5xl leading-[1] tracking-tight sm:text-7xl">Cosa chiedono i tuoi clienti all&apos;AI</h1>
-      <p className="mt-6 max-w-2xl text-lg text-ink-soft">
-        Ogni settore ha le sue domande. Scegli il tuo e guarda cosa scrivono i clienti a ChatGPT, Gemini e
-        Perplexity prima di decidere a chi rivolgersi.
+      <h1 className="mt-10 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">Annunci su ChatGPT, settore per settore</h1>
+      <p className="mt-6 max-w-2xl text-lg text-fg-soft">
+        Ogni settore ha le sue domande e i suoi numeri. Scegli il tuo: vedi cosa chiedono i clienti a ChatGPT e quando un annuncio ha senso.
       </p>
       <div className="mt-12">
         <LinkList

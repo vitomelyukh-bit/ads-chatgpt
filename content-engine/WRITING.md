@@ -4,31 +4,37 @@ Questa guida la segue la routine automatica che pubblica le guide su titrovano.i
 
 ## Cos'è TiTrovano
 
-Un sito con un solo messaggio: oggi i clienti chiedono a ChatGPT, Gemini e Perplexity a chi rivolgersi, l'AI risponde con due o tre nomi, e un'attività può scoprire gratis se il suo c'è.
+Un servizio che **progetta e gestisce annunci su ChatGPT** per attività locali e aziende italiane: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget, report. Si parte da un'**analisi gratuita** (`/analisi-gratuita`): valutiamo se gli annunci su ChatGPT hanno senso per quel settore, con quali messaggi e con quale budget di partenza.
 
-Un solo obiettivo: far richiedere la **prova gratuita** (`/prova-gratuita`). La prova: poniamo 20 domande reali che i clienti di quell'attività farebbero a tre assistenti AI, e consegniamo una pagina con quante volte viene consigliata l'attività, quante i concorrenti e perché.
-
-Il sito **non vende servizi**. Le guide informano e portano alla prova. Basta.
+Le guide informano in modo onesto e portano all'analisi gratuita. Sono utili anche quando dicono "in questo caso non conviene".
 
 ## Chi legge
 
-Il titolare di un'attività locale italiana: dentista, ristoratore, idraulico, albergatore, centro estetico, noleggio, traslochi, clinica. Non sa cosa sia la SEO. Ha poco tempo. Legge dal telefono.
+Titolari di attività locali (dentisti, hotel, noleggi, traslochi, artigiani, ristoranti, centri estetici, cliniche) e responsabili marketing di e-commerce e aziende B2B. Non sono tecnici. Leggono dal telefono.
+
+## Fatti verificati sugli annunci (usali, linkando la fonte)
+
+- In Italia gli annunci su ChatGPT ci sono dal 24 agosto 2026: comunicato OpenAI del 18 agosto 2026, https://openai.com/index/chatgpt-ads-expands-across-europe/
+- Secondo OpenAI gli annunci sono segnalati come sponsorizzati, mostrati separati dalle risposte e non influenzano le risposte: https://openai.com/index/testing-ads-in-chatgpt/
+- Secondo OpenAI li vedono gli utenti dei piani Free e Go; Plus, Pro ed Enterprise no.
+- Regole pubblicitarie di OpenAI: https://openai.com/policies/ad-policies/
+
+Tutto il resto (costi per clic, budget minimi, opzioni di targeting, formati) **cambia spesso**: va verificato con una ricerca web durante il lavoro, su fonti ufficiali OpenAI quando possibile, e scritto con la data ("a ottobre 2026…"). Se una fonte non è ufficiale, dillo ("secondo alcune analisi di settore…"). Se non trovi una fonte, non scriverlo.
 
 ## Regole che non si violano mai
 
 Se una regola non si può rispettare, l'articolo non si pubblica.
 
 1. **Mai le parole "citare", "citato", "citata", "citazione", "cita"** e simili. Usa "trovare", "consigliare", "esce il tuo nome", "fa il tuo nome".
-2. **Niente numeri inventati.** Nessuna statistica, percentuale, quota di mercato o "studio" senza fonte verificata. Se non trovi una fonte affidabile, scrivi la cosa senza numeri o non scriverla. "Non ci sono dati affidabili" è una frase accettabile.
-3. **Niente casi studio, clienti, testimonianze o recensioni inventati.** Niente "un nostro cliente", "abbiamo aiutato", "un dentista di Bologna ci ha detto".
-4. **Mai promettere** di essere consigliati dall'AI, di salire, di "posizionarsi". Nessuno può garantirlo, e va detto quando serve.
-5. **Niente prezzi**, né nostri né di altri.
-6. **Non vendere servizi.** Non parlare di pacchetti, consulenze, SEO, campagne o pubblicità come offerta nostra. L'unica azione proposta è la prova gratuita.
-7. **Gli annunci sponsorizzati su ChatGPT** (in Italia dal 24 agosto 2026, comunicato OpenAI del 18 agosto 2026 "ChatGPT Ads expands across Europe": https://openai.com/index/chatgpt-ads-expands-across-europe/) si possono nominare **solo come informazione**, mai come cosa che facciamo noi.
-8. **Niente pagine "settore × città"** ("Dentisti a Milano", "Idraulici a Roma"…). Le città compaiono solo come esempio dentro le domande dei clienti.
-9. **Niente loghi o immagini** di marchi. I nomi ChatGPT, Gemini, Perplexity, Google si possono scrivere come testo.
-10. **Fatti su prodotti e aziende** (come funziona la ricerca di ChatGPT, cosa fa Gemini, regole di Google): solo se li verifichi su una fonte ufficiale o affidabile durante il lavoro, e quando è utile la linki. Se non sei sicuro, usa formule prudenti ("secondo OpenAI", "per quanto se ne sa") o lascia perdere. Non inventare nomi di funzioni, date o regole.
-11. **Mai copiare** testo da altri siti. Scrivi con parole tue.
+2. **Niente numeri inventati.** Nessuna statistica, percentuale, costo per clic o "studio" senza fonte verificata e linkata.
+3. **Niente casi studio, clienti, testimonianze o risultati inventati.** Niente "un nostro cliente", "abbiamo aiutato", "i nostri clienti ottengono".
+4. **Mai promettere risultati**: né vendite, né clienti, né ritorni sulla spesa, né di essere consigliati dall'AI.
+5. **Niente prezzi del nostro servizio.** I costi degli annunci si possono citare solo con fonte e data.
+6. **Consigliati ≠ sponsorizzati.** Non far mai credere che un annuncio faccia comparire nella risposta di ChatGPT.
+7. **Settori sensibili** (salute, finanza, politica…): ricorda che OpenAI non mostra annunci vicino ad argomenti sensibili e che in Italia la pubblicità sanitaria ha regole proprie. Non suggerire mai di aggirarle.
+8. **Niente pagine "settore × città"** ("Annunci per dentisti a Milano"…). Le città compaiono solo come esempio.
+9. **Niente loghi o immagini** di marchi. I nomi ChatGPT, OpenAI, Gemini, Perplexity, Google si possono scrivere come testo. Non dire mai che siamo partner o affiliati di OpenAI.
+10. **Mai copiare** testo da altri siti.
 
 ## Stile
 
@@ -45,7 +51,7 @@ Se una regola non si può rispettare, l'articolo non si pubblica.
 2. **Risposta breve** (`rispostaBreve`): 2-3 frasi che rispondono subito e davvero alla domanda del titolo. È la prima cosa che si legge ed è quella che gli assistenti AI riprendono più facilmente.
 3. **Corpo** in MDX: da 500 a 1.200 parole, sezioni con `##` e, se servono, `###`. **Mai `#`** (l'H1 lo mette la pagina). Liste puntate quando aiutano. Niente tabelle (non sono supportate).
 4. Almeno **un link interno a una guida esistente** o a un settore (`/guide/<slug>`, `/settori/<slug>`), dove ha senso nel testo.
-5. **Chiusura**: un paragrafo breve che collega la guida alla [prova gratuita](/prova-gratuita), senza enfasi.
+5. **Chiusura**: un paragrafo breve che collega la guida all'[analisi gratuita](/analisi-gratuita), senza enfasi.
 6. **FAQ** facoltative (2-3 domande) solo se aggiungono qualcosa, con risposte brevi. Compaiono nella pagina e nel JSON-LD.
 
 ## Frontmatter
@@ -85,15 +91,9 @@ Settori esistenti: guarda i file in `content/settori/`. Non creare nuovi settori
 
 ## Nuovi argomenti per il backlog
 
-Buoni argomenti sono **domande vere che un titolare si fa** su AI e clienti:
+Priorità agli **annunci su ChatGPT**: come funzionano, quanto costano (con fonti), per chi convengono e per chi no, come si misurano, come si scrivono, differenze con Google Ads e Meta, regole e settori sensibili, errori da evitare, domande che i clienti fanno all'AI in un settore. Restano utili anche le guide su come l'AI sceglie chi consigliare.
 
-- come l'AI sceglie, legge, confronta, descrive le attività;
-- cosa fare (in modo concreto e onesto) per essere più chiari per l'AI: sito, scheda, recensioni, informazioni coerenti;
-- differenze tra assistenti (ChatGPT, Gemini, Perplexity), tra AI e ricerca classica;
-- errori e falsi miti (chi promette di "far consigliare" a pagamento, recensioni false…);
-- domande tipiche di un settore esistente, spiegate dal punto di vista del titolare.
-
-Non vanno bene: notizie di attualità che invecchiano in un giorno, argomenti tecnici per addetti ai lavori, temi senza legame con attività locali, varianti della stessa guida con una parola cambiata, pagine per città.
+Non vanno bene: notizie che invecchiano in un giorno, argomenti tecnici per addetti ai lavori, varianti della stessa guida con una parola cambiata, pagine per città.
 
 ## Controlli obbligatori prima del push
 

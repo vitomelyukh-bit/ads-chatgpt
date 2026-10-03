@@ -6,7 +6,7 @@ import { policyAggiornata, titolare } from "@/lib/titolare";
 
 export const metadata = pageMetadata({
   title: "Privacy policy · TiTrovano",
-  description: "Come TiTrovano tratta i dati di chi richiede la prova gratuita e di chi visita il sito.",
+  description: "Come TiTrovano tratta i dati di chi richiede l'analisi gratuita e di chi visita il sito.",
   path: "/privacy",
   noindex: true,
 });
@@ -22,8 +22,8 @@ export default function Page() {
   return (
     <Container narrow className="py-10 sm:py-14">
       <Breadcrumbs items={[{ name: "Privacy policy", path: "/privacy" }]} />
-      <h1 className="mt-10 font-serif text-5xl tracking-tight sm:text-6xl">Privacy policy</h1>
-      <p className="mt-4 text-sm text-ink-mute">
+      <h1 className="mt-10 text-4xl font-semibold tracking-tight sm:text-5xl">Privacy policy</h1>
+      <p className="mt-4 text-sm text-fg-mute">
         Aggiornata il <time dateTime={policyAggiornata}>{data}</time>
       </p>
       <div className="mt-10">
@@ -41,10 +41,11 @@ export default function Page() {
           </p>
 
           <h2>Quali dati raccogliamo</h2>
-          <h3>Quando richiedi la prova gratuita</h3>
+          <h3>Quando richiedi l&apos;analisi gratuita</h3>
           <p>
-            Nel modulo ci lasci: nome e cognome, nome dell&apos;attività, settore, città, email e telefono. Tutti i
-            campi sono necessari per fare la prova e ricontattarti: senza, non possiamo dare seguito alla richiesta.
+            Nel modulo ci lasci: nome e cognome, nome dell&apos;attività o dell&apos;azienda, sito web (facoltativo), settore,
+            città o zona (facoltativa), budget pubblicitario indicativo, email e telefono. I campi obbligatori servono a
+            valutare il tuo caso e ricontattarti: senza, non possiamo dare seguito alla richiesta.
           </p>
           <h3>Quando visiti il sito</h3>
           <ul>
@@ -55,7 +56,7 @@ export default function Page() {
             </li>
             <li>
               <strong>Statistiche anonime.</strong> Usiamo Vercel Web Analytics per sapere quante visite riceve ogni
-              pagina e quante richieste di prova arrivano, suddivise per settore. Lo strumento non usa cookie e non
+              pagina e quante richieste di analisi arrivano, suddivise per settore. Lo strumento non usa cookie e non
               ci permette di sapere chi sei.
             </li>
           </ul>
@@ -63,7 +64,7 @@ export default function Page() {
           <h2>Perché li usiamo e su quale base</h2>
           <ul>
             <li>
-              <strong>Fare la prova gratuita e ricontattarti</strong>, perché ce l&apos;hai chiesto tu. Base giuridica:
+              <strong>Fare l&apos;analisi gratuita, ricontattarti e, se lo vuoi, proporti il servizio</strong>, perché ce l&apos;hai chiesto tu. Base giuridica:
               esecuzione di misure precontrattuali adottate su tua richiesta (art. 6.1.b GDPR).
             </li>
             <li>
@@ -81,10 +82,6 @@ export default function Page() {
           <p>
             Non usiamo i tuoi dati per pubblicità, non li vendiamo e non li cediamo a terzi per i loro scopi. Non
             prendiamo decisioni automatizzate che ti riguardano.
-          </p>
-          <p>
-            Per la prova facciamo domande agli assistenti AI (ChatGPT, Gemini e Perplexity) come le farebbe un cliente
-            qualunque. In quelle domande non inseriamo i tuoi dati personali, come email o telefono.
           </p>
 
           <h2>A chi arrivano i dati</h2>
@@ -110,7 +107,7 @@ export default function Page() {
           <h2>Per quanto tempo li teniamo</h2>
           <ul>
             <li>
-              <strong>Dati della richiesta di prova:</strong> 24 mesi dall&apos;ultimo contatto con te, poi li
+              <strong>Dati della richiesta di analisi:</strong> 24 mesi dall&apos;ultimo contatto con te, poi li
               cancelliamo. Se ce lo chiedi, li cancelliamo prima.
             </li>
             <li>
