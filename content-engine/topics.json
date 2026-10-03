@@ -58,7 +58,9 @@
     {
       "titolo": "Annunci su ChatGPT per hotel: prenotazioni dirette o commissioni dei portali?",
       "settore": "hotel-bed-and-breakfast",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "annunci-chatgpt-hotel-prenotazioni-dirette",
+      "data": "2026-10-03"
     },
     {
       "titolo": "Annunci su ChatGPT per avvocati: cosa permette la deontologia e cosa no",
