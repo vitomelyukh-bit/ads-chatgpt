@@ -7,7 +7,7 @@ function Row({ items, reverse }: { items: Domanda[]; reverse?: boolean }) {
     <li
       key={i}
       lang={d.lingua === "en" ? "en" : undefined}
-      className="shrink-0 rounded-full border border-ink/15 bg-card px-5 py-2.5 text-[15px] text-ink"
+      className="shrink-0 whitespace-nowrap rounded-full border border-ink/15 bg-card px-5 py-2.5 text-[15px] text-ink"
     >
       <span className="mr-2 font-mono text-xs text-ink-mute">{d.lingua === "en" ? "EN" : "›"}</span>
       {d.testo}

@@ -12,7 +12,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 pt-16 sm:px-6">
         <div className="flex flex-col gap-6 border-b border-paper/15 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-xl font-serif text-4xl leading-tight sm:text-5xl">
-            Quando un cliente chiede all&apos;AI, esce <em className="hl whitespace-nowrap text-ink">il tuo nome</em>?
+            Quando un cliente chiede all&apos;AI, esce <em className="whitespace-nowrap text-accent">il tuo nome</em>?
           </p>
           <Link
             href="/prova-gratuita"

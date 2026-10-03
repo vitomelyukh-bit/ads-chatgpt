@@ -98,7 +98,7 @@ export default function Home() {
             Perché conta
           </SectionLabel>
           <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-[1.05] tracking-tight sm:text-6xl">
-            Google ti dava una pagina. L&apos;AI dà <em className="hl whitespace-nowrap text-ink">tre nomi</em>.
+            Google ti dava una pagina. L&apos;AI dà <em className="whitespace-nowrap text-accent">tre nomi</em>.
           </h2>
           <div className="mt-14 grid gap-10 lg:grid-cols-2">
             <div className="rounded-2xl border border-paper/15 p-6 sm:p-8">
