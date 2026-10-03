@@ -45,7 +45,9 @@
     },
     {
       "titolo": "ChatGPT, Gemini e Perplexity: perché danno risposte diverse alla stessa domanda?",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "chatgpt-gemini-perplexity-risposte-diverse",
+      "data": "2026-10-03"
     },
     {
       "titolo": "Cosa legge l'AI del tuo sito web?",
