@@ -133,3 +133,13 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 /* Pagine interne */
 .tt-page-head { padding: var(--space-12) 0 var(--space-16); }
 .tt-page-head .tt-crumbs { margin-bottom: var(--space-8); }
+
+/* Prenotazione della call: giorni e orari come bottoni secondari. */
+.tt-days, .tt-slots { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tt-day, .tt-slot { min-height: var(--tap-min); padding: 0 var(--space-4); border: var(--border-thick) solid var(--ink);
+  border-radius: var(--radius-md); background: var(--paper-raised); color: var(--ink); font: 700 18px/1.2 var(--font-body); cursor: pointer; }
+.tt-day { text-transform: capitalize; }
+.tt-day:hover, .tt-slot:hover { background: var(--brand-tint); }
+.tt-day[aria-pressed="true"], .tt-slot[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.tt-slot { min-width: 96px; }
+.tt-booking { margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--line); }

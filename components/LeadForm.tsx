@@ -4,6 +4,7 @@ import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { richiediAnalisi, type FormState } from "@/actions/richiedi-analisi";
+import { PrenotaCall } from "./PrenotaCall";
 
 const initial: FormState = { status: "idle" };
 
@@ -48,6 +49,11 @@ export function LeadForm({
         <p className="tt-body" style={{ marginTop: "var(--space-3)" }}>
           Ti chiamiamo per fissare una breve call in cui guardiamo insieme il tuo caso. Se gli annunci su ChatGPT non fanno per te, te lo diciamo.
         </p>
+        {state.token && (
+          <div className="tt-booking">
+            <PrenotaCall token={state.token} />
+          </div>
+        )}
       </div>
     );
   }
