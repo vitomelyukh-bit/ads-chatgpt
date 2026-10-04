@@ -164,3 +164,8 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
 .tt-header nav form { display: inline; }
 @media (max-width: 760px) { .tt-form-2 { grid-template-columns: 1fr; } }
+
+/* Domande frequenti: clic affidabile anche su Safari/iPhone. */
+.tt-faq summary, .tt-more > summary { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.tt-faq summary > * { pointer-events: none; }
+.tt-faq__q { flex: 1; }
