@@ -12,7 +12,7 @@ export function Footer() {
         <div className="tt-footer-grid">
           <div className="tt-stack-4">
             <Link href="/" className="tt-wordmark">TiTrovano</Link>
-            <p className="tt-small tt-muted">Annunci su ChatGPT per attività e aziende italiane. Strategia, campagne e report.</p>
+            <p className="tt-small tt-muted">Più clienti da Google Maps per le attività locali italiane. E annunci su ChatGPT, Google e Meta quando servono.</p>
           </div>
           <div>
             <h2 className="tt-label">Settori</h2>
@@ -28,8 +28,9 @@ export function Footer() {
           <div>
             <h2 className="tt-label">Informazioni</h2>
             <ul>
+              <li><Link href="/">Più clienti da Google Maps</Link></li>
+              <li><Link href="/annunci-chatgpt">Annunci su ChatGPT</Link></li>
               <li><Link href="/analisi-gratuita">Analisi gratuita</Link></li>
-              <li><Link href="/scheda-google">Scheda Google sempre viva</Link></li>
               <li><Link href="/canali">Canali: ChatGPT, Google, Meta, SEO</Link></li>
               <li><Link href="/privacy">Privacy policy</Link></li>
               <li><Link href="/cookie">Cookie policy</Link></li>

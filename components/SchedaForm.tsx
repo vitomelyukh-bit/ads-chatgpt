@@ -5,7 +5,7 @@ import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import { pagaScheda } from "@/actions/paga-scheda";
 import { richiediScheda, type StatoScheda } from "@/actions/richiedi-scheda";
-import { CATEGORIE, scheda } from "@/lib/scheda";
+import { EXTRA, euro, scheda } from "@/lib/scheda";
 
 const initial: StatoScheda = { status: "idle" };
 
@@ -15,13 +15,13 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
   const okRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (state.status === "success") {
-      track("Scheda Google richiesta", { nfc: state.nfc });
+      track("Google Maps richiesta", { extra: state.extra ?? "nessuno" });
       okRef.current?.focus();
     }
   }, [state]);
 
   if (state.status === "success") {
-    const totale = scheda.prezzoMese + (state.nfc ? ` €/mese + ${scheda.prezzoCard} € per la card` : " €/mese");
+    const totale = `${euro(scheda.prezzoMese)} al mese${state.extra ? ` + ${euro(EXTRA[state.extra].prezzo)} una volta sola per ${state.extra === "card" ? "la card" : "il piedistallo"}` : ""}`;
     return (
       <div ref={okRef} tabIndex={-1} role="status" className="tt-success tt-stack-4" style={{ outline: "none" }}>
         <h3 className="tt-heading"><span className="tt-ok">Richiesta ricevuta.</span> Grazie.</h3>
@@ -35,7 +35,7 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
           </>
         ) : (
           <>
-            <p className="tt-body">Ti scriviamo su WhatsApp per attivare il servizio{state.nfc ? " e spedirti la card" : ""}. Ti abbiamo mandato anche una email di conferma.</p>
+            <p className="tt-body">Ti scriviamo su WhatsApp per attivare il servizio{state.extra ? ` e spedirti ${state.extra === "card" ? "la card" : "il piedistallo"}` : ""}. Ti abbiamo mandato anche una email di conferma.</p>
             {whatsapp && <a href={whatsapp} className="tt-btn tt-btn--block tt-btn--lg">Scrivici subito su WhatsApp →</a>}
           </>
         )}
@@ -60,31 +60,33 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
 
       <div className={cls("attivita")}><label htmlFor={`${id}-attivita`}>Nome dell&apos;attività</label><input {...f("attivita")} autoComplete="organization" required />{errore("attivita")}</div>
       <div className={cls("citta")}><label htmlFor={`${id}-citta`}>Città</label><input {...f("citta")} autoComplete="address-level2" required />{errore("citta")}</div>
-      <div className={cls("categoria")}>
-        <label htmlFor={`${id}-categoria`}>Categoria</label>
-        <select {...f("categoria")} defaultValue={val.categoria || ""} required>
-          <option value="" disabled>Scegli…</option>
-          {CATEGORIE.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        {errore("categoria")}
-      </div>
       <div className={cls("nome")}><label htmlFor={`${id}-nome`}>Nome e cognome</label><input {...f("nome")} autoComplete="name" required />{errore("nome")}</div>
-      <div className={cls("whatsapp")}><label htmlFor={`${id}-whatsapp`}>Telefono WhatsApp</label><input {...f("whatsapp")} type="tel" inputMode="tel" autoComplete="tel" required />{errore("whatsapp", "Ti scriviamo qui per attivare il servizio.")}</div>
+      <div className={cls("whatsapp")}><label htmlFor={`${id}-whatsapp`}>Numero WhatsApp</label><input {...f("whatsapp")} type="tel" inputMode="tel" autoComplete="tel" required />{errore("whatsapp", "Ti scriviamo qui. Niente chiamate a sorpresa.")}</div>
       <div className={cls("email")}><label htmlFor={`${id}-email`}>Email</label><input {...f("email")} type="email" inputMode="email" autoComplete="email" required />{errore("email")}</div>
       <div className={cls("link_maps")}>
-        <label htmlFor={`${id}-link_maps`}>Link della tua scheda Google Maps <span>(obbligatorio con la card)</span></label>
+        <label htmlFor={`${id}-link_maps`}>Link della tua attività su Google Maps <span>(se non lo trovi, lascia vuoto)</span></label>
         <input {...f("link_maps")} type="url" inputMode="url" placeholder="https://maps.app.goo.gl/…" />
-        {errore("link_maps", "Su Google Maps apri la tua attività, tocca Condividi e copia il link.")}
+        {errore("link_maps", "Su Google Maps cerca la tua attività, tocca Condividi e copia il link. Serve se scegli card o piedistallo.")}
       </div>
 
-      <label className="tt-check tt-nfc-toggle" htmlFor={`${id}-nfc`}>
-        <input id={`${id}-nfc`} name="nfc" type="checkbox" defaultChecked={val.nfc === "on"} />
-        <span><strong>Voglio anche la card NFC (+{scheda.prezzoCard} €)</strong><br />Una tantum, spedizione inclusa, arriva già configurata.</span>
-      </label>
+      <fieldset className="tt-nfc-scelta">
+        <legend>Vuoi anche qualcosa da mettere sul bancone? <span>(facoltativo)</span></legend>
+        <p className="tt-field__help">Il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione.</p>
+        <label className="tt-check tt-nfc-toggle" htmlFor={`${id}-nfc-no`}>
+          <input id={`${id}-nfc-no`} name="nfc" type="radio" value="" defaultChecked={!val.nfc} />
+          <span><strong>No, grazie</strong></span>
+        </label>
+        {(Object.keys(EXTRA) as (keyof typeof EXTRA)[]).map((k) => (
+          <label key={k} className="tt-check tt-nfc-toggle" htmlFor={`${id}-nfc-${k}`}>
+            <input id={`${id}-nfc-${k}`} name="nfc" type="radio" value={k} defaultChecked={val.nfc === k} />
+            <span><strong>{EXTRA[k].nome}: +{euro(EXTRA[k].prezzo)}</strong><br />{EXTRA[k].descrizione} Una volta sola, spedizione inclusa.</span>
+          </label>
+        ))}
+      </fieldset>
 
-      {/* Compare solo se la casella è spuntata (CSS :has, funziona anche senza JavaScript). */}
+      {/* Compare solo se si sceglie card o piedistallo (CSS :has, funziona anche senza JavaScript). */}
       <fieldset className="tt-spedizione tt-form">
-        <legend className="tt-subheading">Indirizzo di spedizione della card</legend>
+        <legend className="tt-subheading">Dove te lo spediamo?</legend>
         <div className={cls("sped_presso")}><label htmlFor={`${id}-sped_presso`}>Presso <span>(facoltativo)</span></label><input {...f("sped_presso")} autoComplete="organization" />{errore("sped_presso", "Es. il nome dell'attività, se è diverso dal tuo.")}</div>
         <div className={cls("sped_via")}><label htmlFor={`${id}-sped_via`}>Via e numero civico</label><input {...f("sped_via")} autoComplete="address-line1" />{errore("sped_via")}</div>
         <div className={cls("sped_cap")}><label htmlFor={`${id}-sped_cap`}>CAP</label><input {...f("sped_cap")} inputMode="numeric" autoComplete="postal-code" maxLength={5} />{errore("sped_cap")}</div>

@@ -1,14 +1,14 @@
-// Mockup segnaposto della card NFC da banco (da sostituire con una foto vera).
-export function NfcCardMock() {
+// Mockup segnaposto di card e piedistallo da banco (da sostituire con foto vere).
+export function NfcCardMock({ tipo = "card" }: { tipo?: "card" | "piedistallo" }) {
   return (
-    <figure className="tt-nfc-mock" style={{ margin: 0 }}>
-      <div className="tt-nfc-card" aria-hidden="true">
+    <div className={tipo === "piedistallo" ? "tt-nfc-piedistallo" : undefined} aria-hidden="true">
+      <div className="tt-nfc-card">
         <span className="tt-nfc-onde">)))</span>
         <p className="tt-nfc-titolo">Ti è piaciuto?</p>
         <p className="tt-nfc-sotto">Avvicina il telefono e lasciaci una recensione</p>
         <span className="tt-nfc-stelle">★★★★★</span>
       </div>
-      <figcaption className="tt-small tt-muted">Immagine indicativa: la card definitiva può essere diversa.</figcaption>
-    </figure>
+      {tipo === "piedistallo" && <div className="tt-nfc-base" />}
+    </div>
   );
 }

@@ -9,9 +9,9 @@ export function Header() {
       </Link>
       <nav aria-label="Principale">
         <Link href="/#come-funziona">Come funziona</Link>
-        <Link href="/settori">Settori</Link>
-        <Link href="/guide">Guide</Link>
-        <Link href="/analisi-gratuita" className="tt-btn">Analisi gratuita</Link>
+        <Link href="/#prezzo">Prezzo</Link>
+        <Link href="/annunci-chatgpt">Annunci online</Link>
+        <Link href="/#attiva" className="tt-btn">Inizia ora</Link>
       </nav>
     </header>
   );

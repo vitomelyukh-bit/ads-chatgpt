@@ -1,243 +1,204 @@
 import Link from "next/link";
-import { ChatAd } from "@/components/ds/ChatAd";
 import { FaqList } from "@/components/ds/FaqList";
 import { LinkCards } from "@/components/ds/LinkCards";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
-import { LeadForm } from "@/components/LeadForm";
-import { passi } from "@/components/Steps";
-import { canali } from "@/lib/canali";
-import { getGuide, getSettori, settoreOptions } from "@/lib/content";
-import { faqHome } from "@/lib/faq";
-import { breadcrumbList, faqPage, organization, service, website } from "@/lib/jsonld";
+import { MapsMock } from "@/components/MapsMock";
+import { NfcCardMock } from "@/components/NfcCardMock";
+import { SchedaForm } from "@/components/SchedaForm";
+import type { Faq } from "@/lib/content";
+import { breadcrumbList, faqPage, organization, serviceMaps, website } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
+import { EXTRA, euro, linkWhatsApp, scheda } from "@/lib/scheda";
+import { pagamentiAttivi } from "@/lib/stripe";
 
 export const metadata = pageMetadata({
-  title: "Annunci su ChatGPT per attività e aziende · TiTrovano",
+  title: "Più clienti da Google Maps per la tua attività · TiTrovano",
   description:
-    "I tuoi clienti chiedono a ChatGPT. Progettiamo e gestiamo i tuoi annunci su ChatGPT: strategia, campagne, ottimizzazione e report. Richiedi l'analisi gratuita.",
+    "Teniamo aggiornata la tua attività su Google Maps, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. 59 € al mese, senza vincoli. Tu devi solo approvare l'accesso.",
   path: "/",
 });
 
-const servizi = [
-  { titolo: "Strategia", testo: "Capiamo cosa chiedono i tuoi clienti all'AI e in quali conversazioni ha senso esserci." },
-  { titolo: "Account e configurazione", testo: "Apriamo e configuriamo l'account pubblicitario, il tracciamento e il budget." },
-  { titolo: "Annunci", testo: "Scriviamo messaggi chiari e concreti, pensati per chi sta facendo una domanda precisa." },
-  { titolo: "Pagina di destinazione", testo: "Controlliamo che chi clicca trovi subito quello che cercava, e un modo semplice per contattarti." },
-  { titolo: "Ottimizzazione", testo: "Seguiamo la campagna, spostiamo il budget su ciò che rende e togliamo il resto." },
-  { titolo: "Report chiari", testo: "Ogni mese: quanto hai speso, cosa ti ha portato, cosa cambiamo. Senza gergo." },
+const perche = [
+  { titolo: "Si cerca dal telefono, nei dintorni", testo: "«Pizzeria vicino a me», «parrucchiere aperto ora», «idraulico a Monza». Google risponde con una mappa e le attività della zona." },
+  { titolo: "Le recensioni contano", testo: "Secondo Google, numero e punteggio delle recensioni sono tra i fattori che decidono chi compare più in alto nei risultati locali." },
+  { titolo: "Una scheda ferma fa scappare i clienti", testo: "Orari sbagliati, recensioni senza risposta, nessuna novità da mesi: chi guarda pensa che sei chiuso, o che non ti importa, e sceglie il vicino." },
 ];
 
-const motivi = [
-  { titolo: "Domande con un'intenzione chiara", testo: "Chi scrive a ChatGPT spesso sa già cosa vuole: un servizio, una zona, un'esigenza precisa. È il momento in cui sta decidendo." },
-  { titolo: "Un canale nuovo in Italia", testo: "Gli annunci su ChatGPT sono arrivati in Italia il 24 agosto 2026. Chi impara a usarli adesso parte prima degli altri." },
-  { titolo: "Pertinenti alla conversazione", testo: "Secondo OpenAI, in Europa all'inizio gli annunci non sono personalizzati sul profilo della persona: contano l'argomento e il contesto della domanda." },
+const cosaFacciamo = [
+  { titolo: "Novità ogni settimana", testo: "Pubblichiamo un aggiornamento sulla tua attività: un piatto, un prodotto, un'offerta, un evento. Chi ti trova vede che sei attivo." },
+  { titolo: "Rispondiamo a tutte le recensioni", testo: "Positive e negative, con un tono gentile e professionale, a nome tuo. Chi legge capisce che ci tieni." },
+  { titolo: "Ti aiutiamo a riceverne di nuove", testo: "Un link, un QR da stampare e un messaggio pronto da mandare su WhatsApp ai clienti contenti. Lasciare una recensione diventa un attimo." },
+  { titolo: "Orari e informazioni sempre giusti", testo: "Festività, ferie, chiusure: ci scrivi su WhatsApp e aggiorniamo noi." },
+  { titolo: "Ogni mese, i tuoi numeri", testo: "Un messaggio semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Così vedi tu se funziona." },
+];
+
+const passi = [
+  { titolo: "Ci lasci i tuoi dati", testo: "Compili il modulo qui sotto o ci scrivi su WhatsApp. Ci vogliono due minuti." },
+  { titolo: "Tocchi «Approva»", testo: "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Un tocco e hai finito. Non ci dai nessuna password." },
+  { titolo: "Al resto pensiamo noi", testo: "Ogni settimana, senza che tu debba ricordarti niente. Se vuoi, ci mandi foto o novità su WhatsApp e le usiamo." },
+];
+
+const faq: Faq[] = [
+  { domanda: "Devo fare qualcosa?", risposta: "Solo all'inizio: ti arriva una email da Google con la nostra richiesta di accesso alla tua attività e tocchi Approva. Poi facciamo tutto noi. Se vuoi, ci mandi foto o novità su WhatsApp." },
+  { domanda: "Vi devo dare la password del mio account Google?", risposta: "No. Google ha un sistema apposta per far gestire un'attività anche a un'altra persona, senza password. Resti tu il proprietario e puoi toglierci l'accesso quando vuoi." },
+  { domanda: "Non ho ancora la mia attività su Google Maps. Va bene lo stesso?", risposta: "Sì. Ti aiutiamo a crearla. Google chiede una verifica che fai tu, di solito un breve video o un codice: ti guidiamo noi, passo per passo, su WhatsApp." },
+  { domanda: "Quando avrò già tante recensioni, serve ancora?", risposta: "Sì. Chi legge guarda soprattutto le recensioni più recenti: se le ultime sono di un anno fa, l'attività sembra ferma. Per questo il lavoro continua: nuove recensioni, risposte, novità ogni settimana. E ogni mese vedi i numeri, così decidi tu se ti conviene continuare." },
+  { domanda: "Mi garantite più clienti?", risposta: "No, e diffida di chi te lo garantisce: nessuno decide al posto di Google chi compare per primo. Ti garantiamo il lavoro fatto ogni settimana e un riepilogo mensile con i numeri veri della tua attività su Google." },
+  { domanda: "Come chiedete le recensioni? È tutto in regola?", risposta: "Sì. Le chiediamo solo ai tuoi clienti veri, senza regali o sconti in cambio e senza filtrare solo quelle positive, come chiedono le regole di Google. Niente recensioni finte: rischiano di farti penalizzare." },
+  { domanda: "Cosa succede alle recensioni negative?", risposta: "Rispondiamo anche a quelle, con calma e in modo professionale, per mostrare a chi legge che l'attività ascolta. Non possiamo cancellarle: solo Google può rimuovere le recensioni che violano le sue regole. Se ne troviamo una così, te lo segnaliamo." },
+  { domanda: "Posso disdire?", risposta: "Sì, quando vuoi, senza vincoli e senza penali. Lo fai da solo dal link che ti mandiamo per email, oppure con un messaggio su WhatsApp." },
+  { domanda: "Come ricevo la card o il piedistallo?", risposta: "Te lo spediamo all'indirizzo che indichi nel modulo, già pronto all'uso con il link della tua attività. La spedizione è inclusa e ti avvisiamo quando parte." },
+  { domanda: "Funziona in tutta Italia?", risposta: "Sì. Si attiva tutto online, senza incontri di persona: ci sentiamo su WhatsApp." },
 ];
 
 export default function Home() {
-  const settori = getSettori();
-  const guide = getGuide().slice(0, 6);
-  const domande = settori.flatMap((s) => s.domande.slice(0, 2));
-  const alternate = [...domande.filter((_, i) => i % 2 === 0), ...domande.filter((_, i) => i % 2 === 1)];
-  const locali = settori.filter((s) => s.tipo === "locale");
-  const aziende = settori.filter((s) => s.tipo === "azienda");
-  const bolla = (d: { testo: string; lingua?: "it" | "en" }, i: number) => (
-    <li key={i}>
-      <p className="tt-bubble tt-bubble--user" lang={d.lingua === "en" ? "en" : undefined}>{d.testo}</p>
-    </li>
+  const wa = linkWhatsApp();
+  const cta = (secondario?: boolean) => (
+    <a href="#attiva" className={`tt-btn tt-btn--lg tt-btn--block-mobile${secondario ? " tt-btn--secondary" : ""}`}>Inizia ora <span aria-hidden="true">→</span></a>
   );
 
   return (
     <>
-      <JsonLd data={[organization(), website(), service(), breadcrumbList([]), faqPage(faqHome)]} />
+      <JsonLd data={[organization(), website(), serviceMaps(), breadcrumbList([]), faqPage(faq)]} />
 
       <section className="tt-section">
         <div className="tt-wrap tt-hero">
           <div className="tt-stack-6">
-            <p className="tt-eyebrow" style={{ margin: 0 }}>Annunci su ChatGPT · Italia</p>
+            <p className="tt-eyebrow" style={{ margin: 0 }}>Per bar, ristoranti, negozi, artigiani e studi</p>
             <h1 className="tt-display-xl">
-              I tuoi clienti chiedono a ChatGPT. <span className="tt-mark">Fatti trovare</span> con gli annunci.
+              Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span>
             </h1>
             <p className="tt-lead">
-              Dal 24 agosto 2026 ChatGPT mostra annunci sponsorizzati anche in Italia. Progettiamo e gestiamo le tue
-              campagne, per attività locali e aziende: strategia, annunci, budget e report.
+              Quando qualcuno cerca «vicino a me», Google mostra le attività della zona. Noi teniamo la tua sempre
+              aggiornata, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. Tu pensi a lavorare.
             </p>
             <div className="tt-actions">
-              <Link href="#analisi" className="tt-btn tt-btn--lg">Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></Link>
-              <Link href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</Link>
+              {cta()}
+              {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</a>}
             </div>
-            <p className="tt-small tt-muted">L&apos;analisi gratuita è una breve call, senza impegno. Se non fa per te, te lo diciamo.</p>
+            <p className="tt-small tt-muted">{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
           </div>
-          <ChatAd
-            domanda="Mi consigli un buon dentista a Bologna per un impianto?"
-            inserzionista="La tua attività"
-            descrizione="Prima visita e piano di cura chiaro. Prenota online."
-          />
+          <MapsMock />
         </div>
       </section>
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="01" occhiello="Perché ora">
-            Le persone non cercano più. <span className="tt-mark">Chiedono.</span>
+          <SectionHead n="01" occhiello="Perché Google Maps">
+            Chi ti cerca su Maps <span className="tt-mark">è a due passi da te.</span>
           </SectionHead>
-          <div className="tt-section-body">
-            <ul className="tt-points">
-              {motivi.map((m) => (
-                <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>
-              ))}
+          <div className="tt-section-body tt-stack-6">
+            <ul className="tt-points">{perche.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
+            <p className="tt-small tt-muted">
+              Fonte: Google, <a href="https://support.google.com/business/answer/7091?hl=it">Suggerimenti per migliorare il posizionamento locale</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="02" occhiello="Cosa facciamo">
+            La tua attività su Google, <span className="tt-mark">sempre viva.</span>
+          </SectionHead>
+          <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
+        </div>
+      </section>
+
+      <section id="come-funziona" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="03" occhiello="Come funziona">
+            Tre passi, <span className="tt-mark">uno solo è tuo.</span>
+          </SectionHead>
+          <div className="tt-section-body"><StepList passi={passi} /></div>
+        </div>
+      </section>
+
+      <section id="prezzo" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="04" occhiello="Prezzo">Un prezzo, <span className="tt-mark">tutto incluso.</span></SectionHead>
+          <div className="tt-card tt-stack-6 tt-section-body">
+            <p className="tt-prezzo">{euro(scheda.prezzoMese)} <small>al mese</small></p>
+            <ul className="tt-check-list tt-body">
+              <li>Novità ogni settimana sulla tua attività su Google Maps</li>
+              <li>Risposta a tutte le recensioni, positive e negative</li>
+              <li>Link, QR e messaggio pronto per chiedere recensioni</li>
+              <li>Orari e informazioni sempre aggiornati</li>
+              <li>Ogni mese i tuoi numeri: visite, chiamate, indicazioni</li>
+              <li>Nessun costo di attivazione, disdici quando vuoi</li>
             </ul>
-          </div>
-          <div className="tt-section-body" aria-label="Domande che i clienti fanno all'AI">
-            <ul className="tt-questions">{alternate.slice(0, 6).map(bolla)}</ul>
-            <details className="tt-more" style={{ marginTop: "var(--space-4)" }}>
-              <summary className="tt-btn tt-btn--secondary">Altre domande dei clienti</summary>
-              <ul className="tt-questions" style={{ marginTop: "var(--space-4)" }}>{alternate.slice(6).map(bolla)}</ul>
-            </details>
+            <div>{cta()}</div>
           </div>
         </div>
       </section>
 
-      <section className="tt-section">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="02" occhiello="Annuncio e risposta">
-            Un annuncio non compra la risposta. <span className="tt-mark">Ti mette accanto.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
-            <div className="tt-card tt-stack-2">
-              <p className="tt-label">La risposta di ChatGPT</p>
-              <p className="tt-body">
-                Dipende da quello che l&apos;AI trova e da come lo collega alla domanda. Non si compra e nessuno può garantire
-                di comparire.
-              </p>
-            </div>
-            <div className="tt-card tt-stack-2">
-              <span className="tt-tag">L&apos;annuncio sponsorizzato</span>
-              <p className="tt-body">
-                È uno spazio a pagamento, separato e segnalato come sponsorizzato. Si decide dove comparire, con che messaggio
-                e con quanto budget, e si misura cosa porta.
-              </p>
-            </div>
-            <p className="tt-body">
-              Approfondisci:{" "}
-              <Link href="/guide/consigliati-o-sponsorizzati-su-chatgpt">essere consigliati o essere sponsorizzati su ChatGPT</Link>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="03" occhiello="Cosa facciamo">
-            Pensiamo noi alla campagna. <span className="tt-mark">Tu pensi alla tua attività.</span>
-          </SectionHead>
-          <div className="tt-section-body"><StepList passi={servizi} /></div>
-        </div>
-      </section>
-
-      <section id="come-funziona" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="04" occhiello="Come funziona">
-            Dall&apos;analisi gratuita alla campagna, <span className="tt-mark">in quattro passi.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-8">
-            <StepList passi={passi} />
-            <p className="tt-body tt-muted">
-              Nessuno può garantire risultati con la pubblicità. Noi ti garantiamo trasparenza: sai sempre quanto spendi e cosa ti porta.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="tt-section">
+      <section id="da-banco" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="05"
-            occhiello="Non solo ChatGPT"
-            testo="ChatGPT è la nostra specialità, ma non sempre è la scelta migliore. Nell'analisi gratuita valutiamo anche gli altri canali e ti proponiamo quello che ha più senso per te."
+            occhiello="Extra facoltativi"
+            testo="Da mettere sul bancone o vicino alla cassa: il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione. Niente app, niente ricerche."
           >
-            Se ChatGPT non fa per te, <span className="tt-mark">troviamo il canale giusto.</span>
+            Recensioni con un tocco <span className="tt-mark">del telefono.</span>
           </SectionHead>
-          <div className="tt-section-body tt-stack-6">
-            <LinkCards items={canali.map((c) => ({ href: `/canali#${c.id}`, label: c.nome, sub: c.breve }))} />
-            <p className="tt-body"><Link href="/canali">Quale canale fa per te? →</Link></p>
+          <div className="tt-extra-grid tt-section-body">
+            {(Object.keys(EXTRA) as (keyof typeof EXTRA)[]).map((k) => (
+              <div key={k} className="tt-card">
+                <div className="tt-extra-visual"><NfcCardMock tipo={k} /></div>
+                <h3 className="tt-subheading" style={{ margin: 0 }}>{EXTRA[k].nome}</h3>
+                <p className="tt-body" style={{ margin: 0 }}>{EXTRA[k].descrizione}</p>
+                <p className="tt-prezzo" style={{ fontSize: 44 }}>{euro(EXTRA[k].prezzo)} <small>una volta sola</small></p>
+                <ul className="tt-check-list tt-body">
+                  <li>Spedizione inclusa</li>
+                  <li>Arriva già pronto, collegato alla tua attività</li>
+                </ul>
+              </div>
+            ))}
           </div>
+          <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>Immagini indicative: il prodotto definitivo può essere diverso. Li scegli nel modulo qui sotto.</p>
         </div>
       </section>
 
-      <section className="tt-section tt-section--sunk">
+      <section className="tt-section">
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="06"
-            occhiello="Scheda Google sempre viva"
-            testo="Per ristoranti, bar, negozi, artigiani e studi: post ogni settimana sulla tua scheda Google Maps, risposta a tutte le recensioni e QR per chiederne di nuove."
+            occhiello="Vuoi crescere ancora?"
+            testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su ChatGPT, Google e Meta. Ti diciamo in una call gratuita quale ha senso per te."
           >
-            La tua scheda Google, <span className="tt-mark">aggiornata ogni settimana.</span>
+            Anche annunci online, <span className="tt-mark">quando servono.</span>
           </SectionHead>
           <div className="tt-section-body">
-            <LinkCards items={[{ href: "/scheda-google", label: "Scheda Google sempre viva", sub: "59 €/mese, nessun costo di attivazione, disdici quando vuoi" }]} />
-          </div>
-        </div>
-      </section>
-
-      <section className="tt-section">
-        <div className="tt-wrap">
-          <SectionHead n="07" occhiello="Per chi">
-            Per attività locali e <span className="tt-mark">per aziende.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-two">
-            <div className="tt-stack-4">
-              <h3 className="tt-subheading">Attività locali</h3>
-              <p className="tt-body tt-muted">Quando un cliente vale molto e lo cerca nella sua zona: studi professionali, immobiliari, imprese edili, hotel, noleggi, location, artigiani.</p>
-              <LinkCards items={locali.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} />
-            </div>
-            <div className="tt-stack-4">
-              <h3 className="tt-subheading">Aziende ed e-commerce</h3>
-              <p className="tt-body tt-muted">Quando le persone chiedono all&apos;AI quale prodotto, servizio o fornitore scegliere.</p>
-              <LinkCards items={aziende.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="tt-section">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="08" occhiello="Guide">
-            Capire l&apos;AI <span className="tt-mark">prima di investire.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
-            <LinkCards items={guide.map((g) => ({ href: `/guide/${g.slug}`, label: g.h1 }))} />
-            <p className="tt-body"><Link href="/guide">Tutte le guide →</Link></p>
+            <LinkCards items={[
+              { href: "/annunci-chatgpt", label: "Annunci su ChatGPT", sub: "La nostra specialità: farti trovare quando i clienti chiedono all'AI" },
+              { href: "/canali", label: "Quale canale fa per te?", sub: "ChatGPT, Google Ads, Meta Ads o SEO" },
+            ]} />
           </div>
         </div>
       </section>
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="09" occhiello="Domande frequenti">
-            Le domande che ci fanno <span className="tt-mark">di più.</span>
-          </SectionHead>
-          <div className="tt-section-body"><FaqList items={faqHome} /></div>
+          <SectionHead n="07" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
+          <div className="tt-section-body"><FaqList items={faq} /></div>
         </div>
       </section>
 
-      <section id="analisi" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+      <section id="attiva" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
-            occhiello="Analisi gratuita"
-            testo={<>Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci, quale canale ha più senso per te e con quale budget di partenza.</>}
+            occhiello="Inizia ora"
+            testo={wa ? "Compila il modulo, oppure scrivici su WhatsApp se preferisci parlarne prima." : "Compila il modulo: ti scriviamo noi su WhatsApp."}
           >
-            Scopri se gli annunci su ChatGPT <span className="tt-mark">fanno per te.</span>
+            Più clienti da Maps, <span className="tt-mark">da questa settimana.</span>
           </SectionHead>
-          <ul className="tt-stack-2 tt-body" style={{ listStyle: "none", padding: 0, marginTop: "var(--space-8)" }}>
-            {["Gratis e senza impegno", "Una call con una persona, non un bot", "Se non ha senso per te, te lo diciamo"].map((x) => (
-              <li key={x}>✓ {x}</li>
-            ))}
-          </ul>
-          <div className="tt-card tt-section-body" style={{ maxWidth: "var(--measure)" }}>
-            <LeadForm settori={settoreOptions()} headingLevel={3} />
-          </div>
+          {wa && <div className="tt-section-body"><a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp →</a></div>}
+          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
+          <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>
+            Cerchi gli annunci su ChatGPT? <Link href="/annunci-chatgpt">Vai alla pagina dedicata →</Link>
+          </p>
         </div>
       </section>
     </>

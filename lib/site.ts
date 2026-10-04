@@ -7,7 +7,7 @@ export const site = {
   locale: "it_IT",
   lang: "it-IT",
   description:
-    "Annunci su ChatGPT per attività locali e aziende italiane: strategia, campagne, ottimizzazione e report. Richiedi un'analisi gratuita.",
+    "Più clienti da Google Maps per le attività locali: aggiornamenti ogni settimana, risposte a tutte le recensioni e nuove recensioni. E annunci su ChatGPT, Google e Meta.",
 };
 
 export function absoluteUrl(path = "/") {

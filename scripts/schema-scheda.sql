@@ -39,3 +39,8 @@ create table if not exists nfc_codici (
   ultimo_tocco timestamptz
 );
 create index if not exists nfc_codici_liberi on nfc_codici(tipo, creato_il) where richiesta_id is null;
+
+-- Extra scelto nel modulo: null, 'card' o 'piedistallo'. Categoria non più chiesta.
+alter table richieste_scheda add column if not exists nfc_tipo text;
+update richieste_scheda set nfc_tipo = 'card' where card_nfc and nfc_tipo is null;
+alter table richieste_scheda alter column categoria drop not null;

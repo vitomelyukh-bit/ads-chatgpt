@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { apriSessione, chiudiSessione, passwordValida, requireAdmin } from "@/lib/auth";
 import { getCliente, parseFaq, righe, slugify } from "@/lib/clienti";
 import { db } from "@/lib/db";
+import { assegnaCodiceLibero } from "@/lib/scheda-attivazione";
 
 const str = (fd: FormData, k: string) => String(fd.get(k) ?? "").trim() || null;
 const base = (id: string) => `/console/clienti/${id}`;
@@ -141,7 +142,7 @@ export async function segnaSpedita(id: number) {
 
 export async function assegnaCodice(id: number) {
   await requireAdmin();
-  await db()`update nfc_codici set richiesta_id = ${id}, assegnato_il = now()
-    where codice = (select codice from nfc_codici where richiesta_id is null and tipo = 'card' order by creato_il, codice limit 1 for update skip locked)`;
+  const [r] = (await db()`select nfc_tipo from richieste_scheda where id = ${id}`) as { nfc_tipo: string | null }[];
+  await assegnaCodiceLibero(id, r?.nfc_tipo ?? "card");
   revalidatePath("/console/scheda");
 }

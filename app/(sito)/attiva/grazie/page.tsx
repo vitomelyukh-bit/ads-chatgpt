@@ -32,17 +32,17 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
         <>
           <div className="tt-stack-4">
             <p className="tt-eyebrow" style={{ margin: 0 }}>{scheda.nome}</p>
-            <h1 className="tt-display-lg">Fatto: <span className="tt-mark">la tua scheda è attiva</span></h1>
+            <h1 className="tt-display-lg">Fatto: <span className="tt-mark">il servizio è attivo</span></h1>
             <p className="tt-lead">Grazie {richiesta.nome}. Ti abbiamo mandato una email di conferma con il link per gestire o disdire l&apos;abbonamento.</p>
           </div>
           <ol className="tt-steps">
-            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Ti scriviamo su WhatsApp</h2><p>Per avere l&apos;accesso alla tua scheda Google: ti guidiamo noi, bastano un paio di minuti.</p></div></li>
-            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Aggiorniamo ogni settimana</h2><p>Post e risposte a tutte le recensioni, senza che tu debba fare niente.</p></div></li>
-            {richiesta.card_nfc && <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Ti spediamo la card</h2><p>Arriva già configurata. Ti avvisiamo quando parte.</p></div></li>}
+            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Tocca &ldquo;Approva&rdquo;</h2><p>Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Tocchi Approva e hai finito. Se non la trovi, ti scriviamo noi su WhatsApp.</p></div></li>
+            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Aggiorniamo ogni settimana</h2><p>Novità e risposte a tutte le recensioni, senza che tu debba fare niente.</p></div></li>
+            {richiesta.nfc_tipo && <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Ti spediamo {richiesta.nfc_tipo === "card" ? "la card" : "il piedistallo"}</h2><p>Arriva già pronto all&apos;uso. Ti avvisiamo quando parte.</p></div></li>}
           </ol>
           <div className="tt-actions">
             {wa && <a href={wa} className="tt-btn tt-btn--lg tt-btn--block-mobile">Scrivici su WhatsApp →</a>}
-            <a href={`/scheda-google/gestisci?t=${firmaRichiesta(richiesta.id)}`} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Gestisci l&apos;abbonamento</a>
+            <a href={`/attiva/gestisci?t=${firmaRichiesta(richiesta.id)}`} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Gestisci l&apos;abbonamento</a>
           </div>
         </>
       ) : (
@@ -51,7 +51,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
           <p className="tt-lead">Non riusciamo a confermare il pagamento. Se hai pagato, scrivici: lo verifichiamo subito.</p>
           <div className="tt-actions">
             {wa && <a href={wa} className="tt-btn tt-btn--lg">Scrivici su WhatsApp →</a>}
-            <Link href="/scheda-google#richiesta" className="tt-btn tt-btn--secondary tt-btn--lg">Torna al modulo</Link>
+            <Link href="/#attiva" className="tt-btn tt-btn--secondary tt-btn--lg">Torna al modulo</Link>
           </div>
         </div>
       )}

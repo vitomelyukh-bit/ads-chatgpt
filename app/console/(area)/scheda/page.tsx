@@ -11,32 +11,34 @@ const data = (s: string) => new Date(s).toLocaleString("it-IT", { timeZone: "Eur
 export default async function SchedaConsole() {
   const righe = (await db()`select s.*, n.codice, n.tocchi, n.spedito_il from richieste_scheda s
     left join nfc_codici n on n.richiesta_id = s.id order by s.creata_il desc limit 500`) as R[];
-  const [liberi] = (await db()`select count(*)::int as n from nfc_codici where richiesta_id is null and tipo='card'`) as { n: number }[];
+  const liberiPerTipo = (await db()`select tipo, count(*)::int as n from nfc_codici where richiesta_id is null group by tipo`) as { tipo: string; n: number }[];
+  const liberi = (t: string) => liberiPerTipo.find((x) => x.tipo === t)?.n ?? 0;
   const pagate = righe.filter((r) => r.pagata).length;
-  const daSpedire = righe.filter((r) => r.pagata && r.card_nfc && !r.spedito_il).length;
+  const daSpedire = righe.filter((r) => r.pagata && r.nfc_tipo && !r.spedito_il).length;
   return (
     <div className="tt-stack-8">
       <div className="tt-row" style={{ justifyContent: "space-between" }}>
-        <h1 className="tt-display-lg">Scheda Google</h1>
+        <h1 className="tt-display-lg">Clienti da Google Maps</h1>
         <div className="tt-row">
-          <Link href="/console/scheda/codici">Codici NFC ({liberi.n} liberi) →</Link>
+          <Link href="/console/scheda/codici">Codici NFC ({liberi("card")} card, {liberi("piedistallo")} piedistalli liberi) →</Link>
           {righe.length > 0 && <a href="/api/console/scheda">Scarica CSV →</a>}
         </div>
       </div>
-      <p className="tt-body tt-muted">{righe.length} richieste · {pagate} pagate · {daSpedire} card da spedire{liberi.n < 5 ? ` · attenzione: solo ${liberi.n} codici liberi` : ""}</p>
+      <p className="tt-body tt-muted">{righe.length} richieste · {pagate} pagate · {daSpedire} da spedire{liberi("card") < 5 || liberi("piedistallo") < 5 ? " · attenzione: pochi codici liberi" : ""}</p>
       {righe.length === 0 ? <p className="tt-body tt-muted">Nessuna richiesta ancora.</p> : (
         <div style={{ overflowX: "auto" }}>
           <table className="tt-table">
-            <thead><tr>{["Data", "Attività e contatto", "Pagamento", "Card NFC", "Link recensioni", "Stato"].map((h) => <th key={h}>{h}</th>)}</tr></thead>
+            <thead><tr>{["Data", "Attività e contatto", "Pagamento", "Da banco", "Link recensioni", "Stato"].map((h) => <th key={h}>{h}</th>)}</tr></thead>
             <tbody>
               {righe.map((r) => (
                 <tr key={r.id}>
                   <td>{data(r.creata_il)}</td>
-                  <td><strong>{r.attivita}</strong> · {r.citta}<br />{r.categoria}<br />{r.nome} · <a href={wa(r.whatsapp)} target="_blank" rel="noopener">WhatsApp</a> · <a href={`mailto:${r.email}`}>email</a>{r.link_maps && <><br /><a href={r.link_maps} target="_blank" rel="noopener">Scheda Maps →</a></>}</td>
+                  <td><strong>{r.attivita}</strong> · {r.citta}<br />{r.categoria && <>{r.categoria}<br /></>}{r.nome} · <a href={wa(r.whatsapp)} target="_blank" rel="noopener">WhatsApp</a> · <a href={`mailto:${r.email}`}>email</a>{r.link_maps && <><br /><a href={r.link_maps} target="_blank" rel="noopener">Scheda Maps →</a></>}</td>
                   <td>{r.pagata ? <><span className="tt-tag">Pagata</span><br />{r.pagata_il && data(r.pagata_il)}</> : "Non pagata"}</td>
                   <td>
-                    {!r.card_nfc ? "No" : (
+                    {!r.nfc_tipo ? "No" : (
                       <>
+                        <span className="tt-tag">{r.nfc_tipo}</span><br />
                         {r.codice ? <><strong>{r.codice}</strong> · {r.tocchi ?? 0} tocchi<br /><a href={`/r/${r.codice}`} target="_blank" rel="noopener">Prova il link →</a></> : r.pagata ? <form action={assegnaCodice.bind(null, r.id)}><button className="tt-chip">Assegna codice</button></form> : "Codice dopo il pagamento"}
                         <br />{r.sped_presso && <>c/o {r.sped_presso}<br /></>}{r.sped_via}<br />{r.sped_cap} {r.sped_citta} ({r.sped_provincia})
                         {r.codice && (r.spedito_il ? <><br /><span className="tt-muted">Spedita il {data(r.spedito_il)}</span></> : <form action={segnaSpedita.bind(null, r.id)}><button className="tt-chip" style={{ marginTop: 8 }}>Segna spedita</button></form>)}

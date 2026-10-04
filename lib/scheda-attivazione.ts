@@ -3,12 +3,12 @@ import type Stripe from "stripe";
 import { db } from "@/lib/db";
 import { email, TITROVANO, type Blocco } from "@/lib/email";
 import { firmaRichiesta } from "@/lib/scheda-token";
-import { scheda } from "@/lib/scheda";
+import { EXTRA, isTipoExtra, scheda } from "@/lib/scheda";
 import { site } from "@/lib/site";
 
 export type RichiestaScheda = {
-  id: number; attivita: string; citta: string; categoria: string; nome: string; whatsapp: string; email: string;
-  link_maps: string | null; card_nfc: boolean; sped_via: string | null; sped_cap: string | null; sped_citta: string | null;
+  id: number; attivita: string; citta: string; categoria: string | null; nome: string; whatsapp: string; email: string;
+  link_maps: string | null; card_nfc: boolean; nfc_tipo: string | null; sped_via: string | null; sped_cap: string | null; sped_citta: string | null;
   sped_provincia: string | null; sped_presso: string | null; stato: string; pagata: boolean; link_recensioni: string | null;
 };
 
@@ -26,21 +26,24 @@ export async function attivaDaCheckout(session: Stripe.Checkout.Session) {
   if (!r) return null; // già attivata
 
   let codice: string | null = null;
-  if (r.card_nfc) {
-    const [c] = (await db()`update nfc_codici set richiesta_id = ${r.id}, assegnato_il = now()
-      where codice = (select codice from nfc_codici where richiesta_id is null and tipo = 'card' order by creato_il, codice limit 1 for update skip locked)
-      returning codice`) as { codice: string }[];
-    codice = c?.codice ?? null;
-  }
+  if (isTipoExtra(r.nfc_tipo)) codice = await assegnaCodiceLibero(r.id, r.nfc_tipo);
   await emailAttivazione(r, codice);
   return r;
 }
 
-function blocchiCard(card: boolean, codice: string | null, indirizzo: string): Blocco[] {
-  if (!card) return [];
-  if (!codice) return [{ tipo: "evidenza", etichetta: "Attenzione", testo: "Codici NFC esauriti: genera nuovi codici dalla console e assegnane uno." }];
+// Primo codice libero del tipo giusto (card o piedistallo), senza doppioni anche in parallelo.
+export async function assegnaCodiceLibero(richiestaId: number, tipo: string) {
+  const [c] = (await db()`update nfc_codici set richiesta_id = ${richiestaId}, assegnato_il = now()
+    where codice = (select codice from nfc_codici where richiesta_id is null and tipo = ${tipo} order by creato_il, codice limit 1 for update skip locked)
+    returning codice`) as { codice: string }[];
+  return c?.codice ?? null;
+}
+
+function blocchiCard(tipo: string | null, codice: string | null, indirizzo: string): Blocco[] {
+  if (!isTipoExtra(tipo)) return [];
+  if (!codice) return [{ tipo: "evidenza", etichetta: "Attenzione", testo: `Codici "${tipo}" esauriti: generane di nuovi dalla console e assegnane uno.` }];
   return [
-    { tipo: "evidenza", etichetta: "Card da spedire", testo: `Codice ${codice}` },
+    { tipo: "evidenza", etichetta: `${EXTRA[tipo].nome} da spedire`, testo: `Codice ${codice}` },
     { tipo: "righe", righe: [["Indirizzo", indirizzo], ["Link della card", `${site.url}/r/${codice}`]] },
   ];
 }
@@ -50,40 +53,40 @@ async function emailAttivazione(r: RichiestaScheda, codice: string | null) {
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((s) => s.trim()).filter(Boolean);
   if (!key || !from || !to?.length) return;
   const resend = new Resend(key);
-  const gestisci = `${site.url}/scheda-google/gestisci?t=${firmaRichiesta(r.id)}`;
+  const gestisci = `${site.url}/attiva/gestisci?t=${firmaRichiesta(r.id)}`;
   const indirizzo = r.card_nfc ? `${r.sped_presso ? `c/o ${r.sped_presso}\n` : ""}${r.sped_via}\n${r.sped_cap} ${r.sped_citta} (${r.sped_provincia})` : "";
 
   const interna = email({
     marchio: TITROVANO,
-    anteprima: `${r.attivita}: pagamento ricevuto${r.card_nfc ? " · card da spedire" : ""}`,
+    anteprima: `${r.attivita}: pagamento ricevuto${r.nfc_tipo ? ` · ${r.nfc_tipo} da spedire` : ""}`,
     titolo: `Pagamento ricevuto: ${r.attivita}`,
     evidenzia: "Pagamento ricevuto",
     blocchi: [
-      { tipo: "righe", righe: [["Attività", `${r.attivita} · ${r.citta}`], ["Cliente", `${r.nome} · ${r.whatsapp}`], ["Scheda Google Maps", r.link_maps ?? "—"]] },
-      ...blocchiCard(r.card_nfc, codice, indirizzo),
-      { tipo: "p", testo: "Prossimi passi: scrivi al cliente su WhatsApp per avere l'accesso alla scheda Google e imposta in console il link per le recensioni." },
+      { tipo: "righe", righe: [["Attività", `${r.attivita} · ${r.citta}`], ["Cliente", `${r.nome} · ${r.whatsapp}`], ["Google Maps", r.link_maps ?? "—"]] },
+      ...blocchiCard(r.nfc_tipo, codice, indirizzo),
+      { tipo: "p", testo: "Prossimi passi: richiedi l'accesso da gestore alla sua attività su Google (il cliente riceve l'email e approva) e imposta in console il link per le recensioni." },
       { tipo: "bottone", testo: "Apri la console →", url: `${site.url}/console/scheda` },
     ],
   });
   const cliente = email({
     marchio: TITROVANO,
     anteprima: "Il servizio è attivo: ecco cosa succede adesso.",
-    titolo: `Ciao ${r.nome}, la tua scheda Google è attiva`,
+    titolo: `Ciao ${r.nome}, il servizio è attivo`,
     evidenzia: "attiva",
     blocchi: [
       { tipo: "p", testo: `Grazie: abbiamo ricevuto il pagamento per ${scheda.nome} di ${r.attivita}.` },
       { tipo: "titoletto", testo: "Cosa succede adesso" },
       { tipo: "passi", passi: [
-        "Ti scriviamo su WhatsApp per avere l'accesso alla tua scheda Google: ti guidiamo noi.",
-        "Da lì aggiorniamo la scheda ogni settimana e rispondiamo alle recensioni.",
-        r.card_nfc ? "Ti spediamo la card NFC già configurata e ti avvisiamo quando parte." : "Tu vedi i risultati direttamente su Google Maps.",
+        "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività: tocca Approva. Se non la trovi, ti scriviamo noi su WhatsApp.",
+        "Da lì aggiorniamo la tua attività su Google ogni settimana e rispondiamo alle recensioni.",
+        isTipoExtra(r.nfc_tipo) ? `Ti spediamo ${r.nfc_tipo === "card" ? "la card" : "il piedistallo"} già pronto all'uso e ti avvisiamo quando parte.` : "Tu vedi i risultati direttamente su Google Maps.",
       ] },
       { tipo: "bottone", testo: "Gestisci o disdici l'abbonamento →", url: gestisci },
       { tipo: "nota", testo: "Puoi disdire quando vuoi da quel link: il servizio resta attivo fino alla fine del mese già pagato. Conserva questa email." },
     ],
   });
   await Promise.allSettled([
-    resend.emails.send({ from, to, replyTo: r.email, subject: `Pagamento ricevuto: ${r.attivita}${r.card_nfc ? " · card da spedire" : ""}`, ...interna }),
-    resend.emails.send({ from, to: r.email, replyTo: to[0], subject: `La tua scheda Google è attiva · ${site.name}`, ...cliente }),
+    resend.emails.send({ from, to, replyTo: r.email, subject: `Pagamento ricevuto: ${r.attivita}${r.nfc_tipo ? ` · ${r.nfc_tipo} da spedire` : ""}`, ...interna }),
+    resend.emails.send({ from, to: r.email, replyTo: to[0], subject: `Il servizio è attivo · ${scheda.nome}`, ...cliente }),
   ]).then((x) => x.forEach((y) => y.status === "rejected" && console.error("[scheda] email attivazione", y.reason)));
 }

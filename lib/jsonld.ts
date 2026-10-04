@@ -89,39 +89,47 @@ export function service() {
     areaServed: { "@type": "Country", name: "Italia" },
     availableLanguage: "it",
     provider: { "@id": orgId },
-    url: absoluteUrl("/"),
+    url: absoluteUrl("/annunci-chatgpt"),
   };
 }
 
-// Servizio "Scheda Google sempre viva" con le due offerte.
-export function serviceScheda() {
+// Servizio principale "Più clienti da Google Maps" con le offerte.
+export function serviceMaps() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Scheda Google sempre viva",
-    serviceType: "Gestione della scheda Google Business Profile",
+    name: "Più clienti da Google Maps",
+    serviceType: "Gestione del profilo dell'attività su Google (Google Business Profile)",
     description:
-      "Post settimanali sulla scheda Google Maps dell'attività, risposta a tutte le recensioni, link e QR per chiedere recensioni. Card NFC da banco facoltativa.",
+      "Aggiornamenti ogni settimana sul profilo Google Maps dell'attività, risposta a tutte le recensioni, link e QR per chiedere recensioni. Card e piedistallo da banco facoltativi per raccogliere recensioni avvicinando il telefono.",
     areaServed: { "@type": "Country", name: "Italia" },
     availableLanguage: "it",
     provider: { "@id": orgId },
-    url: absoluteUrl("/scheda-google"),
+    url: absoluteUrl("/"),
     offers: [
       {
         "@type": "Offer",
-        name: "Scheda Google sempre viva",
+        name: "Più clienti da Google Maps",
         price: "59.00",
         priceCurrency: "EUR",
         priceSpecification: { "@type": "UnitPriceSpecification", price: "59.00", priceCurrency: "EUR", unitText: "mese", billingDuration: "P1M" },
-        url: absoluteUrl("/scheda-google"),
+        url: absoluteUrl("/#prezzo"),
       },
       {
         "@type": "Offer",
-        name: "Card NFC da banco",
+        name: "Card da banco per le recensioni",
         price: "40.00",
         priceCurrency: "EUR",
-        description: "Una tantum, spedizione inclusa, arriva già configurata.",
-        url: absoluteUrl("/scheda-google#card-nfc"),
+        description: "Una tantum, spedizione inclusa, arriva pronta all'uso.",
+        url: absoluteUrl("/#da-banco"),
+      },
+      {
+        "@type": "Offer",
+        name: "Piedistallo da banco per le recensioni",
+        price: "49.99",
+        priceCurrency: "EUR",
+        description: "Una tantum, spedizione inclusa, arriva pronto all'uso.",
+        url: absoluteUrl("/#da-banco"),
       },
     ],
   };

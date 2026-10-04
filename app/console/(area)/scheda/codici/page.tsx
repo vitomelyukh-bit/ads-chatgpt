@@ -10,9 +10,9 @@ export default async function Codici() {
   const liberi = codici.filter((c) => !c.richiesta_id).length;
   return (
     <div className="tt-stack-8">
-      <nav aria-label="Percorso" className="tt-crumbs"><ol><li><Link href="/console/scheda">Scheda Google</Link> / </li><li>Codici NFC</li></ol></nav>
+      <nav aria-label="Percorso" className="tt-crumbs"><ol><li><Link href="/console/scheda">Clienti da Maps</Link> / </li><li>Codici NFC</li></ol></nav>
       <h1 className="tt-display-lg">Codici NFC</h1>
-      <p className="tt-body">Ogni card è programmata con un link del tipo <strong>{site.url.replace(/^https?:\/\//, "")}/r/CODICE</strong>. Quando un cliente paga, gli viene assegnato il primo codice libero. {liberi} liberi su {codici.length}.</p>
+      <p className="tt-body">Ogni card o piedistallo è programmato con un link del tipo <strong>{site.url.replace(/^https?:\/\//, "")}/r/CODICE</strong>. Quando un cliente paga, gli viene assegnato il primo codice libero del tipo che ha scelto. {liberi} liberi su {codici.length}.</p>
       <form action={generaCodici} className="tt-row tt-card">
         <div className="tt-field" style={{ maxWidth: 160 }}><label htmlFor="q">Quanti</label><input id="q" name="quanti" type="number" min={1} max={500} defaultValue={50} /></div>
         <div className="tt-field" style={{ maxWidth: 220 }}><label htmlFor="t">Tipo</label><select id="t" name="tipo"><option value="card">Card</option><option value="piedistallo">Piedistallo</option></select></div>

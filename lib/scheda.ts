@@ -1,11 +1,22 @@
-// Servizio "Scheda Google sempre viva": prezzi, testi condivisi e controlli.
+// Servizio principale "Più clienti da Google Maps": prezzi, testi condivisi e controlli.
 export const scheda = {
-  nome: "Scheda Google sempre viva",
-  path: "/scheda-google",
+  nome: "Più clienti da Google Maps",
+  path: "/",
+  form: "/#attiva",
   prezzoMese: 59,
-  prezzoCard: 40,
-  messaggioWhatsApp: "Ciao, vorrei info sulla Scheda Google sempre viva per la mia attività",
+  messaggioWhatsApp: "Ciao, vorrei più clienti da Google Maps per la mia attività",
 };
+
+// Extra facoltativi da banco: chi li tocca col telefono apre la pagina delle recensioni.
+export type TipoExtra = "card" | "piedistallo";
+export const EXTRA: Record<TipoExtra, { nome: string; prezzo: number; descrizione: string; priceEnv: string }> = {
+  card: { nome: "Card da banco", prezzo: 40, descrizione: "Una card da appoggiare sul bancone o in vetrina.", priceEnv: "STRIPE_PRICE_CARD" },
+  piedistallo: { nome: "Piedistallo da banco", prezzo: 49.99, descrizione: "Sta in piedi da solo sul bancone, ben visibile.", priceEnv: "STRIPE_PRICE_PIEDISTALLO" },
+};
+export const isTipoExtra = (v: unknown): v is TipoExtra => v === "card" || v === "piedistallo";
+
+// 49.99 → "49,99 €", 40 → "40 €"
+export const euro = (n: number) => `${n.toLocaleString("it-IT", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })} €`;
 
 // Numero WhatsApp in formato internazionale, solo cifre (es. 393331234567).
 export function linkWhatsApp() {
@@ -27,6 +38,3 @@ export function isLinkMaps(raw: string) {
     return false;
   }
 }
-
-export const CATEGORIE = ["Ristorante o pizzeria", "Bar o caffetteria", "Negozio", "Artigiano", "Studio professionale", "Centro estetico o parrucchiere", "Hotel o B&B", "Altro"];
-export const PROVINCE_HINT = "Sigla, es. MI";
