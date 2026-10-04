@@ -4,6 +4,7 @@ import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { richiediAnalisi, type FormState } from "@/actions/richiedi-analisi";
+import { PrenotaCall } from "./PrenotaCall";
 
 const initial: FormState = { status: "idle" };
 
@@ -39,15 +40,20 @@ export function LeadForm({
         ref={confermaRef}
         tabIndex={-1}
         role="status"
-        className="rounded-2xl border border-accent/50 bg-accent-soft p-6 outline-none sm:p-8"
+        className="tt-success"
       >
-        <Heading className="text-3xl font-semibold tracking-tight text-fg">Richiesta ricevuta. Grazie.</Heading>
-        <p className="mt-3 text-fg-soft">
+        <Heading className="tt-heading"><span className="tt-ok">Richiesta ricevuta.</span> Grazie.</Heading>
+        <p className="tt-body" style={{ marginTop: "var(--space-3)" }}>
           Ti abbiamo mandato una email di conferma. Se non la vedi, controlla nella posta indesiderata.
         </p>
-        <p className="mt-3 text-fg-soft">
+        <p className="tt-body" style={{ marginTop: "var(--space-3)" }}>
           Ti chiamiamo per fissare una breve call in cui guardiamo insieme il tuo caso. Se gli annunci su ChatGPT non fanno per te, te lo diciamo.
         </p>
+        {state.token && (
+          <div className="tt-booking">
+            <PrenotaCall token={state.token} />
+          </div>
+        )}
       </div>
     );
   }
@@ -61,16 +67,14 @@ export function LeadForm({
     "aria-invalid": err[name] ? true : undefined,
     "aria-describedby": err[name] ? `${id}-${name}-err` : undefined,
   });
+  // Errore sempre scritto, mai solo il colore (FormField del design system).
   const errorText = (name: string) =>
     err[name] ? (
-      <p id={`${id}-${name}-err`} className="mt-1.5 text-sm text-red-400">
-        {err[name]}
+      <p id={`${id}-${name}-err`} className="tt-field__help">
+        Errore: {err[name]}
       </p>
     ) : null;
-
-  const input =
-    "mt-2 block w-full rounded-xl border border-line-strong bg-surface-2 px-4 py-3 text-base text-fg placeholder:text-fg-mute focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/20 aria-[invalid=true]:border-red-400";
-  const label = "label-mono block text-fg-mute";
+  const cls = (name: string) => `tt-field${err[name] ? " tt-field--error" : ""}`;
 
   return (
     <form
@@ -78,97 +82,90 @@ export function LeadForm({
       key={state.status === "error" ? state.attempt : 0}
       action={action}
       noValidate
-      className="space-y-5"
+      className="tt-form"
     >
       {state.status === "error" && (
-        <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-          {state.message}
+        <p role="alert" className="tt-alert">
+          Errore: {state.message}
         </p>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor={`${id}-nome`} className={label}>Nome e cognome</label>
-          <input {...field("nome")} type="text" autoComplete="name" required className={input} />
-          {errorText("nome")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-attivita`} className={label}>Attività o azienda</label>
-          <input {...field("attivita")} type="text" autoComplete="organization" required className={input} />
-          {errorText("attivita")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-settore`} className={label}>Settore</label>
-          <select {...field("settore")} required defaultValue={val.settore || defaultSettore} className={input}>
-            <option value="" disabled>Scegli…</option>
-            {settori.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-          {errorText("settore")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-citta`} className={label}>Città o zona <span className="normal-case tracking-normal">(se locale)</span></label>
-          <input {...field("citta")} type="text" autoComplete="address-level2" className={input} />
-          {errorText("citta")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-sito`} className={label}>Sito web <span className="normal-case tracking-normal">(se c&apos;è)</span></label>
-          <input {...field("sito")} type="text" inputMode="url" autoComplete="url" placeholder="esempio.it" className={input} />
-          {errorText("sito")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-budget`} className={label}>Budget pubblicitario indicativo</label>
-          <select {...field("budget")} required defaultValue={val.budget || ""} className={input}>
-            <option value="" disabled>Scegli…</option>
-            {BUDGET.map((b) => <option key={b} value={b}>{b}</option>)}
-          </select>
-          {errorText("budget")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-email`} className={label}>Email</label>
-          <input {...field("email")} type="email" autoComplete="email" inputMode="email" required className={input} />
-          {errorText("email")}
-        </div>
-        <div>
-          <label htmlFor={`${id}-telefono`} className={label}>Telefono</label>
-          <input {...field("telefono")} type="tel" autoComplete="tel" inputMode="tel" required className={input} />
-          {errorText("telefono")}
-        </div>
+      <div className={cls("nome")}>
+        <label htmlFor={`${id}-nome`}>Nome e cognome</label>
+        <input {...field("nome")} type="text" autoComplete="name" required />
+        {errorText("nome")}
+      </div>
+      <div className={cls("attivita")}>
+        <label htmlFor={`${id}-attivita`}>Attività o azienda</label>
+        <input {...field("attivita")} type="text" autoComplete="organization" required />
+        {errorText("attivita")}
+      </div>
+      <div className={cls("settore")}>
+        <label htmlFor={`${id}-settore`}>Settore</label>
+        <select {...field("settore")} required defaultValue={val.settore || defaultSettore}>
+          <option value="" disabled>Scegli…</option>
+          {settori.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+        {errorText("settore")}
+      </div>
+      <div className={cls("citta")}>
+        <label htmlFor={`${id}-citta`}>Città o zona <span>(se locale)</span></label>
+        <input {...field("citta")} type="text" autoComplete="address-level2" />
+        {errorText("citta")}
+      </div>
+      <div className={cls("sito")}>
+        <label htmlFor={`${id}-sito`}>Sito web <span>(se c&apos;è)</span></label>
+        <input {...field("sito")} type="text" inputMode="url" autoComplete="url" placeholder="esempio.it" />
+        {errorText("sito")}
+      </div>
+      <div className={cls("budget")}>
+        <label htmlFor={`${id}-budget`}>Budget pubblicitario indicativo</label>
+        <select {...field("budget")} required defaultValue={val.budget || ""}>
+          <option value="" disabled>Scegli…</option>
+          {BUDGET.map((b) => <option key={b} value={b}>{b}</option>)}
+        </select>
+        {errorText("budget")}
+      </div>
+      <div className={cls("email")}>
+        <label htmlFor={`${id}-email`}>Email</label>
+        <input {...field("email")} type="email" autoComplete="email" inputMode="email" required />
+        {errorText("email")}
+      </div>
+      <div className={cls("telefono")}>
+        <label htmlFor={`${id}-telefono`}>Telefono</label>
+        <input {...field("telefono")} type="tel" autoComplete="tel" inputMode="tel" required />
+        {errorText("telefono")}
       </div>
 
       {/* Honeypot: nascosto a persone e lettori di schermo, i bot lo compilano. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <div aria-hidden="true" className="tt-honeypot">
         <label htmlFor={`${id}-sito_web`}>Lascia vuoto questo campo</label>
         <input id={`${id}-sito_web`} name="sito_web" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div>
-        <div className="flex items-start gap-3">
+      <div className={err.privacy ? "tt-field tt-field--error" : undefined}>
+        <label className="tt-check" htmlFor={`${id}-privacy`}>
           <input
             {...field("privacy")}
             defaultValue={undefined}
             defaultChecked={val.privacy === "on"}
             type="checkbox"
             required
-            className="mt-1 size-5 shrink-0 rounded accent-[var(--color-accent)]"
           />
-          <label htmlFor={`${id}-privacy`} className="text-sm text-fg-soft">
-            Ho letto l&apos;<Link href="/privacy" className="link-ul text-fg">informativa privacy</Link>{" "}
-            e acconsento a essere ricontattato per l&apos;analisi gratuita.
-          </label>
-        </div>
+          <span>
+            Ho letto l&apos;<Link href="/privacy">informativa privacy</Link> e acconsento a essere ricontattato per
+            l&apos;analisi gratuita.
+          </span>
+        </label>
         {errorText("privacy")}
       </div>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="btn-accent w-full text-base disabled:opacity-60 sm:w-auto"
-      >
+      <button type="submit" disabled={pending} className="tt-btn tt-btn--block">
         {pending ? "Invio in corso…" : <>Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></>}
       </button>
-      <p className="text-sm text-fg-mute">Gratis e senza impegno. Ti ricontattiamo noi.</p>
+      <p className="tt-small tt-muted">Gratis e senza impegno. Ti ricontattiamo noi.</p>
     </form>
   );
 }

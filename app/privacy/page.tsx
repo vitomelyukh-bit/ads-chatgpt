@@ -1,5 +1,4 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Container } from "@/components/Container";
 import { Prose } from "@/components/Prose";
 import { pageMetadata } from "@/lib/metadata";
 import { policyAggiornata, titolare } from "@/lib/titolare";
@@ -20,13 +19,13 @@ const data = new Date(`${policyAggiornata}T12:00:00Z`).toLocaleDateString("it-IT
 export default function Page() {
   const mail = <a href={`mailto:${titolare.email}`}>{titolare.email}</a>;
   return (
-    <Container narrow className="py-10 sm:py-14">
+    <div className="tt-wrap tt-wrap--read tt-page-head">
       <Breadcrumbs items={[{ name: "Privacy policy", path: "/privacy" }]} />
-      <h1 className="mt-10 text-4xl font-semibold tracking-tight sm:text-5xl">Privacy policy</h1>
-      <p className="mt-4 text-sm text-fg-mute">
+      <h1 className="tt-display-xl">Privacy policy</h1>
+      <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>
         Aggiornata il <time dateTime={policyAggiornata}>{data}</time>
       </p>
-      <div className="mt-10">
+      <div style={{ marginTop: "var(--space-8)" }}>
         <Prose>
           <p>
             Questa pagina spiega quali dati raccogliamo su titrovano.it, perché, per quanto tempo e quali diritti hai,
@@ -143,6 +142,6 @@ export default function Page() {
           </p>
         </Prose>
       </div>
-    </Container>
+    </div>
   );
 }

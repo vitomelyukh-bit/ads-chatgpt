@@ -1,7 +1,6 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Container } from "@/components/Container";
 import { CtaBox } from "@/components/CtaBox";
-import { LinkList } from "@/components/LinkList";
+import { LinkCards } from "@/components/ds/LinkCards";
 import { getGuide } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -14,18 +13,20 @@ export const metadata = pageMetadata({
 
 export default function GuidePage() {
   return (
-    <Container className="py-10 sm:py-14">
+    <div className="tt-wrap tt-wrap--read tt-page-head">
       <Breadcrumbs items={[{ name: "Guide", path: "/guide" }]} />
-      <h1 className="mt-10 text-4xl font-semibold tracking-tight sm:text-6xl">Guide</h1>
-      <p className="mt-6 max-w-2xl text-lg text-fg-soft">
-        Come rispondono ChatGPT, Gemini e Perplexity ai clienti e come funzionano gli annunci su ChatGPT. Spiegato senza gergo.
-      </p>
-      <div className="mt-12">
-        <LinkList items={getGuide().map((g) => ({ href: `/guide/${g.slug}`, label: g.h1, sub: g.description }))} />
+      <div className="tt-stack-6">
+        <h1 className="tt-display-xl">Guide</h1>
+        <p className="tt-lead">
+          Come rispondono ChatGPT, Gemini e Perplexity ai clienti e come funzionano gli annunci su ChatGPT. Spiegato senza gergo.
+        </p>
       </div>
-      <div className="mt-20">
+      <div className="tt-section-body" style={{ marginTop: "var(--space-12)" }}>
+        <LinkCards items={getGuide().map((g) => ({ href: `/guide/${g.slug}`, label: g.h1, sub: g.description }))} />
+      </div>
+      <div style={{ marginTop: "var(--space-16)" }}>
         <CtaBox />
       </div>
-    </Container>
+    </div>
   );
 }

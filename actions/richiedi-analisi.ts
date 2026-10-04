@@ -4,11 +4,12 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
 import { isRateLimited } from "@/lib/rate-limit";
+import { firmaLead } from "@/lib/lead-token";
 import { site } from "@/lib/site";
 
 export type FormState =
   | { status: "idle" }
-  | { status: "success"; settore: string }
+  | { status: "success"; settore: string; token?: string | null }
   | {
       status: "error";
       message: string;
@@ -32,6 +33,9 @@ const schema = z.object({
     .regex(/^[+\d][\d\s./-]{5,19}$/, "Controlla il numero di telefono."),
   privacy: z.literal("on", { message: "Serve il consenso per poterti ricontattare." }),
 });
+
+const tokenLead = (d: { nome: string; attivita: string; sito: string; settore: string; citta: string; budget: string; email: string; telefono: string }) =>
+  firmaLead({ nome: d.nome, attivita: d.attivita, sito: d.sito, settore: d.settore, citta: d.citta, budget: d.budget, email: d.email, telefono: d.telefono });
 
 const escape = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -76,10 +80,10 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
 
   if (!apiKey || !from || !to?.length) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn("[richiedi-prova] Resend non configurato, richiesta solo registrata:", d);
-      return { status: "success", settore: d.settore };
+      console.warn("[richiedi-analisi] Resend non configurato, richiesta solo registrata:", d);
+      return { status: "success", settore: d.settore, token: tokenLead(d) };
     }
-    console.error("[richiedi-prova] Mancano RESEND_API_KEY, RESEND_FROM o LEAD_TO_EMAIL.");
+    console.error("[richiedi-analisi] Mancano RESEND_API_KEY, RESEND_FROM o LEAD_TO_EMAIL.");
     return { status: "error", message: "Al momento non riusciamo a ricevere la richiesta. Riprova più tardi.", values, attempt };
   }
 
@@ -108,7 +112,7 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
   });
 
   if (interna.error) {
-    console.error("[richiedi-prova] Invio interno fallito:", interna.error);
+    console.error("[richiedi-analisi] Invio interno fallito:", interna.error);
     return { status: "error", message: "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.", values, attempt };
   }
 
@@ -135,7 +139,7 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
       site.url,
     ].join("\n"),
   });
-  if (ricevuta.error) console.error("[richiedi-prova] Ricevuta non inviata:", ricevuta.error);
+  if (ricevuta.error) console.error("[richiedi-analisi] Ricevuta non inviata:", ricevuta.error);
 
-  return { status: "success", settore: d.settore };
+  return { status: "success", settore: d.settore, token: tokenLead(d) };
 }

@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { AdMock } from "@/components/AdMock";
-import { Container } from "@/components/Container";
-import { Faq } from "@/components/Faq";
+import { ChatAd } from "@/components/ds/ChatAd";
+import { FaqList } from "@/components/ds/FaqList";
+import { LinkCards } from "@/components/ds/LinkCards";
+import { SectionHead } from "@/components/ds/SectionHead";
+import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
-import { LinkList } from "@/components/LinkList";
-import { QuestionMarquee } from "@/components/QuestionMarquee";
-import { SectionLabel } from "@/components/SectionLabel";
-import { Steps } from "@/components/Steps";
+import { passi } from "@/components/Steps";
 import { getGuide, getSettori, settoreOptions } from "@/lib/content";
 import { faqHome } from "@/lib/faq";
 import { breadcrumbList, faqPage, organization, service, website } from "@/lib/jsonld";
@@ -20,15 +19,19 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
-const h2 = "text-3xl font-semibold tracking-tight sm:text-5xl";
-
 const servizi = [
-  { t: "Strategia", d: "Capiamo cosa chiedono i tuoi clienti all'AI e in quali conversazioni ha senso esserci." },
-  { t: "Account e configurazione", d: "Apriamo e configuriamo l'account pubblicitario, il tracciamento e il budget." },
-  { t: "Annunci", d: "Scriviamo messaggi chiari e concreti, pensati per chi sta facendo una domanda precisa." },
-  { t: "Pagina di destinazione", d: "Controlliamo che chi clicca trovi subito quello che cercava, e un modo semplice per contattarti." },
-  { t: "Ottimizzazione", d: "Seguiamo la campagna, spostiamo il budget su ciò che rende e togliamo il resto." },
-  { t: "Report chiari", d: "Ogni mese: quanto hai speso, cosa ti ha portato, cosa cambiamo. Senza gergo." },
+  { titolo: "Strategia", testo: "Capiamo cosa chiedono i tuoi clienti all'AI e in quali conversazioni ha senso esserci." },
+  { titolo: "Account e configurazione", testo: "Apriamo e configuriamo l'account pubblicitario, il tracciamento e il budget." },
+  { titolo: "Annunci", testo: "Scriviamo messaggi chiari e concreti, pensati per chi sta facendo una domanda precisa." },
+  { titolo: "Pagina di destinazione", testo: "Controlliamo che chi clicca trovi subito quello che cercava, e un modo semplice per contattarti." },
+  { titolo: "Ottimizzazione", testo: "Seguiamo la campagna, spostiamo il budget su ciò che rende e togliamo il resto." },
+  { titolo: "Report chiari", testo: "Ogni mese: quanto hai speso, cosa ti ha portato, cosa cambiamo. Senza gergo." },
+];
+
+const motivi = [
+  { titolo: "Domande con un'intenzione chiara", testo: "Chi scrive a ChatGPT spesso sa già cosa vuole: un servizio, una zona, un'esigenza precisa. È il momento in cui sta decidendo." },
+  { titolo: "Un canale nuovo in Italia", testo: "Gli annunci su ChatGPT sono arrivati in Italia il 24 agosto 2026. Chi impara a usarli adesso parte prima degli altri." },
+  { titolo: "Pertinenti alla conversazione", testo: "Secondo OpenAI, in Europa all'inizio gli annunci non sono personalizzati sul profilo della persona: contano l'argomento e il contesto della domanda." },
 ];
 
 export default function Home() {
@@ -38,173 +41,172 @@ export default function Home() {
   const alternate = [...domande.filter((_, i) => i % 2 === 0), ...domande.filter((_, i) => i % 2 === 1)];
   const locali = settori.filter((s) => s.tipo === "locale");
   const aziende = settori.filter((s) => s.tipo === "azienda");
+  const bolla = (d: { testo: string; lingua?: "it" | "en" }, i: number) => (
+    <li key={i}>
+      <p className="tt-bubble tt-bubble--user" lang={d.lingua === "en" ? "en" : undefined}>{d.testo}</p>
+    </li>
+  );
 
   return (
     <>
       <JsonLd data={[organization(), website(), service(), breadcrumbList([]), faqPage(faqHome)]} />
 
-      <section className="relative overflow-hidden">
-        <div aria-hidden="true" className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,#000_20%,transparent_70%)]" />
-        <div aria-hidden="true" className="absolute left-1/2 top-[-20%] h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:grid-cols-[1.15fr_1fr] lg:gap-14 lg:pb-32">
-          <div>
-            <p className="label-mono inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-fg-soft">
-              <span className="size-1.5 rounded-full bg-accent" /> Annunci su ChatGPT · Italia
-            </p>
-            <h1 className="mt-7 text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[3.9rem]">
-              <span className="text-gradient">I tuoi clienti chiedono a ChatGPT.</span>{" "}
-              <span className="text-accent">Fatti trovare con gli annunci.</span>
+      <section className="tt-section">
+        <div className="tt-wrap tt-hero">
+          <div className="tt-stack-6">
+            <p className="tt-eyebrow" style={{ margin: 0 }}>Annunci su ChatGPT · Italia</p>
+            <h1 className="tt-display-xl">
+              I tuoi clienti chiedono a ChatGPT. <span className="tt-mark">Fatti trovare</span> con gli annunci.
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-fg-soft">
+            <p className="tt-lead">
               Dal 24 agosto 2026 ChatGPT mostra annunci sponsorizzati anche in Italia. Progettiamo e gestiamo le tue
               campagne, per attività locali e aziende: strategia, annunci, budget e report.
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="#analisi" className="btn-accent">Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></Link>
-              <Link href="#come-funziona" className="btn-ghost">Come funziona</Link>
+            <div className="tt-actions">
+              <Link href="#analisi" className="tt-btn tt-btn--lg">Richiedi l&apos;analisi gratuita <span aria-hidden="true">→</span></Link>
+              <Link href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</Link>
             </div>
-            <p className="mt-6 text-sm text-fg-mute">L&apos;analisi gratuita è una breve call, senza impegno. Se non fa per te, te lo diciamo.</p>
+            <p className="tt-small tt-muted">L&apos;analisi gratuita è una breve call, senza impegno. Se non fa per te, te lo diciamo.</p>
           </div>
-          <AdMock />
+          <ChatAd
+            domanda="Mi consigli un buon dentista a Bologna per un impianto?"
+            inserzionista="La tua attività"
+            descrizione="Prima visita e piano di cura chiaro. Prenota online."
+          />
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface/50 py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SectionLabel n="01">Perché ora</SectionLabel>
-          <h2 className={`mt-5 max-w-3xl ${h2}`}>Le persone non cercano più. Chiedono.</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {[
-              { t: "Domande con un'intenzione chiara", d: "Chi scrive a ChatGPT spesso sa già cosa vuole: un servizio, una zona, un'esigenza precisa. È il momento in cui sta decidendo." },
-              { t: "Un canale nuovo in Italia", d: "Gli annunci su ChatGPT sono arrivati in Italia il 24 agosto 2026. Chi impara a usarli adesso parte prima degli altri." },
-              { t: "Pertinenti alla conversazione", d: "Secondo OpenAI, in Europa all'inizio gli annunci non sono personalizzati sul profilo della persona: contano l'argomento e il contesto della domanda." },
-            ].map((c) => (
-              <div key={c.t} className="card p-6">
-                <h3 className="text-lg font-semibold tracking-tight">{c.t}</h3>
-                <p className="mt-3 leading-relaxed text-fg-soft">{c.d}</p>
-              </div>
-            ))}
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="01" occhiello="Perché ora">
+            Le persone non cercano più. <span className="tt-mark">Chiedono.</span>
+          </SectionHead>
+          <div className="tt-section-body">
+            <ul className="tt-points">
+              {motivi.map((m) => (
+                <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>
+              ))}
+            </ul>
           </div>
-        </div>
-        <div className="mt-14">
-          <QuestionMarquee domande={alternate} />
+          <div className="tt-section-body" aria-label="Domande che i clienti fanno all'AI">
+            <ul className="tt-questions">{alternate.slice(0, 6).map(bolla)}</ul>
+            <details className="tt-more" style={{ marginTop: "var(--space-4)" }}>
+              <summary className="tt-btn tt-btn--secondary">Altre domande dei clienti</summary>
+              <ul className="tt-questions" style={{ marginTop: "var(--space-4)" }}>{alternate.slice(6).map(bolla)}</ul>
+            </details>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <Container>
-          <SectionLabel n="02">Annuncio e risposta</SectionLabel>
-          <h2 className={`mt-5 max-w-3xl ${h2}`}>Un annuncio non compra la risposta. Ti mette accanto.</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            <div className="card p-7">
-              <p className="label-mono text-fg-mute">La risposta di ChatGPT</p>
-              <p className="mt-4 leading-relaxed text-fg-soft">
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="02" occhiello="Annuncio e risposta">
+            Un annuncio non compra la risposta. <span className="tt-mark">Ti mette accanto.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
+            <div className="tt-card tt-stack-2">
+              <p className="tt-label">La risposta di ChatGPT</p>
+              <p className="tt-body">
                 Dipende da quello che l&apos;AI trova e da come lo collega alla domanda. Non si compra e nessuno può garantire
                 di comparire.
               </p>
             </div>
-            <div className="card border-accent/40 p-7">
-              <p className="label-mono text-accent">L&apos;annuncio sponsorizzato</p>
-              <p className="mt-4 leading-relaxed text-fg-soft">
+            <div className="tt-card tt-stack-2">
+              <span className="tt-tag">L&apos;annuncio sponsorizzato</span>
+              <p className="tt-body">
                 È uno spazio a pagamento, separato e segnalato come sponsorizzato. Si decide dove comparire, con che messaggio
                 e con quanto budget, e si misura cosa porta.
               </p>
             </div>
+            <p className="tt-body">
+              Approfondisci:{" "}
+              <Link href="/guide/consigliati-o-sponsorizzati-su-chatgpt">essere consigliati o essere sponsorizzati su ChatGPT</Link>.
+            </p>
           </div>
-          <p className="mt-6 text-fg-mute">
-            Approfondisci:{" "}
-            <Link href="/guide/consigliati-o-sponsorizzati-su-chatgpt" className="link-ul">
-              essere consigliati o essere sponsorizzati su ChatGPT
-            </Link>
-            .
-          </p>
-        </Container>
+        </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <Container>
-          <SectionLabel n="03">Cosa facciamo</SectionLabel>
-          <h2 className={`mt-5 max-w-3xl ${h2}`}>Pensiamo noi alla campagna. Tu pensi alla tua attività.</h2>
-          <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {servizi.map((s, i) => (
-              <li key={s.t} className="bg-bg p-7">
-                <span className="font-mono text-xs text-fg-mute">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-4 text-lg font-semibold tracking-tight">{s.t}</h3>
-                <p className="mt-2 leading-relaxed text-fg-soft">{s.d}</p>
-              </li>
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="03" occhiello="Cosa facciamo">
+            Pensiamo noi alla campagna. <span className="tt-mark">Tu pensi alla tua attività.</span>
+          </SectionHead>
+          <div className="tt-section-body"><StepList passi={servizi} /></div>
+        </div>
+      </section>
+
+      <section id="come-funziona" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="04" occhiello="Come funziona">
+            Dall&apos;analisi gratuita alla campagna, <span className="tt-mark">in quattro passi.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-stack-8">
+            <StepList passi={passi} />
+            <p className="tt-body tt-muted">
+              Nessuno può garantire risultati con la pubblicità. Noi ti garantiamo trasparenza: sai sempre quanto spendi e cosa ti porta.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap">
+          <SectionHead n="05" occhiello="Per chi">
+            Per attività locali e <span className="tt-mark">per aziende.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-two">
+            <div className="tt-stack-4">
+              <h3 className="tt-subheading">Attività locali</h3>
+              <p className="tt-body tt-muted">Quando un cliente vale molto e lo cerca nella sua zona: studi professionali, immobiliari, imprese edili, hotel, noleggi, location, artigiani.</p>
+              <LinkCards items={locali.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} />
+            </div>
+            <div className="tt-stack-4">
+              <h3 className="tt-subheading">Aziende ed e-commerce</h3>
+              <p className="tt-body tt-muted">Quando le persone chiedono all&apos;AI quale prodotto, servizio o fornitore scegliere.</p>
+              <LinkCards items={aziende.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="06" occhiello="Guide">
+            Capire l&apos;AI <span className="tt-mark">prima di investire.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
+            <LinkCards items={guide.map((g) => ({ href: `/guide/${g.slug}`, label: g.h1 }))} />
+            <p className="tt-body"><Link href="/guide">Tutte le guide →</Link></p>
+          </div>
+        </div>
+      </section>
+
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="07" occhiello="Domande frequenti">
+            Le domande che ci fanno <span className="tt-mark">di più.</span>
+          </SectionHead>
+          <div className="tt-section-body"><FaqList items={faqHome} /></div>
+        </div>
+      </section>
+
+      <section id="analisi" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead
+            occhiello="Analisi gratuita"
+            testo={<>Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</>}
+          >
+            Scopri se gli annunci su ChatGPT <span className="tt-mark">fanno per te.</span>
+          </SectionHead>
+          <ul className="tt-stack-2 tt-body" style={{ listStyle: "none", padding: 0, marginTop: "var(--space-8)" }}>
+            {["Gratis e senza impegno", "Una call con una persona, non un bot", "Se non ha senso per te, te lo diciamo"].map((x) => (
+              <li key={x}>✓ {x}</li>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      <section id="come-funziona" className="scroll-mt-20 py-20 sm:py-28">
-        <Container>
-          <SectionLabel n="04">Come funziona</SectionLabel>
-          <h2 className={`mt-5 max-w-3xl ${h2}`}>Dall&apos;analisi gratuita alla campagna, in quattro passi.</h2>
-          <div className="mt-12"><Steps /></div>
-          <p className="mt-8 max-w-2xl text-fg-mute">
-            Nessuno può garantire risultati con la pubblicità. Noi ti garantiamo trasparenza: sai sempre quanto spendi e cosa ti porta.
-          </p>
-        </Container>
-      </section>
-
-      <section className="py-20 sm:py-28">
-        <Container>
-          <SectionLabel n="05">Per chi</SectionLabel>
-          <h2 className={`mt-5 max-w-3xl ${h2}`}>Per attività locali e per aziende.</h2>
-          <div className="mt-12 grid gap-4 lg:grid-cols-2">
-            <div className="card p-7">
-              <h3 className="text-2xl font-semibold tracking-tight">Attività locali</h3>
-              <p className="mt-3 text-fg-soft">Quando un cliente vale molto e lo cerca nella sua zona: studi professionali, immobiliari, imprese edili, hotel, noleggi, location, artigiani.</p>
-              <div className="mt-6"><LinkList items={locali.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} /></div>
-            </div>
-            <div className="card p-7">
-              <h3 className="text-2xl font-semibold tracking-tight">Aziende ed e-commerce</h3>
-              <p className="mt-3 text-fg-soft">Quando le persone chiedono all&apos;AI quale prodotto, servizio o fornitore scegliere.</p>
-              <div className="mt-6"><LinkList items={aziende.map((s) => ({ href: `/settori/${s.slug}`, label: s.nome }))} /></div>
-            </div>
+          <div className="tt-card tt-section-body" style={{ maxWidth: "var(--measure)" }}>
+            <LeadForm settori={settoreOptions()} headingLevel={3} />
           </div>
-        </Container>
-      </section>
-
-      <section className="py-20 sm:py-28">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
-            <div>
-              <SectionLabel n="06">Guide</SectionLabel>
-              <h2 className={`mt-5 ${h2}`}>Capire l&apos;AI prima di investire.</h2>
-              <p className="mt-6"><Link href="/guide" className="link-ul text-fg-soft">Tutte le guide →</Link></p>
-            </div>
-            <LinkList items={guide.map((g) => ({ href: `/guide/${g.slug}`, label: g.h1 }))} />
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-20 sm:py-28">
-        <Container narrow>
-          <SectionLabel n="07">Domande frequenti</SectionLabel>
-          <h2 className={`mt-5 ${h2}`}>Le domande che ci fanno di più.</h2>
-          <div className="mt-10"><Faq items={faqHome} /></div>
-        </Container>
-      </section>
-
-      <section id="analisi" className="scroll-mt-20 py-12">
-        <Container>
-          <div className="card relative grid gap-10 overflow-hidden p-6 sm:p-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14 lg:p-14">
-            <div aria-hidden="true" className="absolute -left-32 -top-32 size-96 rounded-full bg-accent/10 blur-3xl" />
-            <div className="relative">
-              <SectionLabel>Analisi gratuita</SectionLabel>
-              <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Scopri se gli annunci su ChatGPT fanno per te.</h2>
-              <p className="mt-5 text-fg-soft">Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</p>
-              <ul className="mt-8 space-y-3 text-sm text-fg-soft">
-                {["Gratis e senza impegno", "Una call con una persona, non un bot", "Se non ha senso per te, te lo diciamo"].map((x) => (
-                  <li key={x} className="flex gap-3"><span className="text-accent">✓</span>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative"><LeadForm settori={settoreOptions()} headingLevel={3} /></div>
-          </div>
-        </Container>
+        </div>
       </section>
     </>
   );
