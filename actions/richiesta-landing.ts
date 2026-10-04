@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import type { Cliente, Landing } from "@/lib/clienti";
 import { db } from "@/lib/db";
+import { email, TITROVANO } from "@/lib/email";
 import { isRateLimited } from "@/lib/rate-limit";
 
 export type StatoRichiesta = { stato: "idle" } | { stato: "ok" } | { stato: "errore"; messaggio: string };
@@ -17,7 +18,6 @@ const schema = z.object({
   privacy: z.literal("on"),
 });
 
-const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 // "TiTrovano <prova@titrovano.it>" → "prova@titrovano.it"
 const indirizzo = (from: string) => from.match(/<([^>]+)>/)?.[1] ?? from;
 
@@ -56,19 +56,44 @@ export async function inviaRichiestaLanding(landingId: string, _: StatoRichiesta
   ];
   const invii: Promise<unknown>[] = [];
   if (destinatari.length || copia.length) {
+    // Al cliente: stile TiTrovano (è il nostro servizio che gli porta la richiesta).
+    const notifica = email({
+      marchio: TITROVANO,
+      anteprima: `${d.nome} · ${d.telefono} · da “${row.titolo}”`,
+      titolo: `Nuova richiesta per ${c.nome}`,
+      evidenzia: "Nuova richiesta",
+      blocchi: [
+        { tipo: "righe", righe },
+        { tipo: "bottone", testo: `Chiama ${d.nome} →`, url: `tel:${d.telefono.replace(/\s/g, "")}` },
+        { tipo: "nota", testo: "Ricontatta la persona il prima possibile: chi riceve una risposta veloce è molto più propenso a diventare cliente." },
+      ],
+    });
     invii.push(resend.emails.send({
       from, to: destinatari.length ? destinatari : copia, bcc: destinatari.length ? copia : undefined, replyTo: d.email || undefined,
       subject: `Nuova richiesta per ${c.nome}: ${d.nome}`,
-      text: righe.map(([k, v]) => `${k}: ${v}`).join("\n") + "\n\nRicontatta la persona il prima possibile.",
-      html: `<h2>Nuova richiesta da “${esc(row.titolo)}”</h2><table cellpadding="6">${righe.map(([k, v]) => `<tr><td><b>${k}</b></td><td>${esc(v)}</td></tr>`).join("")}</table><p>Ricontatta la persona il prima possibile.</p>`,
+      ...notifica,
     }));
   }
   if (d.email) {
+    // A chi ha compilato: con logo e colore del cliente.
+    const marchioCliente = {
+      nome: c.nome, colore: c.colore, logo: c.logo_url,
+      piede: [c.nome, c.citta, c.telefono, c.sito].filter(Boolean).join(" · "),
+    };
+    const ricevuta = email({
+      marchio: marchioCliente,
+      anteprima: `${c.nome} ti ricontatterà al più presto.`,
+      titolo: `Grazie ${d.nome}, abbiamo ricevuto la tua richiesta`,
+      blocchi: [
+        { tipo: "p", testo: `Grazie per averci scritto. ${c.nome} ti ricontatterà al più presto al numero ${d.telefono}.` },
+        ...(c.telefono ? [{ tipo: "bottone" as const, testo: `Chiamaci: ${c.telefono}`, url: `tel:${c.telefono.replace(/\s/g, "")}` }] : []),
+        { tipo: "nota", testo: "Se vuoi aggiungere qualcosa, rispondi a questa email." },
+      ],
+    });
     invii.push(resend.emails.send({
       from: `${c.nome.replace(/[<>"]/g, "")} <${indirizzo(from)}>`, to: d.email, replyTo: destinatari[0],
       subject: `Abbiamo ricevuto la tua richiesta · ${c.nome}`,
-      text: [`Ciao ${d.nome},`, "", `grazie per averci scritto. ${c.nome} ti ricontatterà al più presto al numero ${d.telefono}.`,
-        ...(c.telefono ? ["", `Se preferisci, puoi chiamarci al ${c.telefono}.`] : []), "", c.nome].join("\n"),
+      ...ricevuta,
     }));
   }
   await Promise.allSettled(invii).then((r) => r.forEach((x) => x.status === "rejected" && console.error("[richiesta-landing] email", x.reason)));

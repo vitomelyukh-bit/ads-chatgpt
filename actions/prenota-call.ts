@@ -7,6 +7,7 @@ import { calendarioConfigurato, creaEvento, occupato } from "@/lib/google-calend
 import { leggiLead } from "@/lib/lead-token";
 import { isRateLimited } from "@/lib/rate-limit";
 import { etichettaCompleta, libero, orariCandidati } from "@/lib/slots";
+import { email, TITROVANO } from "@/lib/email";
 import { site } from "@/lib/site";
 
 export type EsitoPrenotazione = { ok: true; quando: string } | { ok: false; errore: string };
@@ -55,20 +56,40 @@ export async function prenotaCall(token: string, iso: string): Promise<EsitoPren
   if (process.env.RESEND_API_KEY && from && to?.length) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const invito = ics(inizio, fine, `Call con ${site.name}`, `Analisi gratuita: annunci su ChatGPT per ${lead.attivita}. Ti chiamiamo al ${lead.telefono}.`);
+    const f = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Call con ${site.name}`)}&dates=${f(inizio)}/${f(fine)}&details=${encodeURIComponent(`Analisi gratuita per ${lead.attivita}. Ti chiamiamo al ${lead.telefono}.`)}`;
+    const conferma = email({
+      marchio: TITROVANO,
+      anteprima: `Ti chiamiamo ${quando}.`,
+      titolo: `Ciao ${lead.nome}, la call è confermata`,
+      evidenzia: "confermata",
+      blocchi: [
+        { tipo: "evidenza", etichetta: "La tua call", testo: `${quando.charAt(0).toUpperCase()}${quando.slice(1)}` },
+        { tipo: "p", testo: `Ti chiamiamo al numero ${lead.telefono}. Dura circa ${booking.durataMin} minuti: guardiamo insieme il caso di ${lead.attivita} e quale canale ha più senso per te.` },
+        { tipo: "bottone", testo: "Aggiungi a Google Calendar →", url: gcal },
+        { tipo: "nota", testo: "In allegato trovi anche l'invito per Outlook e Apple Calendar.\nSe devi spostarla, rispondi a questa email." },
+      ],
+    });
+    const avviso = email({
+      marchio: TITROVANO,
+      anteprima: `${lead.attivita} · ${quando}`,
+      titolo: `Call prenotata: ${lead.attivita}`,
+      evidenzia: "Call prenotata",
+      blocchi: [
+        { tipo: "evidenza", etichetta: "Quando", testo: `${quando.charAt(0).toUpperCase()}${quando.slice(1)}` },
+        { tipo: "righe", righe: [["Nome", lead.nome], ["Telefono", lead.telefono], ["Email", lead.email], ["Settore", lead.settore], ["Città", lead.citta || "—"], ["Sito", lead.sito || "—"], ["Budget indicativo", lead.budget]] },
+        { tipo: "bottone", testo: `Chiama ${lead.nome} →`, url: `tel:${lead.telefono.replace(/\s/g, "")}` },
+        { tipo: "nota", testo: "L'evento è già nel tuo Google Calendar." },
+      ],
+    });
     await Promise.all([
       resend.emails.send({
         from, to: lead.email, replyTo: to[0],
         subject: `Call confermata: ${quando} · ${site.name}`,
-        text: [`Ciao ${lead.nome},`, "", `la call per l'analisi gratuita è fissata per ${quando} (ora italiana).`,
-          `Ti chiamiamo al numero ${lead.telefono}. Dura circa ${booking.durataMin} minuti.`, "",
-          "Se devi spostarla, rispondi a questa email.", "", site.name, site.url].join("\n"),
+        ...conferma,
         attachments: [{ filename: "call-titrovano.ics", content: Buffer.from(invito).toString("base64") }],
       }),
-      resend.emails.send({
-        from, to, replyTo: lead.email,
-        subject: `Call prenotata: ${lead.attivita} · ${quando}`,
-        text: `${lead.nome} (${lead.attivita}) ha prenotato la call per ${quando}.\nTelefono: ${lead.telefono}\nEmail: ${lead.email}\nSettore: ${lead.settore}\nBudget: ${lead.budget}\n\nL'evento è già nel tuo Google Calendar.`,
-      }),
+      resend.emails.send({ from, to, replyTo: lead.email, subject: `Call prenotata: ${lead.attivita} · ${quando}`, ...avviso }),
     ]).catch((e) => console.error("[prenota-call] email", e));
   }
   return { ok: true, quando };

@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { isRateLimited } from "@/lib/rate-limit";
 import { firmaLead } from "@/lib/lead-token";
+import { email, TITROVANO } from "@/lib/email";
 import { site } from "@/lib/site";
 
 export type FormState =
@@ -37,8 +38,6 @@ const schema = z.object({
 const tokenLead = (d: { nome: string; attivita: string; sito: string; settore: string; citta: string; budget: string; email: string; telefono: string }) =>
   firmaLead({ nome: d.nome, attivita: d.attivita, sito: d.sito, settore: d.settore, citta: d.citta, budget: d.budget, email: d.email, telefono: d.telefono });
 
-const escape = (s: string) =>
-  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 export async function richiediAnalisi(prev: FormState, formData: FormData): Promise<FormState> {
   const attempt = (prev.status === "error" ? prev.attempt : 0) + 1;
@@ -99,16 +98,24 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
     ["Telefono", d.telefono],
   ];
 
+  const quando = new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome", dateStyle: "long", timeStyle: "short" });
+  const notifica = email({
+    marchio: TITROVANO,
+    anteprima: `${d.attivita} · ${d.settore} · budget ${d.budget}`,
+    titolo: `Nuova richiesta di analisi: ${d.attivita}`,
+    evidenzia: "analisi",
+    blocchi: [
+      { tipo: "righe", righe },
+      { tipo: "bottone", testo: `Chiama ${d.nome} →`, url: `tel:${d.telefono.replace(/\s/g, "")}` },
+      { tipo: "nota", testo: `Inviata il ${quando}. Consenso privacy: sì.\nSe ha scelto un orario, ti arriva anche l'email "Call prenotata".` },
+    ],
+  });
   const interna = await resend.emails.send({
     from,
     to,
     replyTo: d.email,
     subject: `Nuova richiesta di analisi: ${d.attivita}${d.citta ? ` (${d.citta})` : ""}`,
-    text: righe.map(([k, v]) => `${k}: ${v}`).join("\n") + `\n\nConsenso privacy: sì\nInviata il: ${new Date().toISOString()}`,
-    html:
-      `<h2>Nuova richiesta di analisi gratuita</h2><table cellpadding="6">` +
-      righe.map(([k, v]) => `<tr><td><strong>${k}</strong></td><td>${escape(v)}</td></tr>`).join("") +
-      `</table><p>Consenso privacy: sì<br>Inviata il: ${new Date().toISOString()}</p>`,
+    ...notifica,
   });
 
   if (interna.error) {
@@ -118,26 +125,29 @@ export async function richiediAnalisi(prev: FormState, formData: FormData): Prom
 
   // Ricevuta per chi ha compilato. Se fallisce la richiesta è comunque arrivata:
   // lo registriamo e mostriamo lo stesso la conferma.
+  const ricevutaEmail = email({
+    marchio: TITROVANO,
+    anteprima: "Ecco cosa succede adesso.",
+    titolo: `Ciao ${d.nome}, abbiamo ricevuto la tua richiesta`,
+    evidenzia: "ricevuto",
+    blocchi: [
+      { tipo: "p", testo: `Grazie: abbiamo ricevuto la richiesta di analisi gratuita per ${d.attivita}.` },
+      { tipo: "titoletto", testo: "Cosa succede adesso" },
+      { tipo: "passi", passi: [
+        "Guardiamo il tuo settore e le domande che i tuoi clienti fanno a ChatGPT.",
+        "Valutiamo se gli annunci su ChatGPT hanno senso per te, quale canale conviene di più (ChatGPT, Google, Meta o SEO) e con quale budget di partenza.",
+        "Ti chiamiamo per fissare una breve call e parlarne. Se non fanno per te, te lo diciamo.",
+      ] },
+      { tipo: "p", testo: "Se vuoi aggiungere qualcosa, rispondi a questa email." },
+      { tipo: "bottone", testo: "Leggi le guide su ChatGPT →", url: `${site.url}/guide` },
+    ],
+  });
   const ricevuta = await resend.emails.send({
     from,
     to: d.email,
     replyTo: to[0],
     subject: `Abbiamo ricevuto la tua richiesta · ${site.name}`,
-    text: [
-      `Ciao ${d.nome},`,
-      "",
-      `abbiamo ricevuto la richiesta di analisi gratuita per ${d.attivita}.`,
-      "",
-      "Cosa succede adesso:",
-      "1. Guardiamo il tuo settore e le domande che i tuoi clienti fanno a ChatGPT.",
-      "2. Valutiamo se gli annunci su ChatGPT hanno senso per te, quale canale conviene di più (ChatGPT, Google, Meta o SEO) e con quale budget di partenza.",
-      "3. Ti chiamiamo per fissare una breve call e parlarne. Se non fanno per te, te lo diciamo.",
-      "",
-      "Se vuoi aggiungere qualcosa, rispondi a questa email.",
-      "",
-      `${site.name}`,
-      site.url,
-    ].join("\n"),
+    ...ricevutaEmail,
   });
   if (ricevuta.error) console.error("[richiedi-analisi] Ricevuta non inviata:", ricevuta.error);
 
