@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -34,9 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#contenuto" className="tt-btn tt-skip">
           Vai al contenuto
         </a>
-        <Header />
-        <main id="contenuto">{children}</main>
-        <Footer />
+        {children}
         <Analytics />
       </body>
     </html>
