@@ -46,7 +46,7 @@ for (const x of [...settori, ...guide]) {
   for (const [, href] of x.body.matchAll(/\]\((\/[^)\s#]*)/g)) {
     const [, tipo, slug] = href.split("/");
     const ok =
-      href === "/" || href === "/analisi-gratuita" || href === "/settori" || href === "/guide" ||
+      href === "/" || href === "/analisi-gratuita" || href === "/canali" || href === "/settori" || href === "/guide" ||
       (tipo === "settori" && settoriSlugs.has(slug)) || (tipo === "guide" && guideSlugs.has(slug));
     if (!ok) err(x.file, `link interno rotto: ${href}`);
   }

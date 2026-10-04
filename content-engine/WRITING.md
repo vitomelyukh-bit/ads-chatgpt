@@ -6,7 +6,7 @@ Questa guida la segue la routine automatica che pubblica le guide su titrovano.i
 
 Un servizio che **progetta e gestisce annunci su ChatGPT** per attività locali e aziende italiane: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget, report. Si parte da un'**analisi gratuita** (`/analisi-gratuita`): valutiamo se gli annunci su ChatGPT hanno senso per quel settore, con quali messaggi e con quale budget di partenza.
 
-Le guide informano in modo onesto e portano all'analisi gratuita. Sono utili anche quando dicono "in questo caso non conviene".
+Le guide informano in modo onesto e portano all'analisi gratuita. Sono utili anche quando dicono "in questo caso non conviene": nell'analisi gratuita valutiamo anche Google Ads, Meta Ads e SEO e proponiamo il canale più adatto. Quando ChatGPT non conviene, puoi dirlo e rimandare a [/canali](/canali). Il tema principale delle guide resta ChatGPT.
 
 ## Chi legge
 
