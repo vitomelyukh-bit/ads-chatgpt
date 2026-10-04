@@ -106,3 +106,9 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 /* La testata segue la stessa larghezza del contenuto. */
 .tt-header { padding-inline: max(var(--space-6), calc((100% - var(--page-max)) / 2)); }
 @media (max-width: 640px) { .tt-header { padding-inline: var(--space-4); } }
+
+/* Colonna di lettura al centro della pagina (testo sempre allineato a sinistra). */
+.tt-wrap--read { max-width: calc(var(--measure) + 2 * var(--space-12)); }
+.tt-read { max-width: var(--measure); margin-inline: auto; }
+.tt-wrap--read .tt-questions { max-width: none; }
+@media (max-width: 640px) { .tt-wrap--read { max-width: none; } }

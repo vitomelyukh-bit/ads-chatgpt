@@ -77,7 +77,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="01" occhiello="Perché ora">
             Le persone non cercano più. <span className="tt-mark">Chiedono.</span>
           </SectionHead>
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section">
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="02" occhiello="Annuncio e risposta">
             Un annuncio non compra la risposta. <span className="tt-mark">Ti mette accanto.</span>
           </SectionHead>
@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="03" occhiello="Cosa facciamo">
             Pensiamo noi alla campagna. <span className="tt-mark">Tu pensi alla tua attività.</span>
           </SectionHead>
@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       <section id="come-funziona" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="04" occhiello="Come funziona">
             Dall&apos;analisi gratuita alla campagna, <span className="tt-mark">in quattro passi.</span>
           </SectionHead>
@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section">
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="06" occhiello="Guide">
             Capire l&apos;AI <span className="tt-mark">prima di investire.</span>
           </SectionHead>
@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead n="07" occhiello="Domande frequenti">
             Le domande che ci fanno <span className="tt-mark">di più.</span>
           </SectionHead>
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
 
       <section id="analisi" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap">
+        <div className="tt-wrap tt-wrap--read">
           <SectionHead
             occhiello="Analisi gratuita"
             testo={<>Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</>}
