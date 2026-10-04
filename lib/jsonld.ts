@@ -92,3 +92,37 @@ export function service() {
     url: absoluteUrl("/"),
   };
 }
+
+// Servizio "Scheda Google sempre viva" con le due offerte.
+export function serviceScheda() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Scheda Google sempre viva",
+    serviceType: "Gestione della scheda Google Business Profile",
+    description:
+      "Post settimanali sulla scheda Google Maps dell'attività, risposta a tutte le recensioni, link e QR per chiedere recensioni. Card NFC da banco facoltativa.",
+    areaServed: { "@type": "Country", name: "Italia" },
+    availableLanguage: "it",
+    provider: { "@id": orgId },
+    url: absoluteUrl("/scheda-google"),
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Scheda Google sempre viva",
+        price: "59.00",
+        priceCurrency: "EUR",
+        priceSpecification: { "@type": "UnitPriceSpecification", price: "59.00", priceCurrency: "EUR", unitText: "mese", billingDuration: "P1M" },
+        url: absoluteUrl("/scheda-google"),
+      },
+      {
+        "@type": "Offer",
+        name: "Card NFC da banco",
+        price: "40.00",
+        priceCurrency: "EUR",
+        description: "Una tantum, spedizione inclusa, arriva già configurata.",
+        url: absoluteUrl("/scheda-google#card-nfc"),
+      },
+    ],
+  };
+}

@@ -131,7 +131,7 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-prose > :first-child { margin-top: 0; }
 
 /* Pagine interne */
-.tt-page-head { padding: var(--space-12) 0 var(--space-16); }
+.tt-page-head { padding-top: var(--space-12); padding-bottom: var(--space-16); }
 .tt-page-head .tt-crumbs { margin-bottom: var(--space-8); }
 
 /* Prenotazione della call: giorni e orari come bottoni secondari. */
@@ -169,3 +169,23 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-faq summary, .tt-more > summary { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .tt-faq summary > * { pointer-events: none; }
 .tt-faq__q { flex: 1; }
+
+/* ===== Scheda Google sempre viva ===== */
+.tt-spedizione { display: none; margin: 0; padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-sunk); }
+.tt-scheda-form:has(.tt-nfc-toggle input:checked) .tt-spedizione { display: grid; }
+.tt-spedizione legend { padding: 0 var(--space-2); }
+.tt-nfc-toggle { padding: var(--space-4); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-md); background: var(--mark-tint); font-size: 18px; }
+.tt-scheda-form .tt-field, .tt-scheda-form .tt-check { max-width: none; }
+.tt-prezzo { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; font: 700 64px/1 var(--font-display); letter-spacing: -0.02em; }
+.tt-prezzo small { font: 700 22px/1.2 var(--font-body); color: var(--ink-muted); }
+.tt-check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.tt-check-list li { position: relative; padding-left: 36px; }
+.tt-check-list li::before { content: "✓"; position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 26px; height: 26px; border-radius: var(--radius-sm); background: var(--mark); color: var(--on-mark); font-weight: 700; font-size: 16px; }
+.tt-nfc-box { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+.tt-nfc-card { aspect-ratio: 1.586; max-width: 360px; padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-raised); display: grid; align-content: center; gap: var(--space-2); text-align: center; }
+.tt-nfc-onde { justify-self: center; font: 700 28px/1 var(--font-display); color: var(--brand); transform: rotate(-90deg); }
+.tt-nfc-titolo { margin: 0; font: 700 26px/1.1 var(--font-display); }
+.tt-nfc-sotto { margin: 0; font-size: 16px; color: var(--ink-muted); }
+.tt-nfc-stelle { color: var(--on-mark); background: var(--mark); border-radius: var(--radius-sm); padding: 2px 8px; justify-self: center; letter-spacing: 2px; }
+.tt-nfc-mock figcaption { margin-top: var(--space-2); }
+@media (max-width: 760px) { .tt-nfc-box { grid-template-columns: 1fr; } .tt-prezzo { font-size: 52px; } }

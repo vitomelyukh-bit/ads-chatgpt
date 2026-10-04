@@ -106,3 +106,9 @@ export async function statoRichiesta(clienteId: string, id: number, stato: strin
   await db()`update richieste set stato=${stato} where id=${id} and cliente_id=${clienteId}`;
   revalidatePath(base(clienteId));
 }
+
+export async function statoScheda(id: number, stato: string) {
+  await requireAdmin();
+  await db()`update richieste_scheda set stato=${stato} where id=${id}`;
+  revalidatePath("/console/scheda");
+}

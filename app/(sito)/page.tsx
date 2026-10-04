@@ -167,8 +167,23 @@ export default function Home() {
       </section>
 
       <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead
+            n="06"
+            occhiello="Scheda Google sempre viva"
+            testo="Per ristoranti, bar, negozi, artigiani e studi: post ogni settimana sulla tua scheda Google Maps, risposta a tutte le recensioni e QR per chiederne di nuove."
+          >
+            La tua scheda Google, <span className="tt-mark">aggiornata ogni settimana.</span>
+          </SectionHead>
+          <div className="tt-section-body">
+            <LinkCards items={[{ href: "/scheda-google", label: "Scheda Google sempre viva", sub: "59 €/mese, nessun costo di attivazione, disdici quando vuoi" }]} />
+          </div>
+        </div>
+      </section>
+
+      <section className="tt-section">
         <div className="tt-wrap">
-          <SectionHead n="06" occhiello="Per chi">
+          <SectionHead n="07" occhiello="Per chi">
             Per attività locali e <span className="tt-mark">per aziende.</span>
           </SectionHead>
           <div className="tt-section-body tt-two">
@@ -188,7 +203,7 @@ export default function Home() {
 
       <section className="tt-section">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="07" occhiello="Guide">
+          <SectionHead n="08" occhiello="Guide">
             Capire l&apos;AI <span className="tt-mark">prima di investire.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
@@ -200,7 +215,7 @@ export default function Home() {
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="08" occhiello="Domande frequenti">
+          <SectionHead n="09" occhiello="Domande frequenti">
             Le domande che ci fanno <span className="tt-mark">di più.</span>
           </SectionHead>
           <div className="tt-section-body"><FaqList items={faqHome} /></div>
