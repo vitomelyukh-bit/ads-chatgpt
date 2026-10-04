@@ -1,0 +1,108 @@
+/* Impaginazione del sito con il design system TiTrovano.
+   Nessun valore nuovo: solo token di tokens.css / tokens.json. */
+
+/* I caratteri sono quelli dei token, caricati con next/font. */
+:root {
+  --font-display: var(--font-bricolage), "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
+  --font-body: var(--font-atkinson), "Atkinson Hyperlegible", Verdana, Arial, sans-serif;
+}
+
+/* Tema scuro per chi lo preferisce (stessi valori di [data-theme="dark"]). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#131210;--paper-raised:#1e1c19;--paper-sunk:#0b0a09;--ink:#f5efe3;--ink-muted:#b9b1a2;--line:#3a362f;--line-strong:#8a8272;--brand:#8fa6ff;--brand-hover:#b3c2ff;--on-brand:#0d1230;--brand-tint:#1c2350;--mark:#ffd53d;--on-mark:#16140f;--mark-tint:#3a3110;--ok:#7fd3e0;--danger:#ff9a8f;
+  }
+}
+
+html { background: var(--paper); color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:not([data-theme="light"]) { color-scheme: dark; } }
+::selection { background: var(--mark); color: var(--on-mark); }
+body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
+
+/* Contenitore e sezioni */
+.tt-wrap { width: 100%; max-width: calc(var(--page-max) + 2 * var(--space-12)); margin: 0 auto; padding: 0 var(--space-12); }
+.tt-section { padding: var(--space-24) 0; }
+.tt-section--sunk { background: var(--paper-sunk); }
+.tt-section + .tt-section:not(.tt-section--sunk) { border-top: 1px solid var(--line); }
+.tt-section-body { margin-top: var(--space-8); }
+
+/* Stili di testo (tokens.json > type) */
+.tt-display-xl { margin: 0; font: 700 64px/1.02 var(--font-display); letter-spacing: -0.02em; text-wrap: balance; }
+.tt-display-lg { margin: 0; font: 700 44px/1.08 var(--font-display); letter-spacing: -0.015em; text-wrap: balance; }
+.tt-heading { margin: 0; font: 700 28px/1.2 var(--font-display); }
+.tt-subheading { margin: 0; font: 600 22px/1.3 var(--font-display); }
+.tt-lead { margin: 0; font-size: 22px; line-height: 1.5; max-width: var(--measure); }
+.tt-body { margin: 0; max-width: var(--measure); }
+.tt-muted { color: var(--ink-muted); }
+.tt-small { margin: 0; font-size: 16px; line-height: 1.5; }
+.tt-label { margin: 0; font: 700 15px/1.3 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; }
+.tt-stack-2 > * + * { margin-top: var(--space-2); }
+.tt-stack-4 > * + * { margin-top: var(--space-4); }
+.tt-stack-6 > * + * { margin-top: var(--space-6); }
+.tt-stack-8 > * + * { margin-top: var(--space-8); }
+
+/* Hero: unica parte a due colonne con l'elenco dei settori */
+.tt-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-12); align-items: center; }
+.tt-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.tt-two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+
+/* Scheda: bordo spesso in ink su paper-raised */
+.tt-card { padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-raised); }
+
+/* Elenco di blocchi in colonna (titolo + testo) */
+.tt-points { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-8); max-width: var(--measure); }
+.tt-points h3 { margin: 0 0 var(--space-2); font: 700 28px/1.2 var(--font-display); }
+.tt-points p { margin: 0; color: var(--ink-muted); }
+
+/* Domande dei clienti come fumetti */
+.tt-questions { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); max-width: 760px; }
+.tt-questions .tt-bubble { max-width: 100%; }
+.tt-questions li:nth-child(even) { justify-self: end; }
+
+/* Modulo in una colonna */
+.tt-form { display: grid; gap: var(--space-6); }
+.tt-form .tt-field { max-width: none; }
+.tt-form .tt-check { max-width: none; }
+.tt-alert { padding: var(--space-4); border: var(--border-thick) solid var(--danger); border-radius: var(--radius-md); background: var(--paper-raised); color: var(--danger); font-weight: 700; }
+.tt-success { padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-raised); }
+.tt-success .tt-ok { color: var(--ok); font-weight: 700; }
+.tt-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.tt-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Testata: su telefono le voci vanno a capo sotto il nome */
+.tt-header { flex-wrap: wrap; }
+.tt-header nav { flex-wrap: wrap; row-gap: var(--space-2); }
+.tt-skip { position: absolute; left: var(--space-4); top: -100px; z-index: 50; }
+.tt-skip:focus { top: var(--space-4); }
+
+/* Piè di pagina */
+.tt-footer { background: var(--paper-sunk); border-top: var(--border-thick) solid var(--ink); padding: var(--space-16) 0 var(--space-8); }
+.tt-footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.4fr 1fr; gap: var(--space-8); }
+.tt-footer ul { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-2); }
+.tt-footer-legal { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); }
+
+/* Telefono */
+@media (max-width: 900px) {
+  .tt-hero, .tt-two { grid-template-columns: 1fr; }
+  .tt-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tt-wrap { padding: 0 var(--space-4); }
+  .tt-section { padding: var(--space-16) 0; }
+  .tt-display-xl { font-size: 40px; }
+  .tt-display-lg, .tt-section-head h2 { font-size: 32px; }
+  .tt-header { padding: var(--space-4); }
+  .tt-header nav { gap: var(--space-4); width: 100%; }
+  .tt-btn--block-mobile { display: flex; width: 100%; }
+  .tt-footer-grid { grid-template-columns: 1fr; }
+}
+
+/* "Altre domande": si apre senza JavaScript, il testo resta nell'HTML. */
+.tt-more > summary { list-style: none; width: fit-content; }
+.tt-more > summary::-webkit-details-marker { display: none; }
+.tt-more > summary::after { content: " +"; }
+.tt-more[open] > summary::after { content: " –"; }
+
+/* La testata segue la stessa larghezza del contenuto. */
+.tt-header { padding-inline: max(var(--space-6), calc((100% - var(--page-max)) / 2)); }
+@media (max-width: 640px) { .tt-header { padding-inline: var(--space-4); } }
