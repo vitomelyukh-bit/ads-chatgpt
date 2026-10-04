@@ -64,22 +64,21 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
       <div className={cls("whatsapp")}><label htmlFor={`${id}-whatsapp`}>Numero WhatsApp</label><input {...f("whatsapp")} type="tel" inputMode="tel" autoComplete="tel" required />{errore("whatsapp", "Ti scriviamo qui. Niente chiamate a sorpresa.")}</div>
       <div className={cls("email")}><label htmlFor={`${id}-email`}>Email</label><input {...f("email")} type="email" inputMode="email" autoComplete="email" required />{errore("email")}</div>
       <div className={cls("link_maps")}>
-        <label htmlFor={`${id}-link_maps`}>Link della tua attività su Google Maps <span>(se non lo trovi, lascia vuoto)</span></label>
+        <label htmlFor={`${id}-link_maps`}>Link della tua attività su Google Maps (facoltativo)</label>
         <input {...f("link_maps")} type="url" inputMode="url" placeholder="https://maps.app.goo.gl/…" />
-        {errore("link_maps", "Su Google Maps cerca la tua attività, tocca Condividi e copia il link. Serve se scegli card o piedistallo.")}
+        {errore("link_maps", "Su Google Maps cerca la tua attività, tocca Condividi e copia il link. Se non lo trovi, lascia vuoto: serve solo per card e piedistallo.")}
       </div>
 
-      <fieldset className="tt-nfc-scelta">
-        <legend>Vuoi anche qualcosa da mettere sul bancone? <span>(facoltativo)</span></legend>
-        <p className="tt-field__help">Il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione.</p>
-        <label className="tt-check tt-nfc-toggle" htmlFor={`${id}-nfc-no`}>
+      <fieldset className="tt-scelta-extra">
+        <legend>Vuoi anche un extra da mettere sul bancone? (facoltativo)</legend>
+        <label className="tt-option" htmlFor={`${id}-nfc-no`}>
           <input id={`${id}-nfc-no`} name="nfc" type="radio" value="" defaultChecked={!val.nfc} />
-          <span><strong>No, grazie</strong></span>
+          <span>Nessuno, grazie</span>
         </label>
         {(Object.keys(EXTRA) as (keyof typeof EXTRA)[]).map((k) => (
-          <label key={k} className="tt-check tt-nfc-toggle" htmlFor={`${id}-nfc-${k}`}>
+          <label key={k} className="tt-option" htmlFor={`${id}-nfc-${k}`}>
             <input id={`${id}-nfc-${k}`} name="nfc" type="radio" value={k} defaultChecked={val.nfc === k} />
-            <span><strong>{EXTRA[k].nome}: +{euro(EXTRA[k].prezzo)}</strong><br />{EXTRA[k].descrizione} Una volta sola, spedizione inclusa.</span>
+            <span>{EXTRA[k].nome}<small>{euro(EXTRA[k].prezzo)} una volta sola, spedizione inclusa</small></span>
           </label>
         ))}
       </fieldset>
@@ -87,7 +86,7 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
       {/* Compare solo se si sceglie card o piedistallo (CSS :has, funziona anche senza JavaScript). */}
       <fieldset className="tt-spedizione tt-form">
         <legend className="tt-subheading">Dove te lo spediamo?</legend>
-        <div className={cls("sped_presso")}><label htmlFor={`${id}-sped_presso`}>Presso <span>(facoltativo)</span></label><input {...f("sped_presso")} autoComplete="organization" />{errore("sped_presso", "Es. il nome dell'attività, se è diverso dal tuo.")}</div>
+        <div className={cls("sped_presso")}><label htmlFor={`${id}-sped_presso`}>Presso (facoltativo)</label><input {...f("sped_presso")} autoComplete="organization" />{errore("sped_presso", "Es. il nome dell'attività, se è diverso dal tuo.")}</div>
         <div className={cls("sped_via")}><label htmlFor={`${id}-sped_via`}>Via e numero civico</label><input {...f("sped_via")} autoComplete="address-line1" />{errore("sped_via")}</div>
         <div className={cls("sped_cap")}><label htmlFor={`${id}-sped_cap`}>CAP</label><input {...f("sped_cap")} inputMode="numeric" autoComplete="postal-code" maxLength={5} />{errore("sped_cap")}</div>
         <div className={cls("sped_citta")}><label htmlFor={`${id}-sped_citta`}>Città</label><input {...f("sped_citta")} autoComplete="address-level2" />{errore("sped_citta")}</div>

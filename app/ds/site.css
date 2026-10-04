@@ -170,42 +170,14 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-faq summary > * { pointer-events: none; }
 .tt-faq__q { flex: 1; }
 
-/* ===== Scheda Google sempre viva ===== */
+/* ===== Home Google Maps (componenti del design system + impaginazione) ===== */
 .tt-spedizione { display: none; margin: 0; padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-sunk); }
-.tt-scheda-form:has(.tt-nfc-scelta input:checked:not([value=""])) .tt-spedizione { display: grid; }
-.tt-nfc-scelta { display: grid; gap: var(--space-3); margin: 0; padding: 0; border: 0; }
-.tt-nfc-scelta legend { padding: 0; margin-bottom: var(--space-2); font-weight: 700; font-size: 18px; }
-.tt-nfc-scelta legend span { font-weight: 400; color: var(--ink-muted); }
-.tt-nfc-toggle:has(input:not(:checked)) { background: var(--paper-raised); }
+.tt-scheda-form:has(.tt-scelta-extra input:checked:not([value=""])) .tt-spedizione { display: grid; }
 .tt-spedizione legend { padding: 0 var(--space-2); }
-.tt-nfc-toggle { padding: var(--space-4); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-md); background: var(--mark-tint); font-size: 18px; }
-.tt-scheda-form .tt-field, .tt-scheda-form .tt-check { max-width: none; }
-.tt-prezzo { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; font: 700 64px/1 var(--font-display); letter-spacing: -0.02em; }
-.tt-prezzo small { font: 700 22px/1.2 var(--font-body); color: var(--ink-muted); }
-.tt-check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
-.tt-check-list li { position: relative; padding-left: 36px; }
-.tt-check-list li::before { content: "✓"; position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 26px; height: 26px; border-radius: var(--radius-sm); background: var(--mark); color: var(--on-mark); font-weight: 700; font-size: 16px; }
-.tt-nfc-box { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
-.tt-nfc-card { aspect-ratio: 1.586; max-width: 360px; padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); background: var(--paper-raised); display: grid; align-content: center; gap: var(--space-2); text-align: center; }
-.tt-nfc-onde { justify-self: center; font: 700 28px/1 var(--font-display); color: var(--brand); transform: rotate(-90deg); }
-.tt-nfc-titolo { margin: 0; font: 700 26px/1.1 var(--font-display); }
-.tt-nfc-sotto { margin: 0; font-size: 16px; color: var(--ink-muted); }
-.tt-nfc-stelle { color: var(--on-mark); background: var(--mark); border-radius: var(--radius-sm); padding: 2px 8px; justify-self: center; letter-spacing: 2px; }
-.tt-nfc-mock figcaption { margin-top: var(--space-2); }
-@media (max-width: 760px) { .tt-nfc-box { grid-template-columns: 1fr; } .tt-prezzo { font-size: 52px; } }
-
-/* Home Google Maps: illustrazione della scheda e card/piedistallo da banco */
-.tt-maps { display: grid; gap: var(--space-2); }
-.tt-maps p { margin: 0; }
-.tt-maps__stelle { color: var(--on-mark); background: var(--mark); border-radius: var(--radius-sm); padding: 0 6px; letter-spacing: 2px; }
-.tt-maps__aperto { color: var(--ok); }
-.tt-maps__post, .tt-maps__risposta { display: grid; gap: var(--space-1); padding: var(--space-3); border-radius: var(--radius-md); background: var(--paper-sunk); }
-.tt-maps__risposta { border-left: 4px solid var(--brand); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
-.tt-extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-.tt-extra-grid > .tt-card { display: grid; gap: var(--space-4); align-content: start; }
-.tt-extra-visual { display: grid; place-items: center; min-height: 260px; padding: var(--space-4); border-radius: var(--radius-md); background: var(--paper-sunk); }
-.tt-extra-visual .tt-nfc-card { width: 100%; max-width: 300px; }
-.tt-nfc-piedistallo { display: grid; justify-items: center; width: 100%; max-width: 240px; }
-.tt-nfc-piedistallo .tt-nfc-card { aspect-ratio: 0.8; transform: perspective(600px) rotateX(6deg); }
-.tt-nfc-base { width: 70%; height: 18px; margin-top: -2px; border: var(--border-thick) solid var(--ink); border-radius: 0 0 var(--radius-md) var(--radius-md); background: var(--ink); }
-@media (max-width: 760px) { .tt-extra-grid { grid-template-columns: 1fr; } }
+.tt-scelta-extra { display: grid; gap: var(--space-3); margin: 0; padding: 0; border: 0; }
+.tt-scelta-extra legend { padding: 0; margin-bottom: var(--space-2); font-weight: 700; }
+.tt-scelta-extra .tt-option, .tt-scheda-form .tt-field, .tt-scheda-form .tt-check { max-width: none; }
+.tt-hero .tt-maps { width: 100%; justify-self: end; }
+.tt-extra-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
+.tt-tag--start { justify-self: start; }
+@media (max-width: 760px) { .tt-extra-grid { grid-template-columns: 1fr; } .tt-price__amount { font-size: 52px; } }

@@ -103,3 +103,59 @@
 .tt-header nav a:not(.tt-btn) { color: var(--ink); font-weight: 700; text-decoration: none; padding: var(--space-3) 0; }
 .tt-header nav a:not(.tt-btn):hover { color: var(--brand); text-decoration: underline; }
 .tt-header nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+
+/* Stelle delle recensioni */
+.tt-stars { display: inline-flex; gap: 2px; vertical-align: middle; }
+.tt-stars svg { width: 24px; height: 24px; fill: var(--mark); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; }
+.tt-stars svg.is-empty { fill: var(--paper-raised); }
+
+/* Scheda Google Maps (illustrazione) */
+.tt-maps { max-width: 520px; padding: var(--space-6); border: var(--border-thick) solid var(--ink);
+  border-radius: var(--radius-lg); background: var(--paper-raised); display: grid; gap: var(--space-4); }
+.tt-maps__name { margin: 0; font: 700 28px/1.2 var(--font-display); }
+.tt-maps__kind { margin: 0; font-size: 16px; color: var(--ink-muted); }
+.tt-maps__rating { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; }
+.tt-maps__rating b { font-size: 22px; }
+.tt-maps__rating span:last-child { color: var(--ink-muted); }
+.tt-maps__open { margin: 0; }
+.tt-maps__open b { color: var(--ok); }
+.tt-maps__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.tt-maps__news { padding: var(--space-4); border-radius: var(--radius-md); background: var(--paper-sunk); }
+.tt-maps__news p { margin: var(--space-2) 0 0; }
+.tt-maps__caption { margin: 0; font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+
+/* Recensione con risposta */
+.tt-review { max-width: 520px; display: grid; gap: var(--space-3); }
+.tt-review__box { padding: var(--space-4) var(--space-6); border: var(--border-thick) solid var(--ink);
+  border-radius: var(--radius-lg); background: var(--paper-raised); }
+.tt-review__box--reply { margin-left: var(--space-8); background: var(--brand-tint); border-top-left-radius: var(--radius-sm); }
+.tt-review__who { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin: 0 0 var(--space-2); font-weight: 700; }
+.tt-review__box p:last-child { margin: 0; }
+
+/* Prezzo */
+.tt-price { max-width: 440px; padding: var(--space-8); border: var(--border-thick) solid var(--ink);
+  border-radius: var(--radius-lg); background: var(--paper-raised); }
+.tt-price__amount { margin: var(--space-4) 0 var(--space-6); display: flex; align-items: baseline; gap: var(--space-3);
+  font: 700 64px/1.02 var(--font-display); letter-spacing: -0.02em; }
+.tt-price__amount small { font: 400 22px/1.3 var(--font-body); letter-spacing: 0; color: var(--ink-muted); }
+.tt-ticks { list-style: none; margin: 0 0 var(--space-8); padding: 0; display: grid; gap: var(--space-3); }
+.tt-ticks li { display: grid; grid-template-columns: 28px 1fr; gap: var(--space-3); }
+.tt-ticks li::before { content: "✓"; display: grid; place-items: center; width: 28px; height: 28px; margin-top: 1px;
+  border-radius: var(--radius-sm); background: var(--ink); color: var(--paper); font: 700 16px/1 var(--font-body); }
+.tt-price__note { margin: var(--space-4) 0 0; text-align: center; font-size: 16px; color: var(--ink-muted); }
+
+/* Extra facoltativo */
+.tt-product { padding: var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg);
+  background: var(--paper-raised); display: grid; gap: var(--space-2); align-content: start; }
+.tt-product h3 { margin: 0; font: 700 28px/1.2 var(--font-display); }
+.tt-product__price { margin: 0; font: 700 28px/1.2 var(--font-display); }
+.tt-product__price small { font: 400 16px/1.5 var(--font-body); color: var(--ink-muted); }
+.tt-product p { margin: 0; }
+
+/* Scelta singola nel modulo */
+.tt-option { display: grid; grid-template-columns: 28px 1fr; gap: var(--space-3); align-items: center; max-width: 440px;
+  min-height: var(--tap-min); padding: var(--space-3) var(--space-4); border: var(--border-thick) solid var(--line-strong);
+  border-radius: var(--radius-md); background: var(--paper-raised); cursor: pointer; }
+.tt-option input { width: 24px; height: 24px; margin: 0; accent-color: var(--brand); }
+.tt-option:has(input:checked) { border-color: var(--ink); background: var(--brand-tint); }
+.tt-option small { display: block; font-size: 16px; color: var(--ink-muted); }

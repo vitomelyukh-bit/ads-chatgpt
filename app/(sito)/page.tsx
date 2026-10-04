@@ -4,8 +4,8 @@ import { LinkCards } from "@/components/ds/LinkCards";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
-import { MapsMock } from "@/components/MapsMock";
-import { NfcCardMock } from "@/components/NfcCardMock";
+import { MapsCard } from "@/components/ds/MapsCard";
+import { ReviewReply } from "@/components/ds/ReviewReply";
 import { SchedaForm } from "@/components/SchedaForm";
 import type { Faq } from "@/lib/content";
 import { breadcrumbList, faqPage, organization, serviceMaps, website } from "@/lib/jsonld";
@@ -78,9 +78,9 @@ export default function Home() {
               {cta()}
               {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</a>}
             </div>
-            <p className="tt-small tt-muted">{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
+            <p className="tt-body-strong" style={{ margin: "var(--space-2) 0 0" }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
           </div>
-          <MapsMock />
+          <MapsCard />
         </div>
       </section>
 
@@ -103,7 +103,18 @@ export default function Home() {
           <SectionHead n="02" occhiello="Cosa facciamo">
             La tua attività su Google, <span className="tt-mark">sempre viva.</span>
           </SectionHead>
-          <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
+          <div className="tt-section-body tt-stack-8">
+            <StepList passi={cosaFacciamo} />
+            <div className="tt-stack-4">
+              <p className="tt-label">Esempio di risposta</p>
+              <ReviewReply
+                autore="Luca R."
+                voto={2}
+                testo="Abbiamo aspettato quaranta minuti per due primi. Peccato, il posto è bello."
+                risposta="Buongiorno Luca, ha ragione e ci scusiamo: sabato eravamo in difficoltà in cucina. Ci farebbe piacere rimediare, ci scriva quando torna."
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -112,24 +123,32 @@ export default function Home() {
           <SectionHead n="03" occhiello="Come funziona">
             Tre passi, <span className="tt-mark">uno solo è tuo.</span>
           </SectionHead>
-          <div className="tt-section-body"><StepList passi={passi} /></div>
+          <div className="tt-section-body tt-stack-8">
+            <StepList passi={passi} />
+            <aside className="tt-callout">
+              <span className="tt-tag">Importante</span>
+              <h3>Non ci dai nessuna password</h3>
+              <p>Google ti manda una richiesta di accesso via email e tu la approvi. La scheda resta tua: puoi toglierci l&apos;accesso quando vuoi.</p>
+            </aside>
+          </div>
         </div>
       </section>
 
       <section id="prezzo" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead n="04" occhiello="Prezzo">Un prezzo, <span className="tt-mark">tutto incluso.</span></SectionHead>
-          <div className="tt-card tt-stack-6 tt-section-body">
-            <p className="tt-prezzo">{euro(scheda.prezzoMese)} <small>al mese</small></p>
-            <ul className="tt-check-list tt-body">
-              <li>Novità ogni settimana sulla tua attività su Google Maps</li>
-              <li>Risposta a tutte le recensioni, positive e negative</li>
-              <li>Link, QR e messaggio pronto per chiedere recensioni</li>
-              <li>Orari e informazioni sempre aggiornati</li>
-              <li>Ogni mese i tuoi numeri: visite, chiamate, indicazioni</li>
-              <li>Nessun costo di attivazione, disdici quando vuoi</li>
+          <div className="tt-price tt-section-body">
+            <span className="tt-tag">Tutto incluso</span>
+            <p className="tt-price__amount">{euro(scheda.prezzoMese)} <small>al mese</small></p>
+            <ul className="tt-ticks">
+              <li>Una novità pubblicata ogni settimana</li>
+              <li>Risposta a tutte le recensioni</li>
+              <li>Aiuto per chiederne di nuove: link, QR e messaggio pronto</li>
+              <li>Orari e informazioni sempre giusti</li>
+              <li>Report ogni mese: quante persone ti hanno visto, chiamato o chiesto indicazioni</li>
             </ul>
-            <div>{cta()}</div>
+            <a href="#attiva" className="tt-btn tt-btn--lg tt-btn--block">Inizia ora <span aria-hidden="true">→</span></a>
+            <p className="tt-price__note">Nessun costo di attivazione. Disdici quando vuoi.</p>
           </div>
         </div>
       </section>
@@ -145,19 +164,15 @@ export default function Home() {
           </SectionHead>
           <div className="tt-extra-grid tt-section-body">
             {(Object.keys(EXTRA) as (keyof typeof EXTRA)[]).map((k) => (
-              <div key={k} className="tt-card">
-                <div className="tt-extra-visual"><NfcCardMock tipo={k} /></div>
-                <h3 className="tt-subheading" style={{ margin: 0 }}>{EXTRA[k].nome}</h3>
-                <p className="tt-body" style={{ margin: 0 }}>{EXTRA[k].descrizione}</p>
-                <p className="tt-prezzo" style={{ fontSize: 44 }}>{euro(EXTRA[k].prezzo)} <small>una volta sola</small></p>
-                <ul className="tt-check-list tt-body">
-                  <li>Spedizione inclusa</li>
-                  <li>Arriva già pronto, collegato alla tua attività</li>
-                </ul>
+              <div key={k} className="tt-product">
+                <span className="tt-tag tt-tag--start">Facoltativo</span>
+                <h3>{EXTRA[k].nome}</h3>
+                <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola, spedizione inclusa</small></p>
+                <p>{EXTRA[k].descrizione}</p>
               </div>
             ))}
           </div>
-          <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>Immagini indicative: il prodotto definitivo può essere diverso. Li scegli nel modulo qui sotto.</p>
+          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Li scegli nel modulo qui sotto, separati dai {euro(scheda.prezzoMese)} al mese.</p>
         </div>
       </section>
 
@@ -171,10 +186,7 @@ export default function Home() {
             Anche annunci online, <span className="tt-mark">quando servono.</span>
           </SectionHead>
           <div className="tt-section-body">
-            <LinkCards items={[
-              { href: "/annunci-chatgpt", label: "Annunci su ChatGPT", sub: "La nostra specialità: farti trovare quando i clienti chiedono all'AI" },
-              { href: "/canali", label: "Quale canale fa per te?", sub: "ChatGPT, Google Ads, Meta Ads o SEO" },
-            ]} />
+            <LinkCards items={[{ href: "/annunci-chatgpt", label: "Annunci online", sub: "ChatGPT, Google e Meta: ti diciamo quale ha senso per te" }]} />
           </div>
         </div>
       </section>
