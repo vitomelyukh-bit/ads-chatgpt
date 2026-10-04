@@ -8,13 +8,14 @@ export function GET() {
   const guide = getGuide();
   const body = `# ${site.name}
 
-> ${site.name} progetta e gestisce annunci su ChatGPT per attività locali e aziende italiane: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget e report mensili. Si parte da un'analisi gratuita.
+> ${site.name} progetta e gestisce annunci su ChatGPT per attività locali e aziende italiane: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget e report mensili. Si parte da un'analisi gratuita in call, in cui si valuta anche quale canale ha più senso tra ChatGPT, Google Ads, Meta Ads e SEO.
 
 Gli annunci su ChatGPT sono in Italia dal 24 agosto 2026. Secondo OpenAI sono mostrati separati dalle risposte, segnalati come sponsorizzati, e non influenzano ciò che ChatGPT risponde. ${site.name} non garantisce risultati: misura la spesa e i risultati e li riporta con trasparenza. ${site.name} è indipendente e non è affiliato a OpenAI.
 
 ## Pagine principali
 
 - [Home](${absoluteUrl("/")}): cosa sono gli annunci su ChatGPT, cosa fa ${site.name} e come funziona
+- [Canali](${absoluteUrl("/canali")}): quando hanno senso ChatGPT, Google Ads, Meta Ads e SEO
 - [Analisi gratuita](${absoluteUrl("/analisi-gratuita")}): richiesta di valutazione gratuita (attività, sito, settore, budget indicativo, contatti)
 
 ## Settori

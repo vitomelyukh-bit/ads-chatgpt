@@ -7,6 +7,7 @@ import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { passi } from "@/components/Steps";
+import { canali } from "@/lib/canali";
 import { getGuide, getSettori, settoreOptions } from "@/lib/content";
 import { faqHome } from "@/lib/faq";
 import { breadcrumbList, faqPage, organization, service, website } from "@/lib/jsonld";
@@ -149,9 +150,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead
+            n="05"
+            occhiello="Non solo ChatGPT"
+            testo="ChatGPT è la nostra specialità, ma non sempre è la scelta migliore. Nell'analisi gratuita valutiamo anche gli altri canali e ti proponiamo quello che ha più senso per te."
+          >
+            Se ChatGPT non fa per te, <span className="tt-mark">troviamo il canale giusto.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-stack-6">
+            <LinkCards items={canali.map((c) => ({ href: `/canali#${c.id}`, label: c.nome, sub: c.breve }))} />
+            <p className="tt-body"><Link href="/canali">Quale canale fa per te? →</Link></p>
+          </div>
+        </div>
+      </section>
+
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap">
-          <SectionHead n="05" occhiello="Per chi">
+          <SectionHead n="06" occhiello="Per chi">
             Per attività locali e <span className="tt-mark">per aziende.</span>
           </SectionHead>
           <div className="tt-section-body tt-two">
@@ -171,7 +188,7 @@ export default function Home() {
 
       <section className="tt-section">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="06" occhiello="Guide">
+          <SectionHead n="07" occhiello="Guide">
             Capire l&apos;AI <span className="tt-mark">prima di investire.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-6" style={{ maxWidth: "var(--measure)" }}>
@@ -183,7 +200,7 @@ export default function Home() {
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="07" occhiello="Domande frequenti">
+          <SectionHead n="08" occhiello="Domande frequenti">
             Le domande che ci fanno <span className="tt-mark">di più.</span>
           </SectionHead>
           <div className="tt-section-body"><FaqList items={faqHome} /></div>
@@ -194,7 +211,7 @@ export default function Home() {
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             occhiello="Analisi gratuita"
-            testo={<>Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci e con quale budget di partenza.</>}
+            testo={<>Lasciaci i tuoi dati: ti chiamiamo per una breve call in cui vediamo cosa chiedono i tuoi clienti all&apos;AI, se conviene esserci, quale canale ha più senso per te e con quale budget di partenza.</>}
           >
             Scopri se gli annunci su ChatGPT <span className="tt-mark">fanno per te.</span>
           </SectionHead>

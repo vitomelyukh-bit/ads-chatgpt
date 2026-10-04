@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Analisi gratuita: annunci su ChatGPT · TiTrovano",
   description:
-    "Scopri se gli annunci su ChatGPT hanno senso per la tua attività o azienda, con quali messaggi e con quale budget di partenza. Gratis e senza impegno.",
+    "Scopri se gli annunci su ChatGPT hanno senso per la tua attività o azienda, o quale canale ne ha di più tra Google, Meta e SEO. Analisi gratuita in call.",
   path: "/analisi-gratuita",
 });
 
@@ -30,7 +30,8 @@ export default function AnalisiPage() {
           </h1>
           <p className="tt-lead">
             Lasciaci i tuoi dati e ti chiamiamo per una breve call: vediamo cosa chiedono i tuoi clienti a ChatGPT, se gli
-            annunci hanno senso per te e con quale budget di partenza. Se non ne hanno, te lo diciamo.
+            annunci hanno senso per te e con quale budget di partenza. Se ChatGPT non fa per te, ti diciamo quale canale
+            ha più senso: Google, Meta o SEO.
           </p>
         </div>
         <div className="tt-card" style={{ marginTop: "var(--space-12)" }}>

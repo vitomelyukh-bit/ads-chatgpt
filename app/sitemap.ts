@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },
     { url: absoluteUrl("/analisi-gratuita"), changeFrequency: "yearly", priority: 0.9 },
+    { url: absoluteUrl("/canali"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/settori"), changeFrequency: "monthly", priority: 0.7 },
     ...getSettori().map((s) => ({
       url: absoluteUrl(`/settori/${s.slug}`),

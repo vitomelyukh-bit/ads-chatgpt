@@ -29,6 +29,7 @@ export function Footer() {
             <h2 className="tt-label">Informazioni</h2>
             <ul>
               <li><Link href="/analisi-gratuita">Analisi gratuita</Link></li>
+              <li><Link href="/canali">Canali: ChatGPT, Google, Meta, SEO</Link></li>
               <li><Link href="/privacy">Privacy policy</Link></li>
               <li><Link href="/cookie">Cookie policy</Link></li>
             </ul>

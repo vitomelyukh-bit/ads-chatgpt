@@ -143,3 +143,7 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-day[aria-pressed="true"], .tt-slot[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .tt-slot { min-width: 96px; }
 .tt-booking { margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--line); }
+
+/* Elenchi nel testo lungo: pallini e numeri visibili. */
+.tt-prose ul { list-style: disc; }
+.tt-prose ol { list-style: decimal; }

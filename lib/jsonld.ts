@@ -83,9 +83,9 @@ export function service() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Gestione annunci su ChatGPT",
-    serviceType: "Pubblicità su ChatGPT",
+    serviceType: "Pubblicità su ChatGPT, Google Ads, Meta Ads e SEO",
     description:
-      "Strategia, configurazione, creazione e ottimizzazione di campagne pubblicitarie su ChatGPT per attività locali e aziende in Italia.",
+      "Strategia, configurazione, creazione e ottimizzazione di campagne pubblicitarie su ChatGPT per attività locali e aziende in Italia. Se ChatGPT non è il canale giusto, campagne su Google Ads, Meta Ads o SEO.",
     areaServed: { "@type": "Country", name: "Italia" },
     availableLanguage: "it",
     provider: { "@id": orgId },

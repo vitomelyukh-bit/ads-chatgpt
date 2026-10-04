@@ -29,7 +29,7 @@ export const faqHome: Faq[] = [
   {
     domanda: "Ha senso per la mia attività?",
     risposta:
-      "Dipende da cosa vendi, da quanto vale un cliente e da cosa chiedono le persone all'AI nel tuo settore. È esattamente quello che valutiamo nell'analisi gratuita. Se non ha senso, te lo diciamo.",
+      "Dipende da cosa vendi, da quanto vale un cliente e da cosa chiedono le persone all'AI nel tuo settore. È esattamente quello che valutiamo nell'analisi gratuita. Se ChatGPT non ha senso per te, te lo diciamo e ti indichiamo il canale che ne ha di più.",
   },
   {
     domanda: "Serve un sito?",
@@ -39,8 +39,15 @@ export const faqHome: Faq[] = [
   {
     domanda: "Cos'è l'analisi gratuita?",
     risposta:
-      "Una breve call in cui valutiamo il tuo caso: cosa chiedono i tuoi clienti a ChatGPT, se e come conviene fare annunci, con quale budget di partenza. È gratis e senza impegno.",
+      "Una breve call in cui valutiamo il tuo caso: cosa chiedono i tuoi clienti a ChatGPT, se conviene esserci e quale canale ha più senso per te tra ChatGPT, Google, Meta e SEO, con quale budget di partenza. È gratis e senza impegno.",
   },
 ];
 
-export const faqAnalisi: Faq[] = [faqHome[7], faqHome[5], faqHome[3], faqHome[4]];
+export const faqCanali: Faq = {
+  domanda: "Lavorate solo con ChatGPT?",
+  risposta:
+    "No. ChatGPT è la nostra specialità, ma non è sempre il canale giusto. Nell'analisi gratuita guardiamo anche Google Ads, Meta (Facebook e Instagram) e SEO, e ti proponiamo quello che ha più senso per la tua attività, da solo o insieme agli altri.",
+};
+faqHome.splice(6, 0, faqCanali);
+
+export const faqAnalisi: Faq[] = [faqHome[8], faqCanali, faqHome[5], faqHome[3], faqHome[4]];

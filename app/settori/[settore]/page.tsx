@@ -100,7 +100,7 @@ export default async function SettorePage({ params }: PageProps<"/settori/[setto
 
       <section id="analisi" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead occhiello="Analisi gratuita" testo="Gratis e senza impegno. Se non ha senso per la tua attività, te lo diciamo.">
+          <SectionHead occhiello="Analisi gratuita" testo="Gratis e senza impegno. Se ChatGPT non è il canale giusto per la tua attività, ti diciamo quale lo è.">
             Scopri se gli annunci su ChatGPT <span className="tt-mark">fanno per te</span>
           </SectionHead>
           <div className="tt-card tt-section-body">
