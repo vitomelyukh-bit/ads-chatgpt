@@ -85,7 +85,9 @@
     {
       "titolo": "Annunci su ChatGPT per noleggi auto: come intercettare i turisti prima che atterrino",
       "settore": "noleggio-auto",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "annunci-chatgpt-noleggio-auto-turisti",
+      "data": "2026-10-04"
     },
     {
       "titolo": "Annunci su ChatGPT per software: prova gratuita o demo, cosa chiedere a chi clicca",
