@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#0f5e54"/><circle cx="10.5" cy="10.5" r="5" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M14.5 14.5 19 19" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="1.8" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Fumetto giallo (mark) con bordo ink e la T di TiTrovano -->
+  <path d="M6 2h20a4 4 0 0 1 4 4v15a4 4 0 0 1-4 4H13l-6 5v-5H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#ffd53d" stroke="#16140f" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M9 7.5h14v4h-5v10h-4v-10H9z" fill="#16140f"/>
+</svg>

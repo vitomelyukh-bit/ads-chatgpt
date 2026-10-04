@@ -7,23 +7,20 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   const all = [{ name: "Home", path: "/" }, ...items];
   return (
     <>
-      <nav aria-label="Percorso" className="label-mono text-fg-mute">
-        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          {all.map((c, i) => {
-            const last = i === all.length - 1;
-            return (
-              <li key={c.path} className="flex items-center gap-2">
-                {last ? (
-                  <span aria-current="page" className="line-clamp-1 text-fg-soft">{c.name}</span>
-                ) : (
-                  <>
-                    <Link href={c.path} className="hover:text-fg">{c.name}</Link>
-                    <span aria-hidden="true">/</span>
-                  </>
-                )}
-              </li>
-            );
-          })}
+      <nav aria-label="Percorso" className="tt-crumbs">
+        <ol>
+          {all.map((c, i) => (
+            <li key={c.path}>
+              {i === all.length - 1 ? (
+                <span aria-current="page">{c.name}</span>
+              ) : (
+                <>
+                  <Link href={c.path}>{c.name}</Link>
+                  <span aria-hidden="true"> / </span>
+                </>
+              )}
+            </li>
+          ))}
         </ol>
       </nav>
       <JsonLd data={breadcrumbList(items)} />

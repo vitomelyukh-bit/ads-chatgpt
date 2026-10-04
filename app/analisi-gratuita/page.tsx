@@ -1,10 +1,10 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Container } from "@/components/Container";
-import { Faq } from "@/components/Faq";
+import { FaqList } from "@/components/ds/FaqList";
+import { SectionHead } from "@/components/ds/SectionHead";
+import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
-import { SectionLabel } from "@/components/SectionLabel";
-import { Steps } from "@/components/Steps";
+import { passi } from "@/components/Steps";
 import { settoreOptions } from "@/lib/content";
 import { faqAnalisi } from "@/lib/faq";
 import { faqPage } from "@/lib/jsonld";
@@ -21,39 +21,35 @@ export default function AnalisiPage() {
   return (
     <>
       <JsonLd data={faqPage(faqAnalisi)} />
-      <Container className="pt-8 pb-16">
+      <div className="tt-wrap tt-wrap--read tt-page-head">
         <Breadcrumbs items={[{ name: "Analisi gratuita", path: "/analisi-gratuita" }]} />
-        <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1.3fr]">
-          <div>
-            <SectionLabel>Gratis e senza impegno</SectionLabel>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-              Richiedi l&apos;<span className="text-accent">analisi gratuita</span>
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-fg-soft">
-              Lasciaci i tuoi dati e ti chiamiamo per una breve call: vediamo cosa chiedono i tuoi clienti a ChatGPT, se gli
-              annunci hanno senso per te e con quale budget di partenza. Se non ne hanno, te lo diciamo.
-            </p>
-          </div>
-          <div className="card p-6 sm:p-10">
-            <LeadForm settori={settoreOptions()} />
-          </div>
+        <div className="tt-stack-6">
+          <p className="tt-eyebrow" style={{ margin: 0 }}>Gratis e senza impegno</p>
+          <h1 className="tt-display-xl">
+            Richiedi l&apos;<span className="tt-mark">analisi gratuita</span>
+          </h1>
+          <p className="tt-lead">
+            Lasciaci i tuoi dati e ti chiamiamo per una breve call: vediamo cosa chiedono i tuoi clienti a ChatGPT, se gli
+            annunci hanno senso per te e con quale budget di partenza. Se non ne hanno, te lo diciamo.
+          </p>
         </div>
-      </Container>
+        <div className="tt-card" style={{ marginTop: "var(--space-12)" }}>
+          <LeadForm settori={settoreOptions()} />
+        </div>
+      </div>
 
-      <section className="py-16">
-        <Container>
-          <SectionLabel n="01">Dopo l&apos;invio</SectionLabel>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Cosa succede dopo</h2>
-          <div className="mt-10"><Steps /></div>
-        </Container>
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="01" occhiello="Dopo l'invio">Cosa succede <span className="tt-mark">dopo</span></SectionHead>
+          <div className="tt-section-body"><StepList passi={passi} /></div>
+        </div>
       </section>
 
-      <section className="py-16">
-        <Container narrow>
-          <SectionLabel n="02">Domande frequenti</SectionLabel>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Prima che tu lo chieda</h2>
-          <div className="mt-10"><Faq items={faqAnalisi} /></div>
-        </Container>
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="02" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda</span></SectionHead>
+          <div className="tt-section-body"><FaqList items={faqAnalisi} /></div>
+        </div>
       </section>
     </>
   );

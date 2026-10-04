@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Atkinson_Hyperlegible, Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { Atkinson_Hyperlegible, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const sans = Geist({ subsets: ["latin"], display: "swap", variable: "--font-geist" });
-const mono = Geist_Mono({ subsets: ["latin"], display: "swap", variable: "--font-geist-mono", preload: false });
 // Caratteri del design system TiTrovano.
 const display = Bricolage_Grotesque({ subsets: ["latin"], weight: ["600", "700"], display: "swap", variable: "--font-bricolage" });
 const body = Atkinson_Hyperlegible({ subsets: ["latin"], weight: ["400", "700"], display: "swap", variable: "--font-atkinson" });
@@ -31,7 +29,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={`${sans.variable} ${mono.variable} ${display.variable} ${body.variable}`}>
+    <html lang="it" className={`${display.variable} ${body.variable}`}>
       <body className="tt">
         <a href="#contenuto" className="tt-btn tt-skip">
           Vai al contenuto
