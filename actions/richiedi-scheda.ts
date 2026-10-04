@@ -7,10 +7,11 @@ import { db } from "@/lib/db";
 import { email, TITROVANO } from "@/lib/email";
 import { isRateLimited } from "@/lib/rate-limit";
 import { isLinkMaps, linkWhatsApp, scheda } from "@/lib/scheda";
+import { firmaRichiesta } from "@/lib/scheda-token";
 
 export type StatoScheda =
   | { status: "idle" }
-  | { status: "success"; nfc: boolean }
+  | { status: "success"; nfc: boolean; token?: string }
   | { status: "error"; message: string; fieldErrors?: Record<string, string>; values?: Record<string, string>; attempt: number };
 
 const CAMPI = ["attivita", "citta", "categoria", "nome", "whatsapp", "email", "link_maps", "nfc", "sped_via", "sped_cap", "sped_citta", "sped_provincia", "sped_presso", "privacy"];
@@ -59,11 +60,13 @@ export async function richiediScheda(prev: StatoScheda, fd: FormData): Promise<S
     return { status: "error", message: "Hai già inviato diverse richieste. Riprova tra qualche minuto.", values, attempt };
   }
 
+  let nuovoId = 0;
   try {
-    await db()`insert into richieste_scheda (attivita, citta, categoria, nome, whatsapp, email, link_maps, card_nfc,
+    const [nuova] = (await db()`insert into richieste_scheda (attivita, citta, categoria, nome, whatsapp, email, link_maps, card_nfc,
         sped_via, sped_cap, sped_citta, sped_provincia, sped_presso)
       values (${d.attivita}, ${d.citta}, ${d.categoria}, ${d.nome}, ${d.whatsapp}, ${d.email}, ${link || null}, ${nfc},
-        ${nfc ? sped.via : null}, ${nfc ? sped.cap : null}, ${nfc ? sped.citta : null}, ${nfc ? sped.provincia : null}, ${nfc ? sped.presso || null : null})`;
+        ${nfc ? sped.via : null}, ${nfc ? sped.cap : null}, ${nfc ? sped.citta : null}, ${nfc ? sped.provincia : null}, ${nfc ? sped.presso || null : null}) returning id`) as { id: number }[];
+    nuovoId = nuova.id;
   } catch (e) {
     console.error("[richiedi-scheda] salvataggio", e);
     return { status: "error", message: "Non siamo riusciti a ricevere la richiesta. Riprova tra qualche minuto o scrivici su WhatsApp.", values, attempt };
@@ -118,5 +121,5 @@ export async function richiediScheda(prev: StatoScheda, fd: FormData): Promise<S
   } else if (process.env.NODE_ENV !== "production") {
     console.warn("[richiedi-scheda] Resend non configurato: richiesta salvata, email non inviate.");
   }
-  return { status: "success", nfc };
+  return { status: "success", nfc, token: firmaRichiesta(nuovoId) };
 }

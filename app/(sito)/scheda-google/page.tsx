@@ -9,6 +9,7 @@ import type { Faq } from "@/lib/content";
 import { faqPage, serviceScheda } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { linkWhatsApp, scheda } from "@/lib/scheda";
+import { pagamentiAttivi } from "@/lib/stripe";
 
 export const metadata = pageMetadata({
   title: "Scheda Google sempre viva: post e recensioni, 59 €/mese · TiTrovano",
@@ -131,7 +132,7 @@ export default function SchedaGooglePage() {
             Attiva la tua <span className="tt-mark">scheda sempre viva</span>
           </SectionHead>
           {wa && <div className="tt-section-body"><a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp →</a></div>}
-          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} /></div>
+          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
         </div>
       </section>
     </>

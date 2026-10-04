@@ -7,8 +7,8 @@ const AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Cl
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: "/", disallow: ["/console", "/l/", "/api/"] })),
-      { userAgent: "*", allow: "/", disallow: ["/console", "/l/", "/api/"] },
+      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: "/", disallow: ["/console", "/l/", "/api/", "/r/", "/scheda-google/grazie", "/scheda-google/gestisci"] })),
+      { userAgent: "*", allow: "/", disallow: ["/console", "/l/", "/api/", "/r/", "/scheda-google/grazie", "/scheda-google/gestisci"] },
     ],
     sitemap: absoluteUrl("/sitemap.xml"),
   };

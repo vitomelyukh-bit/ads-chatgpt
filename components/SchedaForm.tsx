@@ -3,12 +3,13 @@
 import { track } from "@vercel/analytics";
 import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
+import { pagaScheda } from "@/actions/paga-scheda";
 import { richiediScheda, type StatoScheda } from "@/actions/richiedi-scheda";
 import { CATEGORIE, scheda } from "@/lib/scheda";
 
 const initial: StatoScheda = { status: "idle" };
 
-export function SchedaForm({ whatsapp }: { whatsapp: string | null }) {
+export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; pagamenti: boolean }) {
   const [state, action, pending] = useActionState(richiediScheda, initial);
   const id = useId();
   const okRef = useRef<HTMLDivElement>(null);
@@ -20,11 +21,24 @@ export function SchedaForm({ whatsapp }: { whatsapp: string | null }) {
   }, [state]);
 
   if (state.status === "success") {
+    const totale = scheda.prezzoMese + (state.nfc ? ` €/mese + ${scheda.prezzoCard} € per la card` : " €/mese");
     return (
       <div ref={okRef} tabIndex={-1} role="status" className="tt-success tt-stack-4" style={{ outline: "none" }}>
         <h3 className="tt-heading"><span className="tt-ok">Richiesta ricevuta.</span> Grazie.</h3>
-        <p className="tt-body">Ti scriviamo su WhatsApp per attivare il servizio{state.nfc ? " e spedirti la card" : ""}. Ti abbiamo mandato anche una email di conferma.</p>
-        {whatsapp && <a href={whatsapp} className="tt-btn tt-btn--block tt-btn--lg">Scrivici subito su WhatsApp →</a>}
+        {pagamenti && state.token ? (
+          <>
+            <p className="tt-body">Ultimo passo: attiva il servizio con il pagamento sicuro. Totale: <strong>{totale}</strong>. Disdici quando vuoi.</p>
+            <form action={pagaScheda.bind(null, state.token)}>
+              <button className="tt-btn tt-btn--block tt-btn--lg">Paga e attiva <span aria-hidden="true">→</span></button>
+            </form>
+            <p className="tt-small tt-muted">Pagamento con carta tramite Stripe. Preferisci parlarne prima? {whatsapp ? <a href={whatsapp}>Scrivici su WhatsApp</a> : "Ti scriviamo noi su WhatsApp"}.</p>
+          </>
+        ) : (
+          <>
+            <p className="tt-body">Ti scriviamo su WhatsApp per attivare il servizio{state.nfc ? " e spedirti la card" : ""}. Ti abbiamo mandato anche una email di conferma.</p>
+            {whatsapp && <a href={whatsapp} className="tt-btn tt-btn--block tt-btn--lg">Scrivici subito su WhatsApp →</a>}
+          </>
+        )}
       </div>
     );
   }
@@ -91,7 +105,7 @@ export function SchedaForm({ whatsapp }: { whatsapp: string | null }) {
       <button type="submit" disabled={pending} className="tt-btn tt-btn--block tt-btn--lg">
         {pending ? "Invio in corso…" : <>Invia la richiesta <span aria-hidden="true">→</span></>}
       </button>
-      <p className="tt-small tt-muted">Nessun pagamento adesso: ti scriviamo noi su WhatsApp per attivare il servizio.</p>
+      <p className="tt-small tt-muted">{pagamenti ? "Dopo l\u2019invio puoi attivare subito il servizio con il pagamento sicuro." : "Nessun pagamento adesso: ti scriviamo noi su WhatsApp per attivare il servizio."}</p>
     </form>
   );
 }

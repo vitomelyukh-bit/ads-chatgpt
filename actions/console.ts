@@ -112,3 +112,36 @@ export async function statoScheda(id: number, stato: string) {
   await db()`update richieste_scheda set stato=${stato} where id=${id}`;
   revalidatePath("/console/scheda");
 }
+
+const ALFABETO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // niente 0/O/1/I per evitare errori
+const nuovoCodice = () => Array.from({ length: 6 }, () => ALFABETO[Math.floor(Math.random() * ALFABETO.length)]).join("");
+
+export async function generaCodici(fd: FormData) {
+  await requireAdmin();
+  const n = Math.min(500, Math.max(1, Number(fd.get("quanti")) || 0));
+  const tipo = fd.get("tipo") === "piedistallo" ? "piedistallo" : "card";
+  const codici = Array.from({ length: n }, nuovoCodice);
+  for (const c of codici) await db()`insert into nfc_codici (codice, tipo) values (${c}, ${tipo}) on conflict do nothing`;
+  revalidatePath("/console/scheda/codici");
+}
+
+export async function salvaLinkRecensioni(id: number, fd: FormData) {
+  await requireAdmin();
+  const link = String(fd.get("link_recensioni") ?? "").trim();
+  await db()`update richieste_scheda set link_recensioni = ${/^https:\/\//.test(link) ? link : null} where id = ${id}`;
+  revalidatePath("/console/scheda");
+}
+
+export async function segnaSpedita(id: number) {
+  await requireAdmin();
+  await db()`update nfc_codici set spedito_il = now() where richiesta_id = ${id}`;
+  await db()`update richieste_scheda set stato = 'card spedita' where id = ${id}`;
+  revalidatePath("/console/scheda");
+}
+
+export async function assegnaCodice(id: number) {
+  await requireAdmin();
+  await db()`update nfc_codici set richiesta_id = ${id}, assegnato_il = now()
+    where codice = (select codice from nfc_codici where richiesta_id is null and tipo = 'card' order by creato_il, codice limit 1 for update skip locked)`;
+  revalidatePath("/console/scheda");
+}
