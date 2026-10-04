@@ -65,7 +65,8 @@
     {
       "titolo": "Annunci su ChatGPT per avvocati: cosa permette la deontologia e cosa no",
       "settore": "studi-legali",
-      "stato": "da-fare"
+      "stato": "da-fare",
+      "nota": "Sospeso il 2026-10-04: a ottobre 2026 le regole pubblicitarie di OpenAI non ammettono annunci per servizi legali fuori dagli Stati Uniti. Riprendere se cambiano."
     },
     {
       "titolo": "Annunci su ChatGPT per e-commerce: quali prodotti funzionano meglio nelle domande d'acquisto",
@@ -77,7 +78,9 @@
     {
       "titolo": "Cosa chiedono a ChatGPT le famiglie prima di scegliere un'impresa di ristrutturazione",
       "settore": "ristrutturazioni-edilizie",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "cosa-chiedono-chatgpt-famiglie-impresa-ristrutturazione",
+      "data": "2026-10-04"
     },
     {
       "titolo": "Annunci su ChatGPT per noleggi auto: come intercettare i turisti prima che atterrino",
