@@ -130,22 +130,36 @@ export default function Home() {
       </section>
 
       <section className="tt-section">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="02" occhiello="Cosa facciamo">
-            Lo facciamo noi, <span className="tt-mark">ogni settimana.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-8">
-            <StepList passi={cosaFacciamo} />
-            <MapsCard />
-            <div className="tt-stack-6">
-              <p className="tt-label" style={{ margin: 0 }}>Esempi di risposte</p>
-              {esempiRisposte.map((e) => (
-                <div key={e.autore} className="tt-stack-2">
-                  <p className="tt-small tt-muted" style={{ margin: 0 }}>{e.tipo}</p>
-                  <ReviewReply autore={e.autore} voto={e.voto} testo={e.testo} risposta={e.risposta} />
-                </div>
-              ))}
+        <div className="tt-wrap">
+          <div className="tt-fatto">
+            <div>
+              <SectionHead n="02" occhiello="Cosa facciamo">
+                Lo facciamo noi, <span className="tt-mark">ogni settimana.</span>
+              </SectionHead>
+              <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
             </div>
+            <div className="tt-fatto__esempio">
+              <p className="tt-label" style={{ margin: "0 0 var(--space-3)" }}>Il risultato, su Google Maps</p>
+              <MapsCard />
+            </div>
+          </div>
+
+          <div className="tt-risposte">
+            <div className="tt-risposte__head">
+              <h3 className="tt-heading" style={{ margin: 0 }}>Come rispondiamo alle recensioni</h3>
+              <p className="tt-body tt-muted" style={{ margin: 0 }}>A nome tuo, con il tono giusto per ognuna. Esempi con nomi di fantasia.</p>
+            </div>
+            <ul className="tt-risposte__lista">
+              {esempiRisposte.map((e) => {
+                const [tipo, settore] = e.tipo.split(" · ");
+                return (
+                  <li key={e.autore} className="tt-risposta">
+                    <p className="tt-risposta__tipo"><span className="tt-tag">{tipo.replace("Recensione ", "")}</span> <span className="tt-muted">{settore}</span></p>
+                    <ReviewReply autore={e.autore} voto={e.voto} testo={e.testo} risposta={e.risposta} />
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </section>
