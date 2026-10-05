@@ -34,6 +34,31 @@ const cosaFacciamo = [
   { titolo: "Ogni mese, i tuoi numeri", testo: "Un messaggio semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Così vedi tu se funziona." },
 ];
 
+// Recensioni e risposte di fantasia, per far vedere il tono: positiva, con una critica, negativa.
+const esempiRisposte = [
+  {
+    tipo: "Recensione positiva · bar",
+    autore: "Giulia M.",
+    voto: 5,
+    testo: "Cappuccino buonissimo e cornetti appena sfornati. Personale gentilissimo, ormai ci passo ogni mattina.",
+    risposta: "Grazie Giulia, che bello leggerti. Ti aspettiamo domattina: il cornetto al pistacchio esce verso le 8.",
+  },
+  {
+    tipo: "Recensione con una critica · parrucchiere",
+    autore: "Sara T.",
+    voto: 4,
+    testo: "Taglio perfetto, esattamente come lo volevo. Unica cosa: ho aspettato un po' nonostante l'appuntamento.",
+    risposta: "Grazie Sara, felici che il taglio ti piaccia. Hai ragione sull'attesa: stiamo distanziando meglio gli appuntamenti. A presto.",
+  },
+  {
+    tipo: "Recensione negativa · ristorante",
+    autore: "Luca R.",
+    voto: 2,
+    testo: "Abbiamo aspettato quaranta minuti per due primi. Peccato, il posto è bello.",
+    risposta: "Buongiorno Luca, ha ragione e ci scusiamo: sabato eravamo in difficoltà in cucina. Ci farebbe piacere rimediare, ci scriva quando torna.",
+  },
+];
+
 const passi = [
   { titolo: "Ci lasci i tuoi dati", testo: "Compili il modulo qui sotto o ci scrivi su WhatsApp. Ci vogliono due minuti." },
   { titolo: "Tocchi «Approva»", testo: "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Un tocco e hai finito. Non ci dai nessuna password." },
@@ -105,14 +130,14 @@ export default function Home() {
           </SectionHead>
           <div className="tt-section-body tt-stack-8">
             <StepList passi={cosaFacciamo} />
-            <div className="tt-stack-4">
-              <p className="tt-label">Esempio di risposta</p>
-              <ReviewReply
-                autore="Luca R."
-                voto={2}
-                testo="Abbiamo aspettato quaranta minuti per due primi. Peccato, il posto è bello."
-                risposta="Buongiorno Luca, ha ragione e ci scusiamo: sabato eravamo in difficoltà in cucina. Ci farebbe piacere rimediare, ci scriva quando torna."
-              />
+            <div className="tt-stack-6">
+              <p className="tt-label" style={{ margin: 0 }}>Esempi di risposte</p>
+              {esempiRisposte.map((e) => (
+                <div key={e.autore} className="tt-stack-2">
+                  <p className="tt-small tt-muted" style={{ margin: 0 }}>{e.tipo}</p>
+                  <ReviewReply autore={e.autore} voto={e.voto} testo={e.testo} risposta={e.risposta} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
