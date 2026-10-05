@@ -5,7 +5,7 @@ import { Anello, Area as GraficoArea, Ciambella, Spark, Stelle } from "@/compone
 import { Stars } from "@/components/ds/Stars";
 import { requireCliente } from "@/lib/area-auth";
 import { db } from "@/lib/db";
-import { getClienteMaps, prossimaUscita, totaliDallInizio, type Novita, type Recensione } from "@/lib/maps";
+import { codiceCard, getClienteMaps, linkCard, prossimaUscita, totaliDallInizio, type Novita, type Recensione } from "@/lib/maps";
 import { linkWhatsApp } from "@/lib/scheda";
 import { firmaRichiesta } from "@/lib/scheda-token";
 
@@ -42,11 +42,14 @@ export default async function Area() {
   const conteggiStelle = ((await db()`select stelle, count(*)::int as n from maps_recensioni where cliente_id = ${id} group by stelle`) as { stelle: number; n: number }[])
     .reduce((acc, x) => { acc[5 - x.stelle] = x.n; return acc; }, [0, 0, 0, 0, 0]);
   const recensioniTot = conteggiStelle.reduce((t, v) => t + v, 0);
-  const [ric] = c.richiesta_id ? ((await db()`select link_recensioni, pagata from richieste_scheda where id = ${c.richiesta_id}`) as { link_recensioni: string | null; pagata: boolean }[]) : [];
+  const [ric] = c.richiesta_id ? ((await db()`select link_recensioni, pagata, nfc_tipo from richieste_scheda where id = ${c.richiesta_id}`) as { link_recensioni: string | null; pagata: boolean; nfc_tipo: string | null }[]) : [];
   const linkRecensioni = c.link_recensioni || ric?.link_recensioni || c.link_maps;
   const qr = linkRecensioni ? await QRCode.toDataURL(linkRecensioni, { margin: 1, width: 320, color: { dark: "#16140f", light: "#ffffff" } }) : null;
   const messaggio = linkRecensioni ? `Ciao, grazie per essere passato da ${c.attivita}. Se ti sei trovato bene, ci aiuteresti con una recensione su Google? Ci vuole un minuto: ${linkRecensioni}` : "";
   const prossima = novita[0];
+  // Guida di attivazione: solo per chi ha comprato card o piedistallo.
+  const extra = ric?.pagata && ric.nfc_tipo ? ric.nfc_tipo : null;
+  const linkExtra = extra ? linkCard(await codiceCard(c.id)) : null;
   const ultimo = report[0], precedente = report[1];
   const storico = [...report].reverse();
   const stima = ultimo && c.valore_cliente ? Math.round((contatti(ultimo.dati) / 4) * c.valore_cliente) : null;
@@ -210,6 +213,24 @@ export default async function Area() {
           </section>
 
           <aside className="x-side">
+            {extra && linkExtra && (
+              <section className="x-card x-card--azione" id="attiva-card">
+                <h2 className="x-h3">Attiva {extra === "card" ? "la tua card" : "il tuo piedistallo"} in un minuto</h2>
+                <p className="x-muted">Se ti arriva già pronto non devi fare niente: avvicina il telefono e prova. Se invece non apre la pagina delle recensioni, fai così:</p>
+                <ol className="x-guida">
+                  <li>Scarica l&apos;app gratuita <strong>NFC Tools</strong> (App Store o Google Play).</li>
+                  <li>Apri l&apos;app, tocca <strong>Scrivi</strong> → <strong>Aggiungi un record</strong> → <strong>URL</strong>.</li>
+                  <li>Incolla questo link e conferma:</li>
+                </ol>
+                <p className="x-code">{linkExtra.replace(/^https?:\/\//, "")}</p>
+                <Copia testo={linkExtra} etichetta="Copia il link" />
+                <ol className="x-guida" start={4}>
+                  <li>Tocca <strong>Scrivi</strong> e appoggia il telefono sul retro {extra === "card" ? "della card" : "del piedistallo"} finché vibra.</li>
+                  <li>Prova: avvicina il telefono, deve aprirsi la pagina per lasciare la recensione.</li>
+                </ol>
+                <p className="x-muted">Bloccato? Scrivici su WhatsApp e lo facciamo insieme.</p>
+              </section>
+            )}
             {prossima && (
               <section id="novita" className="x-card">
                 <h2 className="x-h3">Prossima novità</h2>

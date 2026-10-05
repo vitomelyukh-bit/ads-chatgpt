@@ -81,7 +81,7 @@ async function emailAttivazione(r: RichiestaScheda, codice: string | null) {
       { tipo: "passi", passi: [
         "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività: tocca Approva. Se non la trovi, ti scriviamo noi su WhatsApp.",
         "Da lì aggiorniamo la tua attività su Google ogni settimana e rispondiamo alle recensioni.",
-        isTipoExtra(r.nfc_tipo) ? `Ti spediamo ${r.nfc_tipo === "card" ? "la card" : "il piedistallo"} già pronto all'uso e ti avvisiamo quando parte.` : "Tu vedi i risultati direttamente su Google Maps.",
+        isTipoExtra(r.nfc_tipo) ? `Ti arriva ${r.nfc_tipo === "card" ? "la card" : "il piedistallo"} a casa. Se non apre già la pagina delle recensioni, nella tua area trovi la guida per attivarlo in un minuto.` : "Tu vedi i risultati direttamente su Google Maps.",
       ] },
       { tipo: "bottone", testo: "Gestisci o disdici l'abbonamento →", url: gestisci },
       { tipo: "nota", testo: "Puoi disdire quando vuoi da quel link: il servizio resta attivo fino alla fine del mese già pagato. Conserva questa email." },
