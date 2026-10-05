@@ -109,3 +109,4 @@ alter table ordini_banco add column if not exists spedizione_costo numeric(8,2);
 alter table ordini_banco add column if not exists corriere text;
 alter table ordini_banco add column if not exists packlink_ref text;
 alter table ordini_banco add column if not exists tracking_url text;
+alter table ordini_banco add column if not exists punto_ritiro text;

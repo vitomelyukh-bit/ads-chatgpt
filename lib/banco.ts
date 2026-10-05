@@ -26,11 +26,11 @@ export async function registraOrdineBanco(s: Stripe.Checkout.Session) {
     rif = await bozzaSpedizione({
       tipo, serviceId: s.metadata?.servizio ?? "", nome: sped?.name ?? o.nome, email: o.email, telefono: o.telefono,
       via: a.line1 ?? "", via2: a.line2 ?? "", cap: a.postal_code ?? "", citta: a.city ?? "", provincia: a.state ?? "",
-      valore: EXTRA[tipo].prezzo, riferimento: `TT-${o.id}`,
+      valore: EXTRA[tipo].prezzo, riferimento: `TT-${o.id}`, puntoId: s.metadata?.punto || undefined,
     }).catch((e) => { console.error("[banco] bozza Packlink", e); return null; });
   }
   await db()`update ordini_banco set spedizione_servizio = ${s.metadata?.servizio ?? null}, spedizione_costo = ${costo || null},
-    corriere = ${s.metadata?.corriere ?? null}, packlink_ref = ${rif} where id = ${o.id}`;
+    corriere = ${s.metadata?.corriere ?? null}, packlink_ref = ${rif}, punto_ritiro = ${s.metadata?.punto_nome || null} where id = ${o.id}`;
   const key = process.env.RESEND_API_KEY, from = process.env.RESEND_FROM;
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((x) => x.trim()).filter(Boolean);
   if (key && from && to?.length) {
@@ -41,7 +41,7 @@ export async function registraOrdineBanco(s: Stripe.Checkout.Session) {
         marchio: TITROVANO, anteprima: `${o.attivita || o.nome} · da spedire`, titolo: `${nome} da spedire`, evidenzia: "da spedire",
         blocchi: [
           { tipo: "righe", righe: [["Attività / link", o.attivita || "—"], ["Cliente", `${o.nome}${o.telefono ? ` · ${o.telefono}` : ""}`], ["Email", o.email], ["Indirizzo", o.indirizzo || "—"]] },
-          { tipo: "righe", righe: [["Spedizione pagata", `${costo.toFixed(2).replace(".", ",")} € · ${s.metadata?.corriere ?? "corriere"}`], ["Packlink", rif ? `bozza ${rif}: paga l'etichetta dal pannello` : "bozza non creata: creala a mano su Packlink"]] },
+          { tipo: "righe", righe: [["Spedizione pagata", `${costo.toFixed(2).replace(".", ",")} € · ${s.metadata?.corriere ?? "corriere"}${s.metadata?.punto_nome ? ` · ritiro: ${s.metadata.punto_nome}` : " · a domicilio"}`], ["Packlink", rif ? `bozza ${rif}: paga l'etichetta dal pannello` : "bozza non creata: creala a mano su Packlink"]] },
           { tipo: "p", testo: "Cosa fare: scrivi sul chip il link per le recensioni della sua attività (con NFC Tools), imballa, paga l'etichetta su Packlink e spedisci. Poi segnalo come spedito in console." },
           { tipo: "bottone", testo: "Apri la console →", url: `${site.url}/console/maps` },
         ],

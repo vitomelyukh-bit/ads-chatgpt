@@ -67,7 +67,7 @@ export async function tariffaItalia(tipo: TipoExtra, cap = CAP_RIFERIMENTO): Pro
 // Bozza di spedizione nel pannello Packlink (gratis: l'etichetta si paga dal pannello quando il pacco è pronto).
 export async function bozzaSpedizione(o: {
   tipo: TipoExtra; serviceId: string; nome: string; email: string; telefono: string;
-  via: string; via2?: string; cap: string; citta: string; provincia: string; valore: number; riferimento: string;
+  via: string; via2?: string; cap: string; citta: string; provincia: string; valore: number; riferimento: string; puntoId?: string;
 }) {
   if (!packlinkAttivo() || !o.serviceId) return null;
   const p = PACCO[o.tipo];
@@ -81,6 +81,7 @@ export async function bozzaSpedizione(o: {
       from: mittente(),
       to: { name: nome || o.nome, surname: cognome.join(" ") || "-", street1: o.via, street2: o.via2 ?? "", zip_code: o.cap, city: o.citta, state: o.provincia || o.citta, country: "IT", phone: o.telefono, email: o.email },
       packages: [{ weight: p.weight, width: p.width, height: p.height, length: p.length }],
+      ...(o.puntoId ? { dropoff_point_id: o.puntoId } : {}),
     }),
   });
   return r.reference ?? null;

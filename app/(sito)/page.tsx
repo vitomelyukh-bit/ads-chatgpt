@@ -3,7 +3,6 @@ import { FaqList } from "@/components/ds/FaqList";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
-import { compraBanco } from "@/actions/compra-banco";
 import { MapScene } from "@/components/ds/MapScene";
 import { MisureConfronto, ProdottoFoto } from "@/components/ProdottoFoto";
 import { MapsCard } from "@/components/ds/MapsCard";
@@ -199,7 +198,7 @@ export default function Home() {
                 <p className="tt-muted" style={{ margin: 0 }}>{EXTRA[k].misure}</p>
                 <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola + spedizione con corriere, gratis se lo aggiungi al servizio</small></p>
                 <p>{EXTRA[k].descrizione}</p>
-                <form action={compraBanco.bind(null, k)}><button className="tt-btn tt-btn--block">Compralo ora <span aria-hidden="true">→</span></button></form>
+                <Link href={`/compra/${k}`} className="tt-btn tt-btn--block">Compralo ora <span aria-hidden="true">→</span></Link>
               </div>
             ))}
           </div>
