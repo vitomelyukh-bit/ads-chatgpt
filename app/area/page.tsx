@@ -1,6 +1,7 @@
 import QRCode from "qrcode";
 import { approva, bloccaNovita, esciArea, salvaNovita, salvaSpunti, salvaValore } from "@/actions/area";
 import { Copia } from "@/components/Copia";
+import { Anello, Area as GraficoArea, Ciambella, Spark, Stelle } from "@/components/area/Grafici";
 import { Stars } from "@/components/ds/Stars";
 import { requireCliente } from "@/lib/area-auth";
 import { db } from "@/lib/db";
@@ -38,6 +39,9 @@ export default async function Area() {
     db()`select mese, dati, inviato_il from maps_report where cliente_id = ${id} order by mese desc limit 6` as unknown as Promise<{ mese: string; dati: Dati; inviato_il: string | null }[]>,
     totaliDallInizio(c),
   ]);
+  const conteggiStelle = ((await db()`select stelle, count(*)::int as n from maps_recensioni where cliente_id = ${id} group by stelle`) as { stelle: number; n: number }[])
+    .reduce((acc, x) => { acc[5 - x.stelle] = x.n; return acc; }, [0, 0, 0, 0, 0]);
+  const recensioniTot = conteggiStelle.reduce((t, v) => t + v, 0);
   const [ric] = c.richiesta_id ? ((await db()`select link_recensioni, pagata from richieste_scheda where id = ${c.richiesta_id}`) as { link_recensioni: string | null; pagata: boolean }[]) : [];
   const linkRecensioni = c.link_recensioni || ric?.link_recensioni || c.link_maps;
   const qr = linkRecensioni ? await QRCode.toDataURL(linkRecensioni, { margin: 1, width: 320, color: { dark: "#16140f", light: "#ffffff" } }) : null;
@@ -45,7 +49,6 @@ export default async function Area() {
   const prossima = novita[0];
   const ultimo = report[0], precedente = report[1];
   const storico = [...report].reverse();
-  const massimo = Math.max(1, ...storico.map((r) => contatti(r.dati)));
   const stima = ultimo && c.valore_cliente ? Math.round((contatti(ultimo.dati) / 4) * c.valore_cliente) : null;
 
   // Diario: tutto quello che abbiamo fatto, dal più recente.
@@ -104,29 +107,75 @@ export default async function Area() {
           </section>
         )}
 
-        {ultimo ? (
-          <section className="x-card x-numeri">
-            <div>
-              <p className="x-over">A {nomeMese(ultimo.mese)} Google ti ha portato</p>
-              <p className="x-big">{n(contatti(ultimo.dati))} <span>contatti</span> <Delta ora={contatti(ultimo.dati)} prima={precedente ? contatti(precedente.dati) : undefined} /></p>
-              <p className="x-muted">{n(ultimo.dati.chiamate)} chiamate · {n(ultimo.dati.indicazioni)} indicazioni · {n(ultimo.dati.sito)} clic sul sito · {n(ultimo.dati.visti)} persone ti hanno visto</p>
-              {stima !== null ? (
-                <p className="x-money">Se anche solo 1 su 4 è diventato cliente: <strong>circa {n(stima)} €</strong></p>
-              ) : (
+        {(() => {
+          const esempio = !ultimo;
+          const serie = esempio ? [38, 44, 51, 57, 63, 72] : storico.map((r) => contatti(r.dati));
+          const mesi = esempio ? ["mag", "giu", "lug", "ago", "set", "ott"] : storico.map((r) => nomeMese(r.mese).slice(0, 3));
+          const visti = esempio ? [700, 760, 820, 900, 980, 1050] : storico.map((r) => r.dati.visti);
+          const stelleEsempio = recensioniTot === 0;
+          const percRisposte = tot.recensioni ? Math.round((tot.risposte / tot.recensioni) * 100) : 0;
+          return (
+            <section className={`x-card x-grafici${esempio ? " is-esempio" : ""}`} aria-labelledby="h-numeri">
+              <div className="x-grafici__head">
+                <h2 id="h-numeri" className="x-h2">I tuoi numeri su Google</h2>
+                {esempio && <span className="x-esempio">Esempio · i tuoi dati arrivano intorno al {giorno(primoReport)}</span>}
+              </div>
+              <ul className="x-kpi">
+                <li>
+                  <span className="x-kpi__l">Contatti {esempio ? "al mese" : `a ${nomeMese(ultimo.mese)}`}</span>
+                  <span className="x-kpi__n">{esempio ? "–" : n(contatti(ultimo.dati))} {!esempio && <Delta ora={contatti(ultimo.dati)} prima={precedente ? contatti(precedente.dati) : undefined} />}</span>
+                  <Spark punti={serie} esempio={esempio} />
+                </li>
+                <li>
+                  <span className="x-kpi__l">Persone che ti hanno visto</span>
+                  <span className="x-kpi__n">{esempio ? "–" : n(ultimo.dati.visti)} {!esempio && <Delta ora={ultimo.dati.visti} prima={precedente?.dati.visti} />}</span>
+                  <Spark punti={visti} esempio={esempio} />
+                </li>
+                <li>
+                  <span className="x-kpi__l">Valore stimato del mese</span>
+                  <span className="x-kpi__n">{stima !== null ? `${n(stima)} €` : "–"}</span>
+                  <span className="x-kpi__s">{stima !== null ? "se 1 contatto su 4 diventa cliente" : esempio ? "lo calcoliamo dai tuoi contatti" : "dicci quanto vale un cliente"}</span>
+                </li>
+                <li>
+                  <span className="x-kpi__l">Recensioni con risposta</span>
+                  <span className="x-kpi__n">{tot.recensioni ? `${percRisposte}%` : "–"}</span>
+                  <span className="x-kpi__s">{tot.recensioni ? `${n(tot.risposte)} su ${n(tot.recensioni)}` : "appena ne arriva una"}</span>
+                </li>
+              </ul>
+              <div className="x-grafico">
+                <p className="x-grafico__t">Contatti da Google, mese per mese <span className="x-muted">· chiamate + indicazioni + clic sul sito</span></p>
+                <GraficoArea punti={serie} etichette={mesi} esempio={esempio} />
+              </div>
+              <div className="x-grafici__row">
+                <div className="x-grafico">
+                  <p className="x-grafico__t">Come ti contattano</p>
+                  <Ciambella esempio={esempio} parti={[
+                    { etichetta: "Chiamate", valore: esempio ? 30 : ultimo.dati.chiamate },
+                    { etichetta: "Indicazioni stradali", valore: esempio ? 45 : ultimo.dati.indicazioni },
+                    { etichetta: "Clic sul sito", valore: esempio ? 25 : ultimo.dati.sito },
+                  ]} />
+                </div>
+                <div className="x-grafico">
+                  <p className="x-grafico__t">Le tue stelle {stelleEsempio && <span className="x-esempio x-esempio--small">esempio</span>}</p>
+                  <Stelle conteggi={stelleEsempio ? [42, 9, 3, 1, 2] : conteggiStelle} esempio={stelleEsempio} />
+                </div>
+                <div className="x-grafico">
+                  <p className="x-grafico__t">Risposte date {!tot.recensioni && <span className="x-esempio x-esempio--small">esempio</span>}</p>
+                  <Anello percento={tot.recensioni ? percRisposte : 100} esempio={!tot.recensioni} sotto="delle recensioni ha la risposta del titolare" />
+                </div>
+              </div>
+              {!esempio && stima === null && (
                 <form action={salvaValore} className="x-valore">
-                  <label htmlFor="valore">Quanto ti fa guadagnare in media un cliente? Te lo trasformiamo in euro.</label>
+                  <label htmlFor="valore">Quanto ti fa guadagnare in media un cliente? Trasformiamo i contatti in euro.</label>
                   <span><input id="valore" name="valore" inputMode="numeric" placeholder="50" /> €</span>
                   <button className="x-btn x-btn--small">Calcola</button>
                 </form>
               )}
-            </div>
-            {storico.length > 1 && (
-              <ol className="x-bars" aria-label="Contatti per mese">
-                {storico.map((r) => <li key={r.mese}><span className="x-bars__v">{n(contatti(r.dati))}</span><span className="x-bars__b" style={{ height: `${Math.max(8, (contatti(r.dati) / massimo) * 100)}%` }} /><span className="x-bars__m">{nomeMese(r.mese).slice(0, 3)}</span></li>)}
-              </ol>
-            )}
-          </section>
-        ) : (
+            </section>
+          );
+        })()}
+
+        {!ultimo && (
           <section className="x-card">
             <h2 className="x-h2">I primi passi</h2>
             <ol className="x-path">
