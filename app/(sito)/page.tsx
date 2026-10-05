@@ -78,7 +78,7 @@ export default function Home() {
               {cta()}
               {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</a>}
             </div>
-            <p className="tt-body-strong" style={{ margin: "var(--space-2) 0 0" }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
+            <p className="tt-body-strong" style={{ margin: "var(--space-2) 0 0", fontSize: 17 }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
           </div>
           <MapsCard />
         </div>
@@ -180,7 +180,7 @@ export default function Home() {
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="06"
-            occhiello="Vuoi crescere ancora?"
+            occhiello="Per crescere ancora"
             testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su ChatGPT, Google e Meta. Ti diciamo in una call gratuita quale ha senso per te."
           >
             Anche annunci online, <span className="tt-mark">quando servono.</span>

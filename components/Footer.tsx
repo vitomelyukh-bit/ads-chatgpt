@@ -17,11 +17,11 @@ export function Footer() {
           </div>
           <div>
             <h2 className="tt-label">Settori</h2>
-            <ul>{settori.map((s) => <li key={s.slug}><Link href={`/settori/${s.slug}`}>{s.nome}</Link></li>)}</ul>
+            <ul className="tt-footer-settori">{settori.map((s) => <li key={s.slug}><Link href={`/settori/${s.slug}`}>{s.nome}</Link></li>)}</ul>
           </div>
           <div>
             <h2 className="tt-label">Guide</h2>
-            <ul>
+            <ul className="tt-footer-guide">
               {guide.map((g) => <li key={g.slug}><Link href={`/guide/${g.slug}`}>{g.h1}</Link></li>)}
               <li><Link href="/guide">Tutte le guide →</Link></li>
             </ul>

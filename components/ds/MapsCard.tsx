@@ -16,7 +16,7 @@ export function MapsCard({
       <p className="tt-maps__rating"><b>{voto.toLocaleString("it-IT")}</b> <Stars voto={voto} /> <span>{recensioni} recensioni</span></p>
       <p className="tt-maps__open"><b>Aperto</b> · {orario}</p>
       <div className="tt-maps__actions" aria-hidden="true"><span className="tt-btn tt-btn--secondary">Chiama</span><span className="tt-btn tt-btn--secondary">Indicazioni</span></div>
-      <div className="tt-maps__news"><span className="tt-tag">Novità di questa settimana</span><p>{novita}</p></div>
+      <div className="tt-maps__news"><span className="tt-tag">Novità della settimana</span><p>{novita}</p></div>
       <figcaption className="tt-maps__caption">Esempio: così appare un&apos;attività curata. Orari giusti, recensioni con risposta, una novità ogni settimana.</figcaption>
     </figure>
   );

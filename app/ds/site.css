@@ -188,3 +188,23 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
   :root:not([data-theme="light"]) .tt-logo .on-dark { display: block; }
 }
 @media (max-width: 640px) { .tt-logo img { height: 32px; } }
+
+/* ===== Ritocchi UI (2026-10-05) ===== */
+/* Evidenziatore più leggero: una passata nella metà bassa delle lettere, non un blocco pieno. */
+.tt .tt-mark { background: linear-gradient(transparent 52%, var(--mark) 52%, var(--mark) 94%, transparent 94%); padding: 0 0.06em; border-radius: 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.tt-nav-links { display: flex; align-items: center; gap: var(--space-6); }
+.tt-product__price small { display: block; margin-top: var(--space-1); }
+@media (max-width: 640px) {
+  .tt-header { display: grid; grid-template-columns: 1fr auto; align-items: center; row-gap: var(--space-2); padding-block: var(--space-3); }
+  .tt-header nav { display: contents; }
+  .tt-header nav > .tt-btn { grid-column: 2; grid-row: 1; min-height: 44px; padding-inline: var(--space-4); }
+  .tt-nav-links { grid-column: 1 / -1; gap: var(--space-5, 20px); }
+  .tt-nav-links a { padding: var(--space-2) 0 !important; font-size: 16px; }
+  .tt-section-head h2 { font-size: 30px; line-height: 1.12; }
+  .tt-section-head p { font-size: 19px; }
+  .tt-points h3, .tt-steps h3 { font-size: 23px; }
+  .tt-footer { padding-top: var(--space-12); }
+  .tt-footer-settori { columns: 2; column-gap: var(--space-4); display: block !important; }
+  .tt-footer-settori li { break-inside: avoid; margin-bottom: var(--space-2); font-size: 16px; }
+  .tt-footer-guide li:nth-child(n+4):not(:last-child) { display: none; }
+}
