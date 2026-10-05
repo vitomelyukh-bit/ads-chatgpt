@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 // Senza API Google (in attesa di approvazione) prepara tutto e lo lascia "da pubblicare" a mano.
 
 export type Cliente = ProfiloCliente & {
-  id: number; richiesta_id: number | null; nome: string; email: string; whatsapp: string; link_maps: string | null;
+  id: number; richiesta_id: number | null; nome: string; email: string; whatsapp: string; link_maps: string | null; link_recensioni: string | null;
   spunti: string; google_account: string | null; google_location: string | null; stato: string; creato_il: string;
 };
 export type Recensione = {
@@ -191,7 +191,8 @@ export async function preparaReport(c: Cliente, anno: number, mese: number) {
   const [rec] = (await db()`select count(*)::int as ricevute, count(*) filter (where stato = 'pubblicata')::int as risposte
     from maps_recensioni where cliente_id = ${c.id} and coalesce(scritta_il, creata_il) >= ${`${chiave}-01`}::date and coalesce(scritta_il, creata_il) < (${`${chiave}-01`}::date + interval '1 month')`) as { ricevute: number; risposte: number }[];
   const [nov] = (await db()`select count(*)::int as n from maps_novita where cliente_id = ${c.id} and stato = 'pubblicata' and to_char(pubblicata_il, 'YYYY-MM') = ${chiave}`) as { n: number }[];
-  const [tocchi] = c.richiesta_id ? ((await db()`select coalesce(sum(tocchi), 0)::int as n from nfc_codici where richiesta_id = ${c.richiesta_id}`) as { n: number }[]) : [{ n: 0 }];
+  const [tocchi] = (await db()`select count(*)::int as n from nfc_tocchi t join nfc_codici n on n.codice = t.codice
+    where n.cliente_id = ${c.id} and t.quando >= ${`${chiave}-01`}::date and t.quando < (${`${chiave}-01`}::date + interval '1 month')`) as { n: number }[];
   const visti = (x: Record<Metrica, number>) => x.BUSINESS_IMPRESSIONS_MOBILE_MAPS + x.BUSINESS_IMPRESSIONS_DESKTOP_MAPS + x.BUSINESS_IMPRESSIONS_MOBILE_SEARCH + x.BUSINESS_IMPRESSIONS_DESKTOP_SEARCH;
   const dati = {
     visti: visti(numeri), chiamate: numeri.CALL_CLICKS, indicazioni: numeri.BUSINESS_DIRECTION_REQUESTS, sito: numeri.WEBSITE_CLICKS,
@@ -203,6 +204,7 @@ export async function preparaReport(c: Cliente, anno: number, mese: number) {
     `Chiamate: ${dati.chiamate}${dati.prima ? ` (mese prima: ${dati.prima.chiamate})` : ""}`,
     `Richieste di indicazioni: ${dati.indicazioni}${dati.prima ? ` (mese prima: ${dati.prima.indicazioni})` : ""}`,
     `Clic sul sito: ${dati.sito}`, `Recensioni nuove: ${dati.recensioni}, risposte date: ${dati.risposte}`, `Novità pubblicate: ${dati.novita}`,
+    `Tocchi sulla card o sul piedistallo da banco (aprono la pagina per lasciare una recensione): ${dati.tocchi}`,
   ].join("\n");
   const commento = await commentoReport(c, chiave, righe).catch(() => "");
   await db()`insert into maps_report (cliente_id, mese, dati, commento) values (${c.id}, ${chiave}, ${JSON.stringify(dati)}, ${commento})`;
@@ -216,7 +218,7 @@ export async function preparaReport(c: Cliente, anno: number, mese: number) {
         ["Ti hanno visto su Google e Maps", String(dati.visti)], ["Ti hanno chiamato", String(dati.chiamate)],
         ["Hanno chiesto le indicazioni", String(dati.indicazioni)], ["Clic sul tuo sito", String(dati.sito)],
         ["Recensioni nuove", String(dati.recensioni)], ["Risposte date", String(dati.risposte)], ["Novità pubblicate", String(dati.novita)],
-        ...(dati.tocchi ? ([["Tocchi su card o piedistallo (in tutto)", String(dati.tocchi)]] as [string, string][]) : []),
+        ...(dati.tocchi ? ([["Tocchi su card o piedistallo", String(dati.tocchi)]] as [string, string][]) : []),
       ] },
       ...(commento ? ([{ tipo: "p", testo: commento }] as Blocco[]) : []),
       { tipo: "bottone", testo: "Apri la tua area →", url: linkArea(c.id) },
@@ -266,6 +268,10 @@ export async function creaClienteDaRichiesta(richiestaId: number) {
   const [c] = (await db()`insert into maps_clienti (richiesta_id, attivita, citta, nome, email, whatsapp, link_maps)
     select id, attivita, citta, nome, email, whatsapp, link_maps from richieste_scheda where id = ${richiestaId}
     on conflict (richiesta_id) where richiesta_id is not null do nothing returning *`) as Cliente[];
+  if (c) {
+    await db()`update nfc_codici set cliente_id = ${c.id} where richiesta_id = ${richiestaId}`;
+    await db()`update maps_clienti m set link_recensioni = s.link_recensioni from richieste_scheda s where m.id = ${c.id} and s.id = ${richiestaId}`;
+  }
   return c ?? null;
 }
 

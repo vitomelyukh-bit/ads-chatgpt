@@ -69,3 +69,14 @@ create table if not exists impostazioni (
   valore text not null,
   aggiornata_il timestamptz not null default now()
 );
+
+-- Card e piedistalli collegati direttamente al cliente Maps, e ogni tocco con la sua data.
+alter table nfc_codici add column if not exists cliente_id int references maps_clienti(id) on delete set null;
+alter table maps_clienti add column if not exists link_recensioni text;
+update nfc_codici n set cliente_id = c.id from maps_clienti c where c.richiesta_id = n.richiesta_id and n.cliente_id is null;
+create table if not exists nfc_tocchi (
+  id bigserial primary key,
+  codice text not null references nfc_codici(codice) on delete cascade,
+  quando timestamptz not null default now()
+);
+create index if not exists nfc_tocchi_codice on nfc_tocchi(codice, quando);

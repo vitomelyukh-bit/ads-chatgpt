@@ -27,9 +27,11 @@ export default async function Area() {
   const uscite = (await db()`select * from maps_novita where cliente_id = ${id} and stato in ('pubblicata', 'da-pubblicare') order by coalesce(pubblicata_il, pubblica_il) desc limit 3`) as Novita[];
   const [report] = (await db()`select mese, dati from maps_report where cliente_id = ${id} order by mese desc limit 1`) as { mese: string; dati: { visti: number; chiamate: number; indicazioni: number; sito: number; prima: { visti: number; chiamate: number; indicazioni: number } | null } }[];
   const [ric] = c.richiesta_id ? ((await db()`select link_recensioni, pagata from richieste_scheda where id = ${c.richiesta_id}`) as { link_recensioni: string | null; pagata: boolean }[]) : [];
-  const [nfc] = c.richiesta_id ? ((await db()`select tipo, tocchi from nfc_codici where richiesta_id = ${c.richiesta_id} limit 1`) as { tipo: string; tocchi: number }[]) : [];
+  const [nfc] = (await db()`select count(*)::int as codici, coalesce(sum(n.tocchi), 0)::int as tocchi, min(n.tipo) as tipo,
+      (select count(*) from nfc_tocchi t join nfc_codici k on k.codice = t.codice where k.cliente_id = ${id} and t.quando >= date_trunc('month', now()))::int as mese
+    from nfc_codici n where n.cliente_id = ${id}`) as { codici: number; tocchi: number; tipo: string | null; mese: number }[];
 
-  const linkRecensioni = ric?.link_recensioni || c.link_maps;
+  const linkRecensioni = c.link_recensioni || ric?.link_recensioni || c.link_maps;
   const qr = linkRecensioni ? await QRCode.toDataURL(linkRecensioni, { margin: 1, width: 360, color: { dark: "#16140f", light: "#ffffff" } }) : null;
   const messaggio = linkRecensioni ? `Ciao, grazie per essere passato da ${c.attivita}. Se ti sei trovato bene, ci aiuteresti con una recensione su Google? Ci vuole un minuto: ${linkRecensioni}` : "";
   const n = novita[0];
@@ -111,7 +113,13 @@ export default async function Area() {
             </ul>
           </>
         ) : <p className="tt-body tt-muted">Il primo riepilogo arriva nei primi giorni del mese prossimo, anche per email.</p>}
-        {nfc && <p className="tt-body" style={{ margin: 0 }}>{nfc.tipo === "piedistallo" ? "Il tuo piedistallo" : "La tua card"} da banco è stata toccata <strong>{nfc.tocchi} {nfc.tocchi === 1 ? "volta" : "volte"}</strong>.</p>}
+        {nfc.codici > 0 && (
+          <div className="tt-card tt-stack-2">
+            <p className="tt-label" style={{ margin: 0 }}>{nfc.codici > 1 ? "Card e piedistalli da banco" : nfc.tipo === "piedistallo" ? "Il tuo piedistallo da banco" : "La tua card da banco"}</p>
+            <p className="tt-body" style={{ margin: 0 }}><span className="tt-numeri__n">{nfc.mese}</span> {nfc.mese === 1 ? "tocco" : "tocchi"} questo mese · {nfc.tocchi} in tutto</p>
+            <p className="tt-small tt-muted" style={{ margin: 0 }}>Ogni tocco è un cliente che ha aperto la pagina per lasciarti una recensione. Più è in vista, vicino alla cassa, più funziona.</p>
+          </div>
+        )}
       </section>
 
       {linkRecensioni && (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { aggiornaNovita, generaNovita, mandaAccessoCliente, recensioneManuale, rispostaDaAdmin, salvaClienteMaps, segnaRecensione } from "@/actions/maps-console";
+import { aggiornaNovita, assegnaCodiceCliente, generaNovita, segnaCodiceSpedito, mandaAccessoCliente, recensioneManuale, rispostaDaAdmin, salvaClienteMaps, segnaRecensione } from "@/actions/maps-console";
 import { Copia } from "@/components/Copia";
 import { Stars } from "@/components/ds/Stars";
 import { linkArea } from "@/lib/area-auth";
@@ -22,6 +22,11 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
   let erroreSchede = "";
   if (await googleCollegato()) schede = await elencaSchede().catch((e) => { erroreSchede = (e as Error).message; return []; });
   const link = linkArea(c.id);
+  const codici = (await db()`select n.codice, n.tipo, n.tocchi, n.spedito_il,
+      (select count(*) from nfc_tocchi t where t.codice = n.codice and t.quando >= date_trunc('month', now()))::int as mese
+    from nfc_codici n where n.cliente_id = ${id} order by n.assegnato_il`) as { codice: string; tipo: string; tocchi: number; spedito_il: string | null; mese: number }[];
+  const [liberi] = (await db()`select count(*) filter (where tipo = 'card')::int as card, count(*) filter (where tipo = 'piedistallo')::int as piedistallo
+    from nfc_codici where richiesta_id is null and cliente_id is null`) as { card: number; piedistallo: number }[];
 
   return (
     <div className="tt-stack-12">
@@ -34,6 +39,25 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
           {c.link_maps && <a className="tt-btn tt-btn--secondary" href={c.link_maps} target="_blank" rel="noopener">Apri su Maps</a>}
         </div>
       </div>
+
+      <section className="tt-stack-6">
+        <h2 className="tt-heading">Card e piedistalli</h2>
+        {codici.length === 0 ? <p className="tt-body tt-muted" style={{ margin: 0 }}>Nessuno assegnato.</p> : (
+          <table className="tt-table"><thead><tr>{["Codice", "Tipo", "Tocchi questo mese", "Tocchi in tutto", "Link da programmare", ""].map((h) => <th key={h}>{h}</th>)}</tr></thead>
+            <tbody>{codici.map((k) => (
+              <tr key={k.codice}><td><strong>{k.codice}</strong></td><td>{k.tipo}</td><td>{k.mese}</td><td>{k.tocchi}</td>
+                <td><a href={`/r/${k.codice}`} target="_blank" rel="noopener">titrovano.it/r/{k.codice}</a></td>
+                <td>{k.spedito_il ? <span className="tt-muted">Spedito il {data(k.spedito_il)}</span> : <form action={segnaCodiceSpedito.bind(null, c.id, k.codice)}><button className="tt-chip">Segna spedito</button></form>}</td></tr>
+            ))}</tbody>
+          </table>
+        )}
+        <form action={assegnaCodiceCliente.bind(null, c.id)} className="tt-row">
+          <select name="tipo" aria-label="Tipo" defaultValue="card" style={{ minHeight: 44 }}><option value="card">Card ({liberi.card} liberi)</option><option value="piedistallo">Piedistallo ({liberi.piedistallo} liberi)</option></select>
+          <button className="tt-btn tt-btn--secondary">Assegna un codice libero</button>
+          <Link href="/console/scheda/codici">Genera codici →</Link>
+        </form>
+        <p className="tt-small tt-muted" style={{ margin: 0 }}>Chi tocca la card apre il link per le recensioni (impostazioni qui sotto), altrimenti la scheda Maps. Un tocco conta chi ha aperto la pagina, non chi ha davvero scritto la recensione.</p>
+      </section>
 
       <section className="tt-stack-6">
         <h2 className="tt-heading">Recensioni</h2>
@@ -112,7 +136,7 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
             </select>
             <p className="tt-field__help">{erroreSchede ? `Errore: ${erroreSchede}` : schede.length ? "Le schede che l'account Google di TiTrovano gestisce. Se manca, il cliente non ha ancora approvato l'accesso." : "Compaiono qui quando Google è collegato."}</p>
           </div>
-          {([["attivita", "Nome dell'attività", c.attivita], ["citta", "Città", c.citta], ["nome", "Nome del titolare", c.nome], ["email", "Email (accesso all'area e notifiche)", c.email], ["whatsapp", "WhatsApp", c.whatsapp], ["link_maps", "Link Google Maps", c.link_maps ?? ""], ["firma", "Firma in fondo alle risposte (facoltativa)", c.firma]] as const).map(([k, l, v]) => (
+          {([["attivita", "Nome dell'attività", c.attivita], ["citta", "Città", c.citta], ["nome", "Nome del titolare", c.nome], ["email", "Email (accesso all'area e notifiche)", c.email], ["whatsapp", "WhatsApp", c.whatsapp], ["link_maps", "Link Google Maps", c.link_maps ?? ""], ["link_recensioni", "Link diretto per lasciare una recensione (facoltativo)", c.link_recensioni ?? ""], ["firma", "Firma in fondo alle risposte (facoltativa)", c.firma]] as const).map(([k, l, v]) => (
             <div key={k} className="tt-field"><label htmlFor={`s-${k}`}>{l}</label><input id={`s-${k}`} name={k} defaultValue={v} /></div>
           ))}
           <div className="tt-field"><label htmlFor="s-tono">Tono</label><input id="s-tono" name="tono" defaultValue={c.tono} /><p className="tt-field__help">Es. &ldquo;cordiale e familiare, dando del tu&rdquo; oppure &ldquo;professionale, dando del lei&rdquo;.</p></div>

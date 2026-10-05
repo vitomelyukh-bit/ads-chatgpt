@@ -27,6 +27,7 @@ export async function salvaClienteMaps(id: number, fd: FormData) {
   const [account, location] = t(fd, "scheda", 300).split("|");
   await db()`update maps_clienti set attivita = ${t(fd, "attivita", 120)}, citta = ${t(fd, "citta", 80)}, nome = ${t(fd, "nome", 80)},
     email = ${t(fd, "email", 160).toLowerCase()}, whatsapp = ${t(fd, "whatsapp", 30)}, link_maps = ${t(fd, "link_maps", 500) || null},
+    link_recensioni = ${/^https:\/\//.test(t(fd, "link_recensioni", 500)) ? t(fd, "link_recensioni", 500) : null},
     tono = ${t(fd, "tono", 300)}, info = ${t(fd, "info", 3000)}, firma = ${t(fd, "firma", 120)}, spunti = ${t(fd, "spunti", 1500)},
     stato = ${["attivo", "pausa", "disdetto"].includes(t(fd, "stato")) ? t(fd, "stato") : "attivo"},
     google_account = ${account || null}, google_location = ${location || null}
@@ -96,4 +97,21 @@ export async function eseguiGiro() {
   await requireAdmin();
   const log = await giro();
   redirect(`/console/maps?giro=${encodeURIComponent(log.join(" · ") || "niente da fare")}`);
+}
+
+// Assegna al cliente il primo codice libero (card o piedistallo): da lì il link /r/<codice> porta alle sue recensioni.
+export async function assegnaCodiceCliente(id: number, fd: FormData) {
+  await requireAdmin();
+  const tipo = fd.get("tipo") === "piedistallo" ? "piedistallo" : "card";
+  const c = await getClienteMaps(id);
+  if (!c) return;
+  await db()`update nfc_codici set cliente_id = ${id}, richiesta_id = ${c.richiesta_id}, assegnato_il = now()
+    where codice = (select codice from nfc_codici where richiesta_id is null and cliente_id is null and tipo = ${tipo} order by creato_il, codice limit 1 for update skip locked)`;
+  aggiorna(id);
+}
+
+export async function segnaCodiceSpedito(id: number, codice: string) {
+  await requireAdmin();
+  await db()`update nfc_codici set spedito_il = now() where codice = ${codice} and cliente_id = ${id}`;
+  aggiorna(id);
 }

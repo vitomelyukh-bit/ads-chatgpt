@@ -4,11 +4,17 @@ import { db } from "@/lib/db";
 // Porta alla pagina recensioni del cliente e conta i tocchi.
 export async function GET(_: Request, { params }: { params: Promise<{ codice: string }> }) {
   const codice = (await params).codice.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 16);
+  // Il codice può essere del cliente Maps (anche aggiunto a mano) o di una richiesta pagata dal sito.
   const [r] = (await db()`
-    update nfc_codici n set tocchi = tocchi + 1, ultimo_tocco = now()
-    from richieste_scheda s
-    where n.codice = ${codice} and s.id = n.richiesta_id and s.pagata and s.stato <> 'disdetta'
-    returning coalesce(s.link_recensioni, s.link_maps) as link`) as { link: string | null }[];
+    select coalesce(c.link_recensioni, s.link_recensioni, c.link_maps, s.link_maps) as link
+    from nfc_codici n
+    left join maps_clienti c on c.id = n.cliente_id and c.stato <> 'disdetto'
+    left join richieste_scheda s on s.id = n.richiesta_id and s.pagata and s.stato <> 'disdetta'
+    where n.codice = ${codice} and (c.id is not null or s.id is not null)`) as { link: string | null }[];
+  if (r?.link) {
+    await db()`update nfc_codici set tocchi = tocchi + 1, ultimo_tocco = now() where codice = ${codice}`;
+    await db()`insert into nfc_tocchi (codice) values (${codice})`;
+  }
   if (r?.link) return Response.redirect(r.link, 302);
   return new Response(
     `<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Card non ancora attiva</title></head>
