@@ -17,14 +17,14 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
   const collegato = await googleCollegato();
 
   return (
-    <div className="tt-stack-8">
+    <div className="tt-dash__wrap" style={{ maxWidth: "none" }}>
       <div className="tt-row" style={{ justifyContent: "space-between" }}>
-        <h1 className="tt-display-lg">Google Maps: clienti attivi</h1>
+        <h1 className="tt-dash__title">Google Maps: clienti</h1>
         <form action={eseguiGiro}><button className="tt-btn tt-btn--secondary">Esegui il giro adesso</button></form>
       </div>
       {q.giro && <p role="status" className="tt-card tt-body">Giro fatto: {q.giro}</p>}
 
-      <aside className="tt-callout">
+      <aside className="tt-dash__card">
         <span className="tt-tag">{collegato ? "Google collegato" : "Google non collegato"}</span>
         {collegato ? (
           <p style={{ marginTop: "var(--space-3)" }}>Le risposte e le novità escono da sole sulle schede collegate. <Link href="/api/google/oauth">Ricollega l&apos;account</Link></p>
@@ -37,7 +37,7 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
       </aside>
 
       {righe.length === 0 ? <p className="tt-body tt-muted">Nessun cliente ancora. Arrivano da soli quando qualcuno paga dal sito, oppure aggiungili qui sotto.</p> : (
-        <div style={{ overflowX: "auto" }}>
+        <div className="tt-dash__card" style={{ overflowX: "auto" }}>
           <table className="tt-table">
             <thead><tr>{["Attività", "Scheda Google", "Da approvare (cliente)", "Da pubblicare a mano", "Novità in coda", "Stato"].map((h) => <th key={h}>{h}</th>)}</tr></thead>
             <tbody>{righe.map((r) => (
@@ -54,12 +54,12 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
         </div>
       )}
 
-      <form action={nuovoClienteMaps} className="tt-card tt-form" style={{ maxWidth: 640 }}>
-        <h2 className="tt-heading">Aggiungi un cliente a mano</h2>
-        <p className="tt-body tt-muted" style={{ margin: 0 }}>Per chi ha pagato fuori dal sito (porta a porta, bonifico). Chi paga dal sito compare da solo.</p>
+      <form action={nuovoClienteMaps} className="tt-dash__card tt-form" style={{ maxWidth: 560 }}>
+        <h2 className="tt-dash__h2">Nuovo cliente</h2>
+        <p className="tt-dash__muted">Bastano questi tre dati: al resto pensa il sistema. Chi paga dal sito compare da solo.</p>
         {q.errore && <p role="alert" className="tt-alert">Errore: servono almeno nome dell&apos;attività ed email.</p>}
-        {[["attivita", "Nome dell'attività"], ["citta", "Città"], ["nome", "Nome del titolare"], ["email", "Email"], ["whatsapp", "WhatsApp"], ["link_maps", "Link Google Maps"]].map(([k, l]) => (
-          <div key={k} className="tt-field"><label htmlFor={`n-${k}`}>{l}</label><input id={`n-${k}`} name={k} type={k === "email" ? "email" : "text"} /></div>
+        {[["attivita", "Nome dell'attività", "text"], ["email", "Email del titolare", "email"], ["link_maps", "Link Google Maps (facoltativo)", "url"]].map(([k, l, tipo]) => (
+          <div key={k} className="tt-field"><label htmlFor={`n-${k}`}>{l}</label><input id={`n-${k}`} name={k} type={tipo} /></div>
         ))}
         <button className="tt-btn">Crea cliente</button>
       </form>

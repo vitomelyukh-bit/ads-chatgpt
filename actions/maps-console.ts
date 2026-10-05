@@ -30,6 +30,7 @@ export async function salvaClienteMaps(id: number, fd: FormData) {
     email = ${t(fd, "email", 160).toLowerCase()}, whatsapp = ${t(fd, "whatsapp", 30)}, link_maps = ${t(fd, "link_maps", 500) || null},
     link_recensioni = ${/^https:\/\//.test(t(fd, "link_recensioni", 500)) ? t(fd, "link_recensioni", 500) : null},
     tono = ${t(fd, "tono", 300)}, info = ${t(fd, "info", 3000)}, firma = ${t(fd, "firma", 120)}, spunti = ${t(fd, "spunti", 1500)},
+    valore_cliente = ${Number(t(fd, "valore_cliente")) > 0 ? Math.round(Number(t(fd, "valore_cliente"))) : null},
     stato = ${["attivo", "pausa", "disdetto"].includes(t(fd, "stato")) ? t(fd, "stato") : "attivo"},
     google_account = ${account || null}, google_location = ${location || null}
     where id = ${id}`;

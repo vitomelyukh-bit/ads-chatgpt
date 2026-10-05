@@ -1,5 +1,5 @@
 import QRCode from "qrcode";
-import { approva, bloccaNovita, esciArea, salvaNovita, salvaSpunti } from "@/actions/area";
+import { approva, bloccaNovita, esciArea, salvaNovita, salvaSpunti, salvaValore } from "@/actions/area";
 import { Copia } from "@/components/Copia";
 import { Stars } from "@/components/ds/Stars";
 import { requireCliente } from "@/lib/area-auth";
@@ -9,172 +9,202 @@ import { firmaRichiesta } from "@/lib/scheda-token";
 
 export const dynamic = "force-dynamic";
 
+type Dati = { visti: number; chiamate: number; indicazioni: number; sito: number; tocchi?: number };
 const STATO: Record<string, string> = {
   pubblicata: "Risposta pubblicata", "da-pubblicare": "Risposta pronta, in pubblicazione", "da-approvare": "Aspetta il tuo ok",
   nuova: "Stiamo preparando la risposta", errore: "Stiamo pubblicando la risposta", ignorata: "Senza risposta",
 };
 const data = (s: string | null) => (s ? new Date(s).toLocaleDateString("it-IT", { timeZone: "Europe/Rome", day: "numeric", month: "long" }) : "");
 const quando = (s: string) => new Date(s).toLocaleString("it-IT", { timeZone: "Europe/Rome", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+const nomeMese = (m: string, conAnno = false) => new Date(`${m}-15`).toLocaleDateString("it-IT", { month: "long", ...(conAnno ? { year: "numeric" } : {}) });
+const n = (x: number) => x.toLocaleString("it-IT");
+const contatti = (d: Dati) => d.chiamate + d.indicazioni + d.sito;
+
+function Delta({ ora, prima }: { ora: number; prima?: number }) {
+  if (prima === undefined || prima === null) return null;
+  if (prima === 0) return ora > 0 ? <span className="tt-delta tt-delta--su">nuovo</span> : null;
+  const p = Math.round(((ora - prima) / prima) * 100);
+  return <span className={`tt-delta ${p >= 0 ? "tt-delta--su" : "tt-delta--giu"}`}>{p >= 0 ? "▲" : "▼"} {Math.abs(p)}%</span>;
+}
 
 export default async function Area() {
   const id = await requireCliente();
   const c = await getClienteMaps(id);
   if (!c) return <div className="tt-wrap tt-wrap--read tt-page-head"><p className="tt-lead">Account non trovato. Scrivici su WhatsApp.</p></div>;
 
-  const daApprovare = (await db()`select * from maps_recensioni where cliente_id = ${id} and stato = 'da-approvare' order by creata_il`) as Recensione[];
-  const ultime = (await db()`select * from maps_recensioni where cliente_id = ${id} and stato <> 'da-approvare' order by coalesce(scritta_il, creata_il) desc limit 8`) as Recensione[];
-  const novita = (await db()`select * from maps_novita where cliente_id = ${id} and stato in ('programmata', 'bloccata') order by pubblica_il limit 1`) as Novita[];
-  const uscite = (await db()`select * from maps_novita where cliente_id = ${id} and stato in ('pubblicata', 'da-pubblicare') order by coalesce(pubblicata_il, pubblica_il) desc limit 3`) as Novita[];
-  const [report] = (await db()`select mese, dati from maps_report where cliente_id = ${id} order by mese desc limit 1`) as { mese: string; dati: { visti: number; chiamate: number; indicazioni: number; sito: number; prima: { visti: number; chiamate: number; indicazioni: number } | null } }[];
+  const [daApprovare, ultime, novita, uscite, report, tot] = await Promise.all([
+    db()`select * from maps_recensioni where cliente_id = ${id} and stato = 'da-approvare' order by creata_il` as unknown as Promise<Recensione[]>,
+    db()`select * from maps_recensioni where cliente_id = ${id} and stato <> 'da-approvare' order by coalesce(scritta_il, creata_il) desc limit 6` as unknown as Promise<Recensione[]>,
+    db()`select * from maps_novita where cliente_id = ${id} and stato in ('programmata', 'bloccata') order by pubblica_il limit 1` as unknown as Promise<Novita[]>,
+    db()`select * from maps_novita where cliente_id = ${id} and stato in ('pubblicata', 'da-pubblicare') order by coalesce(pubblicata_il, pubblica_il) desc limit 3` as unknown as Promise<Novita[]>,
+    db()`select mese, dati from maps_report where cliente_id = ${id} order by mese desc limit 6` as unknown as Promise<{ mese: string; dati: Dati }[]>,
+    totaliDallInizio(c),
+  ]);
   const [ric] = c.richiesta_id ? ((await db()`select link_recensioni, pagata from richieste_scheda where id = ${c.richiesta_id}`) as { link_recensioni: string | null; pagata: boolean }[]) : [];
-  const [nfc] = (await db()`select count(*)::int as codici, coalesce(sum(n.tocchi), 0)::int as tocchi, min(n.tipo) as tipo,
-      (select count(*) from nfc_tocchi t join nfc_codici k on k.codice = t.codice where k.cliente_id = ${id} and t.quando >= date_trunc('month', now()))::int as mese
-    from nfc_codici n where n.cliente_id = ${id}`) as { codici: number; tocchi: number; tipo: string | null; mese: number }[];
-
   const linkRecensioni = c.link_recensioni || ric?.link_recensioni || c.link_maps;
   const qr = linkRecensioni ? await QRCode.toDataURL(linkRecensioni, { margin: 1, width: 360, color: { dark: "#16140f", light: "#ffffff" } }) : null;
   const messaggio = linkRecensioni ? `Ciao, grazie per essere passato da ${c.attivita}. Se ti sei trovato bene, ci aiuteresti con una recensione su Google? Ci vuole un minuto: ${linkRecensioni}` : "";
-  const n = novita[0];
-  const tot = await totaliDallInizio(c);
-  const diff = (a: number, b?: number) => (b === undefined || b === null ? null : a - b);
+  const prossima = novita[0];
+
+  const ultimo = report[0];
+  const precedente = report[1];
+  const storico = [...report].reverse();
+  const massimo = Math.max(1, ...storico.map((r) => contatti(r.dati)));
+  const stima = ultimo && c.valore_cliente ? Math.round((contatti(ultimo.dati) / 4) * c.valore_cliente) : null;
 
   return (
-    <div className="tt-wrap tt-wrap--read tt-page-head tt-stack-12">
-      <div className="tt-stack-4">
-        <p className="tt-eyebrow" style={{ margin: 0 }}>{c.attivita}{c.citta ? ` · ${c.citta}` : ""}</p>
-        <h1 className="tt-display-lg">Ciao{c.nome ? ` ${c.nome.split(" ")[0]}` : ""}.</h1>
-        <p className="tt-lead">
-          {daApprovare.length
-            ? <>Hai <span className="tt-mark">{daApprovare.length === 1 ? "una risposta" : `${daApprovare.length} risposte`} da approvare.</span></>
-            : "È tutto a posto: al resto pensiamo noi."}
-        </p>
-      </div>
-
-      <section className="tt-stack-4" aria-labelledby="h-fatto">
-        <h2 id="h-fatto" className="tt-heading">Da quando sei con TiTrovano</h2>
-        <ul className="tt-numeri">
-          <li><span className="tt-numeri__n">{tot.risposte}</span><span>risposte alle recensioni</span></li>
-          <li><span className="tt-numeri__n">{tot.novita}</span><span>novità pubblicate</span></li>
-          <li><span className="tt-numeri__n">{tot.recensioni}</span><span>recensioni nuove{tot.media ? `, media ${String(tot.media).replace(".", ",")} ★` : ""}</span></li>
-          {tot.tocchi > 0 ? <li><span className="tt-numeri__n">{tot.tocchi}</span><span>tocchi su card e piedistallo</span></li> : <li><span className="tt-numeri__n">{tot.mesi}</span><span>{tot.mesi === 1 ? "mese" : "mesi"} insieme</span></li>}
-        </ul>
-      </section>
-
-      {daApprovare.length > 0 && (
-        <section className="tt-stack-6" aria-labelledby="h-approva">
-          <h2 id="h-approva" className="tt-heading">Da approvare</h2>
-          <p className="tt-body tt-muted" style={{ margin: 0 }}>Le recensioni sotto le 4 stelle le facciamo vedere a te prima di rispondere. Correggi se vuoi, poi pubblica.</p>
-          {daApprovare.map((r) => (
-            <div key={r.id} id={`r${r.id}`} className="tt-review" style={{ maxWidth: "none", scrollMarginTop: "var(--space-8)" }}>
-              <div className="tt-review__box"><p className="tt-review__who">{r.autore || "Cliente"} <Stars voto={r.stelle} etichetta={`${r.stelle} stelle su 5`} /></p><p>{r.testo || <span className="tt-muted">Nessun testo, solo le stelle.</span>}</p></div>
-              <form action={approva.bind(null, r.id)} className="tt-review__box tt-review__box--reply tt-form">
-                <div className="tt-field"><label htmlFor={`risp-${r.id}`}>La risposta che abbiamo preparato</label><textarea id={`risp-${r.id}`} name="risposta" rows={6} defaultValue={r.bozza ?? ""} required /></div>
-                <button className="tt-btn tt-btn--block">Pubblica questa risposta <span aria-hidden="true">→</span></button>
-              </form>
-            </div>
-          ))}
-        </section>
-      )}
-
-      <section id="novita" className="tt-stack-6" aria-labelledby="h-novita" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <h2 id="h-novita" className="tt-heading">La novità della settimana</h2>
-        {n ? (
-          <div className="tt-card tt-stack-4">
-            <p className="tt-body" style={{ margin: 0 }}>
-              {n.stato === "bloccata" ? <strong>Bloccata: non verrà pubblicata.</strong> : <>Esce <strong>{quando(n.pubblica_il)}</strong>. Se ti va bene non devi fare niente.</>}
-            </p>
-            <form action={salvaNovita.bind(null, n.id)} className="tt-form">
-              <div className="tt-field"><label htmlFor="testo-novita">Testo</label><textarea id="testo-novita" name="testo" rows={6} defaultValue={n.testo} /></div>
-              <div className="tt-actions">
-                <button className="tt-btn">Salva le modifiche</button>
-                <button formAction={bloccaNovita.bind(null, n.id, n.stato !== "bloccata")} className="tt-btn tt-btn--secondary">{n.stato === "bloccata" ? "Sblocca e pubblica" : "Blocca questa novità"}</button>
-              </div>
-            </form>
+    <div className="tt-dash">
+      <div className="tt-wrap tt-dash__wrap">
+        <header className="tt-dash__head">
+          <div>
+            <p className="tt-dash__over">{c.attivita}{c.citta ? ` · ${c.citta}` : ""}</p>
+            <h1 className="tt-dash__title">Ciao{c.nome ? ` ${c.nome.split(" ")[0]}` : ""}</h1>
           </div>
-        ) : (
-          <p className="tt-body tt-muted">La prossima la prepariamo lunedì e ti avvisiamo per email.</p>
-        )}
-        <form action={salvaSpunti} className="tt-form tt-card">
-          <div className="tt-field">
-            <label htmlFor="spunti">Hai qualcosa da raccontare? (facoltativo)</label>
-            <textarea id="spunti" name="spunti" rows={3} defaultValue={c.spunti} placeholder="Es. da venerdì c'è il menù d'autunno, chiusi per ferie dal 10 al 20 agosto…" />
-            <p className="tt-field__help">La usiamo per la prossima novità. Scrivi come ti viene: la sistemiamo noi.</p>
-          </div>
-          <button className="tt-btn tt-btn--secondary">Salva</button>
-        </form>
-        {uscite.length > 0 && (
-          <details className="tt-more"><summary className="tt-btn tt-btn--secondary">Novità già uscite</summary>
-            <ul className="tt-stack-4" style={{ listStyle: "none", padding: 0, marginTop: "var(--space-4)" }}>
-              {uscite.map((u) => <li key={u.id} className="tt-card"><p className="tt-small tt-muted" style={{ margin: 0 }}>{data(u.pubblicata_il ?? u.pubblica_il)}</p><p className="tt-body" style={{ margin: 0 }}>{u.testo}</p></li>)}
-            </ul>
-          </details>
-        )}
-      </section>
+          {daApprovare.length > 0 && (
+            <a href="#approva" className="tt-dash__alert">
+              <strong>{daApprovare.length === 1 ? "1 risposta" : `${daApprovare.length} risposte`}</strong> aspetta il tuo ok <span aria-hidden="true">→</span>
+            </a>
+          )}
+        </header>
 
-      <section className="tt-stack-6" aria-labelledby="h-numeri">
-        <h2 id="h-numeri" className="tt-heading">I tuoi numeri</h2>
-        {report ? (
-          <>
-            <p className="tt-body tt-muted" style={{ margin: 0 }}>Mese di {new Date(`${report.mese}-15`).toLocaleDateString("it-IT", { month: "long", year: "numeric" })}, dati di Google.</p>
-            <ul className="tt-numeri">
-              {[["Ti hanno visto", report.dati.visti, report.dati.prima?.visti], ["Ti hanno chiamato", report.dati.chiamate, report.dati.prima?.chiamate], ["Indicazioni chieste", report.dati.indicazioni, report.dati.prima?.indicazioni], ["Clic sul sito", report.dati.sito, undefined]].map(([l, v, p]) => {
-                const d = diff(v as number, p as number | undefined);
-                return <li key={l as string}><span className="tt-numeri__n">{v as number}</span><span>{l as string}</span>{d !== null && <small>{d >= 0 ? `+${d}` : d} sul mese prima</small>}</li>;
-              })}
-            </ul>
-          </>
-        ) : <p className="tt-body tt-muted">Il primo riepilogo arriva nei primi giorni del mese prossimo, anche per email.</p>}
-        {nfc.codici > 0 && (
-          <div className="tt-card tt-stack-2">
-            <p className="tt-label" style={{ margin: 0 }}>{nfc.codici > 1 ? "Card e piedistalli da banco" : nfc.tipo === "piedistallo" ? "Il tuo piedistallo da banco" : "La tua card da banco"}</p>
-            <p className="tt-body" style={{ margin: 0 }}><span className="tt-numeri__n">{nfc.mese}</span> {nfc.mese === 1 ? "tocco" : "tocchi"} questo mese · {nfc.tocchi} in tutto</p>
-            <p className="tt-small tt-muted" style={{ margin: 0 }}>Ogni tocco è un cliente che ha aperto la pagina per lasciarti una recensione. Più è in vista, vicino alla cassa, più funziona.</p>
-          </div>
-        )}
-      </section>
-
-      {linkRecensioni && (
-        <section className="tt-stack-6" aria-labelledby="h-chiedi">
-          <h2 id="h-chiedi" className="tt-heading">Chiedi recensioni ai clienti contenti</h2>
-          <div className="tt-card tt-stack-4">
-            <p className="tt-body" style={{ margin: 0 }}>Mandalo su WhatsApp a chi è appena stato da te:</p>
-            <p className="tt-body" style={{ margin: 0, padding: "var(--space-4)", background: "var(--paper-sunk)", borderRadius: "var(--radius-md)" }}>{messaggio}</p>
-            <div className="tt-actions">
-              <a className="tt-btn" href={`https://wa.me/?text=${encodeURIComponent(messaggio)}`} target="_blank" rel="noopener">Manda su WhatsApp <span aria-hidden="true">→</span></a>
-              <Copia testo={messaggio} etichetta="Copia il messaggio" />
-            </div>
-            <p className="tt-small tt-muted" style={{ margin: 0 }}>Mandalo a tutti i clienti, non solo a quelli che pensi siano contenti: lo chiedono le regole di Google.</p>
-          </div>
-          {qr && (
-            <div className="tt-card tt-stack-4" style={{ justifyItems: "start" }}>
-              <p className="tt-body" style={{ margin: 0 }}>Oppure stampa il QR e mettilo vicino alla cassa:</p>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={qr} alt="QR per lasciare una recensione" width={180} height={180} style={{ border: "var(--border-thick) solid var(--ink)", borderRadius: "var(--radius-md)" }} />
-              <a className="tt-btn tt-btn--secondary" href={qr} download={`qr-recensioni-${c.id}.png`}>Scarica il QR</a>
-            </div>
+        <section className="tt-dash__hero" aria-labelledby="h-hero">
+          {ultimo ? (
+            <>
+              <p id="h-hero" className="tt-dash__over tt-dash__over--chiaro">A {nomeMese(ultimo.mese)} Google ti ha portato</p>
+              <p className="tt-dash__big">{n(contatti(ultimo.dati))} <span>contatti</span> <Delta ora={contatti(ultimo.dati)} prima={precedente ? contatti(precedente.dati) : undefined} /></p>
+              <p className="tt-dash__split">{n(ultimo.dati.chiamate)} chiamate · {n(ultimo.dati.indicazioni)} richieste di indicazioni · {n(ultimo.dati.sito)} clic sul sito</p>
+              {stima !== null ? (
+                <p className="tt-dash__money">Se anche solo 1 su 4 è diventato cliente: <strong>circa {n(stima)} €</strong> di lavoro.</p>
+              ) : (
+                <form action={salvaValore} className="tt-dash__valore">
+                  <label htmlFor="valore">Quanto ti fa guadagnare in media un cliente?</label>
+                  <span><input id="valore" name="valore" inputMode="numeric" placeholder="40" /> €</span>
+                  <button className="tt-btn">Calcola</button>
+                </form>
+              )}
+            </>
+          ) : (
+            <>
+              <p id="h-hero" className="tt-dash__over tt-dash__over--chiaro">I tuoi numeri</p>
+              <p className="tt-dash__big tt-dash__big--attesa">Il primo resoconto arriva a inizio mese</p>
+              <p className="tt-dash__split">Ti diremo quante persone ti hanno visto su Google, quante ti hanno chiamato, chiesto le indicazioni o aperto il sito. E quanto valgono, in euro.</p>
+            </>
           )}
         </section>
-      )}
 
-      <section className="tt-stack-6" aria-labelledby="h-recensioni">
-        <h2 id="h-recensioni" className="tt-heading">Ultime recensioni</h2>
-        {ultime.length === 0 ? <p className="tt-body tt-muted">Appena arrivano le vedi qui, con la nostra risposta.</p> : ultime.map((r) => (
-          <div key={r.id} className="tt-review" style={{ maxWidth: "none" }}>
-            <div className="tt-review__box">
-              <p className="tt-review__who">{r.autore || "Cliente"} <Stars voto={r.stelle} etichetta={`${r.stelle} stelle su 5`} /> <span className="tt-small tt-muted" style={{ fontWeight: 400 }}>{data(r.scritta_il ?? r.creata_il)}</span></p>
-              {r.testo && <p>{r.testo}</p>}
-            </div>
-            {(r.risposta || r.bozza) && <div className="tt-review__box tt-review__box--reply"><p className="tt-review__who">{STATO[r.stato] ?? r.stato}</p><p>{r.risposta ?? r.bozza}</p></div>}
+        {ultimo && (
+          <div className="tt-dash__grid">
+            <section className="tt-dash__card" aria-labelledby="h-graf">
+              <h2 id="h-graf" className="tt-dash__h2">Contatti da Google, mese per mese</h2>
+              <ol className="tt-bars">
+                {storico.map((r) => (
+                  <li key={r.mese}><span className="tt-bars__v">{n(contatti(r.dati))}</span><span className="tt-bars__b" style={{ height: `${Math.max(6, (contatti(r.dati) / massimo) * 100)}%` }} /><span className="tt-bars__m">{nomeMese(r.mese).slice(0, 3)}</span></li>
+                ))}
+              </ol>
+            </section>
+            <section className="tt-dash__card" aria-labelledby="h-kpi">
+              <h2 id="h-kpi" className="tt-dash__h2">Il mese in dettaglio</h2>
+              <ul className="tt-kpi">
+                {([["Ti hanno visto", "visti"], ["Chiamate", "chiamate"], ["Indicazioni", "indicazioni"], ["Clic sul sito", "sito"]] as const).map(([l, k]) => (
+                  <li key={k}><span className="tt-kpi__l">{l}</span><span className="tt-kpi__n">{n(ultimo.dati[k])}</span><Delta ora={ultimo.dati[k]} prima={precedente?.dati[k]} /></li>
+                ))}
+              </ul>
+            </section>
           </div>
-        ))}
-      </section>
+        )}
 
-      <section className="tt-stack-4" style={{ borderTop: "1px solid var(--line)", paddingTop: "var(--space-8)" }}>
-        <div className="tt-actions">
-          {ric?.pagata && c.richiesta_id && <a className="tt-btn tt-btn--secondary" href={`/attiva/gestisci?t=${firmaRichiesta(c.richiesta_id)}`}>Abbonamento e fatture</a>}
-          <form action={esciArea}><button className="tt-btn tt-btn--secondary">Esci</button></form>
+        <section className="tt-dash__card" aria-labelledby="h-fatto">
+          <h2 id="h-fatto" className="tt-dash__h2">Il lavoro fatto per te{tot.mesi > 1 ? ` in ${tot.mesi} mesi` : ""}</h2>
+          <ul className="tt-kpi tt-kpi--4">
+            <li><span className="tt-kpi__n">{n(tot.risposte)}</span><span className="tt-kpi__l">risposte alle recensioni</span></li>
+            <li><span className="tt-kpi__n">{n(tot.novita)}</span><span className="tt-kpi__l">novità pubblicate</span></li>
+            <li><span className="tt-kpi__n">{n(tot.recensioni)}</span><span className="tt-kpi__l">recensioni nuove{tot.media ? ` · ${String(tot.media).replace(".", ",")} ★` : ""}</span></li>
+            <li><span className="tt-kpi__n">{n(tot.tocchi)}</span><span className="tt-kpi__l">tocchi su card e piedistallo</span></li>
+          </ul>
+        </section>
+
+        {daApprovare.length > 0 && (
+          <section id="approva" className="tt-dash__card tt-dash__card--mark" aria-labelledby="h-approva">
+            <h2 id="h-approva" className="tt-dash__h2">Da approvare</h2>
+            <p className="tt-dash__muted">Le recensioni sotto le 4 stelle le facciamo vedere a te prima di rispondere. Correggi se vuoi, poi pubblica.</p>
+            {daApprovare.map((r) => (
+              <div key={r.id} id={`r${r.id}`} className="tt-dash__review">
+                <p className="tt-dash__who">{r.autore || "Cliente"} <Stars voto={r.stelle} etichetta={`${r.stelle} stelle su 5`} /></p>
+                <p>{r.testo || <span className="tt-dash__muted">Nessun testo, solo le stelle.</span>}</p>
+                <form action={approva.bind(null, r.id)} className="tt-form">
+                  <div className="tt-field"><label htmlFor={`risp-${r.id}`}>La risposta che abbiamo preparato</label><textarea id={`risp-${r.id}`} name="risposta" rows={5} defaultValue={r.bozza ?? ""} required /></div>
+                  <button className="tt-btn tt-btn--block">Pubblica questa risposta <span aria-hidden="true">→</span></button>
+                </form>
+              </div>
+            ))}
+          </section>
+        )}
+
+        <div className="tt-dash__grid">
+          <section id="novita" className="tt-dash__card" aria-labelledby="h-novita">
+            <h2 id="h-novita" className="tt-dash__h2">La novità della settimana</h2>
+            {prossima ? (
+              <form action={salvaNovita.bind(null, prossima.id)} className="tt-form">
+                <p className="tt-dash__muted">{prossima.stato === "bloccata" ? <strong>Bloccata: non verrà pubblicata.</strong> : <>Esce <strong>{quando(prossima.pubblica_il)}</strong>. Se ti va bene, non fare niente.</>}</p>
+                <textarea aria-label="Testo della novità" name="testo" rows={6} defaultValue={prossima.testo} />
+                <div className="tt-actions">
+                  <button className="tt-btn tt-btn--secondary">Salva le modifiche</button>
+                  <button formAction={bloccaNovita.bind(null, prossima.id, prossima.stato !== "bloccata")} className="tt-btn tt-btn--secondary">{prossima.stato === "bloccata" ? "Sblocca" : "Blocca"}</button>
+                </div>
+              </form>
+            ) : uscite[0] ? (
+              <><p className="tt-dash__muted">Ultima uscita il {data(uscite[0].pubblicata_il ?? uscite[0].pubblica_il)}:</p><p>{uscite[0].testo}</p></>
+            ) : <p className="tt-dash__muted">La prepariamo lunedì e ti avvisiamo per email.</p>}
+            <form action={salvaSpunti} className="tt-form" style={{ marginTop: "var(--space-6)" }}>
+              <div className="tt-field">
+                <label htmlFor="spunti">Hai qualcosa da raccontare la prossima volta?</label>
+                <textarea id="spunti" name="spunti" rows={2} defaultValue={c.spunti} placeholder="Es. nuovo trattamento, chiusura per ferie…" />
+              </div>
+              <button className="tt-btn tt-btn--secondary">Salva</button>
+            </form>
+          </section>
+
+          {linkRecensioni && (
+            <section className="tt-dash__card" aria-labelledby="h-chiedi">
+              <h2 id="h-chiedi" className="tt-dash__h2">Chiedi una recensione</h2>
+              <p className="tt-dash__muted">Mandalo a chi è appena stato da te. A tutti, non solo a chi pensi sia contento.</p>
+              <p className="tt-dash__msg">{messaggio}</p>
+              <div className="tt-actions">
+                <a className="tt-btn" href={`https://wa.me/?text=${encodeURIComponent(messaggio)}`} target="_blank" rel="noopener">Manda su WhatsApp <span aria-hidden="true">→</span></a>
+                <Copia testo={messaggio} etichetta="Copia" />
+              </div>
+              {qr && (
+                <div className="tt-dash__qr">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={qr} alt="QR per lasciare una recensione" width={112} height={112} />
+                  <div><p style={{ margin: 0 }}>Oppure stampa il QR e mettilo vicino alla cassa.</p><a href={qr} download={`qr-recensioni-${c.id}.png`}>Scarica il QR</a></div>
+                </div>
+              )}
+            </section>
+          )}
         </div>
-      </section>
+
+        <section className="tt-dash__card" aria-labelledby="h-recensioni">
+          <h2 id="h-recensioni" className="tt-dash__h2">Ultime recensioni e risposte</h2>
+          {ultime.length === 0 ? <p className="tt-dash__muted">Appena arrivano le vedi qui, con la nostra risposta.</p> : (
+            <ul className="tt-dash__list">
+              {ultime.map((r) => (
+                <li key={r.id}>
+                  <p className="tt-dash__who">{r.autore || "Cliente"} <Stars voto={r.stelle} etichetta={`${r.stelle} stelle su 5`} /> <span className="tt-dash__muted">{data(r.scritta_il ?? r.creata_il)}</span></p>
+                  {r.testo && <p>{r.testo}</p>}
+                  {(r.risposta || r.bozza) && <p className="tt-dash__reply"><strong>{STATO[r.stato] ?? r.stato}:</strong> {r.risposta ?? r.bozza}</p>}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <footer className="tt-actions tt-dash__foot">
+          {ric?.pagata && c.richiesta_id && <a className="tt-btn tt-btn--secondary" href={`/attiva/gestisci?t=${firmaRichiesta(c.richiesta_id)}`}>Abbonamento e fatture</a>}
+          {stima !== null && <form action={salvaValore}><input type="hidden" name="valore" value="" /><button className="tt-btn tt-btn--secondary">Cambia il valore di un cliente</button></form>}
+          <form action={esciArea}><button className="tt-btn tt-btn--secondary">Esci</button></form>
+        </footer>
+      </div>
     </div>
   );
 }

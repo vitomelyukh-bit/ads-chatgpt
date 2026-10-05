@@ -80,3 +80,6 @@ create table if not exists nfc_tocchi (
   quando timestamptz not null default now()
 );
 create index if not exists nfc_tocchi_codice on nfc_tocchi(codice, quando);
+
+-- Quanto vale in media un cliente per l'attività (euro): serve alla stima del valore in area e report.
+alter table maps_clienti add column if not exists valore_cliente int;

@@ -68,3 +68,10 @@ export async function salvaSpunti(fd: FormData) {
   await db()`update maps_clienti set spunti = ${String(fd.get("spunti") ?? "").trim().slice(0, 1500)} where id = ${id}`;
   revalidatePath("/area");
 }
+
+export async function salvaValore(fd: FormData) {
+  const id = await requireCliente();
+  const v = Math.round(Number(String(fd.get("valore") ?? "").replace(",", ".")));
+  await db()`update maps_clienti set valore_cliente = ${v > 0 && v < 100000 ? v : null} where id = ${id}`;
+  revalidatePath("/area");
+}
