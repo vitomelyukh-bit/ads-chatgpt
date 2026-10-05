@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import type Stripe from "stripe";
 import { db } from "@/lib/db";
 import { email, TITROVANO } from "@/lib/email";
+import { bozzaSpedizione } from "@/lib/packlink";
 import { EXTRA, isTipoExtra, linkWhatsApp } from "@/lib/scheda";
 import { site } from "@/lib/site";
 
@@ -17,6 +18,19 @@ export async function registraOrdineBanco(s: Stripe.Checkout.Session) {
     values (${tipo}, ${s.id}, ${s.customer_details?.name ?? sped?.name ?? ""}, ${s.customer_details?.email ?? ""}, ${s.customer_details?.phone ?? ""}, ${indirizzo}, ${attivita}, ${(s.amount_total ?? 0) / 100})
     on conflict (stripe_session) do nothing returning *`) as { id: number; nome: string; email: string; telefono: string; indirizzo: string; attivita: string }[];
   if (!o) return null; // già registrato
+
+  // Spedizione: salva cosa ha pagato il cliente e crea la bozza su Packlink (l'etichetta si paga dal pannello).
+  const costo = Number(s.metadata?.spedizione) || (s.shipping_cost?.amount_total ?? 0) / 100;
+  let rif: string | null = null;
+  if (a) {
+    rif = await bozzaSpedizione({
+      tipo, serviceId: s.metadata?.servizio ?? "", nome: sped?.name ?? o.nome, email: o.email, telefono: o.telefono,
+      via: a.line1 ?? "", via2: a.line2 ?? "", cap: a.postal_code ?? "", citta: a.city ?? "", provincia: a.state ?? "",
+      valore: EXTRA[tipo].prezzo, riferimento: `TT-${o.id}`,
+    }).catch((e) => { console.error("[banco] bozza Packlink", e); return null; });
+  }
+  await db()`update ordini_banco set spedizione_servizio = ${s.metadata?.servizio ?? null}, spedizione_costo = ${costo || null},
+    corriere = ${s.metadata?.corriere ?? null}, packlink_ref = ${rif} where id = ${o.id}`;
   const key = process.env.RESEND_API_KEY, from = process.env.RESEND_FROM;
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((x) => x.trim()).filter(Boolean);
   if (key && from && to?.length) {
@@ -27,7 +41,8 @@ export async function registraOrdineBanco(s: Stripe.Checkout.Session) {
         marchio: TITROVANO, anteprima: `${o.attivita || o.nome} · da spedire`, titolo: `${nome} da spedire`, evidenzia: "da spedire",
         blocchi: [
           { tipo: "righe", righe: [["Attività / link", o.attivita || "—"], ["Cliente", `${o.nome}${o.telefono ? ` · ${o.telefono}` : ""}`], ["Email", o.email], ["Indirizzo", o.indirizzo || "—"]] },
-          { tipo: "p", testo: "Cosa fare: scrivi sul chip il link per le recensioni della sua attività (con NFC Tools) e spedisci. Poi segnalo come spedito in console." },
+          { tipo: "righe", righe: [["Spedizione pagata", `${costo.toFixed(2).replace(".", ",")} € · ${s.metadata?.corriere ?? "corriere"}`], ["Packlink", rif ? `bozza ${rif}: paga l'etichetta dal pannello` : "bozza non creata: creala a mano su Packlink"]] },
+          { tipo: "p", testo: "Cosa fare: scrivi sul chip il link per le recensioni della sua attività (con NFC Tools), imballa, paga l'etichetta su Packlink e spedisci. Poi segnalo come spedito in console." },
           { tipo: "bottone", testo: "Apri la console →", url: `${site.url}/console/maps` },
         ],
       }) }),

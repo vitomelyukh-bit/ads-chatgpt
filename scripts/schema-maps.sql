@@ -102,3 +102,10 @@ create table if not exists ordini_banco (
   stato text not null default 'da-spedire',
   spedito_il timestamptz
 );
+
+-- Spedizione Packlink degli ordini da banco.
+alter table ordini_banco add column if not exists spedizione_servizio text;
+alter table ordini_banco add column if not exists spedizione_costo numeric(8,2);
+alter table ordini_banco add column if not exists corriere text;
+alter table ordini_banco add column if not exists packlink_ref text;
+alter table ordini_banco add column if not exists tracking_url text;

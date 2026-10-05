@@ -197,7 +197,7 @@ export default function Home() {
                 <ProdottoFoto tipo={k} />
                 <h3>{EXTRA[k].nome}</h3>
                 <p className="tt-muted" style={{ margin: 0 }}>{EXTRA[k].misure}</p>
-                <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola, spedizione inclusa</small></p>
+                <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola + spedizione con corriere, gratis se lo aggiungi al servizio</small></p>
                 <p>{EXTRA[k].descrizione}</p>
                 <form action={compraBanco.bind(null, k)}><button className="tt-btn tt-btn--block">Compralo ora <span aria-hidden="true">→</span></button></form>
               </div>

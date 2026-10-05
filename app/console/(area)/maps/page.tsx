@@ -62,6 +62,7 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
             <div key={o.id} className="tt-soft__item">
               <p className="tt-soft__who">{o.tipo === "card" ? "Card" : "Piedistallo"} · {o.attivita || o.nome} <span className="tt-soft__pill">{o.stato === "spedito" ? "spedito" : "da spedire"}</span></p>
               <p className="tt-soft__muted" style={{ whiteSpace: "pre-line" }}>{o.indirizzo}{o.telefono ? `\n${o.telefono}` : ""}{o.email ? ` · ${o.email}` : ""}</p>
+              {(o as unknown as { packlink_ref?: string }).packlink_ref && <p className="tt-soft__muted">Packlink: bozza {(o as unknown as { packlink_ref?: string }).packlink_ref} · <a href="https://pro.packlink.it/private/shipments/ready-to-purchase" target="_blank" rel="noopener">apri il pannello</a></p>}
               {o.stato !== "spedito" && <form action={segnaOrdineSpedito.bind(null, o.id)}><button className="tt-btn tt-btn--secondary">Segna spedito</button></form>}
             </div>
           ))}
