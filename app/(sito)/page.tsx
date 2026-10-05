@@ -23,11 +23,11 @@ export const metadata = pageMetadata({
 
 // I problemi che il titolare vive ogni giorno, detti con le sue parole.
 const problemi = [
-  { titolo: "Il cliente decide in pochi secondi", testo: "Cerca dal telefono «pizzeria vicino a me», guarda stelle, ultime recensioni e orari, e sceglie. Se la tua scheda dice poco, sceglie il vicino. E tu non saprai mai di averlo perso." },
-  { titolo: "Chi è contento non scrive. Chi è arrabbiato sì.", testo: "Cento clienti escono soddisfatti e non lasciano traccia. Uno esce scontento e scrive tre righe. Su Google resta solo quella." },
-  { titolo: "Una critica senza risposta resta lì per mesi", testo: "La legge chiunque ti cerca. Senza una risposta sembra che tu non te ne sia accorto, o che non ti importi. Con una risposta calma, la stessa critica dice: qui ci tengono." },
-  { titolo: "Il concorrente ti passa davanti", testo: "Lavora peggio di te, ma ha più recensioni e più recenti. Secondo Google numero e punteggio delle recensioni contano per chi compare più in alto: così i clienti della zona vanno da lui." },
-  { titolo: "E tu non hai tempo", testo: "Apri presto, chiudi tardi, pensi a fornitori, conti e clienti. Google è sempre l'ultima cosa della lista. Per questo la scheda resta ferma." },
+  { titolo: "Il cliente decide in pochi secondi", settore: "Pizzeria", esempio: "Una coppia in giro la sera cerca «pizzeria aperta adesso». Sul telefono vede due pizzerie vicine: una con foto recenti e risposte gentili, l'altra con l'orario di chiusura sbagliato. Prenotano nella prima, e l'altra non lo saprà mai.", testo: "Cerca dal telefono «pizzeria vicino a me», guarda stelle, ultime recensioni e orari, e sceglie. Se la tua scheda dice poco, sceglie il vicino. E tu non saprai mai di averlo perso." },
+  { titolo: "Chi è contento non scrive. Chi è arrabbiato sì.", settore: "Parrucchiere", esempio: "Un salone fa decine di pieghe e tagli a settimana, tutti clienti contenti. Su Google, però, l'ultima recensione è di una cliente che ha aspettato venti minuti. È la prima cosa che legge chi lo cerca.", testo: "Cento clienti escono soddisfatti e non lasciano traccia. Uno esce scontento e scrive tre righe. Su Google resta solo quella." },
+  { titolo: "Una critica senza risposta resta lì per mesi", settore: "Idraulico", esempio: "«È arrivato tardi e ha lasciato sporco», scritta mesi fa, senza risposta. Chi ha un tubo che perde e cerca un idraulico in zona la legge e passa al prossimo. Bastavano tre righe calme per cambiare tutto.", testo: "La legge chiunque ti cerca. Senza una risposta sembra che tu non te ne sia accorto, o che non ti importi. Con una risposta calma, la stessa critica dice: qui ci tengono." },
+  { titolo: "Il concorrente ti passa davanti", settore: "Centro estetico", esempio: "Due centri estetici nella stessa via. Il tuo lavora meglio, ma ha poche recensioni e l'ultima è dell'anno scorso. L'altro ne riceve ogni settimana. Chi cerca «estetista vicino a me» vede prima l'altro.", testo: "Lavora peggio di te, ma ha più recensioni e più recenti. Secondo Google numero e punteggio delle recensioni contano per chi compare più in alto: così i clienti della zona vanno da lui." },
+  { titolo: "E tu non hai tempo", settore: "Bar", esempio: "Il bar apre alle sei e chiude la sera. Rispondere alle recensioni dopo la chiusura, con i conti ancora da fare? Il proposito c'è sempre, ma non succede mai.", testo: "Apri presto, chiudi tardi, pensi a fornitori, conti e clienti. Google è sempre l'ultima cosa della lista. Per questo la scheda resta ferma." },
 ];
 
 // Ogni servizio detto come problema risolto.
@@ -117,7 +117,7 @@ export default function Home() {
             Lavori bene. Ma su Google <span className="tt-mark">non si vede.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-6">
-            <ul className="tt-points">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
+            <ul className="tt-points">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p><p className="tt-esempio"><span className="tt-tag">Esempio · {m.settore}</span>{m.esempio}</p></li>)}</ul>
             <p className="tt-body-strong" style={{ margin: 0, fontSize: 20 }}>
               Non ti serve un&apos;agenzia, un contratto lungo o imparare un programma. Ti serve qualcuno che lo faccia al posto tuo,
               ogni settimana.
