@@ -263,6 +263,22 @@ export async function giro() {
   return log;
 }
 
+// Ogni cliente ha un suo link fisso per card e piedistalli: titrovano.it/r/<codice>.
+// Si scrive sulla card con un'app NFC (es. NFC Tools) e da lì ogni tocco viene contato.
+const ALFABETO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // niente 0/O/1/I
+export async function codiceCard(clienteId: number) {
+  const [gia] = (await db()`select codice from nfc_codici where cliente_id = ${clienteId} order by assegnato_il nulls last, creato_il limit 1`) as { codice: string }[];
+  if (gia) return gia.codice;
+  for (let i = 0; i < 5; i++) {
+    const codice = Array.from({ length: 6 }, () => ALFABETO[Math.floor(Math.random() * ALFABETO.length)]).join("");
+    const [r] = (await db()`insert into nfc_codici (codice, tipo, cliente_id, assegnato_il) values (${codice}, 'card', ${clienteId}, now())
+      on conflict do nothing returning codice`) as { codice: string }[];
+    if (r) return r.codice;
+  }
+  throw new Error("Impossibile creare il codice della card");
+}
+export const linkCard = (codice: string) => `${site.url}/r/${codice}`;
+
 // Da una richiesta pagata nasce il cliente del servizio (idempotente).
 export async function creaClienteDaRichiesta(richiestaId: number) {
   const [c] = (await db()`insert into maps_clienti (richiesta_id, attivita, citta, nome, email, whatsapp, link_maps)
@@ -270,6 +286,7 @@ export async function creaClienteDaRichiesta(richiestaId: number) {
     on conflict (richiesta_id) where richiesta_id is not null do nothing returning *`) as Cliente[];
   if (c) {
     await db()`update nfc_codici set cliente_id = ${c.id} where richiesta_id = ${richiestaId}`;
+    await codiceCard(c.id);
     await db()`update maps_clienti m set link_recensioni = s.link_recensioni from richieste_scheda s where m.id = ${c.id} and s.id = ${richiestaId}`;
   }
   return c ?? null;

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { aggiornaNovita, assegnaCodiceCliente, generaNovita, segnaCodiceSpedito, mandaAccessoCliente, recensioneManuale, rispostaDaAdmin, salvaClienteMaps, segnaRecensione } from "@/actions/maps-console";
+import { aggiornaNovita, generaNovita, mandaAccessoCliente, recensioneManuale, rispostaDaAdmin, salvaClienteMaps, segnaRecensione } from "@/actions/maps-console";
 import { Copia } from "@/components/Copia";
 import { Stars } from "@/components/ds/Stars";
 import { linkArea } from "@/lib/area-auth";
 import { db } from "@/lib/db";
 import { elencaSchede, googleCollegato, type SchedaGoogle } from "@/lib/gbp";
-import { getClienteMaps, type Novita, type Recensione } from "@/lib/maps";
+import { codiceCard, getClienteMaps, linkCard, type Novita, type Recensione } from "@/lib/maps";
 
 const data = (s: string | null) => (s ? new Date(s).toLocaleString("it-IT", { timeZone: "Europe/Rome", dateStyle: "short", timeStyle: "short" }) : "");
 const STATI_N: Record<string, string> = { programmata: "Programmata", bloccata: "Bloccata", pubblicata: "Pubblicata", "da-pubblicare": "Da pubblicare a mano", errore: "Errore" };
@@ -22,11 +22,10 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
   let erroreSchede = "";
   if (await googleCollegato()) schede = await elencaSchede().catch((e) => { erroreSchede = (e as Error).message; return []; });
   const link = linkArea(c.id);
-  const codici = (await db()`select n.codice, n.tipo, n.tocchi, n.spedito_il,
-      (select count(*) from nfc_tocchi t where t.codice = n.codice and t.quando >= date_trunc('month', now()))::int as mese
-    from nfc_codici n where n.cliente_id = ${id} order by n.assegnato_il`) as { codice: string; tipo: string; tocchi: number; spedito_il: string | null; mese: number }[];
-  const [liberi] = (await db()`select count(*) filter (where tipo = 'card')::int as card, count(*) filter (where tipo = 'piedistallo')::int as piedistallo
-    from nfc_codici where richiesta_id is null and cliente_id is null`) as { card: number; piedistallo: number }[];
+  const card = linkCard(await codiceCard(c.id));
+  const [tocchi] = (await db()`select coalesce(sum(n.tocchi), 0)::int as tutti,
+      (select count(*) from nfc_tocchi t join nfc_codici k on k.codice = t.codice where k.cliente_id = ${id} and t.quando >= date_trunc('month', now()))::int as mese
+    from nfc_codici n where n.cliente_id = ${id}`) as { tutti: number; mese: number }[];
 
   return (
     <div className="tt-stack-12">
@@ -41,22 +40,19 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
       </div>
 
       <section className="tt-stack-6">
-        <h2 className="tt-heading">Card e piedistalli</h2>
-        {codici.length === 0 ? <p className="tt-body tt-muted" style={{ margin: 0 }}>Nessuno assegnato.</p> : (
-          <table className="tt-table"><thead><tr>{["Codice", "Tipo", "Tocchi questo mese", "Tocchi in tutto", "Link da programmare", ""].map((h) => <th key={h}>{h}</th>)}</tr></thead>
-            <tbody>{codici.map((k) => (
-              <tr key={k.codice}><td><strong>{k.codice}</strong></td><td>{k.tipo}</td><td>{k.mese}</td><td>{k.tocchi}</td>
-                <td><a href={`/r/${k.codice}`} target="_blank" rel="noopener">titrovano.it/r/{k.codice}</a></td>
-                <td>{k.spedito_il ? <span className="tt-muted">Spedito il {data(k.spedito_il)}</span> : <form action={segnaCodiceSpedito.bind(null, c.id, k.codice)}><button className="tt-chip">Segna spedito</button></form>}</td></tr>
-            ))}</tbody>
-          </table>
-        )}
-        <form action={assegnaCodiceCliente.bind(null, c.id)} className="tt-row">
-          <select name="tipo" aria-label="Tipo" defaultValue="card" style={{ minHeight: 44 }}><option value="card">Card ({liberi.card} liberi)</option><option value="piedistallo">Piedistallo ({liberi.piedistallo} liberi)</option></select>
-          <button className="tt-btn tt-btn--secondary">Assegna un codice libero</button>
-          <Link href="/console/scheda/codici">Genera codici →</Link>
-        </form>
-        <p className="tt-small tt-muted" style={{ margin: 0 }}>Chi tocca la card apre il link per le recensioni (impostazioni qui sotto), altrimenti la scheda Maps. Un tocco conta chi ha aperto la pagina, non chi ha davvero scritto la recensione.</p>
+        <h2 className="tt-heading">Card e piedistallo</h2>
+        <div className="tt-card tt-stack-4">
+          <p className="tt-body" style={{ margin: 0 }}>Il link di {c.attivita} per card e piedistallo (sempre lo stesso, vale per tutti i pezzi):</p>
+          <p className="tt-heading" style={{ margin: 0, fontSize: 24, wordBreak: "break-all" }}>{card.replace(/^https?:\/\//, "")}</p>
+          <div className="tt-actions"><Copia testo={card} etichetta="Copia il link" /><a className="tt-btn tt-btn--secondary" href={card} target="_blank" rel="noopener">Prova il link</a></div>
+          <ol className="tt-body" style={{ margin: 0, paddingLeft: "var(--space-6)" }}>
+            <li>Apri l&apos;app gratuita NFC Tools sul telefono.</li>
+            <li>Scrivi → Aggiungi un record → URL, e incolla il link.</li>
+            <li>Tocca Scrivi e avvicina la card o il piedistallo. Fatto.</li>
+          </ol>
+          <p className="tt-body" style={{ margin: 0 }}><strong>{tocchi.mese}</strong> {tocchi.mese === 1 ? "tocco" : "tocchi"} questo mese · {tocchi.tutti} in tutto</p>
+          <p className="tt-small tt-muted" style={{ margin: 0 }}>Il link porta al &ldquo;link diretto per le recensioni&rdquo; (impostazioni sotto) o alla scheda Maps. Un tocco conta chi ha aperto la pagina, non chi ha scritto la recensione.</p>
+        </div>
       </section>
 
       <section className="tt-stack-6">

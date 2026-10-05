@@ -7,7 +7,7 @@ import { linkArea } from "@/lib/area-auth";
 import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { email, TITROVANO } from "@/lib/email";
-import { aggiungiRecensioneManuale, approvaRisposta, getClienteMaps, giro, preparaNovita } from "@/lib/maps";
+import { aggiungiRecensioneManuale, approvaRisposta, codiceCard, getClienteMaps, giro, preparaNovita } from "@/lib/maps";
 
 // Azioni del backoffice Google Maps (solo admin).
 const t = (fd: FormData, k: string, max = 2000) => String(fd.get(k) ?? "").trim().slice(0, max);
@@ -19,6 +19,7 @@ export async function nuovoClienteMaps(fd: FormData) {
   if (!attivita || !/^\S+@\S+\.\S+$/.test(mail)) redirect("/console/maps?errore=dati");
   const [c] = (await db()`insert into maps_clienti (attivita, citta, nome, email, whatsapp, link_maps)
     values (${attivita}, ${t(fd, "citta", 80)}, ${t(fd, "nome", 80)}, ${mail}, ${t(fd, "whatsapp", 30)}, ${t(fd, "link_maps", 500) || null}) returning id`) as { id: number }[];
+  await codiceCard(c.id);
   redirect(`/console/maps/${c.id}`);
 }
 
@@ -97,21 +98,4 @@ export async function eseguiGiro() {
   await requireAdmin();
   const log = await giro();
   redirect(`/console/maps?giro=${encodeURIComponent(log.join(" · ") || "niente da fare")}`);
-}
-
-// Assegna al cliente il primo codice libero (card o piedistallo): da lì il link /r/<codice> porta alle sue recensioni.
-export async function assegnaCodiceCliente(id: number, fd: FormData) {
-  await requireAdmin();
-  const tipo = fd.get("tipo") === "piedistallo" ? "piedistallo" : "card";
-  const c = await getClienteMaps(id);
-  if (!c) return;
-  await db()`update nfc_codici set cliente_id = ${id}, richiesta_id = ${c.richiesta_id}, assegnato_il = now()
-    where codice = (select codice from nfc_codici where richiesta_id is null and cliente_id is null and tipo = ${tipo} order by creato_il, codice limit 1 for update skip locked)`;
-  aggiorna(id);
-}
-
-export async function segnaCodiceSpedito(id: number, codice: string) {
-  await requireAdmin();
-  await db()`update nfc_codici set spedito_il = now() where codice = ${codice} and cliente_id = ${id}`;
-  aggiorna(id);
 }

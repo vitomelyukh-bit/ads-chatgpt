@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import type Stripe from "stripe";
 import { db } from "@/lib/db";
 import { email, TITROVANO, type Blocco } from "@/lib/email";
-import { creaClienteDaRichiesta } from "@/lib/maps";
+import { codiceCard, creaClienteDaRichiesta } from "@/lib/maps";
 import { firmaRichiesta } from "@/lib/scheda-token";
 import { EXTRA, isTipoExtra, scheda } from "@/lib/scheda";
 import { site } from "@/lib/site";
@@ -26,9 +26,9 @@ export async function attivaDaCheckout(session: Stripe.Checkout.Session) {
   const r = aggiornate[0];
   if (!r) return null; // già attivata
 
-  let codice: string | null = null;
-  if (isTipoExtra(r.nfc_tipo)) codice = await assegnaCodiceLibero(r.id, r.nfc_tipo);
-  await creaClienteDaRichiesta(r.id).catch((e) => console.error("[scheda] cliente Maps", e));
+  // Il cliente Maps nasce con il suo link fisso: è quello da scrivere su card e piedistallo.
+  const cliente = await creaClienteDaRichiesta(r.id).catch((e) => { console.error("[scheda] cliente Maps", e); return null; });
+  const codice = cliente ? await codiceCard(cliente.id).catch(() => null) : null;
   await emailAttivazione(r, codice);
   return r;
 }
@@ -43,10 +43,10 @@ export async function assegnaCodiceLibero(richiestaId: number, tipo: string) {
 
 function blocchiCard(tipo: string | null, codice: string | null, indirizzo: string): Blocco[] {
   if (!isTipoExtra(tipo)) return [];
-  if (!codice) return [{ tipo: "evidenza", etichetta: "Attenzione", testo: `Codici "${tipo}" esauriti: generane di nuovi dalla console e assegnane uno.` }];
+  if (!codice) return [{ tipo: "evidenza", etichetta: "Attenzione", testo: "Link della card non creato: lo trovi nella scheda del cliente in console (Google Maps)." }];
   return [
-    { tipo: "evidenza", etichetta: `${EXTRA[tipo].nome} da spedire`, testo: `Codice ${codice}` },
-    { tipo: "righe", righe: [["Indirizzo", indirizzo], ["Link della card", `${site.url}/r/${codice}`]] },
+    { tipo: "evidenza", etichetta: `${EXTRA[tipo].nome} da spedire`, testo: `Scrivi questo link con l'app NFC Tools: ${site.url}/r/${codice}` },
+    { tipo: "righe", righe: [["Indirizzo", indirizzo]] },
   ];
 }
 
