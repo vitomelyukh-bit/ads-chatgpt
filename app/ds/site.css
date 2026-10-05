@@ -8,14 +8,9 @@
 }
 
 /* Tema scuro per chi lo preferisce (stessi valori di [data-theme="dark"]). */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper:#131210;--paper-raised:#1e1c19;--paper-sunk:#0b0a09;--ink:#f5efe3;--ink-muted:#b9b1a2;--line:#3a362f;--line-strong:#8a8272;--brand:#8fa6ff;--brand-hover:#b3c2ff;--on-brand:#0d1230;--brand-tint:#1c2350;--mark:#ffd53d;--on-mark:#16140f;--mark-tint:#3a3110;--ok:#7fd3e0;--danger:#ff9a8f;
-  }
-}
+/* Per ora solo tema chiaro: il tema scuro del sistema operativo non cambia i colori. */
 
-html { background: var(--paper); color-scheme: light; }
-@media (prefers-color-scheme: dark) { html:not([data-theme="light"]) { color-scheme: dark; } }
+html { background: var(--paper); color-scheme: only light; }
 ::selection { background: var(--mark); color: var(--on-mark); }
 body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 
@@ -182,11 +177,7 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-tag--start { justify-self: start; }
 @media (max-width: 760px) { .tt-extra-grid { grid-template-columns: 1fr; } .tt-price__amount { font-size: 52px; } }
 
-/* Logo: versione scura quando il sito segue il tema scuro del sistema; 32px su telefono */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .tt-logo .on-light { display: none; }
-  :root:not([data-theme="light"]) .tt-logo .on-dark { display: block; }
-}
+/* Logo: 32px su telefono */
 @media (max-width: 640px) { .tt-logo img { height: 32px; } }
 
 /* ===== Ritocchi UI (2026-10-05) ===== */
