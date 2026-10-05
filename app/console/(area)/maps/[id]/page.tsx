@@ -23,7 +23,11 @@ export default async function ClienteMaps({ params }: PageProps<"/console/maps/[
   const collegato = await googleCollegato();
   let schede: SchedaGoogle[] = [];
   let erroreSchede = "";
-  if (collegato) schede = await elencaSchede().catch((e) => { erroreSchede = (e as Error).message; return []; });
+  if (collegato) schede = await elencaSchede().catch((e) => {
+    const m = (e as Error).message;
+    erroreSchede = /\b429\b|RESOURCE_EXHAUSTED/.test(m) ? "Google è collegato, ma l'accesso alle API è ancora in attesa di approvazione (limite a zero). Quando Google approva, qui compaiono le schede." : m;
+    return [];
+  });
   const card = linkCard(await codiceCard(c.id));
 
   const passi = [
