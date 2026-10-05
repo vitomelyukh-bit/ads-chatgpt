@@ -12,7 +12,9 @@ import type { Faq } from "@/lib/content";
 import { breadcrumbList, faqPage, organization, serviceMaps, website } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { EXTRA, euro, linkWhatsApp, scheda } from "@/lib/scheda";
+import { ESEMPI_RISPOSTE } from "@/lib/esempi-risposte";
 import { pagamentiAttivi } from "@/lib/stripe";
+import { Slideshow } from "@/components/Slideshow";
 
 export const metadata = pageMetadata({
   title: "Più clienti da Google Maps per la tua attività · TiTrovano",
@@ -39,30 +41,6 @@ const cosaFacciamo = [
   { titolo: "Sai sempre cosa succede", testo: "Ogni mese un riepilogo semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Vedi tu, coi numeri, se ti conviene." },
 ];
 
-// Recensioni e risposte di fantasia, per far vedere il tono: positiva, con una critica, negativa.
-const esempiRisposte = [
-  {
-    tipo: "Recensione positiva · bar",
-    autore: "Giulia M.",
-    voto: 5,
-    testo: "Cappuccino buonissimo e cornetti appena sfornati. Personale gentilissimo, ormai ci passo ogni mattina.",
-    risposta: "Grazie Giulia, che bello leggerti. Ti aspettiamo domattina: il cornetto al pistacchio esce verso le 8.",
-  },
-  {
-    tipo: "Recensione con una critica · parrucchiere",
-    autore: "Sara T.",
-    voto: 4,
-    testo: "Taglio perfetto, esattamente come lo volevo. Unica cosa: ho aspettato un po' nonostante l'appuntamento.",
-    risposta: "Grazie Sara, felici che il taglio ti piaccia. Hai ragione sull'attesa: stiamo distanziando meglio gli appuntamenti. A presto.",
-  },
-  {
-    tipo: "Recensione negativa · ristorante",
-    autore: "Luca R.",
-    voto: 2,
-    testo: "Abbiamo aspettato quaranta minuti per due primi. Peccato, il posto è bello.",
-    risposta: "Buongiorno Luca, ha ragione e ci scusiamo: sabato eravamo in difficoltà in cucina. Ci farebbe piacere rimediare, ci scriva quando torna.",
-  },
-];
 
 const passi = [
   { titolo: "Ci lasci i tuoi dati", testo: "Compili il modulo qui sotto o ci scrivi su WhatsApp. Ci vogliono due minuti." },
@@ -149,17 +127,14 @@ export default function Home() {
               <h3 className="tt-heading" style={{ margin: 0 }}>Come rispondiamo alle recensioni</h3>
               <p className="tt-body tt-muted" style={{ margin: 0 }}>A nome tuo, con il tono giusto per ognuna. Esempi con nomi di fantasia.</p>
             </div>
-            <ul className="tt-risposte__lista">
-              {esempiRisposte.map((e) => {
-                const [tipo, settore] = e.tipo.split(" · ");
-                return (
-                  <li key={e.autore} className="tt-risposta">
-                    <p className="tt-risposta__tipo"><span className="tt-tag">{tipo.replace("Recensione ", "")}</span> <span className="tt-muted">{settore}</span></p>
-                    <ReviewReply autore={e.autore} voto={e.voto} testo={e.testo} risposta={e.risposta} />
-                  </li>
-                );
-              })}
-            </ul>
+            <Slideshow etichetta="Esempi di risposte alle recensioni">
+              {ESEMPI_RISPOSTE.map((e) => (
+                <li key={e.autore} className="tt-risposta">
+                  <p className="tt-risposta__tipo"><span className="tt-tag">{e.tipo}</span> <span className="tt-muted">{e.settore}</span></p>
+                  <ReviewReply autore={e.autore} voto={e.voto} testo={e.testo} risposta={e.risposta} />
+                </li>
+              ))}
+            </Slideshow>
           </div>
         </div>
       </section>
@@ -233,16 +208,16 @@ export default function Home() {
           <SectionHead
             n="06"
             occhiello="Per crescere ancora"
-            testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su ChatGPT, Google e Meta. Ti diciamo in una call gratuita quale ha senso per te."
+            testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su Google, Meta e TikTok. Ti diciamo in una call gratuita quale ha senso per te."
           >
             Anche annunci online, <span className="tt-mark">quando servono.</span>
           </SectionHead>
           <div className="tt-section-body">
             <ServiceCards servizi={[
-              { href: "#prezzo", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese` },
-              { href: "/canali#google", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita" },
-              { href: "/annunci-chatgpt", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita" },
-              { href: "/canali#meta", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita" },
+              { href: "#prezzo", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese`, scena: "mappa", logo: "googlemaps" },
+              { href: "/analisi-gratuita", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita", scena: "ricerca", logo: "google" },
+              { href: "/analisi-gratuita", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita", scena: "feed", logo: "meta" },
+              { href: "/analisi-gratuita", nome: "Annunci su TikTok", testo: "Un video breve che arriva a chi abita o passa vicino a te.", piu: "Consulenza gratuita", scena: "video", logo: "tiktok" },
             ]} />
           </div>
         </div>

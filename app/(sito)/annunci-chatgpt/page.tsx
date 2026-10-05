@@ -83,10 +83,10 @@ export default function AnnunciChatGPT() {
       <section className="tt-section" style={{ paddingTop: 0 }}>
         <div className="tt-wrap">
           <ServiceCards servizi={[
-            { href: "/", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: "59 € al mese" },
-            { href: "/canali#google", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita" },
-            { href: "#analisi", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita" },
-            { href: "/canali#meta", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita" },
+            { href: "/", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: "59 € al mese", scena: "mappa", logo: "googlemaps" },
+            { href: "/canali#google", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita", scena: "ricerca", logo: "google" },
+            { href: "#analisi", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita", scena: "chat" },
+            { href: "/canali#meta", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita", scena: "feed", logo: "meta" },
           ]} />
         </div>
       </section>
