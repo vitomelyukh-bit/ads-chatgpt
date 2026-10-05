@@ -1,7 +1,10 @@
+import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-// Testi del servizio Google Maps scritti dall'AI (Vercel AI Gateway, nessuna chiave da gestire).
-const MODELLO = "anthropic/claude-sonnet-5.5";
+// Testi del servizio Google Maps scritti dall'AI.
+// Con OPENAI_API_KEY usa OpenAI direttamente (GPT-5 mini, pochi centesimi per cliente al mese);
+// senza, passa dal Vercel AI Gateway (serve una ricarica di crediti per i modelli Claude).
+const modello = () => (process.env.OPENAI_API_KEY ? openai(process.env.MODELLO_OPENAI || "gpt-5-mini") : process.env.MODELLO_AI || "anthropic/claude-sonnet-5.5");
 
 export type ProfiloCliente = { attivita: string; citta: string; tono: string; info: string; firma: string; spunti?: string };
 
@@ -19,7 +22,10 @@ Informazioni vere sull'attività (usa solo queste): ${c.info || "nessuna informa
 ${c.firma ? `Firma da mettere in fondo: ${c.firma}` : "Nessuna firma in fondo."}`;
 
 async function scrivi(istruzioni: string, prompt: string) {
-  const { text } = await generateText({ model: MODELLO, instructions: istruzioni, prompt });
+  const { text } = await generateText({
+    model: modello(), instructions: istruzioni, prompt,
+    providerOptions: { openai: { reasoningEffort: "low" } },
+  });
   return text.trim().replace(/^["«]|["»]$/g, "").trim();
 }
 
