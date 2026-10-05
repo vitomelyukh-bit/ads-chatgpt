@@ -9,9 +9,9 @@ export const scheda = {
 
 // Extra facoltativi da banco: chi li tocca col telefono apre la pagina delle recensioni.
 export type TipoExtra = "card" | "piedistallo";
-export const EXTRA: Record<TipoExtra, { nome: string; prezzo: number; descrizione: string; priceEnv: string }> = {
-  card: { nome: "Card da banco", prezzo: 40, descrizione: "Il cliente avvicina il telefono e si apre la pagina per lasciare la recensione.", priceEnv: "STRIPE_PRICE_CARD" },
-  piedistallo: { nome: "Piedistallo da banco", prezzo: 49.99, descrizione: "Come la card, ma sta in piedi accanto alla cassa e si vede da lontano.", priceEnv: "STRIPE_PRICE_PIEDISTALLO" },
+export const EXTRA: Record<TipoExtra, { nome: string; prezzo: number; descrizione: string; misure: string; priceEnv: string }> = {
+  card: { nome: "Card da banco", prezzo: 40, descrizione: "Il cliente avvicina il telefono e si apre la pagina per lasciare la recensione.", misure: "PVC rigido · 8,6 × 5,4 cm, come una carta di credito", priceEnv: "STRIPE_PRICE_CARD" },
+  piedistallo: { nome: "Piedistallo da banco", prezzo: 49.99, descrizione: "Come la card, ma sta in piedi accanto alla cassa e si vede da lontano.", misure: "PVC rigido · 14,8 × 10,5 cm, come una cartolina · base 6 cm", priceEnv: "STRIPE_PRICE_PIEDISTALLO" },
 };
 export const isTipoExtra = (v: unknown): v is TipoExtra => v === "card" || v === "piedistallo";
 

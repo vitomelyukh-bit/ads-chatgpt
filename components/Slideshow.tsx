@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Slideshow orizzontale: scorre da solo, si ferma quando ci passi sopra o lo tocchi.
 // Funziona anche senza JavaScript (si scorre col dito), e senza animazioni per chi le ha disattivate.
-export function Slideshow({ children, etichetta, intervallo = 5000 }: { children: React.ReactNode; etichetta: string; intervallo?: number }) {
+export function Slideshow({ children, etichetta, intervallo = 3500 }: { children: React.ReactNode; etichetta: string; intervallo?: number }) {
   const track = useRef<HTMLUListElement>(null);
   const [fermo, setFermo] = useState(false);
 

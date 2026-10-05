@@ -533,3 +533,26 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 @media (max-width: 640px) { .tt-slide__track { grid-auto-columns: 88%; } }
 .x-guida { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 16px; line-height: 1.5; }
 .x-code { padding: 10px 12px; border-radius: 10px; background: var(--paper-raised); border: 1px solid var(--line); font-weight: 600; word-break: break-all; }
+
+/* Prodotti da banco: immagini e misure a confronto */
+.tt-prod { display: grid; place-items: center; min-height: 240px; padding: var(--space-6); border-radius: var(--radius-md); background: var(--paper-sunk); }
+.tt-prod--card img { width: 132px; height: auto; border-radius: 10px; box-shadow: var(--shadow-pop); transform: rotate(-4deg); }
+.tt-prod--stand { align-content: end; gap: 0; }
+.tt-prod__lastra { width: 150px; aspect-ratio: 105 / 148; display: grid; place-items: center; padding: 10px; border-radius: 8px; background: #fff; box-shadow: var(--shadow-pop); border: 1px solid var(--line); }
+.tt-prod__lastra img { width: 82%; height: auto; }
+.tt-prod__base { width: 150px; height: 16px; margin-top: -2px; border-radius: 0 0 10px 10px; background: #d5dedb; }
+.tt-product { gap: var(--space-3); }
+.tt-misure { margin: var(--space-8) 0 0; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper-raised); }
+.tt-misure__fila { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: var(--space-8) var(--space-12); }
+.tt-misure__item { display: grid; justify-items: center; gap: var(--space-2); }
+.tt-misure__item figcaption { display: grid; justify-items: center; text-align: center; gap: 2px; font-size: 15px; }
+.tt-misure__item figcaption span { color: var(--ink-muted); max-width: 170px; }
+.tt-misure__tel { border: 3px solid var(--ink); border-radius: 18px; background: var(--paper-sunk); position: relative; }
+.tt-misure__tel::after { content: ""; position: absolute; top: 8px; left: 50%; width: 30%; height: 6px; transform: translateX(-50%); border-radius: 3px; background: var(--ink); opacity: .7; }
+.tt-misure__card { box-shadow: var(--shadow-pop); object-fit: cover; }
+.tt-misure__stand { display: grid; place-items: center; padding: 8px; border-radius: 6px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-pop); }
+.tt-misure__stand img { width: 70%; height: auto; }
+.tt-misure__piede { height: 10px; margin-top: -2px; border-radius: 0 0 8px 8px; background: #d5dedb; }
+.tt-misure__nota { margin: var(--space-4) 0 0; text-align: center; font-size: 14px; color: var(--ink-muted); }
+.tt-prod--foto { padding: 0; overflow: hidden; background: #e9e9e9; }
+.tt-prod--foto img { width: 100%; height: 240px; object-fit: contain; }
