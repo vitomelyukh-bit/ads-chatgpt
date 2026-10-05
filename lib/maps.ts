@@ -181,6 +181,19 @@ export async function pubblicaNovitaDovute() {
   return dovute.length;
 }
 
+// ---------- Valore nel tempo: tutto quello che è stato fatto da quando il cliente è con noi ----------
+export type Totali = { risposte: number; novita: number; recensioni: number; media: number | null; tocchi: number; mesi: number };
+export async function totaliDallInizio(c: Pick<Cliente, "id" | "creato_il">): Promise<Totali> {
+  const [r] = (await db()`select
+      (select count(*) from maps_recensioni where cliente_id = ${c.id} and stato = 'pubblicata' and pubblicata_il >= ${c.creato_il})::int as risposte,
+      (select count(*) from maps_novita where cliente_id = ${c.id} and stato = 'pubblicata')::int as novita,
+      (select count(*) from maps_recensioni where cliente_id = ${c.id} and coalesce(scritta_il, creata_il) >= ${c.creato_il})::int as recensioni,
+      (select round(avg(stelle)::numeric, 1)::float from maps_recensioni where cliente_id = ${c.id} and coalesce(scritta_il, creata_il) >= ${c.creato_il}) as media,
+      (select count(*) from nfc_tocchi t join nfc_codici n on n.codice = t.codice where n.cliente_id = ${c.id})::int as tocchi`) as Omit<Totali, "mesi">[];
+  const mesi = Math.max(1, Math.round((Date.now() - new Date(c.creato_il).getTime()) / (30.4 * 86400_000)));
+  return { ...r, mesi };
+}
+
 // ---------- Report mensile ----------
 export async function preparaReport(c: Cliente, anno: number, mese: number) {
   const chiave = `${anno}-${String(mese).padStart(2, "0")}`;
@@ -221,6 +234,10 @@ export async function preparaReport(c: Cliente, anno: number, mese: number) {
         ...(dati.tocchi ? ([["Tocchi su card o piedistallo", String(dati.tocchi)]] as [string, string][]) : []),
       ] },
       ...(commento ? ([{ tipo: "p", testo: commento }] as Blocco[]) : []),
+      ...(await totaliDallInizio(c).then((t) => [
+        { tipo: "titoletto", testo: "Da quando sei con TiTrovano" },
+        { tipo: "righe", righe: [["Risposte date alle recensioni", String(t.risposte)], ["Novità pubblicate", String(t.novita)], ["Recensioni ricevute", `${t.recensioni}${t.media ? ` (media ${String(t.media).replace(".", ",")} stelle)` : ""}`], ...(t.tocchi ? ([["Tocchi su card o piedistallo", String(t.tocchi)]] as [string, string][]) : [])] },
+      ] as Blocco[]).catch(() => [] as Blocco[])),
       { tipo: "bottone", testo: "Apri la tua area →", url: linkArea(c.id) },
       { tipo: "nota", testo: "Numeri forniti da Google per la tua attività. Possono differire leggermente da quelli che vedi nell'app." },
     ],

@@ -4,7 +4,7 @@ import { Copia } from "@/components/Copia";
 import { Stars } from "@/components/ds/Stars";
 import { requireCliente } from "@/lib/area-auth";
 import { db } from "@/lib/db";
-import { getClienteMaps, type Novita, type Recensione } from "@/lib/maps";
+import { getClienteMaps, totaliDallInizio, type Novita, type Recensione } from "@/lib/maps";
 import { firmaRichiesta } from "@/lib/scheda-token";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +35,7 @@ export default async function Area() {
   const qr = linkRecensioni ? await QRCode.toDataURL(linkRecensioni, { margin: 1, width: 360, color: { dark: "#16140f", light: "#ffffff" } }) : null;
   const messaggio = linkRecensioni ? `Ciao, grazie per essere passato da ${c.attivita}. Se ti sei trovato bene, ci aiuteresti con una recensione su Google? Ci vuole un minuto: ${linkRecensioni}` : "";
   const n = novita[0];
+  const tot = await totaliDallInizio(c);
   const diff = (a: number, b?: number) => (b === undefined || b === null ? null : a - b);
 
   return (
@@ -48,6 +49,16 @@ export default async function Area() {
             : "È tutto a posto: al resto pensiamo noi."}
         </p>
       </div>
+
+      <section className="tt-stack-4" aria-labelledby="h-fatto">
+        <h2 id="h-fatto" className="tt-heading">Da quando sei con TiTrovano</h2>
+        <ul className="tt-numeri">
+          <li><span className="tt-numeri__n">{tot.risposte}</span><span>risposte alle recensioni</span></li>
+          <li><span className="tt-numeri__n">{tot.novita}</span><span>novità pubblicate</span></li>
+          <li><span className="tt-numeri__n">{tot.recensioni}</span><span>recensioni nuove{tot.media ? `, media ${String(tot.media).replace(".", ",")} ★` : ""}</span></li>
+          {tot.tocchi > 0 ? <li><span className="tt-numeri__n">{tot.tocchi}</span><span>tocchi su card e piedistallo</span></li> : <li><span className="tt-numeri__n">{tot.mesi}</span><span>{tot.mesi === 1 ? "mese" : "mesi"} insieme</span></li>}
+        </ul>
+      </section>
 
       {daApprovare.length > 0 && (
         <section className="tt-stack-6" aria-labelledby="h-approva">
