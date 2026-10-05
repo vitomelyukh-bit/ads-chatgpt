@@ -101,7 +101,7 @@ export async function serviziGrezzi(tipo: TipoExtra, cap: string) {
   return api<ServizioRaw[]>(`/services?${q}`);
 }
 
-const NOMI: Record<string, string> = { brt: "BRT", gls: "GLS", dhl: "DHL", tnt: "TNT", ups: "UPS", inpost: "InPost", sda: "SDA", fedex: "FedEx" };
+const NOMI: Record<string, string> = { "inpost it": "InPost", brt: "BRT", gls: "GLS", dhl: "DHL", tnt: "TNT", ups: "UPS", inpost: "InPost", sda: "SDA", fedex: "FedEx" };
 const nomeCorriere = (n: string) => NOMI[n.trim().toLowerCase()] ?? n.trim();
 
 const aOpzione = (s: ServizioRaw): Opzione => {
