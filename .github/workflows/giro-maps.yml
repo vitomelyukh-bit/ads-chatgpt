@@ -1,0 +1,15 @@
+# Giro orario del servizio Google Maps: recensioni nuove, novità in uscita, report.
+# Vercel Hobby permette un solo cron al giorno, quindi l'orario lo dà GitHub.
+name: Giro Google Maps
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+jobs:
+  giro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Chiama il giro
+        run: |
+          curl -sS --fail-with-body --max-time 300 -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" https://titrovano.it/api/cron/maps

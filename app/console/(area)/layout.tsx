@@ -12,7 +12,8 @@ export default async function ConsoleLayout({ children }: { children: React.Reac
         <Link href="/console" className="tt-wordmark">TiTrovano · console</Link>
         <nav aria-label="Console">
           <Link href="/console">Clienti</Link>
-          <Link href="/console/scheda">Clienti da Maps</Link>
+          <Link href="/console/maps">Google Maps</Link>
+          <Link href="/console/scheda">Richieste e codici</Link>
           <Link href="/" target="_blank">Sito</Link>
           <form action={logout}><button className="tt-btn tt-btn--secondary">Esci</button></form>
         </nav>

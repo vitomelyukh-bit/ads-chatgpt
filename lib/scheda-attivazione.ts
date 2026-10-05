@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import type Stripe from "stripe";
 import { db } from "@/lib/db";
 import { email, TITROVANO, type Blocco } from "@/lib/email";
+import { creaClienteDaRichiesta } from "@/lib/maps";
 import { firmaRichiesta } from "@/lib/scheda-token";
 import { EXTRA, isTipoExtra, scheda } from "@/lib/scheda";
 import { site } from "@/lib/site";
@@ -27,6 +28,7 @@ export async function attivaDaCheckout(session: Stripe.Checkout.Session) {
 
   let codice: string | null = null;
   if (isTipoExtra(r.nfc_tipo)) codice = await assegnaCodiceLibero(r.id, r.nfc_tipo);
+  await creaClienteDaRichiesta(r.id).catch((e) => console.error("[scheda] cliente Maps", e));
   await emailAttivazione(r, codice);
   return r;
 }
