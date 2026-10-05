@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChatAd } from "@/components/ds/ChatAd";
+import { ServiceCards } from "@/components/ds/ServiceCards";
 import { FaqList } from "@/components/ds/FaqList";
 import { LinkCards } from "@/components/ds/LinkCards";
 import { SectionHead } from "@/components/ds/SectionHead";
@@ -76,6 +77,17 @@ export default function AnnunciChatGPT() {
             inserzionista="La tua attività"
             descrizione="Prima visita e piano di cura chiaro. Prenota online."
           />
+        </div>
+      </section>
+
+      <section className="tt-section" style={{ paddingTop: 0 }}>
+        <div className="tt-wrap">
+          <ServiceCards servizi={[
+            { href: "/", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: "59 € al mese" },
+            { href: "/canali#google", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita" },
+            { href: "#analisi", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita" },
+            { href: "/canali#meta", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita" },
+          ]} />
         </div>
       </section>
 

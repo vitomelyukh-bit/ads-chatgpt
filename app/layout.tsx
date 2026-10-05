@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Atkinson_Hyperlegible, Bricolage_Grotesque } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Caratteri del design system TiTrovano.
-const display = Bricolage_Grotesque({ subsets: ["latin"], weight: ["600", "700"], display: "swap", variable: "--font-bricolage" });
-const body = Atkinson_Hyperlegible({ subsets: ["latin"], weight: ["400", "700"], display: "swap", variable: "--font-atkinson" });
+// Carattere del design system TiTrovano (direzione Mappa): Outfit.
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap", variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f2e8",
+  themeColor: "#ffffff",
   colorScheme: "only light",
   width: "device-width",
   initialScale: 1,
@@ -28,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={`${display.variable} ${body.variable}`}>
+    <html lang="it" className={outfit.variable}>
       <body className="tt">
         <a href="#contenuto" className="tt-btn tt-skip">
           Vai al contenuto

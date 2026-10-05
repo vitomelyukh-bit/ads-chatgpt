@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { FaqList } from "@/components/ds/FaqList";
-import { LinkCards } from "@/components/ds/LinkCards";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
+import { MapScene } from "@/components/ds/MapScene";
 import { MapsCard } from "@/components/ds/MapsCard";
+import { ServiceCards } from "@/components/ds/ServiceCards";
 import { ReviewReply } from "@/components/ds/ReviewReply";
 import { SchedaForm } from "@/components/SchedaForm";
 import type { Faq } from "@/lib/content";
@@ -85,31 +86,28 @@ const faq: Faq[] = [
 export default function Home() {
   const wa = linkWhatsApp();
   const cta = (secondario?: boolean) => (
-    <a href="#attiva" className={`tt-btn tt-btn--lg tt-btn--block-mobile${secondario ? " tt-btn--secondary" : ""}`}>Inizia ora <span aria-hidden="true">→</span></a>
+    <a href="#attiva" className={`tt-btn tt-btn--block-mobile${secondario ? " tt-btn--secondary" : ""}`}>Inizia ora <span aria-hidden="true">→</span></a>
   );
 
   return (
     <>
       <JsonLd data={[organization(), website(), serviceMaps(), breadcrumbList([]), faqPage(faq)]} />
 
-      <section className="tt-section">
-        <div className="tt-wrap tt-hero">
-          <div className="tt-stack-6">
-            <p className="tt-eyebrow" style={{ margin: 0 }}>Per ogni attività che vuole farsi trovare</p>
-            <h1 className="tt-display-xl">
-              Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span>
-            </h1>
-            <p className="tt-lead">
+      <section className="tt-hero-map">
+        <div className="tt-wrap">
+          <MapScene>
+            <p className="tt-eyebrow" style={{ margin: "0 0 var(--space-3)" }}>Per ogni attività che vuole farsi trovare</p>
+            <h1>Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span></h1>
+            <p>
               I clienti della tua zona ti cercano su Google Maps. Se la tua scheda è ferma, scelgono il vicino. Noi la
               teniamo viva ogni settimana: novità, risposte a tutte le recensioni, recensioni nuove. Tu pensi a lavorare.
             </p>
-            <div className="tt-actions">
+            <div className="tt-map__cta">
               {cta()}
-              {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--lg tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--lg">Come funziona</a>}
+              {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary">Come funziona</a>}
             </div>
-            <p className="tt-body-strong" style={{ margin: "var(--space-2) 0 0", fontSize: 17 }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
-          </div>
-          <MapsCard />
+            <p className="tt-map__price"><b>{euro(scheda.prezzoMese)} al mese</b> · nessun costo di attivazione · disdici quando vuoi</p>
+          </MapScene>
         </div>
       </section>
 
@@ -138,6 +136,7 @@ export default function Home() {
           </SectionHead>
           <div className="tt-section-body tt-stack-8">
             <StepList passi={cosaFacciamo} />
+            <MapsCard />
             <div className="tt-stack-6">
               <p className="tt-label" style={{ margin: 0 }}>Esempi di risposte</p>
               {esempiRisposte.map((e) => (
@@ -216,7 +215,7 @@ export default function Home() {
       </section>
 
       <section className="tt-section">
-        <div className="tt-wrap tt-wrap--read">
+        <div className="tt-wrap">
           <SectionHead
             n="06"
             occhiello="Per crescere ancora"
@@ -225,7 +224,12 @@ export default function Home() {
             Anche annunci online, <span className="tt-mark">quando servono.</span>
           </SectionHead>
           <div className="tt-section-body">
-            <LinkCards items={[{ href: "/annunci-chatgpt", label: "Annunci online", sub: "ChatGPT, Google e Meta: ti diciamo quale ha senso per te" }]} />
+            <ServiceCards servizi={[
+              { href: "#prezzo", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese` },
+              { href: "/canali#google", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita" },
+              { href: "/annunci-chatgpt", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita" },
+              { href: "/canali#meta", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita" },
+            ]} />
           </div>
         </div>
       </section>

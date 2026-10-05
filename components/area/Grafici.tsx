@@ -1,7 +1,7 @@
 // Grafici dell'area clienti in SVG puro (niente librerie, si vedono anche senza JavaScript).
 // Con esempio=true sono in grigio: servono a far vedere cosa arriverà, mai spacciati per dati veri.
 
-const BLU = "#1f3fd6", BLU_CHIARO = "#c9d3fb", VERDE = "#1a9e7a", GIALLO = "#ffd53d", GRIGIO = "#d9d3c7", GRIGIO_CHIARO = "#ece8df";
+const BLU = "#0a7d6c", BLU_CHIARO = "#a8d8cd", VERDE = "#5fb3a3", GIALLO = "#f5a524", GRIGIO = "#c9d4d0", GRIGIO_CHIARO = "#e8eeea";
 const n = (x: number) => x.toLocaleString("it-IT");
 
 export function Area({ punti, etichette, esempio = false, altezza = 220 }: { punti: number[]; etichette: string[]; esempio?: boolean; altezza?: number }) {
@@ -15,7 +15,7 @@ export function Area({ punti, etichette, esempio = false, altezza = 220 }: { pun
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="g-svg" role="img" aria-label={esempio ? "Grafico di esempio" : `Contatti per mese: ${punti.map((v, i) => `${etichette[i]} ${v}`).join(", ")}`}>
       {[0.25, 0.5, 0.75].map((f) => <line key={f} x1={P.l} x2={W - P.r} y1={P.t + f * (H - P.t - P.b)} y2={P.t + f * (H - P.t - P.b)} stroke={GRIGIO_CHIARO} />)}
-      <path d={area} fill={esempio ? GRIGIO_CHIARO : "#e3e8fb"} />
+      <path d={area} fill={esempio ? GRIGIO_CHIARO : "#dff1ed"} />
       <path d={linea} fill="none" stroke={colore} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
       {punti.map((v, i) => (
         <g key={i}>
@@ -29,7 +29,7 @@ export function Area({ punti, etichette, esempio = false, altezza = 220 }: { pun
 }
 
 export function Ciambella({ parti, esempio = false }: { parti: { etichetta: string; valore: number }[]; esempio?: boolean }) {
-  const colori = esempio ? [GRIGIO, "#e6e1d6", GRIGIO_CHIARO] : [BLU, VERDE, GIALLO];
+  const colori = esempio ? [GRIGIO, "#dbe3e0", GRIGIO_CHIARO] : [BLU, VERDE, BLU_CHIARO];
   const tot = Math.max(1, parti.reduce((t, p) => t + p.valore, 0));
   const R = 70, C = 2 * Math.PI * R;
   let off = 0;
@@ -63,7 +63,7 @@ export function Stelle({ conteggi, esempio = false }: { conteggi: number[]; esem
       <div className="g-stars__media"><strong>{esempio || !tot ? "–" : media.toFixed(1).replace(".", ",")}</strong><span>★ media</span><small>{esempio ? "" : `${n(tot)} recensioni`}</small></div>
       <ul>
         {conteggi.map((v, i) => (
-          <li key={i}><span>{5 - i} ★</span><span className="g-stars__bar"><span style={{ width: `${(v / max) * 100}%`, background: esempio ? GRIGIO : i < 2 ? GIALLO : i === 2 ? "#f2c14e" : "#e98b7d" }} /></span><span>{esempio ? "" : n(v)}</span></li>
+          <li key={i}><span>{5 - i} ★</span><span className="g-stars__bar"><span style={{ width: `${(v / max) * 100}%`, background: esempio ? GRIGIO : i < 2 ? GIALLO : i === 2 ? "#f7c46b" : "#e8a49a" }} /></span><span>{esempio ? "" : n(v)}</span></li>
         ))}
       </ul>
     </div>

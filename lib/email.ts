@@ -13,8 +13,8 @@ export type Marchio = {
 
 export const TITROVANO: Marchio = {
   nome: "TiTrovano",
-  colore: "#1f3fd6",
-  piede: "TiTrovano · Annunci su ChatGPT per attività e aziende · titrovano.it · P.IVA 18333881003",
+  colore: "#0a7d6c",
+  piede: "TiTrovano · Più clienti da Google Maps · titrovano.it · P.IVA 18333881003",
   titrovano: true,
 };
 
@@ -27,9 +27,9 @@ export type Blocco =
   | { tipo: "bottone"; testo: string; url: string }
   | { tipo: "nota"; testo: string };
 
-const FONT = `'Atkinson Hyperlegible', Verdana, Arial, sans-serif`;
-const FONT_TITOLO = `'Bricolage Grotesque', 'Arial Black', Arial, sans-serif`;
-const INK = "#16140f", MUTE = "#524c40", PAPER = "#f7f2e8", RAISED = "#ffffff", LINE = "#cfc6b3", MARK = "#ffd53d";
+const FONT = `Outfit, 'Trebuchet MS', Arial, sans-serif`;
+const FONT_TITOLO = `Outfit, 'Trebuchet MS', Arial, sans-serif`;
+const INK = "#10231f", MUTE = "#4a5e58", PAPER = "#f2f6f4", RAISED = "#ffffff", LINE = "#d5dedb", MARK = "#dff1ed";
 
 function blocco(b: Blocco, m: Marchio): string {
   switch (b.tipo) {
@@ -38,7 +38,7 @@ function blocco(b: Blocco, m: Marchio): string {
     case "titoletto":
       return `<p style="margin:24px 0 8px;font:700 13px/1.3 ${FONT};letter-spacing:.08em;text-transform:uppercase;color:${INK};">${esc(b.testo)}</p>`;
     case "righe":
-      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-top:2px solid ${INK};">${b.righe
+      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-top:1px solid ${LINE};">${b.righe
         .map(([k, v]) => `<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid ${LINE};font:700 15px/1.4 ${FONT};color:${MUTE};width:38%;vertical-align:top;">${esc(k)}</td><td style="padding:10px 0;border-bottom:1px solid ${LINE};font:400 16px/1.5 ${FONT};color:${INK};vertical-align:top;">${esc(v).replace(/\n/g, "<br>")}</td></tr>`)
         .join("")}</table>`;
     case "passi":
@@ -46,12 +46,12 @@ function blocco(b: Blocco, m: Marchio): string {
         .map((p, i) => `<tr><td style="padding:0 14px 14px 0;vertical-align:top;"><div style="width:32px;height:32px;line-height:32px;text-align:center;border-radius:8px;background:${INK};color:${PAPER};font:700 16px ${FONT_TITOLO};">${i + 1}</div></td><td style="padding:4px 0 14px;font:400 16px/1.5 ${FONT};color:${INK};vertical-align:top;">${esc(p)}</td></tr>`)
         .join("")}</table>`;
     case "evidenza":
-      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;"><tr><td style="padding:18px 20px;border:2px solid ${INK};border-radius:14px;background:#fff3c2;">
-        <span style="display:inline-block;padding:2px 8px;border-radius:6px;background:${MARK};color:${INK};font:700 12px/1.4 ${FONT};letter-spacing:.08em;text-transform:uppercase;">${esc(b.etichetta)}</span>
+      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;"><tr><td style="padding:18px 20px;border:1px solid ${LINE};border-radius:16px;background:${MARK};">
+        <span style="display:inline-block;padding:2px 8px;border-radius:6px;background:#ffffff;color:#0a7d6c;font:700 12px/1.4 ${FONT};letter-spacing:.08em;text-transform:uppercase;">${esc(b.etichetta)}</span>
         <p style="margin:10px 0 0;font:700 22px/1.3 ${FONT_TITOLO};color:${INK};">${esc(b.testo)}</p></td></tr></table>`;
     case "bottone":
       return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 24px;"><tr><td style="border-radius:12px;background:${m.colore};">
-        <a href="${esc(b.url)}" style="display:inline-block;padding:15px 26px;font:700 17px/1 ${FONT};color:#ffffff;text-decoration:none;border-radius:12px;">${esc(b.testo)}</a></td></tr></table>`;
+        <a href="${esc(b.url)}" style="display:inline-block;padding:15px 26px;font:700 17px/1 ${FONT};color:#ffffff;text-decoration:none;border-radius:999px;">${esc(b.testo)}</a></td></tr></table>`;
     case "nota":
       return `<p style="margin:0 0 12px;font:400 15px/1.5 ${FONT};color:${MUTE};">${esc(b.testo).replace(/\n/g, "<br>")}</p>`;
   }
@@ -68,7 +68,7 @@ export function emailHtml({ marchio: m, anteprima, titolo, evidenzia, blocchi }:
   const testata = m.logo
     ? `<img src="${esc(m.logo)}" alt="${esc(m.nome)}" height="36" style="display:block;height:36px;width:auto;border:0;">`
     : m.titrovano
-      ? `<span style="font:800 24px/1 ${FONT_TITOLO};letter-spacing:-0.02em;color:${INK};">Ti<span style="background:linear-gradient(transparent 55%, ${MARK} 55%);">Trovano</span></span>`
+      ? `<span style="font:800 24px/1 ${FONT_TITOLO};letter-spacing:-0.02em;color:${INK};">Ti<span style="color:#0a7d6c;">Trovano</span></span>`
       : `<span style="font:800 22px/1.2 ${FONT_TITOLO};color:${INK};">${esc(m.nome)}</span>`;
   // Stile TiTrovano: carta e bordo spesso. Stile cliente: neutro, con il suo colore in alto.
   const sfondo = m.titrovano ? PAPER : "#f3f3f1";
@@ -76,7 +76,7 @@ export function emailHtml({ marchio: m, anteprima, titolo, evidenzia, blocchi }:
     ? `background:${RAISED};border:2px solid ${INK};border-radius:20px;`
     : `background:${RAISED};border:1px solid #e2e0da;border-top:6px solid ${m.colore};border-radius:14px;`;
   return `<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only">
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <title>${esc(titolo)}</title></head>
 <body style="margin:0;padding:0;background:${sfondo};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${esc(anteprima)}</div>
