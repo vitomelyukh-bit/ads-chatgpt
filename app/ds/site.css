@@ -199,3 +199,18 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
   .tt-footer-settori li { break-inside: avoid; margin-bottom: var(--space-2); font-size: 16px; }
   .tt-footer-guide li:nth-child(n+4):not(:last-child) { display: none; }
 }
+
+/* Pulsante WhatsApp fisso: blu del sito, bordo ink, icona bianca. Su telefono solo il tondo. */
+.tt a.tt-wa-float { position: fixed; right: max(var(--space-6), env(safe-area-inset-right)); bottom: max(var(--space-6), env(safe-area-inset-bottom)); z-index: 50;
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 56px; padding: 0 var(--space-5, 20px) 0 var(--space-4);
+  border: var(--border-thick) solid var(--ink); border-radius: 999px; background: var(--brand); color: var(--on-brand);
+  font: 700 18px/1 var(--font-body); text-decoration: none; }
+.tt a.tt-wa-float:hover { background: var(--brand-hover); color: var(--on-brand); }
+.tt-wa-float:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.tt-wa-float svg { width: 28px; height: 28px; fill: currentColor; flex: none; }
+@media (max-width: 640px) {
+  .tt a.tt-wa-float { right: var(--space-4); bottom: max(var(--space-4), env(safe-area-inset-bottom)); width: 60px; height: 60px; padding: 0; justify-content: center; }
+  .tt-wa-float span { display: none; }
+  .tt-wa-float svg { width: 30px; height: 30px; }
+}
+@media (max-width: 640px) { .tt-footer { padding-bottom: 96px; } }
