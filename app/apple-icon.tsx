@@ -3,14 +3,17 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// Stessa icona della favicon: fumetto giallo con la T, su carta.
+// Icona per iPhone ricavata da favicon.svg: "Ti" con il segnaposto su quadrato ink.
 export default function AppleIcon() {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M6 2h20a4 4 0 0 1 4 4v15a4 4 0 0 1-4 4H13l-6 5v-5H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="#ffd53d" stroke="#16140f" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 7.5h14v4h-5v10h-4v-10H9z" fill="#16140f"/></svg>`;
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#f7f2e8" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`} width={136} height={136} alt="" />
+      <div style={{ width: "100%", height: "100%", display: "flex", background: "#16140f" }}>
+        <svg width="180" height="180" viewBox="0 0 64 64">
+          <g transform="translate(13.74 54.00) scale(0.788)">
+            <path fill="#f5efe3" d="M20.71 0L12.35 0L12.35-31.26L1.04-31.26L1.04-38.28L32.02-38.28L32.02-31.26L20.71-31.26M44.30 0L35.95 0L35.95-30.45L44.30-30.45" />
+            <path fill="#ffd53d" d="M40.20 -34.05C36.72 -39.87 32.29 -42.76 32.29 -47.91A7.91 7.91 0 1 1 48.12 -47.91C48.12 -42.76 43.69 -39.87 40.20 -34.05Z" />
+          </g>
+        </svg>
       </div>
     ),
     size,

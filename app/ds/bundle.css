@@ -99,6 +99,10 @@
 .tt-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6);
   padding: var(--space-4) var(--space-6); border-bottom: var(--border-thick) solid var(--ink); background: var(--paper); }
 .tt a.tt-wordmark { font: 700 28px/1 var(--font-display); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.tt a.tt-logo { display: block; line-height: 0; }
+.tt-logo img { height: 40px; width: auto; display: block; }
+.tt-logo .on-dark, [data-theme="dark"] .tt-logo .on-light { display: none; }
+[data-theme="dark"] .tt-logo .on-dark { display: block; }
 .tt-header nav { display: flex; align-items: center; gap: var(--space-6); }
 .tt-header nav a:not(.tt-btn) { color: var(--ink); font-weight: 700; text-decoration: none; padding: var(--space-3) 0; }
 .tt-header nav a:not(.tt-btn):hover { color: var(--brand); text-decoration: underline; }

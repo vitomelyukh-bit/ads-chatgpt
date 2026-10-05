@@ -181,3 +181,10 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-extra-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .tt-tag--start { justify-self: start; }
 @media (max-width: 760px) { .tt-extra-grid { grid-template-columns: 1fr; } .tt-price__amount { font-size: 52px; } }
+
+/* Logo: versione scura quando il sito segue il tema scuro del sistema; 32px su telefono */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tt-logo .on-light { display: none; }
+  :root:not([data-theme="light"]) .tt-logo .on-dark { display: block; }
+}
+@media (max-width: 640px) { .tt-logo img { height: 32px; } }

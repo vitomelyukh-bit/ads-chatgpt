@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Logo } from "./Logo";
 
-// SiteHeader del design system: nome composto in testo, tre voci e il bottone.
+// SiteHeader del design system: logo, tre voci e il bottone.
 export function Header() {
   return (
     <header className="tt-header">
-      <Link href="/" className="tt-wordmark" aria-label="TiTrovano, torna alla home">
-        TiTrovano
+      <Link href="/" className="tt-logo" aria-label="TiTrovano, torna alla home">
+        <Logo />
       </Link>
       <nav aria-label="Principale">
         <Link href="/#come-funziona">Come funziona</Link>

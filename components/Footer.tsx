@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getGuide, getSettori } from "@/lib/content";
 import { titolare } from "@/lib/titolare";
+import { Logo } from "./Logo";
 
 // Piè di pagina composto con gli stili di testo del design system.
 export function Footer() {
@@ -11,7 +12,7 @@ export function Footer() {
       <div className="tt-wrap">
         <div className="tt-footer-grid">
           <div className="tt-stack-4">
-            <Link href="/" className="tt-wordmark">TiTrovano</Link>
+            <Link href="/" className="tt-logo" aria-label="TiTrovano, torna alla home"><Logo /></Link>
             <p className="tt-small tt-muted">Più clienti da Google Maps per le attività locali italiane. E annunci su ChatGPT, Google e Meta quando servono.</p>
           </div>
           <div>
