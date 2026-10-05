@@ -49,7 +49,7 @@ export async function tariffaItalia(tipo: TipoExtra, cap = CAP_RIFERIMENTO): Pro
       sortBy: "totalPrice", source: "PRO",
     });
     const servizi = await api<ServizioPacklink[]>(`/services?${q}`);
-    const casa = servizi.filter((s) => !s.delivery_to_parcelshop && !s.dropoff && (s.price?.total_price ?? 0) > 0)
+    const casa = servizi.filter((s) => !s.delivery_to_parcelshop && (s.price?.total_price ?? 0) > 0)
       .sort((a, b) => (a.price!.total_price! - b.price!.total_price!));
     const s = casa[0];
     if (!s) throw new Error("nessun servizio a domicilio");
@@ -100,10 +100,13 @@ export async function serviziGrezzi(tipo: TipoExtra, cap: string) {
   return api<ServizioRaw[]>(`/services?${q}`);
 }
 
+const NOMI: Record<string, string> = { brt: "BRT", gls: "GLS", dhl: "DHL", tnt: "TNT", ups: "UPS", inpost: "InPost", sda: "SDA", fedex: "FedEx" };
+const nomeCorriere = (n: string) => NOMI[n.trim().toLowerCase()] ?? n.trim();
+
 const aOpzione = (s: ServizioRaw): Opzione => {
   const ore = Number(s.transit_hours);
   return {
-    id: String(s.id), corriere: s.carrier_name ?? s.carrier ?? "Corriere", servizio: s.name ?? "",
+    id: String(s.id), corriere: nomeCorriere(s.carrier_name ?? s.carrier ?? "Corriere"), servizio: (s.name ?? "").trim(),
     prezzo: Math.round(((s.price?.total_price ?? 0) + RICARICO) * 100) / 100,
     giorni: Number.isFinite(ore) && ore > 0 ? Math.ceil(ore / 24) : null,
     puntoRitiro: Boolean(s.delivery_to_parcelshop),
@@ -113,7 +116,8 @@ const aOpzione = (s: ServizioRaw): Opzione => {
 
 // Il più economico per corriere e per tipo di consegna, niente oltre il triplo del migliore, massimo 6.
 export async function opzioniSpedizione(tipo: TipoExtra, cap: string): Promise<Opzione[]> {
-  const tutti = (await serviziGrezzi(tipo, cap)).filter((s) => (s.price?.total_price ?? 0) > 0 && !s.dropoff).map(aOpzione);
+  // "dropoff" = il pacco lo porti tu al punto (più economico): va bene, si tengono.
+  const tutti = (await serviziGrezzi(tipo, cap)).filter((s) => (s.price?.total_price ?? 0) > 0).map(aOpzione);
   const migliori = new Map<string, Opzione>();
   for (const o of tutti.sort((a, b) => a.prezzo - b.prezzo)) {
     const k = `${o.corriere}|${o.puntoRitiro}`;
