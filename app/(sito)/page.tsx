@@ -3,6 +3,7 @@ import { FaqList } from "@/components/ds/FaqList";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
+import { compraBanco } from "@/actions/compra-banco";
 import { MapScene } from "@/components/ds/MapScene";
 import { MisureConfronto, ProdottoFoto } from "@/components/ProdottoFoto";
 import { MapsCard } from "@/components/ds/MapsCard";
@@ -185,7 +186,7 @@ export default function Home() {
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="05"
-            occhiello="Extra facoltativi"
+            occhiello="Card e piedistallo"
             testo="Da mettere sul bancone o vicino alla cassa: il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione. Niente app, niente ricerche."
           >
             Recensioni con un tocco <span className="tt-mark">del telefono.</span>
@@ -194,16 +195,16 @@ export default function Home() {
             {(Object.keys(EXTRA) as (keyof typeof EXTRA)[]).map((k) => (
               <div key={k} className="tt-product">
                 <ProdottoFoto tipo={k} />
-                <span className="tt-tag tt-tag--start">Facoltativo</span>
                 <h3>{EXTRA[k].nome}</h3>
                 <p className="tt-muted" style={{ margin: 0 }}>{EXTRA[k].misure}</p>
                 <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola, spedizione inclusa</small></p>
                 <p>{EXTRA[k].descrizione}</p>
+                <form action={compraBanco.bind(null, k)}><button className="tt-btn tt-btn--block">Compralo ora <span aria-hidden="true">→</span></button></form>
               </div>
             ))}
           </div>
           <MisureConfronto />
-          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Li scegli nel modulo qui sotto, separati dai {euro(scheda.prezzoMese)} al mese.</p>
+          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Puoi comprarli da soli, oppure aggiungerli al servizio da {euro(scheda.prezzoMese)} al mese nel modulo qui sotto.</p>
         </div>
       </section>
 

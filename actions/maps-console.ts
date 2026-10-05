@@ -107,3 +107,9 @@ export async function salvaInfo(id: number, fd: FormData) {
   await db()`update maps_clienti set info = ${t(fd, "info", 3000)} where id = ${id}`;
   aggiorna(id);
 }
+
+export async function segnaOrdineSpedito(id: number) {
+  await requireAdmin();
+  await db()`update ordini_banco set stato = 'spedito', spedito_il = now() where id = ${id}`;
+  revalidatePath("/console/maps");
+}

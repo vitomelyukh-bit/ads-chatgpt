@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { eseguiGiro, nuovoClienteMaps } from "@/actions/maps-console";
+import { eseguiGiro, nuovoClienteMaps, segnaOrdineSpedito } from "@/actions/maps-console";
 import { db } from "@/lib/db";
 import { googleCollegato, googleConfigurato } from "@/lib/gbp";
 
@@ -13,6 +13,7 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
       (select count(*) from maps_novita n where n.cliente_id = c.id and n.stato = 'programmata')::int as in_coda,
       ((select count(*) from maps_recensioni r where r.cliente_id = c.id and r.stato = 'errore') + (select count(*) from maps_novita n where n.cliente_id = c.id and n.stato = 'errore'))::int as errori
     from maps_clienti c order by c.stato = 'attivo' desc, c.creato_il desc`) as Riga[];
+  const ordini = (await db()`select * from ordini_banco order by (stato = 'da-spedire') desc, creato_il desc limit 30`) as { id: number; creato_il: string; tipo: string; nome: string; email: string; telefono: string; indirizzo: string; attivita: string; stato: string }[];
   const configurato = googleConfigurato();
   const collegato = await googleCollegato();
 
@@ -52,6 +53,19 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
             ))}</tbody>
           </table>
         </div>
+      )}
+
+      {ordini.length > 0 && (
+        <section className="tt-soft__box">
+          <h2 className="tt-soft__h2">Card e piedistalli comprati {ordini.some((o) => o.stato === "da-spedire") && <span className="tt-soft__badge">{ordini.filter((o) => o.stato === "da-spedire").length}</span>}</h2>
+          {ordini.map((o) => (
+            <div key={o.id} className="tt-soft__item">
+              <p className="tt-soft__who">{o.tipo === "card" ? "Card" : "Piedistallo"} · {o.attivita || o.nome} <span className="tt-soft__pill">{o.stato === "spedito" ? "spedito" : "da spedire"}</span></p>
+              <p className="tt-soft__muted" style={{ whiteSpace: "pre-line" }}>{o.indirizzo}{o.telefono ? `\n${o.telefono}` : ""}{o.email ? ` · ${o.email}` : ""}</p>
+              {o.stato !== "spedito" && <form action={segnaOrdineSpedito.bind(null, o.id)}><button className="tt-btn tt-btn--secondary">Segna spedito</button></form>}
+            </div>
+          ))}
+        </section>
       )}
 
       <form action={nuovoClienteMaps} className="tt-soft__box tt-form">

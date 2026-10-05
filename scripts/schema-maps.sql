@@ -86,3 +86,19 @@ alter table maps_clienti add column if not exists valore_cliente int;
 
 -- Quando abbiamo mandato al cliente l'accesso all'area (per la lista "Primi passi").
 alter table maps_clienti add column if not exists accesso_inviato_il timestamptz;
+
+-- Ordini diretti di card e piedistalli (senza abbonamento), pagati con Stripe.
+create table if not exists ordini_banco (
+  id serial primary key,
+  creato_il timestamptz not null default now(),
+  tipo text not null,
+  stripe_session text unique not null,
+  nome text not null default '',
+  email text not null default '',
+  telefono text not null default '',
+  indirizzo text not null default '',
+  attivita text not null default '',
+  importo numeric(8,2),
+  stato text not null default 'da-spedire',
+  spedito_il timestamptz
+);
