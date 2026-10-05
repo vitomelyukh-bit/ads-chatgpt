@@ -2,6 +2,7 @@ import Link from "next/link";
 import { eseguiGiro, nuovoClienteMaps, segnaOrdineSpedito } from "@/actions/maps-console";
 import { db } from "@/lib/db";
 import { googleCollegato, googleConfigurato } from "@/lib/gbp";
+import { packlinkAttivo, tariffaItalia } from "@/lib/packlink";
 
 type Riga = { id: number; attivita: string; citta: string; email: string; stato: string; google_location: string | null; da_approvare: number; da_pubblicare: number; in_coda: number; errori: number };
 
@@ -14,6 +15,7 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
       ((select count(*) from maps_recensioni r where r.cliente_id = c.id and r.stato = 'errore') + (select count(*) from maps_novita n where n.cliente_id = c.id and n.stato = 'errore'))::int as errori
     from maps_clienti c order by c.stato = 'attivo' desc, c.creato_il desc`) as Riga[];
   const ordini = (await db()`select * from ordini_banco order by (stato = 'da-spedire') desc, creato_il desc limit 30`) as { id: number; creato_il: string; tipo: string; nome: string; email: string; telefono: string; indirizzo: string; attivita: string; stato: string }[];
+  const [tCard, tStand] = await Promise.all([tariffaItalia("card"), tariffaItalia("piedistallo")]);
   const configurato = googleConfigurato();
   const collegato = await googleCollegato();
 
@@ -68,6 +70,15 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
           ))}
         </section>
       )}
+
+      <section className="tt-soft__box">
+        <h2 className="tt-soft__h2">Spedizione card e piedistalli</h2>
+        <p className="tt-soft__muted">{packlinkAttivo() ? "Tariffe Packlink in questo momento (più 0,50 € di busta ed etichetta), verso Milano:" : "Packlink non configurato: alla cassa si usa la tariffa fissa."}</p>
+        {[["Card", tCard], ["Piedistallo", tStand]].map(([n, t]) => {
+          const x = t as Awaited<ReturnType<typeof tariffaItalia>>;
+          return <p key={n as string}><strong>{n as string}:</strong> {x.prezzo.toFixed(2).replace(".", ",")} € · {x.corriere} {x.servizio && `· ${x.servizio}`}{x.giorni ? ` · ${x.giorni} gg` : ""}{x.forfait ? " (tariffa fissa di riserva)" : ""}</p>;
+        })}
+      </section>
 
       <form action={nuovoClienteMaps} className="tt-soft__box tt-form">
         <h2 className="tt-dash__h2">Nuovo cliente</h2>
