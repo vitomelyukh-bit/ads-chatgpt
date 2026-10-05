@@ -1,5 +1,5 @@
 // Packlink PRO: tariffe dei corrieri e bozze di spedizione (la chiave resta sul server).
-// Partenza: il magazzino configurato su Packlink (Palombara Sabina, 00018).
+// Partenza: l'indirizzo da cui spedisci card e piedistalli (variabili PACKLINK_FROM_*, solo sul server).
 import type { TipoExtra } from "@/lib/scheda";
 
 const BASE = "https://api.packlink.com/v1";
@@ -18,15 +18,15 @@ const mittente = () => ({
   surname: process.env.PACKLINK_FROM_SURNAME ?? "",
   company: process.env.PACKLINK_FROM_COMPANY ?? "TiTrovano",
   street1: process.env.PACKLINK_FROM_STREET ?? "",
-  zip_code: process.env.PACKLINK_FROM_ZIP ?? "00018",
-  city: process.env.PACKLINK_FROM_CITY ?? "Palombara Sabina",
-  state: process.env.PACKLINK_FROM_STATE ?? "Roma",
+  zip_code: process.env.PACKLINK_FROM_ZIP ?? "",
+  city: process.env.PACKLINK_FROM_CITY ?? "",
+  state: process.env.PACKLINK_FROM_STATE ?? process.env.PACKLINK_FROM_CITY ?? "",
   country: "IT",
   phone: process.env.PACKLINK_FROM_PHONE ?? "",
   email: process.env.PACKLINK_FROM_EMAIL ?? process.env.LEAD_TO_EMAIL?.split(",")[0]?.trim() ?? "",
 });
 
-export const packlinkAttivo = () => Boolean(process.env.PACKLINK_API_KEY);
+export const packlinkAttivo = () => Boolean(process.env.PACKLINK_API_KEY && process.env.PACKLINK_FROM_ZIP);
 
 async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(`${BASE}${path}`, { ...init, headers: { Authorization: process.env.PACKLINK_API_KEY!, "Content-Type": "application/json", ...init.headers }, signal: AbortSignal.timeout(8000) });
