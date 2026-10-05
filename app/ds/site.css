@@ -214,3 +214,7 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
   .tt-wa-float svg { width: 30px; height: 30px; }
 }
 @media (max-width: 640px) { .tt-footer { padding-bottom: 96px; } }
+/* Esempi pronti nelle guide (blocchi ">"): stesso aspetto della risposta del titolare */
+.tt-prose blockquote { padding: var(--space-4) var(--space-6); border: var(--border-thick) solid var(--ink); border-radius: var(--radius-lg); border-top-left-radius: var(--radius-sm); background: var(--brand-tint); }
+.tt-prose blockquote > * { margin: 0; }
+.tt-prose blockquote > * + * { margin-top: var(--space-2); }

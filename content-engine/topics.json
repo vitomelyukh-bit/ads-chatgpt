@@ -1,6 +1,158 @@
 {
-  "nota": "Backlog. Priorità: articoli VERTICALI per settore (campo 'settore' = slug in content/settori), poi generali sugli annunci, poi quelli sull'AI organica. La routine prende il primo 'da-fare' non sovrapposto a guide esistenti, lo segna 'fatto' con slug e data.",
+  "nota": "Backlog. Due temi: 'maps' (problemi della scheda Google Maps, due al giorno) e 'chatgpt' (annunci e AI, uno al giorno; senza campo tema = chatgpt). Vedi content-engine/WRITING.md. La routine prende il primo 'da-fare' del tema di oggi non sovrapposto a guide esistenti, lo segna 'fatto' con slug e data.",
   "argomenti": [
+    {
+      "titolo": "Come rispondere a una recensione negativa su Google (con esempi pronti)",
+      "tema": "maps",
+      "stato": "fatto",
+      "slug": "come-rispondere-recensione-negativa-google",
+      "data": "2026-10-05"
+    },
+    {
+      "titolo": "Recensione falsa o di un concorrente su Google: come segnalarla",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come chiedere recensioni su Google ai clienti senza imbarazzo (con messaggi pronti)",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perché la mia attività non compare su Google Maps?",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perché il mio concorrente compare prima di me su Google Maps?",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Qualcuno ha cambiato gli orari della mia attività su Google: cosa fare",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ho perso l'accesso alla mia scheda Google: come recuperarla",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Scheda Google sospesa: perché succede e cosa fare",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni sparite da Google: perché succede",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Si possono comprare recensioni su Google? Cosa rischi davvero",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come rispondere alle recensioni positive su Google (e perché conviene farlo)",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come creare il link diretto per lasciare una recensione su Google",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Quante recensioni servono su Google per essere scelti?",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensione negativa ingiusta: rispondere o ignorarla?",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Cosa scrivere nella descrizione della scheda Google della tua attività",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Quali foto mettere sulla scheda Google per attirare clienti",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Novità sulla scheda Google: cosa pubblicare ogni settimana (idee pronte)",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Domande e risposte sulla scheda Google: chi le scrive e come gestirle",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Orari festivi e chiusure su Google: come evitare clienti davanti alla porta chiusa",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Due schede Google per la stessa attività: come risolvere",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Hai cambiato indirizzo: come aggiornare la scheda Google senza perdere le recensioni",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come dare accesso alla tua scheda Google a qualcuno senza dare la password",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come vedere quante persone ti trovano su Google Maps (e cosa significano i numeri)",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Categoria della scheda Google: come scegliere quella giusta",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni negative per un ristorante: come rispondere (esempi per la ristorazione)",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni negative per parrucchieri e centri estetici: come rispondere",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni per artigiani e idraulici: come chiederle dopo un intervento",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni per hotel e B&B su Google: come rispondere e come chiederle",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Un ex dipendente ti ha lasciato una recensione negativa: cosa fare",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni con una stella e senza testo: si possono togliere?",
+      "tema": "maps",
+      "stato": "da-fare"
+    },
     {
       "titolo": "Come sceglie ChatGPT chi consigliare?",
       "stato": "fatto",

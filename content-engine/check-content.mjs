@@ -46,7 +46,7 @@ for (const x of [...settori, ...guide]) {
   for (const [, href] of x.body.matchAll(/\]\((\/[^)\s#]*)/g)) {
     const [, tipo, slug] = href.split("/");
     const ok =
-      href === "/" || href === "/analisi-gratuita" || href === "/canali" || href === "/settori" || href === "/guide" ||
+      href === "/" || href === "/#attiva" || href === "/analisi-gratuita" || href === "/canali" || href === "/settori" || href === "/guide" ||
       (tipo === "settori" && settoriSlugs.has(slug)) || (tipo === "guide" && guideSlugs.has(slug));
     if (!ok) err(x.file, `link interno rotto: ${href}`);
   }
@@ -71,11 +71,17 @@ for (const g of guide) {
   // Le prime 6 guide (3 ottobre 2026) sono più brevi: la soglia vale per le nuove.
   const n = parole(g.body);
   if (String(d.datePublished) > "2026-10-03" && (n < 450 || n > 1400)) err(g.file, `corpo di ${n} parole: deve stare tra 500 e 1.200 circa`);
-  if (!/\]\(\/analisi-gratuita\)/.test(g.body)) err(g.file, `manca il link all'[analisi gratuita](/analisi-gratuita)`);
+  const maps = d.tema === "maps";
+  if (d.tema && !["maps", "chatgpt"].includes(d.tema)) err(g.file, `tema deve essere "maps" o "chatgpt"`);
+  if (maps) {
+    // Guide Google Maps: chiudono verso il servizio in home e si appoggiano alle guide ufficiali di Google.
+    if (!/\]\(\/(#attiva)?\)/.test(g.body)) err(g.file, `guida Maps: manca il link al servizio, es. [lo facciamo noi](/)`);
+    if (!/\]\(https:\/\/support\.google\.com\//.test(g.body)) err(g.file, `guida Maps: serve almeno un link a una guida ufficiale di Google (support.google.com)`);
+  } else if (!/\]\(\/analisi-gratuita\)/.test(g.body)) err(g.file, `manca il link all'[analisi gratuita](/analisi-gratuita)`);
   if (!/\]\(\/(guide|settori)\/[a-z0-9-]+\)/.test(g.body)) err(g.file, `serve almeno un link interno a una guida o a un settore`);
   for (const s of d.settoriCorrelati ?? []) if (!settoriSlugs.has(s)) err(g.file, `settoriCorrelati: "${s}" non esiste`);
   for (const s of d.guideCorrelate ?? []) if (!guideSlugs.has(s) || s === g.slug) err(g.file, `guideCorrelate: "${s}" non valida`);
-  if (!(d.settoriCorrelati ?? []).length) err(g.file, `indica almeno un settore in settoriCorrelati`);
+  if (!maps && !(d.settoriCorrelati ?? []).length) err(g.file, `indica almeno un settore in settoriCorrelati`);
   // Articoli nuovi: verticali, con link alla pagina del loro settore.
   if (String(d.datePublished) > "2026-10-03" && d.settoriCorrelati?.[0] && !g.body.includes(`](/settori/${d.settoriCorrelati[0]})`)) {
     err(g.file, `articolo verticale: linka la pagina del settore principale (/settori/${d.settoriCorrelati[0]})`);

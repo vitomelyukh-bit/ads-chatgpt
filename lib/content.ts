@@ -35,6 +35,8 @@ const guidaSchema = z.object({
   faq: z.array(faqItem).default([]),
   settoriCorrelati: z.array(z.string()).default([]),
   guideCorrelate: z.array(z.string()).default([]),
+  // "maps": problemi della scheda Google, chiude verso il servizio in home. "chatgpt": annunci e AI.
+  tema: z.enum(["maps", "chatgpt"]).default("chatgpt"),
 });
 
 export type Faq = z.infer<typeof faqItem>;
@@ -81,6 +83,7 @@ export function getGuide(): Guida[] {
 
 export const getSettore = (slug: string) => getSettori().find((s) => s.slug === slug);
 export const getGuida = (slug: string) => getGuide().find((g) => g.slug === slug);
+export const guideMaps = () => getGuide().filter((g) => g.tema === "maps");
 
 // Risolve una lista di slug ignorando quelli inesistenti (ma lo segnala in build).
 export function resolve<T extends { slug: string }>(all: T[], slugs: string[], from: string): T[] {
@@ -99,14 +102,15 @@ export function guidePerSettore(s: Settore, max = 6): Guida[] {
   return [...manuali, ...auto].slice(0, max);
 }
 
-// "Leggi anche" di una guida: quelle scelte a mano, poi quelle con settori in comune.
+// "Leggi anche" di una guida: quelle scelte a mano, poi quelle dello stesso tema con settori in comune.
 export function guideCorrelateA(g: Guida, max = 4): Guida[] {
   const manuali = resolve(getGuide(), g.guideCorrelate, `guide/${g.slug}`);
   const auto = getGuide().filter(
     (x) =>
       x.slug !== g.slug &&
       !manuali.includes(x) &&
-      x.settoriCorrelati.some((s) => g.settoriCorrelati.includes(s)),
+      x.tema === g.tema &&
+      (g.tema === "maps" || x.settoriCorrelati.some((s) => g.settoriCorrelati.includes(s))),
   );
   return [...manuali, ...auto].slice(0, max);
 }
