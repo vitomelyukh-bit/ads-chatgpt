@@ -10,13 +10,13 @@ export const metadata: Metadata = { title: { absolute: "La tua area · TiTrovano
 export default function AreaLayout({ children }: { children: React.ReactNode }) {
   const wa = linkWhatsApp();
   return (
-    <>
+    <div className="tt-soft">
       <header className="tt-header">
         <Link href="/area" className="tt-logo" aria-label="TiTrovano, la tua area"><Logo /></Link>
         <nav aria-label="Area"><span className="tt-nav-links"><span className="tt-small tt-muted">La tua area</span></span></nav>
       </header>
       <main id="contenuto">{children}</main>
       {wa && <WhatsAppFloat href={wa} />}
-    </>
+    </div>
   );
 }

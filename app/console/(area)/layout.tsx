@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export default async function ConsoleLayout({ children }: { children: React.ReactNode }) {
   await requireAdmin();
   return (
-    <>
+    <div className="tt-soft">
       <header className="tt-header">
         <Link href="/console" className="tt-wordmark">TiTrovano · console</Link>
         <nav aria-label="Console">
@@ -18,7 +18,7 @@ export default async function ConsoleLayout({ children }: { children: React.Reac
           <form action={logout}><button className="tt-btn tt-btn--secondary">Esci</button></form>
         </nav>
       </header>
-      <main id="contenuto" className="tt-wrap" style={{ padding: "var(--space-12) var(--space-12) var(--space-24)" }}>{children}</main>
-    </>
+      <main id="contenuto" className="tt-wrap" style={{ padding: "var(--space-8) var(--space-6) var(--space-24)" }}>{children}</main>
+    </div>
   );
 }

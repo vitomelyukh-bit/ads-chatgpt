@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 
 export type Cliente = ProfiloCliente & {
   id: number; richiesta_id: number | null; nome: string; email: string; whatsapp: string; link_maps: string | null; link_recensioni: string | null;
-  spunti: string; google_account: string | null; google_location: string | null; stato: string; creato_il: string; valore_cliente: number | null;
+  spunti: string; google_account: string | null; google_location: string | null; stato: string; creato_il: string; valore_cliente: number | null; accesso_inviato_il: string | null;
 };
 export type Recensione = {
   id: number; cliente_id: number; google_id: string | null; autore: string; stelle: number; testo: string; scritta_il: string | null;

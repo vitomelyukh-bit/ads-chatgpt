@@ -17,21 +17,21 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
   const collegato = await googleCollegato();
 
   return (
-    <div className="tt-dash__wrap" style={{ maxWidth: "none" }}>
+    <div className="tt-soft__page">
       <div className="tt-row" style={{ justifyContent: "space-between" }}>
-        <h1 className="tt-dash__title">Google Maps: clienti</h1>
+        <h1 className="tt-soft__title">Clienti Google Maps</h1>
         <form action={eseguiGiro}><button className="tt-btn tt-btn--secondary">Esegui il giro adesso</button></form>
       </div>
       {q.giro && <p role="status" className="tt-card tt-body">Giro fatto: {q.giro}</p>}
 
       <aside className="tt-dash__card">
-        <span className="tt-tag">{collegato ? "Google collegato" : "Google non collegato"}</span>
+        <span className="tt-tag" style={{ justifySelf: "start" }}>{collegato ? "Google collegato" : "Google non collegato"}</span>
         {collegato ? (
           <p style={{ marginTop: "var(--space-3)" }}>Le risposte e le novità escono da sole sulle schede collegate. <Link href="/api/google/oauth">Ricollega l&apos;account</Link></p>
         ) : configurato ? (
           <p style={{ marginTop: "var(--space-3)" }}>Collega l&apos;account Google che i clienti approvano come gestore. <Link href="/api/google/oauth">Collega Google →</Link></p>
         ) : (
-          <p style={{ marginTop: "var(--space-3)" }}>Mancano le credenziali OAuth di Google (GOOGLE_OAUTH_CLIENT_ID e GOOGLE_OAUTH_CLIENT_SECRET). Finché manca, il sistema prepara risposte e novità e le trovi qui &ldquo;da pubblicare&rdquo; a mano.</p>
+          <p style={{ marginTop: "var(--space-3)" }}>Finché Google non è collegato, il sistema prepara risposte e novità e tu le pubblichi a mano (le trovi nella scheda di ogni cliente).</p>
         )}
         {q.google && q.google !== "ok" && <p style={{ marginTop: "var(--space-2)", color: "var(--danger)", fontWeight: 700 }}>Errore: {q.google}</p>}
       </aside>
@@ -54,7 +54,7 @@ export default async function MapsConsole({ searchParams }: { searchParams: Prom
         </div>
       )}
 
-      <form action={nuovoClienteMaps} className="tt-dash__card tt-form" style={{ maxWidth: 560 }}>
+      <form action={nuovoClienteMaps} className="tt-soft__box tt-form">
         <h2 className="tt-dash__h2">Nuovo cliente</h2>
         <p className="tt-dash__muted">Bastano questi tre dati: al resto pensa il sistema. Chi paga dal sito compare da solo.</p>
         {q.errore && <p role="alert" className="tt-alert">Errore: servono almeno nome dell&apos;attività ed email.</p>}

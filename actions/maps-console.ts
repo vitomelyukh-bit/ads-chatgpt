@@ -54,6 +54,7 @@ export async function mandaAccessoCliente(id: number) {
       ],
     }),
   });
+  await db()`update maps_clienti set accesso_inviato_il = now() where id = ${id}`;
   aggiorna(id);
 }
 
@@ -99,4 +100,10 @@ export async function eseguiGiro() {
   await requireAdmin();
   const log = await giro();
   redirect(`/console/maps?giro=${encodeURIComponent(log.join(" · ") || "niente da fare")}`);
+}
+
+export async function salvaInfo(id: number, fd: FormData) {
+  await requireAdmin();
+  await db()`update maps_clienti set info = ${t(fd, "info", 3000)} where id = ${id}`;
+  aggiorna(id);
 }
