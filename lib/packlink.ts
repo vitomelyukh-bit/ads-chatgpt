@@ -85,3 +85,63 @@ export async function bozzaSpedizione(o: {
   });
   return r.reference ?? null;
 }
+
+// ---------- Scelta della spedizione (come su Vinted): opzioni per CAP e punti di ritiro ----------
+type ServizioRaw = ServizioPacklink & { logo_id?: string; carrier?: string; transit_time?: string };
+export type Opzione = { id: string; corriere: string; servizio: string; prezzo: number; giorni: number | null; puntoRitiro: boolean; logo: string | null };
+
+export async function serviziGrezzi(tipo: TipoExtra, cap: string) {
+  const p = PACCO[tipo], m = mittente();
+  const q = new URLSearchParams({
+    "from[country]": "IT", "from[zip]": m.zip_code, "to[country]": "IT", "to[zip]": cap,
+    "packages[0][weight]": String(p.weight), "packages[0][width]": String(p.width), "packages[0][height]": String(p.height), "packages[0][length]": String(p.length),
+    sortBy: "totalPrice", source: "PRO",
+  });
+  return api<ServizioRaw[]>(`/services?${q}`);
+}
+
+const aOpzione = (s: ServizioRaw): Opzione => {
+  const ore = Number(s.transit_hours);
+  return {
+    id: String(s.id), corriere: s.carrier_name ?? s.carrier ?? "Corriere", servizio: s.name ?? "",
+    prezzo: Math.round(((s.price?.total_price ?? 0) + RICARICO) * 100) / 100,
+    giorni: Number.isFinite(ore) && ore > 0 ? Math.ceil(ore / 24) : null,
+    puntoRitiro: Boolean(s.delivery_to_parcelshop),
+    logo: s.logo_id ? `https://cdn.packlink.com/apps/carrier-logos/${s.logo_id}.svg` : null,
+  };
+};
+
+// Il più economico per corriere e per tipo di consegna, niente oltre il triplo del migliore, massimo 6.
+export async function opzioniSpedizione(tipo: TipoExtra, cap: string): Promise<Opzione[]> {
+  const tutti = (await serviziGrezzi(tipo, cap)).filter((s) => (s.price?.total_price ?? 0) > 0 && !s.dropoff).map(aOpzione);
+  const migliori = new Map<string, Opzione>();
+  for (const o of tutti.sort((a, b) => a.prezzo - b.prezzo)) {
+    const k = `${o.corriere}|${o.puntoRitiro}`;
+    if (!migliori.has(k)) migliori.set(k, o);
+  }
+  const lista = [...migliori.values()];
+  const min = Math.min(...lista.map((o) => o.prezzo));
+  return lista.filter((o) => o.prezzo <= min * 3).slice(0, 6);
+}
+
+// Rilegge il servizio scelto e ne restituisce il prezzo vero (il browser manda solo l'id).
+export async function opzioneScelta(tipo: TipoExtra, cap: string, id: string) {
+  const s = (await serviziGrezzi(tipo, cap)).find((x) => String(x.id) === id);
+  return s ? aOpzione(s) : null;
+}
+
+export type Punto = { id: string; nome: string; indirizzo: string; citta: string; cap: string; lat: number; lng: number; orari: string[] };
+type PuntoRaw = Record<string, unknown>;
+export async function puntiRitiro(servizio: string, cap: string): Promise<Punto[]> {
+  const raw = await api<PuntoRaw[]>(`/dropoffs/${encodeURIComponent(servizio)}/IT/${encodeURIComponent(cap)}`);
+  const str = (v: unknown) => (v === null || v === undefined ? "" : String(v));
+  return raw.slice(0, 30).map((p) => {
+    const orari = p.opening_times as Record<string, unknown> | undefined;
+    const giorni = orari && typeof orari === "object" ? ((orari.opening_times as Record<string, string>) ?? (orari as Record<string, string>)) : {};
+    return {
+      id: str(p.id), nome: str(p.commerce_name ?? p.name), indirizzo: str(p.address), citta: str(p.city), cap: str(p.zip ?? p.zip_code),
+      lat: Number(p.lat ?? p.latitude), lng: Number(p.long ?? p.lng ?? p.longitude),
+      orari: Object.entries(giorni).filter(([, v]) => typeof v === "string" && v).map(([g, v]) => `${g}: ${v}`).slice(0, 7),
+    };
+  }).filter((p) => p.id && Number.isFinite(p.lat) && Number.isFinite(p.lng));
+}

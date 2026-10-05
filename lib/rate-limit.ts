@@ -5,9 +5,9 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_HITS = 3;
 const hits = new Map<string, number[]>();
 
-export function isRateLimited(key: string, now = Date.now()): boolean {
+export function isRateLimited(key: string, now = Date.now(), max = MAX_HITS): boolean {
   const recent = (hits.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
-  if (recent.length >= MAX_HITS) {
+  if (recent.length >= max) {
     hits.set(key, recent);
     return true;
   }
