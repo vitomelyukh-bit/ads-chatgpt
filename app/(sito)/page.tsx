@@ -16,22 +16,26 @@ import { pagamentiAttivi } from "@/lib/stripe";
 export const metadata = pageMetadata({
   title: "Più clienti da Google Maps per la tua attività · TiTrovano",
   description:
-    "Teniamo aggiornata la tua attività su Google Maps, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. 59 € al mese, senza vincoli. Tu devi solo approvare l'accesso.",
+    "Se la tua scheda Google è ferma, i clienti scelgono il vicino. Ogni settimana pubblichiamo novità, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. 59 € al mese, senza vincoli.",
   path: "/",
 });
 
-const perche = [
-  { titolo: "Si cerca dal telefono, nei dintorni", testo: "«Pizzeria vicino a me», «parrucchiere aperto ora», «idraulico a Monza». Google risponde con una mappa e le attività della zona." },
-  { titolo: "Le recensioni contano", testo: "Secondo Google, numero e punteggio delle recensioni sono tra i fattori che decidono chi compare più in alto nei risultati locali." },
-  { titolo: "Una scheda ferma fa scappare i clienti", testo: "Orari sbagliati, recensioni senza risposta, nessuna novità da mesi: chi guarda pensa che sei chiuso, o che non ti importa, e sceglie il vicino." },
+// I problemi che il titolare vive ogni giorno, detti con le sue parole.
+const problemi = [
+  { titolo: "Il cliente decide in pochi secondi", testo: "Cerca dal telefono «pizzeria vicino a me», guarda stelle, ultime recensioni e orari, e sceglie. Se la tua scheda dice poco, sceglie il vicino. E tu non saprai mai di averlo perso." },
+  { titolo: "Chi è contento non scrive. Chi è arrabbiato sì.", testo: "Cento clienti escono soddisfatti e non lasciano traccia. Uno esce scontento e scrive tre righe. Su Google resta solo quella." },
+  { titolo: "Una critica senza risposta resta lì per mesi", testo: "La legge chiunque ti cerca. Senza una risposta sembra che tu non te ne sia accorto, o che non ti importi. Con una risposta calma, la stessa critica dice: qui ci tengono." },
+  { titolo: "Il concorrente ti passa davanti", testo: "Lavora peggio di te, ma ha più recensioni e più recenti. Secondo Google numero e punteggio delle recensioni contano per chi compare più in alto: così i clienti della zona vanno da lui." },
+  { titolo: "E tu non hai tempo", testo: "Apri presto, chiudi tardi, pensi a fornitori, conti e clienti. Google è sempre l'ultima cosa della lista. Per questo la scheda resta ferma." },
 ];
 
+// Ogni servizio detto come problema risolto.
 const cosaFacciamo = [
-  { titolo: "Novità ogni settimana", testo: "Pubblichiamo un aggiornamento sulla tua attività: un piatto, un prodotto, un'offerta, un evento. Chi ti trova vede che sei attivo." },
-  { titolo: "Rispondiamo a tutte le recensioni", testo: "Positive e negative, con un tono gentile e professionale, a nome tuo. Chi legge capisce che ci tieni." },
-  { titolo: "Ti aiutiamo a riceverne di nuove", testo: "Un link, un QR da stampare e un messaggio pronto da mandare su WhatsApp ai clienti contenti. Lasciare una recensione diventa un attimo." },
-  { titolo: "Orari e informazioni sempre giusti", testo: "Festività, ferie, chiusure: ci scrivi su WhatsApp e aggiorniamo noi." },
-  { titolo: "Ogni mese, i tuoi numeri", testo: "Un messaggio semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Così vedi tu se funziona." },
+  { titolo: "La tua attività sembra viva", testo: "Ogni settimana pubblichiamo una novità: un piatto, un prodotto, un'offerta, un evento. Chi ti trova vede un'attività aperta e curata, non una scheda dimenticata." },
+  { titolo: "Nessuna recensione resta senza risposta", testo: "Rispondiamo a tutte, positive e negative, a nome tuo e con il tono giusto. Grazie a chi è contento, calma e soluzioni a chi si lamenta." },
+  { titolo: "I clienti contenti finalmente scrivono", testo: "Spesso vorrebbero, ma non sanno come e lasciano stare. Gli diamo un link, un QR e un messaggio pronto da mandare su WhatsApp: un tocco e hanno fatto." },
+  { titolo: "Mai più clienti davanti alla porta chiusa", testo: "Ferie, festività, orari nuovi: ci mandi un messaggio su WhatsApp e su Google è tutto giusto. Nessuno arriva e trova chiuso." },
+  { titolo: "Sai sempre cosa succede", testo: "Ogni mese un riepilogo semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Vedi tu, coi numeri, se ti conviene." },
 ];
 
 // Recensioni e risposte di fantasia, per far vedere il tono: positiva, con una critica, negativa.
@@ -96,8 +100,8 @@ export default function Home() {
               Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span>
             </h1>
             <p className="tt-lead">
-              Quando qualcuno cerca «vicino a me», Google mostra le attività della zona. Noi teniamo la tua sempre
-              aggiornata, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. Tu pensi a lavorare.
+              I clienti della tua zona ti cercano su Google Maps. Se la tua scheda è ferma, scelgono il vicino. Noi la
+              teniamo viva ogni settimana: novità, risposte a tutte le recensioni, recensioni nuove. Tu pensi a lavorare.
             </p>
             <div className="tt-actions">
               {cta()}
@@ -111,11 +115,15 @@ export default function Home() {
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="01" occhiello="Perché Google Maps">
-            Chi ti cerca su Maps <span className="tt-mark">è a due passi da te.</span>
+          <SectionHead n="01" occhiello="Il problema">
+            Lavori bene. Ma su Google <span className="tt-mark">non si vede.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-6">
-            <ul className="tt-points">{perche.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
+            <ul className="tt-points">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
+            <p className="tt-body-strong" style={{ margin: 0, fontSize: 20 }}>
+              Non ti serve un&apos;agenzia, un contratto lungo o imparare un programma. Ti serve qualcuno che lo faccia al posto tuo,
+              ogni settimana.
+            </p>
             <p className="tt-small tt-muted">
               Fonte: Google, <a href="https://support.google.com/business/answer/7091?hl=it">Suggerimenti per migliorare il posizionamento locale</a>.
             </p>
@@ -126,7 +134,7 @@ export default function Home() {
       <section className="tt-section">
         <div className="tt-wrap tt-wrap--read">
           <SectionHead n="02" occhiello="Cosa facciamo">
-            La tua attività su Google, <span className="tt-mark">sempre viva.</span>
+            Lo facciamo noi, <span className="tt-mark">ogni settimana.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-8">
             <StepList passi={cosaFacciamo} />
@@ -161,7 +169,13 @@ export default function Home() {
 
       <section id="prezzo" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="04" occhiello="Prezzo">Un prezzo, <span className="tt-mark">tutto incluso.</span></SectionHead>
+          <SectionHead
+            n="04"
+            occhiello="Prezzo"
+            testo="Meno di 2 € al giorno. Per molte attività basta un cliente in più al mese per ripagarlo."
+          >
+            Un prezzo, <span className="tt-mark">tutto incluso.</span>
+          </SectionHead>
           <div className="tt-price tt-section-body">
             <span className="tt-tag">Tutto incluso</span>
             <p className="tt-price__amount">{euro(scheda.prezzoMese)} <small>al mese</small></p>
