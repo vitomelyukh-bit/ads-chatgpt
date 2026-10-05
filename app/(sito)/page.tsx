@@ -95,7 +95,7 @@ export default function Home() {
       <section className="tt-section">
         <div className="tt-wrap tt-hero">
           <div className="tt-stack-6">
-            <p className="tt-eyebrow" style={{ margin: 0 }}>Per bar, ristoranti, negozi, artigiani e studi</p>
+            <p className="tt-eyebrow" style={{ margin: 0 }}>Per chi vive dei clienti della zona</p>
             <h1 className="tt-display-xl">
               Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span>
             </h1>
