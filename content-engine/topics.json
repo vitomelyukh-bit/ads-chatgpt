@@ -25,7 +25,9 @@
     {
       "titolo": "Perché la mia attività non compare su Google Maps?",
       "tema": "maps",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "attivita-non-compare-google-maps",
+      "data": "2026-10-06"
     },
     {
       "titolo": "Perché il mio concorrente compare prima di me su Google Maps?",
