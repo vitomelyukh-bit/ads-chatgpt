@@ -36,7 +36,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
             <p className="tt-lead">Grazie {richiesta.nome}. Ti abbiamo mandato una email di conferma con il link per gestire o disdire l&apos;abbonamento.</p>
           </div>
           <ol className="tt-steps">
-            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Tocca &ldquo;Approva&rdquo;</h2><p>Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Tocchi Approva e hai finito. Se non la trovi, ti scriviamo noi su WhatsApp.</p></div></li>
+            <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Tocca &ldquo;Approva&rdquo;</h2><p>Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Tocchi Approva e hai finito. Se non la trovi, guarda nello spam o rispondi alla email di conferma.</p></div></li>
             <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Aggiorniamo ogni settimana</h2><p>Novità e risposte a tutte le recensioni, senza che tu debba fare niente.</p></div></li>
             {richiesta.nfc_tipo && <li><div><h2 className="tt-heading" style={{ fontSize: 28 }}>Ti spediamo {richiesta.nfc_tipo === "card" ? "la card" : "il piedistallo"}</h2><p>Arriva già pronto all&apos;uso. Ti avvisiamo quando parte.</p></div></li>}
           </ol>

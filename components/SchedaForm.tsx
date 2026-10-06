@@ -35,8 +35,8 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
           </>
         ) : (
           <>
-            <p className="tt-body">Ti scriviamo su WhatsApp per attivare il servizio{state.extra ? ` e spedirti ${state.extra === "card" ? "la card" : "il piedistallo"}` : ""}. Ti abbiamo mandato anche una email di conferma.</p>
-            {whatsapp && <a href={whatsapp} className="tt-btn tt-btn--block tt-btn--lg">Scrivici subito su WhatsApp →</a>}
+            <p className="tt-body">Ti contattiamo a breve per completare l&apos;attivazione{state.extra ? ` e spedirti ${state.extra === "card" ? "la card" : "il piedistallo"}` : ""}. Ti abbiamo mandato anche una email di conferma.</p>
+            {whatsapp && <a href={whatsapp} className="tt-btn tt-btn--secondary tt-btn--block">Hai una domanda? Scrivici su WhatsApp</a>}
           </>
         )}
       </div>
@@ -104,9 +104,9 @@ export function SchedaForm({ whatsapp, pagamenti }: { whatsapp: string | null; p
       </div>
 
       <button type="submit" disabled={pending} className="tt-btn tt-btn--block tt-btn--lg">
-        {pending ? "Invio in corso…" : <>Invia la richiesta <span aria-hidden="true">→</span></>}
+        {pending ? (pagamenti ? "Ti portiamo al pagamento…" : "Invio in corso…") : <>{pagamenti ? "Continua al pagamento" : "Invia la richiesta"} <span aria-hidden="true">→</span></>}
       </button>
-      <p className="tt-small tt-muted">{pagamenti ? "Dopo l\u2019invio puoi attivare subito il servizio con il pagamento sicuro." : "Nessun pagamento adesso: ti scriviamo noi su WhatsApp per attivare il servizio."}</p>
+      <p className="tt-small tt-muted">{pagamenti ? `Al passo successivo paghi con carta sul sito sicuro di Stripe: ${euro(scheda.prezzoMese)} al mese${"\u00a0"}e il servizio è attivo. Disdici quando vuoi.` : "Nessun pagamento adesso: ti contattiamo per completare l\u2019attivazione."}</p>
     </form>
   );
 }

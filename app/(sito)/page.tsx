@@ -16,6 +16,7 @@ import { EXTRA, euro, linkWhatsApp, scheda } from "@/lib/scheda";
 import { ESEMPI_RISPOSTE } from "@/lib/esempi-risposte";
 import { pagamentiAttivi } from "@/lib/stripe";
 import { Slideshow } from "@/components/Slideshow";
+import { RipresaPagamento } from "@/components/RipresaPagamento";
 
 export const metadata = pageMetadata({
   title: "Più clienti da Google Maps per la tua attività · TiTrovano",
@@ -44,7 +45,7 @@ const cosaFacciamo = [
 
 
 const passi = [
-  { titolo: "Ci lasci i tuoi dati", testo: "Compili il modulo qui sotto o ci scrivi su WhatsApp. Ci vogliono due minuti." },
+  { titolo: "Attivi in due minuti", testo: "Compili il modulo qui sotto e paghi con carta sul sito sicuro di Stripe. Nessun contratto, nessuna telefonata." },
   { titolo: "Tocchi «Approva»", testo: "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Un tocco e hai finito. Non ci dai nessuna password." },
   { titolo: "Al resto pensiamo noi", testo: "Ogni settimana, senza che tu debba ricordarti niente. Se vuoi, ci mandi foto o novità su WhatsApp e le usiamo." },
 ];
@@ -59,7 +60,7 @@ const faq: Faq[] = [
   { domanda: "Cosa succede alle recensioni negative?", risposta: "Rispondiamo anche a quelle, con calma e in modo professionale, per mostrare a chi legge che l'attività ascolta. Non possiamo cancellarle: solo Google può rimuovere le recensioni che violano le sue regole. Se ne troviamo una così, te lo segnaliamo." },
   { domanda: "Posso disdire?", risposta: "Sì, quando vuoi, senza vincoli e senza penali. Lo fai da solo dal link che ti mandiamo per email, oppure con un messaggio su WhatsApp." },
   { domanda: "Come ricevo la card o il piedistallo?", risposta: "Te lo spediamo all'indirizzo che indichi nel modulo, già pronto all'uso con il link della tua attività. La spedizione è inclusa e ti avvisiamo quando parte." },
-  { domanda: "Funziona in tutta Italia?", risposta: "Sì. Si attiva tutto online, senza incontri di persona: ci sentiamo su WhatsApp." },
+  { domanda: "Funziona in tutta Italia?", risposta: "Sì. Si attiva tutto online in due minuti, senza incontri di persona. Per qualsiasi cosa ci trovi su WhatsApp." },
 ];
 
 export default function Home() {
@@ -83,7 +84,7 @@ export default function Home() {
             </p>
             <div className="tt-map__cta">
               {cta()}
-              {wa ? <a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp</a> : <a href="#come-funziona" className="tt-btn tt-btn--secondary">Come funziona</a>}
+              <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Come funziona</a>
             </div>
             <p className="tt-map__price"><b>{euro(scheda.prezzoMese)} al mese</b> · nessun costo di attivazione · disdici quando vuoi</p>
           </MapScene>
@@ -181,10 +182,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="da-banco" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+
+
+
+      <section id="attiva" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="05"
+            occhiello="Inizia ora"
+            testo={`Due minuti: i dati della tua attività, poi il pagamento sicuro con carta. ${euro(scheda.prezzoMese)} al mese, disdici quando vuoi.`}
+          >
+            Più clienti da Maps, <span className="tt-mark">da questa settimana.</span>
+          </SectionHead>
+          <div className="tt-section-body"><RipresaPagamento /></div>
+          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
+          <ul className="tt-ticks tt-small" style={{ marginTop: "var(--space-4)" }}>
+            <li>Pagamento sicuro con Stripe</li>
+            <li>Non ci dai nessuna password</li>
+            <li>Nessun vincolo: disdici quando vuoi, da solo</li>
+          </ul>
+        </div>
+      </section>
+      <section className="tt-section">
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead n="06" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
+          <div className="tt-section-body tt-stack-6"><FaqList items={faq} />{cta()}</div>
+        </div>
+      </section>
+      <section id="da-banco" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead
+            n="07"
             occhiello="Card e piedistallo"
             testo="Da mettere sul bancone o vicino alla cassa: il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione. Niente app, niente ricerche."
           >
@@ -206,11 +234,10 @@ export default function Home() {
           <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Puoi comprarli da soli, oppure aggiungerli al servizio da {euro(scheda.prezzoMese)} al mese nel modulo qui sotto.</p>
         </div>
       </section>
-
       <section className="tt-section">
         <div className="tt-wrap">
           <SectionHead
-            n="06"
+            n="08"
             occhiello="Per crescere ancora"
             testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su Google, Meta e TikTok. Ti diciamo in una call gratuita quale ha senso per te."
           >
@@ -224,29 +251,6 @@ export default function Home() {
               { href: "/analisi-gratuita", nome: "Annunci su TikTok", testo: "Un video breve che arriva a chi abita o passa vicino a te.", piu: "Consulenza gratuita", scena: "video", logo: "tiktok" },
             ]} />
           </div>
-        </div>
-      </section>
-
-      <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="07" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
-          <div className="tt-section-body"><FaqList items={faq} /></div>
-        </div>
-      </section>
-
-      <section id="attiva" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead
-            occhiello="Inizia ora"
-            testo={wa ? "Compila il modulo, oppure scrivici su WhatsApp se preferisci parlarne prima." : "Compila il modulo: ti scriviamo noi su WhatsApp."}
-          >
-            Più clienti da Maps, <span className="tt-mark">da questa settimana.</span>
-          </SectionHead>
-          {wa && <div className="tt-section-body"><a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp →</a></div>}
-          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
-          <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>
-            Cerchi gli annunci su ChatGPT? <Link href="/annunci-chatgpt">Vai alla pagina dedicata →</Link>
-          </p>
         </div>
       </section>
     </>

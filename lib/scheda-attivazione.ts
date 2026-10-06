@@ -79,7 +79,7 @@ async function emailAttivazione(r: RichiestaScheda, codice: string | null) {
       { tipo: "p", testo: `Grazie: abbiamo ricevuto il pagamento per ${scheda.nome} di ${r.attivita}.` },
       { tipo: "titoletto", testo: "Cosa succede adesso" },
       { tipo: "passi", passi: [
-        "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività: tocca Approva. Se non la trovi, ti scriviamo noi su WhatsApp.",
+        "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività: tocca Approva. Se non la trovi, guarda nello spam o rispondi a questa email.",
         "Da lì aggiorniamo la tua attività su Google ogni settimana e rispondiamo alle recensioni.",
         isTipoExtra(r.nfc_tipo) ? `Ti arriva ${r.nfc_tipo === "card" ? "la card" : "il piedistallo"} a casa. Se non apre già la pagina delle recensioni, nella tua area trovi la guida per attivarlo in un minuto.` : "Tu vedi i risultati direttamente su Google Maps.",
       ] },

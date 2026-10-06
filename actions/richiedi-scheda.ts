@@ -1,12 +1,14 @@
 "use server";
 
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { track } from "@vercel/analytics/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { email, TITROVANO } from "@/lib/email";
 import { isRateLimited } from "@/lib/rate-limit";
-import { EXTRA, euro, isLinkMaps, isTipoExtra, linkWhatsApp, scheda, type TipoExtra } from "@/lib/scheda";
+import { EXTRA, euro, isLinkMaps, isTipoExtra, scheda, type TipoExtra } from "@/lib/scheda";
 import { firmaRichiesta } from "@/lib/scheda-token";
 import { pagamentiAttivi } from "@/lib/stripe";
 
@@ -73,6 +75,8 @@ export async function richiediScheda(prev: StatoScheda, fd: FormData): Promise<S
     return { status: "error", message: "Non siamo riusciti a ricevere la richiesta. Riprova tra qualche minuto o scrivici su WhatsApp.", values, attempt };
   }
 
+  const token = firmaRichiesta(nuovoId);
+  const pagamenti = pagamentiAttivi();
   const key = process.env.RESEND_API_KEY, from = process.env.RESEND_FROM;
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((s) => s.trim()).filter(Boolean);
   if (key && from && to?.length) {
@@ -94,12 +98,15 @@ export async function richiediScheda(prev: StatoScheda, fd: FormData): Promise<S
       blocchi: [
         { tipo: "righe", righe },
         { tipo: "bottone", testo: `Scrivi a ${d.nome} su WhatsApp →`, url: wa },
-        { tipo: "nota", testo: pagamentiAttivi() ? "Il cliente può pagare subito dal sito: se lo fa, ricevi l'email \"Pagamento ricevuto\". Altrimenti scrivigli tu." : "Pagamento online non attivo: concorda attivazione e pagamento direttamente con il cliente." },
+        { tipo: "nota", testo: pagamenti ? "Il cliente è stato mandato alla cassa: se paga, ricevi l'email \"Pagamento ricevuto\". Se non la ricevi, non ha completato il pagamento: scrivigli tu." : "Pagamento online non attivo: concorda attivazione e pagamento direttamente con il cliente." },
       ],
     });
+    // Con i pagamenti attivi la ricevuta al cliente non serve: va dritto alla
+    // cassa e, se paga, riceve la conferma di attivazione. Se la chiude a metà,
+    // te ne accorgi dalla notifica qui sopra senza "Pagamento ricevuto".
     const ricevuta = email({
       marchio: TITROVANO,
-      anteprima: "Ti scriviamo su WhatsApp per attivare il servizio.",
+      anteprima: "Abbiamo ricevuto la tua richiesta.",
       titolo: `Ciao ${d.nome}, abbiamo ricevuto la tua richiesta`,
       evidenzia: "ricevuto",
       blocchi: [
@@ -107,20 +114,27 @@ export async function richiediScheda(prev: StatoScheda, fd: FormData): Promise<S
         { tipo: "righe", righe: [["Servizio", `${euro(scheda.prezzoMese)}/mese, nessun costo di attivazione, disdici quando vuoi`], ...(extra ? ([[EXTRA[extra].nome, `${euro(EXTRA[extra].prezzo)} una tantum, spedizione inclusa`]] as [string, string][]) : [])] },
         { tipo: "titoletto", testo: "Cosa succede adesso" },
         { tipo: "passi", passi: [
-          "Ti scriviamo su WhatsApp per attivare il servizio.",
+          "Ti contattiamo per completare l'attivazione.",
           "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività: tocchi Approva e basta.",
-          extra ? `Da lì aggiorniamo la tua attività su Google ogni settimana e ti spediamo ${extra === "card" ? "la card" : "il piedistallo"}, già pronto all'uso.` : "Da lì aggiorniamo la tua attività su Google ogni settimana: tu vedi i risultati su Google Maps.",
+          "Da lì aggiorniamo la tua attività su Google ogni settimana.",
         ] },
-        ...(linkWhatsApp() ? [{ tipo: "bottone" as const, testo: "Scrivici su WhatsApp →", url: linkWhatsApp()! }] : []),
         { tipo: "nota", testo: "Hai domande? Rispondi a questa email." },
       ],
     });
     await Promise.allSettled([
       resend.emails.send({ from, to, replyTo: d.email, subject: `Nuova richiesta Google Maps: ${d.attivita} (${d.citta})${extra ? ` + ${extra}` : ""}`, ...notifica }),
-      resend.emails.send({ from, to: d.email, replyTo: to[0], subject: `Abbiamo ricevuto la tua richiesta · ${scheda.nome}`, ...ricevuta }),
+      ...(pagamenti ? [] : [resend.emails.send({ from, to: d.email, replyTo: to[0], subject: `Abbiamo ricevuto la tua richiesta · ${scheda.nome}`, ...ricevuta })]),
     ]).then((r) => r.forEach((x) => x.status === "rejected" && console.error("[richiedi-scheda] email", x.reason)));
   } else if (process.env.NODE_ENV !== "production") {
     console.warn("[richiedi-scheda] Resend non configurato: richiesta salvata, email non inviate.");
   }
-  return { status: "success", extra, token: firmaRichiesta(nuovoId) };
+  // Con i pagamenti attivi il modulo porta dritto alla cassa: nessun secondo
+  // clic su "Paga e attiva", che era il punto in cui il funnel perdeva gente.
+  if (pagamenti) {
+    // L'evento del modulo non parte piu' dal browser, che lascia la pagina
+    // subito: si registra qui, con lo stesso nome di prima.
+    await track("Google Maps richiesta", { extra: extra ?? "nessuno" }).catch(() => {});
+    redirect(`/attiva/paga?t=${encodeURIComponent(token)}`);
+  }
+  return { status: "success", extra, token };
 }
