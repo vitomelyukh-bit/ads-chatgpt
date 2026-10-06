@@ -8,10 +8,18 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: { absolute: "Ordine ricevuto · TiTrovano" }, robots: { index: false, follow: false } };
 
 // Ritorno dalla cassa per card e piedistallo comprati da soli.
-export default async function GrazieAcquisto({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
-  const { session_id } = await searchParams;
+export default async function GrazieAcquisto({ searchParams }: { searchParams: Promise<{ session_id?: string; ricevuto?: string }> }) {
+  const { session_id, ricevuto } = await searchParams;
   const s = session_id && process.env.STRIPE_SECRET_KEY ? await stripe().checkout.sessions.retrieve(session_id).catch(() => null) : null;
   const ok = s?.payment_status === "paid" && s.metadata?.ordine === "banco" && isTipoExtra(s.metadata?.tipo);
+  const wa0 = linkWhatsApp();
+  if (ricevuto) return (
+    <div className="tt-wrap tt-wrap--read tt-page-head tt-stack-6">
+      <h1 className="tt-display-lg">Fatto: <span className="tt-mark">ordine ricevuto</span></h1>
+      <p className="tt-lead">Ti abbiamo mandato il riepilogo per email. Ti scriviamo a breve per il pagamento, poi lo prepariamo e lo spediamo come hai scelto.</p>
+      {wa0 && <a href={wa0} className="tt-btn">Scrivici su WhatsApp →</a>}
+    </div>
+  );
   if (ok) await registraOrdineBanco(s);
   const wa = linkWhatsApp();
   const nome = ok ? EXTRA[s.metadata!.tipo as "card" | "piedistallo"].nome.toLowerCase() : "";

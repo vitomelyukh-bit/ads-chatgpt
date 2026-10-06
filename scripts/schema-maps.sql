@@ -110,3 +110,13 @@ alter table ordini_banco add column if not exists corriere text;
 alter table ordini_banco add column if not exists packlink_ref text;
 alter table ordini_banco add column if not exists tracking_url text;
 alter table ordini_banco add column if not exists punto_ritiro text;
+
+-- Checkout completo sul sito: l'ordine nasce prima del pagamento.
+alter table ordini_banco alter column stripe_session drop not null;
+alter table ordini_banco add column if not exists via text;
+alter table ordini_banco add column if not exists cap text;
+alter table ordini_banco add column if not exists citta text;
+alter table ordini_banco add column if not exists provincia text;
+alter table ordini_banco add column if not exists presso text;
+alter table ordini_banco add column if not exists punto_ritiro_id text;
+alter table ordini_banco add column if not exists prezzo_prodotto numeric(8,2);

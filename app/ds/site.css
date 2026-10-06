@@ -589,3 +589,12 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-ord__totale p span { color: var(--ink-muted); }
 .tt-ord__tot { font-size: 20px; } .tt-ord__tot span { color: var(--ink) !important; font-weight: 600; }
 @media (max-width: 860px) { .tt-compra { grid-template-columns: 1fr; gap: var(--space-8); } .tt-compra__prod { position: static; } .tt-compra__sped { padding: var(--space-4); } }
+.tt-ord__dati { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--line); }
+.tt-ord__dati > .tt-ord__t, .tt-ord__dati > .tt-soft__muted, .tt-ord__dati > .tt-ord__totale { grid-column: 1 / -1; }
+.tt-ord__campo { display: grid; gap: 4px; grid-column: 1 / -1; }
+.tt-ord__campo--corto { grid-column: auto; }
+.tt-ord__campo label { font-weight: 600; font-size: 15px; }
+.tt-ord__campo input { min-height: 48px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: var(--radius-md); font: 400 17px/1 var(--font-body); background: var(--paper-raised); color: var(--ink); }
+.tt-ord__campo.is-err input { border: 2px solid var(--danger); }
+.tt-ord__campo:has(#o-citta) { grid-column: 1; }
+.tt-ord__campo:has(#o-provincia) { grid-column: 2; }

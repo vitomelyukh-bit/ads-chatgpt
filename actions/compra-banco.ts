@@ -1,47 +1,69 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { opzioneScelta, tariffaItalia } from "@/lib/packlink";
-import { EXTRA, isTipoExtra, linkWhatsApp } from "@/lib/scheda";
+import { z } from "zod";
+import { creaOrdineBanco, ordineSenzaPagamento } from "@/lib/banco";
+import { opzioneScelta } from "@/lib/packlink";
+import { isRateLimited } from "@/lib/rate-limit";
+import { EXTRA, isTipoExtra } from "@/lib/scheda";
 import { site } from "@/lib/site";
 import { stripe } from "@/lib/stripe";
 
-// Pagamento una tantum di card o piedistallo, con la spedizione scelta dal cliente (corriere, a casa o punto di ritiro).
-// Il browser manda solo l'id del servizio: il prezzo lo richiede di nuovo il server a Packlink.
-// Se i pagamenti non sono attivi, porta su WhatsApp con il messaggio già scritto.
-export async function compraBanco(tipo: string, cap = "", servizioId = "", punto = "") {
-  if (!isTipoExtra(tipo)) redirect("/#da-banco");
+// Checkout di card e piedistallo sul sito: spedizione + dati del cliente insieme, poi Stripe solo per la carta.
+// Il prezzo della spedizione lo richiede di nuovo il server a Packlink: il browser manda solo l'id del servizio.
+export type StatoOrdine = { errore?: string; campi?: Record<string, string> } | null;
+
+const schema = z.object({
+  nome: z.string().trim().min(3, "Scrivi nome e cognome.").max(80),
+  email: z.string().trim().email("Controlla l'email.").max(160),
+  telefono: z.string().trim().regex(/^[+\d][\d\s./-]{5,19}$/, "Controlla il numero di telefono."),
+  attivita: z.string().trim().min(2, "Scrivi il nome della tua attività o il link Google Maps.").max(300),
+  via: z.string().trim().min(3, "Scrivi via e numero civico.").max(120),
+  citta: z.string().trim().min(2, "Scrivi la città.").max(80),
+  provincia: z.string().trim().toUpperCase().regex(/^[A-Z]{2}$/, "Sigla della provincia, es. RM."),
+  presso: z.string().trim().max(80).optional().default(""),
+});
+
+export async function ordinaBanco(_: StatoOrdine, fd: FormData): Promise<StatoOrdine> {
+  const tipo = String(fd.get("tipo") ?? ""), cap = String(fd.get("cap") ?? ""), servizio = String(fd.get("servizio") ?? "");
+  const [puntoId, ...puntoNome] = String(fd.get("punto") ?? "").split("|");
+  if (!isTipoExtra(tipo) || !/^\d{5}$/.test(cap) || !servizio) return { errore: "Scegli prima la spedizione." };
+  const p = schema.safeParse(Object.fromEntries(fd));
+  if (!p.success) {
+    const campi: Record<string, string> = {};
+    for (const i of p.error.issues) campi[String(i.path[0])] ??= i.message;
+    return { errore: "Controlla i campi evidenziati.", campi };
+  }
+  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "?";
+  if (isRateLimited(`ordine:${ip}`, Date.now(), 10)) return { errore: "Troppi tentativi, riprova tra qualche minuto." };
+
+  const sped = await opzioneScelta(tipo, cap, servizio).catch(() => null);
+  if (!sped) return { errore: "La spedizione scelta non è più disponibile per questo CAP: scegline un'altra." };
+  if (sped.puntoRitiro && !puntoId) return { errore: "Scegli il punto di ritiro sulla mappa." };
+
+  const d = p.data;
+  const o = await creaOrdineBanco({
+    tipo, nome: d.nome, email: d.email, telefono: d.telefono, attivita: d.attivita, via: d.via, cap, citta: d.citta, provincia: d.provincia, presso: d.presso || null,
+    spedizione_servizio: sped.id, spedizione_costo: sped.prezzo, corriere: sped.corriere,
+    punto_ritiro: sped.puntoRitiro ? puntoNome.join("|") : null, punto_ritiro_id: sped.puntoRitiro ? puntoId : null, prezzo_prodotto: EXTRA[tipo].prezzo,
+  });
+
   const prezzo = process.env[EXTRA[tipo].priceEnv];
   if (!process.env.STRIPE_SECRET_KEY || !prezzo) {
-    const wa = linkWhatsApp()?.replace(/\?text=.*/, "");
-    redirect(wa ? `${wa}?text=${encodeURIComponent(`Ciao, vorrei ordinare il ${EXTRA[tipo].nome.toLowerCase()} per le recensioni`)}` : "/#attiva");
+    await ordineSenzaPagamento(o);
+    redirect("/acquisto/grazie?ricevuto=1");
   }
-
-  const scelta = /^\d{5}$/.test(cap) && servizioId ? await opzioneScelta(tipo, cap, servizioId).catch(() => null) : null;
-  const t = scelta ?? (await tariffaItalia(tipo));
-  const [puntoId, puntoNome] = scelta?.puntoRitiro ? punto.split("|") : ["", ""];
-  if (scelta?.puntoRitiro && !puntoId) redirect(`/compra/${tipo}?errore=punto`);
-  const etichetta = scelta ? `${scelta.corriere} · ${scelta.puntoRitiro ? "ritiro al punto" : "a domicilio"}` : "Spedizione con corriere";
-  const giorni = "giorni" in t ? t.giorni : null;
-
   const session = await stripe().checkout.sessions.create({
     mode: "payment",
-    line_items: [{ price: prezzo, quantity: 1 }],
+    customer_email: d.email,
     locale: "it",
-    shipping_address_collection: { allowed_countries: ["IT", "SM", "VA"] },
-    phone_number_collection: { enabled: true },
-    shipping_options: [{
-      shipping_rate_data: {
-        type: "fixed_amount",
-        fixed_amount: { amount: Math.round(t.prezzo * 100), currency: "eur" },
-        display_name: etichetta.slice(0, 100),
-        ...(giorni ? { delivery_estimate: { minimum: { unit: "business_day" as const, value: giorni }, maximum: { unit: "business_day" as const, value: giorni + 2 } } } : {}),
-      },
-    }],
-    custom_fields: [{ key: "attivita", label: { type: "custom", custom: "Nome attività o link Google Maps" }, type: "text" }],
-    ...(puntoNome ? { custom_text: { shipping_address: { message: `Ritiro al punto: ${puntoNome.slice(0, 200)}. L'indirizzo qui sotto serve al corriere per contattarti.` } } } : {}),
-    metadata: { ordine: "banco", tipo, servizio: "serviceId" in t ? t.serviceId : t.id, corriere: t.corriere, spedizione: String(t.prezzo), cap_scelto: cap, punto: puntoId, punto_nome: (puntoNome ?? "").slice(0, 400) },
-    payment_intent_data: { metadata: { ordine: "banco", tipo } },
+    line_items: [
+      { price: prezzo, quantity: 1 },
+      { quantity: 1, price_data: { currency: "eur", unit_amount: Math.round(sped.prezzo * 100), product_data: { name: `Spedizione · ${sped.corriere} · ${sped.puntoRitiro ? "ritiro al punto" : "a domicilio"}`.slice(0, 120) } } },
+    ],
+    metadata: { ordine: "banco", ordine_id: String(o.id), tipo },
+    payment_intent_data: { metadata: { ordine: "banco", ordine_id: String(o.id) } },
     success_url: `${site.url}/acquisto/grazie?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${site.url}/compra/${tipo}`,
   });

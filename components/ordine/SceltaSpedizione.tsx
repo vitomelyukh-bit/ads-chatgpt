@@ -1,8 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { compraBanco } from "@/actions/compra-banco";
+import { useActionState, useState } from "react";
+import { ordinaBanco, type StatoOrdine } from "@/actions/compra-banco";
 import type { Opzione, Punto } from "@/lib/packlink";
 
 const MappaPunti = dynamic(() => import("./MappaPunti"), { ssr: false, loading: () => <div className="tt-ord__mappa tt-ord__mappa--vuota">Carico la mappa…</div> });
@@ -21,6 +21,8 @@ export function SceltaSpedizione({ tipo, prezzo }: { tipo: "card" | "piedistallo
   const [punto, setPunto] = useState<string | null>(null);
   const [errore, setErrore] = useState("");
   const [carico, setCarico] = useState(false);
+  const [stato, invia, inviando] = useActionState<StatoOrdine, FormData>(ordinaBanco, null);
+  const err = stato?.campi ?? {};
 
   async function cerca(e: React.FormEvent) {
     e.preventDefault();
@@ -103,12 +105,38 @@ export function SceltaSpedizione({ tipo, prezzo }: { tipo: "card" | "piedistallo
       )}
 
       {sel && (
-        <form action={compraBanco.bind(null, tipo, cap, sel.id, puntoSel ? `${puntoSel.id}|${titolo(puntoSel.nome)}, ${titolo(puntoSel.indirizzo)}, ${titolo(puntoSel.citta)}` : "")} className="tt-ord__totale">
-          <p><span>Prodotto</span><strong>{eur(prezzo)}</strong></p>
-          <p><span>Spedizione · {sel.corriere}{puntoSel ? ` · ${titolo(puntoSel.nome)}` : " · a casa"}</span><strong>{eur(sel.prezzo)}</strong></p>
-          <p className="tt-ord__tot"><span>Totale</span><strong>{eur(prezzo + sel.prezzo)}</strong></p>
-          <button className="tt-btn tt-btn--block" disabled={!pronto}>{pronto ? "Vai al pagamento →" : "Scegli un punto di ritiro sulla mappa"}</button>
-          <small className="tt-soft__muted">Al pagamento ti chiediamo nome, telefono e indirizzo per la consegna.</small>
+        <form action={invia} className="tt-ord__dati" noValidate>
+          <input type="hidden" name="tipo" value={tipo} />
+          <input type="hidden" name="cap" value={cap} />
+          <input type="hidden" name="servizio" value={sel.id} />
+          <input type="hidden" name="punto" value={puntoSel ? `${puntoSel.id}|${titolo(puntoSel.nome)}, ${titolo(puntoSel.indirizzo)}, ${titolo(puntoSel.citta)}` : ""} />
+          <p className="tt-ord__t">I tuoi dati</p>
+          {([
+            ["nome", "Nome e cognome", "name", "text"],
+            ["email", "Email", "email", "email"],
+            ["telefono", "Telefono", "tel", "tel"],
+            ["attivita", "Nome della tua attività o link Google Maps", "organization", "text"],
+            ["via", "Via e numero civico", "address-line1", "text"],
+            ["citta", "Città", "address-level2", "text"],
+            ["provincia", "Provincia (sigla)", "address-level1", "text"],
+            ["presso", "Presso (facoltativo)", "off", "text"],
+          ] as const).map(([k, l, ac, t]) => (
+            <div key={k} className={`tt-ord__campo${k === "provincia" ? " tt-ord__campo--corto" : ""}${err[k] ? " is-err" : ""}`}>
+              <label htmlFor={`o-${k}`}>{l}</label>
+              <input id={`o-${k}`} name={k} type={t} autoComplete={ac} maxLength={k === "provincia" ? 2 : undefined} style={k === "provincia" ? { textTransform: "uppercase" } : undefined} aria-invalid={err[k] ? true : undefined} />
+              {err[k] && <small className="tt-ord__err">Errore: {err[k]}</small>}
+            </div>
+          ))}
+          <p className="tt-soft__muted" style={{ margin: 0 }}>CAP: {cap}{sel.puntoRitiro ? ". L'indirizzo serve al corriere per avvisarti quando il pacco è al punto di ritiro." : ""}</p>
+
+          <div className="tt-ord__totale">
+            <p><span>{tipo === "card" ? "Card da banco" : "Piedistallo da banco"}</span><strong>{eur(prezzo)}</strong></p>
+            <p><span>Spedizione · {sel.corriere}{puntoSel ? ` · ${titolo(puntoSel.nome)}` : " · a casa"}</span><strong>{eur(sel.prezzo)}</strong></p>
+            <p className="tt-ord__tot"><span>Totale</span><strong>{eur(prezzo + sel.prezzo)}</strong></p>
+            {stato?.errore && <p className="tt-ord__err" role="alert">Errore: {stato.errore}</p>}
+            <button className="tt-btn tt-btn--block" disabled={!pronto || inviando}>{inviando ? "Un attimo…" : pronto ? `Paga ${eur(prezzo + sel.prezzo)} →` : "Scegli un punto di ritiro sulla mappa"}</button>
+            <small className="tt-soft__muted">Pagamento sicuro con carta su Stripe. Ti mandiamo la conferma per email.</small>
+          </div>
         </form>
       )}
     </div>
