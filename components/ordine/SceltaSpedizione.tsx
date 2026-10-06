@@ -123,7 +123,7 @@ export function SceltaSpedizione({ tipo, prezzo }: { tipo: "card" | "piedistallo
           ] as const).map(([k, l, ac, t]) => (
             <div key={k} className={`tt-ord__campo${k === "provincia" ? " tt-ord__campo--corto" : ""}${err[k] ? " is-err" : ""}`}>
               <label htmlFor={`o-${k}`}>{l}</label>
-              <input id={`o-${k}`} name={k} type={t} autoComplete={ac} maxLength={k === "provincia" ? 2 : undefined} style={k === "provincia" ? { textTransform: "uppercase" } : undefined} aria-invalid={err[k] ? true : undefined} />
+              <input id={`o-${k}`} name={k} type={t} autoComplete={ac} defaultValue={stato?.valori?.[k] ?? ""} key={`${k}-${JSON.stringify(stato?.valori ?? {})}`} maxLength={k === "provincia" ? 2 : undefined} style={k === "provincia" ? { textTransform: "uppercase" } : undefined} aria-invalid={err[k] ? true : undefined} />
               {err[k] && <small className="tt-ord__err">Errore: {err[k]}</small>}
             </div>
           ))}

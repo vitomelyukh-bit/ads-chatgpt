@@ -12,7 +12,7 @@ import { stripe } from "@/lib/stripe";
 
 // Checkout di card e piedistallo sul sito: spedizione + dati del cliente insieme, poi Stripe solo per la carta.
 // Il prezzo della spedizione lo richiede di nuovo il server a Packlink: il browser manda solo l'id del servizio.
-export type StatoOrdine = { errore?: string; campi?: Record<string, string> } | null;
+export type StatoOrdine = { errore?: string; campi?: Record<string, string>; valori?: Record<string, string> } | null;
 
 const schema = z.object({
   nome: z.string().trim().min(3, "Scrivi nome e cognome.").max(80),
@@ -28,19 +28,20 @@ const schema = z.object({
 export async function ordinaBanco(_: StatoOrdine, fd: FormData): Promise<StatoOrdine> {
   const tipo = String(fd.get("tipo") ?? ""), cap = String(fd.get("cap") ?? ""), servizio = String(fd.get("servizio") ?? "");
   const [puntoId, ...puntoNome] = String(fd.get("punto") ?? "").split("|");
-  if (!isTipoExtra(tipo) || !/^\d{5}$/.test(cap) || !servizio) return { errore: "Scegli prima la spedizione." };
+  const valori = Object.fromEntries(["nome", "email", "telefono", "attivita", "via", "citta", "provincia", "presso"].map((k) => [k, String(fd.get(k) ?? "")]));
+  if (!isTipoExtra(tipo) || !/^\d{5}$/.test(cap) || !servizio) return { errore: "Scegli prima la spedizione.", valori };
   const p = schema.safeParse(Object.fromEntries(fd));
   if (!p.success) {
     const campi: Record<string, string> = {};
     for (const i of p.error.issues) campi[String(i.path[0])] ??= i.message;
-    return { errore: "Controlla i campi evidenziati.", campi };
+    return { errore: "Controlla i campi evidenziati.", campi, valori };
   }
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "?";
-  if (isRateLimited(`ordine:${ip}`, Date.now(), 10)) return { errore: "Troppi tentativi, riprova tra qualche minuto." };
+  if (isRateLimited(`ordine:${ip}`, Date.now(), 10)) return { errore: "Troppi tentativi, riprova tra qualche minuto.", valori };
 
   const sped = await opzioneScelta(tipo, cap, servizio).catch(() => null);
-  if (!sped) return { errore: "La spedizione scelta non è più disponibile per questo CAP: scegline un'altra." };
-  if (sped.puntoRitiro && !puntoId) return { errore: "Scegli il punto di ritiro sulla mappa." };
+  if (!sped) return { errore: "La spedizione scelta non è più disponibile per questo CAP: scegline un'altra.", valori };
+  if (sped.puntoRitiro && !puntoId) return { errore: "Scegli il punto di ritiro sulla mappa.", valori };
 
   const d = p.data;
   const o = await creaOrdineBanco({
