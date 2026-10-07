@@ -12,6 +12,7 @@ export function Header() {
       <nav aria-label="Principale">
         <span className="tt-nav-links">
           <Link href="/#come-funziona">Come funziona</Link>
+          <Link href="/scheda-google">Scheda Google</Link>
           <Link href="/#prezzo">Prezzo</Link>
           <Link href="/annunci-chatgpt">Annunci online</Link>
         </span>

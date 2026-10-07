@@ -17,6 +17,7 @@ Gli annunci su ChatGPT sono in Italia dal 24 agosto 2026. Secondo OpenAI sono mo
 ## Pagine principali
 
 - [Più clienti da Google Maps](${absoluteUrl("/")}): il servizio principale, cosa include, come si attiva, prezzi e domande frequenti
+- [Gestione scheda Google](${absoluteUrl("/scheda-google")}): cosa comprende la gestione della scheda Google Maps, come si attiva, prezzo (59 € al mese), card e piedistallo da banco, domande frequenti
 - [Annunci su ChatGPT](${absoluteUrl("/annunci-chatgpt")}): cosa sono gli annunci su ChatGPT, cosa fa ${site.name} e come funziona
 - [Canali](${absoluteUrl("/canali")}): quando hanno senso ChatGPT, Google Ads, Meta Ads e SEO
 - [Analisi gratuita](${absoluteUrl("/analisi-gratuita")}): richiesta di valutazione gratuita (attività, sito, settore, budget indicativo, contatti)

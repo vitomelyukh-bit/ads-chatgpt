@@ -30,6 +30,7 @@ export function Footer() {
             <h2 className="tt-label">Informazioni</h2>
             <ul>
               <li><Link href="/">Più clienti da Google Maps</Link></li>
+              <li><Link href="/scheda-google">Gestione scheda Google</Link></li>
               <li><Link href="/annunci-chatgpt">Annunci su ChatGPT</Link></li>
               <li><Link href="/analisi-gratuita">Analisi gratuita</Link></li>
               <li><Link href="/canali">Canali: ChatGPT, Google, Meta, SEO</Link></li>

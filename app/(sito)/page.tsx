@@ -116,7 +116,7 @@ export default function Home() {
               <SectionHead n="02" occhiello="Cosa facciamo">
                 Lo facciamo noi, <span className="tt-mark">ogni settimana.</span>
               </SectionHead>
-              <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
+              <div className="tt-section-body tt-stack-6"><StepList passi={cosaFacciamo} /><p className="tt-body" style={{ margin: 0 }}><Link href="/scheda-google">Come funziona la gestione della scheda Google →</Link></p></div>
             </div>
             <div className="tt-fatto__esempio">
               <p className="tt-label" style={{ margin: "0 0 var(--space-3)" }}>Il risultato, su Google Maps</p>
@@ -179,6 +179,7 @@ export default function Home() {
             <a href="#attiva" className="tt-btn tt-btn--lg tt-btn--block">Inizia ora <span aria-hidden="true">→</span></a>
             <p className="tt-price__note">Nessun costo di attivazione. Disdici quando vuoi.</p>
           </div>
+          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}><Link href="/scheda-google">Tutti i dettagli sulla gestione della scheda Google →</Link></p>
         </div>
       </section>
 
@@ -245,7 +246,7 @@ export default function Home() {
           </SectionHead>
           <div className="tt-section-body">
             <ServiceCards servizi={[
-              { href: "#prezzo", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese`, scena: "mappa", logo: "googlemaps" },
+              { href: "/scheda-google", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese`, scena: "mappa", logo: "googlemaps" },
               { href: "/analisi-gratuita", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita", scena: "ricerca", logo: "google" },
               { href: "/analisi-gratuita", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita", scena: "feed", logo: "meta" },
               { href: "/analisi-gratuita", nome: "Annunci su TikTok", testo: "Un video breve che arriva a chi abita o passa vicino a te.", piu: "Consulenza gratuita", scena: "video", logo: "tiktok" },

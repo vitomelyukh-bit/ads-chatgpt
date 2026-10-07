@@ -598,3 +598,8 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
 .tt-ord__campo.is-err input { border: 2px solid var(--danger); }
 .tt-ord__campo:has(#o-citta) { grid-column: 1; }
 .tt-ord__campo:has(#o-provincia) { grid-column: 2; }
+@media (max-width: 640px) {
+  .tt-nav-links { overflow-x: auto; scrollbar-width: none; gap: var(--space-4) !important; }
+  .tt-nav-links::-webkit-scrollbar { display: none; }
+  .tt-nav-links a { white-space: nowrap; flex: none; font-size: 15px; }
+}
