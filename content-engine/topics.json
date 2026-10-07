@@ -39,7 +39,9 @@
     {
       "titolo": "Qualcuno ha cambiato gli orari della mia attività su Google: cosa fare",
       "tema": "maps",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "orari-cambiati-scheda-google-cosa-fare",
+      "data": "2026-10-07"
     },
     {
       "titolo": "Ho perso l'accesso alla mia scheda Google: come recuperarla",
