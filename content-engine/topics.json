@@ -32,7 +32,9 @@
     {
       "titolo": "Perché il mio concorrente compare prima di me su Google Maps?",
       "tema": "maps",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "concorrente-compare-prima-google-maps",
+      "data": "2026-10-07"
     },
     {
       "titolo": "Qualcuno ha cambiato gli orari della mia attività su Google: cosa fare",
