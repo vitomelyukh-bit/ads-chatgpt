@@ -286,12 +286,15 @@
     {
       "titolo": "Annunci su ChatGPT per commercialisti: trovare clienti che aprono la partita IVA",
       "settore": "commercialisti",
-      "stato": "da-fare"
+      "stato": "da-fare",
+      "nota": "Sospeso il 2026-10-08: a ottobre 2026 le regole pubblicitarie di OpenAI limitano i servizi finanziari fuori dagli Stati Uniti e non chiariscono se contabilità e servizi fiscali vi rientrino. Riprendere quando è verificabile su fonte ufficiale."
     },
     {
       "titolo": "Annunci su ChatGPT per location di matrimoni: coppie italiane e straniere",
       "settore": "location-matrimoni",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "annunci-chatgpt-location-matrimoni",
+      "data": "2026-10-08"
     },
     {
       "titolo": "Annunci su ChatGPT nel B2B: entrare nella lista dei fornitori da valutare",
