@@ -46,7 +46,9 @@
     {
       "titolo": "Ho perso l'accesso alla mia scheda Google: come recuperarla",
       "tema": "maps",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "perso-accesso-scheda-google-come-recuperarla",
+      "data": "2026-10-08"
     },
     {
       "titolo": "Scheda Google sospesa: perché succede e cosa fare",
