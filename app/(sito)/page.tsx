@@ -16,6 +16,12 @@ import { pageMetadata } from "@/lib/metadata";
 import { EXTRA, linkWhatsApp } from "@/lib/scheda";
 import { ESEMPI_RISPOSTE } from "@/lib/esempi-risposte";
 import { PROVE } from "@/lib/seo-locale";
+import { Reveal } from "@/components/home/Reveal";
+import { SerpDemo } from "@/components/home/SerpDemo";
+import { ReportDemo } from "@/components/home/ReportDemo";
+import { Confronto } from "@/components/home/Confronto";
+import { NonBastano } from "@/components/home/NonBastano";
+import { ComeFunziona } from "@/components/home/ComeFunziona";
 
 // Ordine del business: 1) SEO del sito, 2) scheda Google Maps, 3) il resto.
 export const metadata = pageMetadata({
@@ -54,11 +60,6 @@ const perLaScheda = [
   { titolo: "Orari sempre giusti", testo: "Ferie, festivi, orari nuovi: ci mandi un messaggio e su Google è tutto aggiornato." },
 ];
 
-const passi = [
-  { titolo: "Prenoti la consulenza gratuita", testo: "Compili il modulo e scegli l'orario. Prima della call guardiamo il tuo sito e la tua scheda Google." },
-  { titolo: "In call con Vitaliy", testo: "Ti mostriamo come ti vedono oggi i clienti su Google, cosa sistemare e quanto costa. Se non ti serviamo, te lo diciamo." },
-  { titolo: "Se parti, pensiamo a tutto noi", testo: "Ci dai un accesso al sito e approvi quello di Google con un tocco, senza password. Da lì lavoriamo noi, ogni settimana." },
-];
 
 const faq: Faq[] = [
   { domanda: "Devo rifare il sito?", risposta: "No. Lavoriamo sul sito che hai già, qualunque sia la piattaforma. Se una cosa sulla tua piattaforma non si può sistemare, te lo diciamo in consulenza, prima di iniziare." },
@@ -83,48 +84,36 @@ export default function Home() {
     <>
       <JsonLd data={[organization(), website(), serviceSeo(), serviceMaps(), breadcrumbList([]), faqPage(faq)]} />
 
-      {/* Apertura: la SEO del sito */}
+      <Reveal />
+
+      {/* Apertura: la SEO del sito, con la demo prima/dopo */}
       <div className="tt-wrap tt-page-head">
-        <div className="tt-fatto">
+        <div className="tt-hero2">
           <div className="tt-stack-6">
             <p className="tt-eyebrow" style={{ margin: 0 }}>SEO locale · per attività e professionisti</p>
             <h1 className="tt-display-xl">Il tuo sito, <span className="tt-mark">finalmente trovato su Google.</span></h1>
             <p className="tt-lead">
-              Lo rendiamo leggibile da Google e dalle AI, lo riempiamo delle pagine che i tuoi clienti cercano nella tua zona e lo
-              colleghiamo alla scheda Google Maps. Su WordPress, Wix, Shopify o qualunque sito tu abbia, senza rifarlo.
+              Quando un cliente cerca quello che fai nella tua zona, deve trovare te. Sistemiamo il tuo sito, gli aggiungiamo ogni
+              settimana le pagine giuste e curiamo la scheda Google Maps. Su qualunque sito, senza rifarlo.
             </p>
             <div className="tt-actions">
               {cta()}
               <a href="#risultati" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Guarda i risultati</a>
             </div>
-            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>Consulenza gratuita con Vitaliy · ti diciamo cosa sistemare, anche se poi fai da solo</p>
+            <ul className="tt-hero2__trust">
+              <li>Consulenza gratuita con Vitaliy</li>
+              <li>WordPress, Wix, Shopify</li>
+              <li>Niente password</li>
+            </ul>
           </div>
-          <div className="tt-fatto__esempio">
-            <div className="tt-card tt-prima-dopo" aria-label="Esempio: come Google vede un sito prima e dopo">
-              <p className="tt-eyebrow" style={{ margin: 0 }}>Come Google vede il sito</p>
-              <div className="tt-prima-dopo__col tt-prima-dopo__col--prima">
-                <p className="tt-small" style={{ margin: 0 }}><b>Prima</b></p>
-                <ul className="tt-small"><li>Home</li><li>Servizi</li><li>Contatti</li></ul>
-              </div>
-              <div className="tt-prima-dopo__col">
-                <p className="tt-small" style={{ margin: 0 }}><b>Dopo</b>, per esempio su Olizen</p>
-                <ul className="tt-ticks tt-small">
-                  <li>Massaggio linfodrenante a Roma</li>
-                  <li>Massaggi a Talenti</li>
-                  <li>Massaggio in gravidanza: da che mese?</li>
-                  <li>Ogni quanto fare un massaggio?</li>
-                  <li>…e altre pagine ogni settimana</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <SerpDemo />
         </div>
       </div>
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap">
           <SectionHead n="01" occhiello="Il problema">Un bel sito <span className="tt-mark">che nessuno trova.</span></SectionHead>
-          <div className="tt-section-body">
+          <div className="tt-section-body" data-reveal>
             <ul className="tt-points tt-points--2">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
           </div>
         </div>
@@ -133,12 +122,28 @@ export default function Home() {
       <section id="sito" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-split">
           <div className="tt-split__aside">
-            <SectionHead n="02" occhiello="Cosa facciamo" testo="Il metodo che usiamo ogni giorno sui siti dei nostri clienti, applicato al tuo.">
-              Il tuo sito, <span className="tt-mark">trasformato in un posto da trovare.</span>
+            <SectionHead n="02" occhiello="Cosa facciamo" testo="Google mostra pagine, non siti. Più pagine giuste hai, più ricerche dei tuoi clienti puoi intercettare.">
+              Da tre pagine <span className="tt-mark">a una per ogni domanda.</span>
             </SectionHead>
-            <div className="tt-section-body">{cta(true)}</div>
+            <div className="tt-pd tt-section-body" data-reveal aria-label="Esempio: le pagine di un sito prima e dopo, su Olizen">
+              <div className="tt-pd__col tt-pd__col--prima">
+                <span className="tt-pd__label">Prima</span>
+                <ul><li>Home</li><li>Servizi</li><li>Contatti</li></ul>
+              </div>
+              <div className="tt-pd__col tt-pd__col--dopo">
+                <span className="tt-pd__label">Dopo</span>
+                <ul>
+                  <li>Massaggio linfodrenante a Roma</li>
+                  <li>Massaggi a Talenti</li>
+                  <li>Massaggio in gravidanza: da che mese?</li>
+                  <li>Ogni quanto fare un massaggio?</li>
+                  <li>…e altre ogni settimana</li>
+                </ul>
+              </div>
+            </div>
+            <p className="tt-small tt-muted">Esempio reale: le pagine del sito di Olizen, centro massaggi a Roma.</p>
           </div>
-          <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
+          <div className="tt-section-body" data-reveal><StepList passi={cosaFacciamo} /></div>
         </div>
       </section>
 
@@ -147,7 +152,7 @@ export default function Home() {
           <SectionHead n="03" occhiello="Su qualunque sito" testo="Non serve cambiare piattaforma né rifare il sito. Lavoriamo su quello che hai.">
             WordPress, Wix, Shopify… <span className="tt-mark">va bene tutto.</span>
           </SectionHead>
-          <div className="tt-grid-3 tt-section-body">
+          <div className="tt-grid-3 tt-section-body" data-reveal>
             {piattaforme.map((p) => (
               <div key={p.nome} className="tt-card tt-stack-2">
                 <h3 className="tt-heading" style={{ margin: 0 }}>{p.nome}</h3>
@@ -158,12 +163,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="tt-section">
+        <div className="tt-wrap">
+          <SectionHead n="04" occhiello="Hai già provato?" testo="Scorciatoie che promettono di farti trovare su Google, ma non portano clienti.">
+            Strumenti che promettono, <span className="tt-mark">ma non bastano.</span>
+          </SectionHead>
+          <div className="tt-section-body"><NonBastano /></div>
+        </div>
+      </section>
+
+      <section id="report" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-split">
+          <div className="tt-split__aside">
+            <SectionHead n="05" occhiello="Ogni mese, i numeri" testo="Niente sigle e niente grafici gonfiati: i dati veri di Google, spiegati in parole semplici.">
+              Vedi con i tuoi occhi <span className="tt-mark">se funziona.</span>
+            </SectionHead>
+            <ul className="tt-ticks tt-section-body">
+              <li>Quante persone ti hanno visto su Google</li>
+              <li>Quante hanno cliccato sul tuo sito</li>
+              <li>Per quali ricerche compari, e in che posizione</li>
+            </ul>
+          </div>
+          <div className="tt-section-body" data-reveal><ReportDemo /></div>
+        </div>
+      </section>
+
       <section id="risultati" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap">
-          <SectionHead n="04" occhiello="Già al lavoro" testo="Lo stesso metodo gira ogni giorno su siti veri. Apri gli esempi: sono pagine online adesso.">
+          <SectionHead n="06" occhiello="Già al lavoro" testo="Lo stesso metodo gira ogni giorno su siti veri. Apri gli esempi: sono pagine online adesso.">
             Non una promessa: <span className="tt-mark">siti che puoi aprire.</span>
           </SectionHead>
-          <div className="tt-grid-3 tt-grid-3--tre tt-section-body">
+          <div className="tt-grid-3 tt-grid-3--tre tt-section-body" data-reveal>
             {PROVE.map((p) => (
               <article key={p.nome} className="tt-card tt-stack-4">
                 <div>
@@ -192,7 +222,7 @@ export default function Home() {
           <div className="tt-fatto">
             <div>
               <SectionHead
-                n="05"
+                n="07"
                 occhiello="E la scheda Google Maps"
                 testo="Per chi cerca vicino, la prima cosa che vede è la tua scheda Google. La curiamo noi, ogni settimana, insieme al sito."
               >
@@ -226,11 +256,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="come-funziona" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+      <section className="tt-section">
         <div className="tt-wrap">
-          <SectionHead n="06" occhiello="Come funziona">Si parte da <span className="tt-mark">una chiacchierata.</span></SectionHead>
+          <SectionHead n="08" occhiello="Perché noi">Con noi, <span className="tt-mark">o con gli altri.</span></SectionHead>
+          <div className="tt-section-body" data-reveal><Confronto /></div>
+        </div>
+      </section>
+
+      <section id="come-funziona" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap">
+          <SectionHead n="09" occhiello="Come funziona">Si parte da <span className="tt-mark">una chiacchierata.</span></SectionHead>
           <div className="tt-section-body tt-stack-8">
-            <div className="tt-steps-row"><StepList passi={passi} /></div>
+            <ComeFunziona />
             <aside className="tt-callout" style={{ maxWidth: "var(--measure)" }}>
               <span className="tt-tag">Importante</span>
               <h3>Non ci dai nessuna password</h3>
@@ -240,11 +277,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="attiva" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+      <section id="attiva" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-split tt-split--form">
           <div className="tt-split__aside">
             <SectionHead
-              n="07"
+              n="10"
               occhiello="Consulenza gratuita"
               testo={wa ? "Due minuti per il modulo, poi scegli tu l'orario della call. Se preferisci, scrivici su WhatsApp." : "Due minuti per il modulo, poi scegli tu l'orario della call."}
             >
@@ -266,20 +303,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tt-section">
+      <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-split">
           <div className="tt-split__aside">
-            <SectionHead n="08" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
+            <SectionHead occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
             <div className="tt-section-body">{cta()}</div>
           </div>
           <div className="tt-section-body"><FaqList items={faq} /></div>
         </div>
       </section>
 
-      <section id="da-banco" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
+      <section id="da-banco" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
-            n="09"
             occhiello="Card e piedistallo"
             testo="Da mettere sul bancone o vicino alla cassa: il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione. Niente app, niente ricerche."
           >
@@ -301,10 +337,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tt-section">
+      <section className="tt-section tt-section--sunk">
         <div className="tt-wrap">
           <SectionHead
-            n="10"
             occhiello="Per crescere ancora"
             testo="Quando sito e scheda sono a posto, il passo successivo può essere la pubblicità. Ti diciamo in una call gratuita quale canale ha senso per te."
           >
