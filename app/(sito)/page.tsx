@@ -98,7 +98,7 @@ export default function Home() {
             </p>
             <div className="tt-actions">
               {cta()}
-              <a href="#risultati" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Guarda i risultati</a>
+              <Link href="/controllo-sito" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Controlla il tuo sito gratis</Link>
             </div>
             <ul className="tt-hero2__trust">
               <li>Consulenza gratuita con Vitaliy</li>

@@ -10,7 +10,7 @@ import { PrenotaCall } from "./PrenotaCall";
 
 const initial: ConsulenzaState = { status: "idle" };
 
-export function ConsulenzaForm({ interesse = "", pagina = "" }: { interesse?: Interesse | ""; pagina?: string }) {
+export function ConsulenzaForm({ interesse = "", pagina = "", sito = "" }: { interesse?: Interesse | ""; pagina?: string; sito?: string }) {
   const [state, action, pending] = useActionState(richiediConsulenza, initial);
   const id = useId();
   const confermaRef = useRef<HTMLDivElement>(null);
@@ -82,7 +82,7 @@ export function ConsulenzaForm({ interesse = "", pagina = "" }: { interesse?: In
       </div>
       <div className={cls("sito")}>
         <label htmlFor={`${id}-sito`}>Sito web <span>(se c&apos;è)</span></label>
-        <input {...field("sito")} type="text" inputMode="url" autoComplete="url" placeholder="esempio.it" />
+        <input {...field("sito")} defaultValue={val.sito ?? sito} type="text" inputMode="url" autoComplete="url" placeholder="esempio.it" />
         {errorText("sito")}
       </div>
       <div className={cls("piattaforma")}>

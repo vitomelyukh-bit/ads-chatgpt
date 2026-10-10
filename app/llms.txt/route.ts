@@ -17,6 +17,7 @@ Gli annunci su ChatGPT sono in Italia dal 24 agosto 2026. Secondo OpenAI sono mo
 ## Pagine principali
 
 - [SEO locale: il tuo sito trovato su Google](${absoluteUrl("/")}): il servizio principale (SEO del sito), esempi su siti reali, la scheda Google Maps, come funziona la consulenza gratuita, domande frequenti
+- [Controllo SEO gratuito del sito](${absoluteUrl("/controllo-sito")}): strumento gratuito che controlla in pochi secondi se un sito può essere trovato da Google e dalle AI e cosa sistemare
 - [Gestione scheda Google](${absoluteUrl("/scheda-google")}): cosa comprende la gestione della scheda Google Maps, come si attiva con una consulenza gratuita, card e piedistallo da banco, domande frequenti
 - [Annunci su ChatGPT](${absoluteUrl("/annunci-chatgpt")}): cosa sono gli annunci su ChatGPT, cosa fa ${site.name} e come funziona
 - [Canali](${absoluteUrl("/canali")}): quando hanno senso ChatGPT, Google Ads, Meta Ads e SEO

@@ -166,3 +166,35 @@
 .tt-report__chart { padding-left: 4px; }
 .tt-chart { margin-left: 4px; }
 .tt-btn { text-wrap: balance; }
+
+/* ---------- Controllo gratuito del sito ---------- */
+.tt-cs { display: grid; gap: var(--space-6); }
+.tt-cs__form { display: grid; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--brand-tint); }
+.tt-cs__label { font-weight: 700; font-size: 18px; }
+.tt-cs__row { display: grid; gap: var(--space-3); }
+.tt-cs__row input { min-height: 60px; padding: 0 var(--space-4); border: 2px solid var(--brand); border-radius: var(--radius-md); background: var(--paper); font: 500 20px var(--font-body); color: var(--ink); width: 100%; }
+.tt-cs__row .tt-btn { min-height: 60px; font-size: 19px; width: 100%; justify-content: center; }
+@media (min-width: 640px) { .tt-cs__row { grid-template-columns: 1fr auto; } .tt-cs__row .tt-btn { width: auto; } }
+.tt-cs__loading { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--paper-sunk); font-weight: 600; }
+.tt-cs__spinner { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--brand); animation: tt-spin 0.8s linear infinite; flex: none; }
+@keyframes tt-spin { to { transform: rotate(360deg); } }
+.tt-cs__res { display: grid; gap: var(--space-6); animation: tt-pop 0.5s ease both; }
+.tt-cs__head { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: center; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow-card); }
+.tt-cs__voto { --c: var(--brand); width: 108px; height: 108px; border-radius: 50%; display: grid; place-content: center; text-align: center;
+  background: radial-gradient(closest-side, var(--paper) 78%, transparent 79% 100%), conic-gradient(var(--c) calc(var(--v) * 1%), var(--line) 0); }
+.tt-cs__voto span { font: 800 38px/1 var(--font-display); }
+.tt-cs__voto small { font-size: 13px; color: var(--ink-muted); }
+.tt-cs__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.tt-cs__item { display: grid; grid-template-columns: 40px 1fr; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--paper); border: 1px solid var(--line); }
+.tt-cs__item h3 { margin: 4px 0 4px; font: 700 19px/1.25 var(--font-display); }
+.tt-cs__item p { margin: 0; color: var(--ink-muted); }
+.tt-cs__tip { margin-top: var(--space-2) !important; color: var(--ink) !important; }
+.tt-cs__ico { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+.tt-cs__item--ok .tt-cs__ico { background: var(--brand-tint); color: var(--brand); }
+.tt-cs__item--attenzione { border-left: 4px solid var(--star); }
+.tt-cs__item--attenzione .tt-cs__ico { background: #fdf0d5; color: #8a5a00; }
+.tt-cs__item--problema { border-left: 4px solid var(--danger); }
+.tt-cs__item--problema .tt-cs__ico { background: #fbe3e0; color: var(--danger); }
+.tt-cs__cta { display: grid; gap: var(--space-4); padding-top: var(--space-6); }
+@media (prefers-reduced-motion: reduce) { .tt-cs__spinner { animation-duration: 3s; } .tt-cs__res { animation: none; } }
+@media (max-width: 520px) { .tt-cs__head { grid-template-columns: 1fr; justify-items: start; } }

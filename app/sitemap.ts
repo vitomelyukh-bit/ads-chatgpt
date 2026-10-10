@@ -5,6 +5,7 @@ import { absoluteUrl } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },
+    { url: absoluteUrl("/controllo-sito"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/scheda-google"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/annunci-chatgpt"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/analisi-gratuita"), changeFrequency: "yearly", priority: 0.8 },

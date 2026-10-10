@@ -8,6 +8,7 @@ import { firmaLead } from "@/lib/lead-token";
 import { email, TITROVANO } from "@/lib/email";
 import { CONSULENZA, INTERESSI, PIATTAFORME } from "@/lib/seo-locale";
 import { site } from "@/lib/site";
+import { salvaConsulenza } from "@/lib/consulenze";
 
 export type ConsulenzaState =
   | { status: "idle" }
@@ -55,6 +56,15 @@ export async function richiediConsulenza(prev: ConsulenzaState, formData: FormDa
     budget: `Piattaforma: ${d.piattaforma}`, email: d.email, telefono: d.telefono,
   });
 
+  // Prima si salva: se poi l'email non parte, la richiesta resta nella console.
+  let salvata = false;
+  try {
+    await salvaConsulenza({ interesse: d.interesse, attivita: d.attivita, citta: d.citta, sito: d.sito, piattaforma: d.piattaforma, nome: d.nome, email: d.email, telefono: d.telefono, pagina: d.pagina, ref: d.ref });
+    salvata = true;
+  } catch (e) {
+    console.error("[richiedi-consulenza] Salvataggio nel database non riuscito:", e);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((s) => s.trim()).filter(Boolean);
@@ -64,6 +74,7 @@ export async function richiediConsulenza(prev: ConsulenzaState, formData: FormDa
       return { status: "success", token };
     }
     console.error("[richiedi-consulenza] Mancano RESEND_API_KEY, RESEND_FROM o LEAD_TO_EMAIL.");
+    if (salvata) return { status: "success", token };
     return { status: "error", message: "Al momento non riusciamo a ricevere la richiesta. Riprova più tardi.", values, attempt };
   }
 
@@ -99,6 +110,7 @@ export async function richiediConsulenza(prev: ConsulenzaState, formData: FormDa
   });
   if (interna.error) {
     console.error("[richiedi-consulenza] Invio interno fallito:", interna.error);
+    if (salvata) return { status: "success", token };
     return { status: "error", message: "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.", values, attempt };
   }
 
