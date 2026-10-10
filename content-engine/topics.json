@@ -314,7 +314,9 @@
     {
       "titolo": "Annunci su ChatGPT per serramentisti: portare clienti in showroom",
       "settore": "serramenti-infissi",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "annunci-chatgpt-serramenti-showroom",
+      "data": "2026-10-10"
     },
     {
       "titolo": "Agenzie viaggi e ChatGPT: dove un esperto vale ancora più di una risposta automatica",
