@@ -6,18 +6,18 @@ import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
 import { ProdottoFoto } from "@/components/ProdottoFoto";
-import { SchedaForm } from "@/components/SchedaForm";
+import { ConsulenzaForm } from "@/components/ConsulenzaForm";
+import { Suspense } from "react";
 import type { Faq } from "@/lib/content";
 import { faqPage, serviceMaps } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
-import { EXTRA, euro, linkWhatsApp, scheda } from "@/lib/scheda";
-import { pagamentiAttivi } from "@/lib/stripe";
+import { EXTRA, linkWhatsApp } from "@/lib/scheda";
 
 // Pagina per chi cerca "gestione scheda Google": stesso servizio della home, testi propri.
 export const metadata = pageMetadata({
-  title: "Gestione scheda Google per attività locali, 59 € al mese · TiTrovano",
+  title: "Gestione scheda Google per attività locali · TiTrovano",
   description:
-    "Gestiamo la scheda Google della tua attività: una novità ogni settimana, risposta a ogni recensione, orari sempre giusti e i numeri del mese. 59 € al mese, senza vincoli.",
+    "Gestiamo la scheda Google della tua attività: una novità ogni settimana, risposta a ogni recensione, orari sempre giusti e i numeri del mese. Prenota una consulenza gratuita.",
   path: "/scheda-google",
 });
 
@@ -30,7 +30,7 @@ const cosaComprende = [
 ];
 
 const passi = [
-  { titolo: "Ci mandi i tuoi dati", testo: "Il modulo in fondo alla pagina, o un messaggio su WhatsApp. Due minuti." },
+  { titolo: "Prenoti la consulenza gratuita", testo: "Il modulo in fondo alla pagina, poi scegli l'orario della call. In call guardiamo insieme la tua scheda e ti diciamo cosa fare e quanto costa." },
   { titolo: "Approvi l'accesso", testo: "Google ti manda una email con la nostra richiesta di gestire la scheda: tocchi Approva. Non ci dai nessuna password e la scheda resta tua." },
   { titolo: "Da lì facciamo noi", testo: "Ogni settimana, senza che tu debba ricordarti niente. Puoi toglierci l'accesso quando vuoi." },
 ];
@@ -38,7 +38,7 @@ const passi = [
 const faq: Faq[] = [
   { domanda: "Cos'è la scheda Google di un'attività?", risposta: "È il riquadro che compare su Google e su Google Maps quando qualcuno cerca la tua attività o un servizio vicino: nome, stelle, recensioni, orari, foto, telefono e indicazioni. Google la chiama Profilo dell'attività." },
   { domanda: "Cosa vuol dire gestire una scheda Google?", risposta: "Tenerla aggiornata e viva: pubblicare novità, rispondere alle recensioni, correggere orari e informazioni, aiutare i clienti contenti a lasciare una recensione. È quello che facciamo noi, ogni settimana, al posto tuo." },
-  { domanda: "Quanto costa la gestione della scheda Google?", risposta: "59 € al mese, tutto incluso. Nessun costo di attivazione e nessun vincolo: disdici quando vuoi." },
+  { domanda: "Quanto costa la gestione della scheda Google?", risposta: "Dipende dalla tua attività e da cosa serve: te lo diciamo in consulenza, con un prezzo mensile chiaro prima di iniziare. La consulenza è gratuita." },
   { domanda: "Non ho ancora la scheda o non è verificata. Potete aiutarmi?", risposta: "Sì. Ti aiutiamo a crearla e a verificarla: Google chiede una verifica che fai tu, di solito un breve video o un codice, e ti guidiamo passo per passo su WhatsApp." },
   { domanda: "Mi garantite di salire su Google Maps?", risposta: "No: nessuno decide al posto di Google chi compare per primo. Secondo Google contano pertinenza, distanza e notorietà, e le recensioni fanno parte della notorietà. Ti garantiamo il lavoro fatto ogni settimana e i numeri per vedere tu come va." },
   { domanda: "Posso togliervi l'accesso?", risposta: "Sì, in qualsiasi momento, dalle impostazioni della scheda. Sei sempre tu il proprietario." },
@@ -61,10 +61,10 @@ export default function SchedaGooglePage() {
               Google Maps vede un&apos;attività curata, e sceglie te.
             </p>
             <div className="tt-actions">
-              <a href="#attiva" className="tt-btn tt-btn--block-mobile">Attiva la gestione <span aria-hidden="true">→</span></a>
+              <a href="#attiva" className="tt-btn tt-btn--block-mobile">Prenota la consulenza gratuita <span aria-hidden="true">→</span></a>
               {wa && <a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp</a>}
             </div>
-            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
+            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>Consulenza gratuita con Vitaliy · nessuna password · la scheda resta tua</p>
           </div>
           <div className="tt-fatto__esempio"><MapsCard /></div>
         </div>
@@ -96,29 +96,12 @@ export default function SchedaGooglePage() {
         </div>
       </section>
 
-      <section id="prezzo" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="03" occhiello="Prezzo">Gestione completa, <span className="tt-mark">un prezzo solo.</span></SectionHead>
-          <div className="tt-price tt-section-body">
-            <span className="tt-tag">Tutto incluso</span>
-            <p className="tt-price__amount">{euro(scheda.prezzoMese)} <small>al mese</small></p>
-            <ul className="tt-ticks">
-              <li>Una novità sulla scheda ogni settimana</li>
-              <li>Una risposta a ogni recensione</li>
-              <li>Link, QR e messaggio pronto per chiedere recensioni</li>
-              <li>Orari e informazioni sempre aggiornati</li>
-              <li>Ogni mese i numeri della tua scheda</li>
-            </ul>
-            <a href="#attiva" className="tt-btn tt-btn--block">Attiva la gestione <span aria-hidden="true">→</span></a>
-            <p className="tt-price__note">Nessun costo di attivazione. Disdici quando vuoi.</p>
-          </div>
-        </div>
-      </section>
+
 
       <section className="tt-section">
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
-            n="04"
+            n="03"
             occhiello="Card e piedistallo"
             testo="Il cliente avvicina il telefono e si apre la pagina per lasciarti la recensione. Arrivano già configurati con il link della tua scheda."
           >
@@ -130,28 +113,31 @@ export default function SchedaGooglePage() {
                 <ProdottoFoto tipo={k} />
                 <h3>{EXTRA[k].nome}</h3>
                 <p className="tt-muted" style={{ margin: 0 }}>{EXTRA[k].misure}</p>
-                <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola</small></p>
-                <Link href={`/compra/${k}`} className="tt-btn tt-btn--secondary tt-btn--block">Compralo da solo →</Link>
+                                <Link href={`/compra/${k}`} className="tt-btn tt-btn--secondary tt-btn--block">Compralo da solo →</Link>
               </div>
             ))}
           </div>
-          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Con la gestione della scheda li aggiungi nel modulo qui sotto, con la spedizione inclusa.</p>
+          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Se attivi la gestione della scheda, ne parliamo in consulenza.</p>
         </div>
       </section>
 
       <section className="tt-section tt-section--sunk">
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="05" occhiello="Domande frequenti">Sulla gestione <span className="tt-mark">della scheda Google.</span></SectionHead>
+          <SectionHead n="04" occhiello="Domande frequenti">Sulla gestione <span className="tt-mark">della scheda Google.</span></SectionHead>
           <div className="tt-section-body"><FaqList items={faq} /></div>
         </div>
       </section>
 
       <section id="attiva" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead occhiello="Attiva la gestione" testo={wa ? "Compila il modulo, oppure scrivici su WhatsApp se preferisci parlarne prima." : "Compila il modulo: ti scriviamo noi su WhatsApp."}>
-            La tua scheda Google, <span className="tt-mark">da questa settimana.</span>
+          <SectionHead occhiello="Consulenza gratuita" testo={wa ? "Compila il modulo e scegli l'orario della call, oppure scrivici su WhatsApp se preferisci." : "Compila il modulo e scegli l'orario della call."}>
+            Parliamo della tua scheda, <span className="tt-mark">gratis.</span>
           </SectionHead>
-          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
+          <div className="tt-card tt-section-body">
+            <Suspense fallback={null}>
+              <ConsulenzaForm interesse="Scheda Google Maps" pagina="/scheda-google" />
+            </Suspense>
+          </div>
           <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>
             Vuoi sapere perché conta? <Link href="/">Più clienti da Google Maps →</Link>
           </p>

@@ -8,20 +8,19 @@ import { MisureConfronto, ProdottoFoto } from "@/components/ProdottoFoto";
 import { MapsCard } from "@/components/ds/MapsCard";
 import { ServiceCards } from "@/components/ds/ServiceCards";
 import { ReviewReply } from "@/components/ds/ReviewReply";
-import { SchedaForm } from "@/components/SchedaForm";
+import { ConsulenzaForm } from "@/components/ConsulenzaForm";
 import type { Faq } from "@/lib/content";
 import { breadcrumbList, faqPage, organization, serviceMaps, website } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
-import { EXTRA, euro, linkWhatsApp, scheda } from "@/lib/scheda";
+import { EXTRA, linkWhatsApp } from "@/lib/scheda";
 import { ESEMPI_RISPOSTE } from "@/lib/esempi-risposte";
-import { pagamentiAttivi } from "@/lib/stripe";
 import { Slideshow } from "@/components/Slideshow";
-import { RipresaPagamento } from "@/components/RipresaPagamento";
+import { Suspense } from "react";
 
 export const metadata = pageMetadata({
-  title: "Più clienti da Google Maps per la tua attività · TiTrovano",
+  title: "Più clienti da Google: scheda Maps e sito per la tua attività · TiTrovano",
   description:
-    "Se la tua scheda Google è ferma, i clienti scelgono il vicino. Ogni settimana pubblichiamo novità, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di nuove. 59 € al mese, senza vincoli.",
+    "Se su Google non ti trovano, i clienti scelgono il vicino. Curiamo la tua scheda Google Maps e il tuo sito ogni settimana. Prenota una consulenza gratuita.",
   path: "/",
 });
 
@@ -44,10 +43,18 @@ const cosaFacciamo = [
 ];
 
 
+// Il sito: stesso metodo della SEO dei progetti in /proposta/seo-locale.
+const perIlSito = [
+  { titolo: "Google capisce cosa fai e dove", testo: "Sistemiamo titoli, descrizioni, velocità da telefono e link rotti, e diamo a ogni servizio la sua pagina chiara, con il posto in cui lavori." },
+  { titolo: "Pagine che rispondono ai tuoi clienti", testo: "Ogni settimana nuove pagine sulle domande che i clienti fanno prima di scegliere. Niente riempitivi, niente promesse." },
+  { titolo: "Leggibile anche dalle AI", testo: "ChatGPT, Gemini e Perplexity possono leggere il sito e trovare le risposte che servono per consigliarti." },
+  { titolo: "Su qualunque sito", testo: "WordPress, Wix, Shopify o un sito su misura: lavoriamo su quello che hai, senza rifarlo." },
+];
+
 const passi = [
-  { titolo: "Attivi in due minuti", testo: "Compili il modulo qui sotto e paghi con carta sul sito sicuro di Stripe. Nessun contratto, nessuna telefonata." },
-  { titolo: "Tocchi «Approva»", testo: "Ti arriva una email da Google con la nostra richiesta di accesso alla tua attività. Un tocco e hai finito. Non ci dai nessuna password." },
-  { titolo: "Al resto pensiamo noi", testo: "Ogni settimana, senza che tu debba ricordarti niente. Se vuoi, ci mandi foto o novità su WhatsApp e le usiamo." },
+  { titolo: "Prenoti la consulenza gratuita", testo: "Compili il modulo qui sotto e scegli l'orario. Prima della call guardiamo la tua scheda Google e il tuo sito." },
+  { titolo: "In call con Vitaliy", testo: "Ti mostriamo come ti vedono oggi i clienti su Google, cosa sistemare e quanto costa. Se non ti serviamo, te lo diciamo." },
+  { titolo: "Se parti, pensiamo a tutto noi", testo: "Approvi la richiesta di accesso di Google con un tocco, senza darci password. Da lì lavoriamo noi, ogni settimana." },
 ];
 
 const faq: Faq[] = [
@@ -58,15 +65,17 @@ const faq: Faq[] = [
   { domanda: "Mi garantite più clienti?", risposta: "No, e diffida di chi te lo garantisce: nessuno decide al posto di Google chi compare per primo. Ti garantiamo il lavoro fatto ogni settimana e un riepilogo mensile con i numeri veri della tua attività su Google." },
   { domanda: "Come chiedete le recensioni? È tutto in regola?", risposta: "Sì. Le chiediamo solo ai tuoi clienti veri, senza regali o sconti in cambio e senza filtrare solo quelle positive, come chiedono le regole di Google. Niente recensioni finte: rischiano di farti penalizzare." },
   { domanda: "Cosa succede alle recensioni negative?", risposta: "Rispondiamo anche a quelle, con calma e in modo professionale, per mostrare a chi legge che l'attività ascolta. Non possiamo cancellarle: solo Google può rimuovere le recensioni che violano le sue regole. Se ne troviamo una così, te lo segnaliamo." },
-  { domanda: "Posso disdire?", risposta: "Sì, quando vuoi, senza vincoli e senza penali. Lo fai da solo dal link che ti mandiamo per email, oppure con un messaggio su WhatsApp." },
-  { domanda: "Come ricevo la card o il piedistallo?", risposta: "Te lo spediamo all'indirizzo che indichi nel modulo, già pronto all'uso con il link della tua attività. La spedizione è inclusa e ti avvisiamo quando parte." },
-  { domanda: "Funziona in tutta Italia?", risposta: "Sì. Si attiva tutto online in due minuti, senza incontri di persona. Per qualsiasi cosa ci trovi su WhatsApp." },
+  { domanda: "Quanto costa?", risposta: "Dipende da cosa ti serve: solo la scheda Google, anche il sito, o tutti e due. In consulenza ti diciamo un prezzo mensile chiaro, prima di iniziare. La consulenza è gratuita e senza impegno." },
+  { domanda: "Lavorate anche sul mio sito?", risposta: "Sì. Lo rendiamo chiaro per Google e per le AI e ogni settimana aggiungiamo pagine sulle domande dei tuoi clienti. Su WordPress, Wix, Shopify o qualunque sito, senza rifarlo." },
+  { domanda: "Posso disdire?", risposta: "Sì, quando vuoi, senza penali. Ti basta un messaggio su WhatsApp o una email." },
+  { domanda: "Come ricevo la card o il piedistallo?", risposta: "Te lo spediamo con corriere, già pronto all'uso con il link della tua attività, e ti avvisiamo quando parte. Se lo compri da solo, il costo della spedizione lo vedi prima di pagare." },
+  { domanda: "Funziona in tutta Italia?", risposta: "Sì. La consulenza è al telefono e il resto si fa online, senza incontri di persona. Per qualsiasi cosa ci trovi su WhatsApp." },
 ];
 
 export default function Home() {
   const wa = linkWhatsApp();
   const cta = (secondario?: boolean) => (
-    <a href="#attiva" className={`tt-btn tt-btn--block-mobile${secondario ? " tt-btn--secondary" : ""}`}>Inizia ora <span aria-hidden="true">→</span></a>
+    <a href="#attiva" className={`tt-btn tt-btn--block-mobile${secondario ? " tt-btn--secondary" : ""}`}>Prenota la consulenza gratuita <span aria-hidden="true">→</span></a>
   );
 
   return (
@@ -77,16 +86,17 @@ export default function Home() {
         <div className="tt-wrap">
           <MapScene>
             <p className="tt-eyebrow" style={{ margin: "0 0 var(--space-3)" }}>Per ogni attività che vuole farsi trovare</p>
-            <h1>Più clienti da Google Maps, <span className="tt-mark">senza muovere un dito.</span></h1>
+            <h1>Più clienti da Google, <span className="tt-mark">senza muovere un dito.</span></h1>
             <p>
-              I clienti della tua zona ti cercano su Google Maps. Se la tua scheda è ferma, scelgono il vicino. Noi la
-              teniamo viva ogni settimana: novità, risposte a tutte le recensioni, recensioni nuove. Tu pensi a lavorare.
+              I clienti della tua zona ti cercano su Google e su Maps. Se la tua scheda è ferma e il sito non si trova,
+              scelgono il vicino. Noi curiamo scheda e sito ogni settimana: novità, risposte alle recensioni, pagine che
+              rispondono ai tuoi clienti. Tu pensi a lavorare.
             </p>
             <div className="tt-map__cta">
               {cta()}
               <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Come funziona</a>
             </div>
-            <p className="tt-map__price"><b>{euro(scheda.prezzoMese)} al mese</b> · nessun costo di attivazione · disdici quando vuoi</p>
+            <p className="tt-map__price"><b>Consulenza gratuita con Vitaliy</b> · ti diciamo cosa sistemare, anche se poi fai da solo</p>
           </MapScene>
         </div>
       </section>
@@ -141,10 +151,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="sito" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-wrap--read">
+          <SectionHead
+            n="03"
+            occhiello="Il tuo sito"
+            testo="La scheda Maps porta chi ti cerca vicino. Il sito porta chi cerca il tuo servizio e vuole capire prima di scegliere."
+          >
+            E il sito, <span className="tt-mark">finalmente trovato.</span>
+          </SectionHead>
+          <div className="tt-section-body tt-stack-6">
+            <StepList passi={perIlSito} />
+            {cta(true)}
+          </div>
+        </div>
+      </section>
+
       <section id="come-funziona" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="03" occhiello="Come funziona">
-            Tre passi, <span className="tt-mark">uno solo è tuo.</span>
+          <SectionHead n="04" occhiello="Come funziona">
+            Si parte da <span className="tt-mark">una chiacchierata.</span>
           </SectionHead>
           <div className="tt-section-body tt-stack-8">
             <StepList passi={passi} />
@@ -157,31 +183,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="prezzo" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead
-            n="04"
-            occhiello="Prezzo"
-            testo="Meno di 2 € al giorno. Per molte attività basta un cliente in più al mese per ripagarlo."
-          >
-            Un prezzo, <span className="tt-mark">tutto incluso.</span>
-          </SectionHead>
-          <div className="tt-price tt-section-body">
-            <span className="tt-tag">Tutto incluso</span>
-            <p className="tt-price__amount">{euro(scheda.prezzoMese)} <small>al mese</small></p>
-            <ul className="tt-ticks">
-              <li>Una novità pubblicata ogni settimana</li>
-              <li>Risposta a tutte le recensioni</li>
-              <li>Aiuto per chiederne di nuove: link, QR e messaggio pronto</li>
-              <li>Orari e informazioni sempre giusti</li>
-              <li>Report ogni mese: quante persone ti hanno visto, chiamato o chiesto indicazioni</li>
-            </ul>
-            <a href="#attiva" className="tt-btn tt-btn--lg tt-btn--block">Inizia ora <span aria-hidden="true">→</span></a>
-            <p className="tt-price__note">Nessun costo di attivazione. Disdici quando vuoi.</p>
-          </div>
-          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}><Link href="/scheda-google">Tutti i dettagli sulla gestione della scheda Google →</Link></p>
-        </div>
-      </section>
+
 
 
 
@@ -190,17 +192,20 @@ export default function Home() {
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
             n="05"
-            occhiello="Inizia ora"
-            testo={`Due minuti: i dati della tua attività, poi il pagamento sicuro con carta. ${euro(scheda.prezzoMese)} al mese, disdici quando vuoi.`}
+            occhiello="Consulenza gratuita"
+            testo={wa ? "Due minuti per il modulo, poi scegli tu l'orario della call. Se preferisci, scrivici su WhatsApp." : "Due minuti per il modulo, poi scegli tu l'orario della call."}
           >
-            Più clienti da Maps, <span className="tt-mark">da questa settimana.</span>
+            Parliamone, <span className="tt-mark">gratis.</span>
           </SectionHead>
-          <div className="tt-section-body"><RipresaPagamento /></div>
-          <div className="tt-card tt-section-body"><SchedaForm whatsapp={wa} pagamenti={pagamentiAttivi()} /></div>
+          <div className="tt-card tt-section-body">
+            <Suspense fallback={null}>
+              <ConsulenzaForm pagina="/" />
+            </Suspense>
+          </div>
           <ul className="tt-ticks tt-small" style={{ marginTop: "var(--space-4)" }}>
-            <li>Pagamento sicuro con Stripe</li>
+            <li>Consulenza gratuita e senza impegno</li>
+            <li>Ti diciamo un prezzo chiaro prima di iniziare</li>
             <li>Non ci dai nessuna password</li>
-            <li>Nessun vincolo: disdici quando vuoi, da solo</li>
           </ul>
         </div>
       </section>
@@ -225,14 +230,13 @@ export default function Home() {
                 <ProdottoFoto tipo={k} />
                 <h3>{EXTRA[k].nome}</h3>
                 <p className="tt-muted" style={{ margin: 0 }}>{EXTRA[k].misure}</p>
-                <p className="tt-product__price">{euro(EXTRA[k].prezzo)} <small>una volta sola + spedizione con corriere, gratis se lo aggiungi al servizio</small></p>
                 <p>{EXTRA[k].descrizione}</p>
                 <Link href={`/compra/${k}`} className="tt-btn tt-btn--block">Compralo ora <span aria-hidden="true">→</span></Link>
               </div>
             ))}
           </div>
           <MisureConfronto />
-          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Puoi comprarli da soli, oppure aggiungerli al servizio da {euro(scheda.prezzoMese)} al mese nel modulo qui sotto.</p>
+          <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Puoi comprarli da soli, oppure aggiungerli al servizio: ne parliamo in consulenza.</p>
         </div>
       </section>
       <section className="tt-section">
@@ -246,7 +250,7 @@ export default function Home() {
           </SectionHead>
           <div className="tt-section-body">
             <ServiceCards servizi={[
-              { href: "/scheda-google", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: `${euro(scheda.prezzoMese)} al mese`, scena: "mappa", logo: "googlemaps" },
+              { href: "/scheda-google", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: "Consulenza gratuita", scena: "mappa", logo: "googlemaps" },
               { href: "/analisi-gratuita", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita", scena: "ricerca", logo: "google" },
               { href: "/analisi-gratuita", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita", scena: "feed", logo: "meta" },
               { href: "/analisi-gratuita", nome: "Annunci su TikTok", testo: "Un video breve che arriva a chi abita o passa vicino a te.", piu: "Consulenza gratuita", scena: "video", logo: "tiktok" },

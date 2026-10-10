@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { euro, scheda } from "@/lib/scheda";
 
-// Invito finale delle guide Google Maps: porta al servizio in home.
+// Invito finale delle guide Google Maps: porta alla consulenza gratuita in home.
 export function CtaBoxMaps() {
   return (
     <aside className="tt-card tt-stack-4">
@@ -10,8 +9,8 @@ export function CtaBoxMaps() {
         Ogni settimana pubblichiamo una novità sulla tua attività, rispondiamo a tutte le recensioni e ti aiutiamo a riceverne di
         nuove. Tu devi solo approvare l&apos;accesso.
       </p>
-      <p className="tt-body-strong" style={{ margin: 0 }}>{euro(scheda.prezzoMese)} al mese · nessun costo di attivazione · disdici quando vuoi</p>
-      <p><Link href="/#attiva" className="tt-btn">Inizia ora <span aria-hidden="true">→</span></Link></p>
+      <p className="tt-body-strong" style={{ margin: 0 }}>Consulenza gratuita · ti diciamo cosa sistemare, anche se poi fai da solo</p>
+      <p><Link href="/#attiva" className="tt-btn">Prenota la consulenza gratuita <span aria-hidden="true">→</span></Link></p>
     </aside>
   );
 }

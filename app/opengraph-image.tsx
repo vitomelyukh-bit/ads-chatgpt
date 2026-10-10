@@ -49,10 +49,10 @@ export default async function OgImage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`data:image/svg+xml;base64,${Buffer.from(logo).toString("base64")}`} width={285} height={80} alt="TiTrovano" />
           <div style={{ display: "flex", flexDirection: "column", marginTop: 32, fontSize: 44, fontWeight: 700, lineHeight: 1.1, letterSpacing: -1, color: c.ink }}>
-            <span>Più clienti da Google Maps,</span>
+            <span>Più clienti da Google,</span>
             <span style={{ color: c.brand }}>senza muovere un dito.</span>
           </div>
-          <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: c.muted }}>59 € al mese · disdici quando vuoi</div>
+          <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: c.muted }}>Scheda Google Maps e sito · consulenza gratuita</div>
         </div>
       </div>
     ),

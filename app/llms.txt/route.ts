@@ -8,7 +8,7 @@ export function GET() {
   const guide = getGuide();
   const body = `# ${site.name}
 
-> ${site.name} porta più clienti da Google Maps alle attività locali italiane (bar, ristoranti, negozi, artigiani, studi): aggiorna ogni settimana il profilo dell'attività su Google, risponde a tutte le recensioni, aiuta a riceverne di nuove (link, QR, card e piedistallo da banco con NFC) e manda ogni mese un riepilogo con i numeri. 59 € al mese, senza vincoli; card da banco 40 €, piedistallo 49,99 € una tantum. ${site.name} non garantisce posizioni su Google e chiede recensioni solo a clienti reali, senza incentivi.
+> ${site.name} porta più clienti da Google alle attività locali italiane (bar, ristoranti, negozi, artigiani, studi). Gestisce la scheda Google Maps (una novità ogni settimana, risposta a tutte le recensioni, aiuto per riceverne di nuove con link, QR, card e piedistallo da banco con NFC, riepilogo mensile con i numeri) e cura la SEO del sito dell'attività su qualunque piattaforma (WordPress, Wix, Shopify, siti su misura): pagine chiare per ogni servizio e zona, guide sulle domande dei clienti, dati leggibili da Google e dalle AI. Si parte da una consulenza gratuita al telefono, in cui si concorda un prezzo mensile su misura. Card da banco e piedistallo si possono anche comprare direttamente. ${site.name} non garantisce posizioni su Google e chiede recensioni solo a clienti reali, senza incentivi.
 
 ${site.name} progetta e gestisce anche annunci su ChatGPT per attività locali e aziende: strategia, configurazione dell'account, annunci, pagina di destinazione, ottimizzazione del budget e report mensili. Si parte da un'analisi gratuita in call, in cui si valuta anche quale canale ha più senso tra ChatGPT, Google Ads, Meta Ads e SEO.
 
@@ -16,8 +16,8 @@ Gli annunci su ChatGPT sono in Italia dal 24 agosto 2026. Secondo OpenAI sono mo
 
 ## Pagine principali
 
-- [Più clienti da Google Maps](${absoluteUrl("/")}): il servizio principale, cosa include, come si attiva, prezzi e domande frequenti
-- [Gestione scheda Google](${absoluteUrl("/scheda-google")}): cosa comprende la gestione della scheda Google Maps, come si attiva, prezzo (59 € al mese), card e piedistallo da banco, domande frequenti
+- [Più clienti da Google](${absoluteUrl("/")}): i servizi (scheda Google Maps e sito), come funziona la consulenza gratuita, domande frequenti
+- [Gestione scheda Google](${absoluteUrl("/scheda-google")}): cosa comprende la gestione della scheda Google Maps, come si attiva con una consulenza gratuita, card e piedistallo da banco, domande frequenti
 - [Annunci su ChatGPT](${absoluteUrl("/annunci-chatgpt")}): cosa sono gli annunci su ChatGPT, cosa fa ${site.name} e come funziona
 - [Canali](${absoluteUrl("/canali")}): quando hanno senso ChatGPT, Google Ads, Meta Ads e SEO
 - [Analisi gratuita](${absoluteUrl("/analisi-gratuita")}): richiesta di valutazione gratuita (attività, sito, settore, budget indicativo, contatti)

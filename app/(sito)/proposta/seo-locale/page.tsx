@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaqList } from "@/components/ds/FaqList";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
-import { SeoForm } from "@/components/SeoForm";
+import { ConsulenzaForm } from "@/components/ConsulenzaForm";
 import type { Faq } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { linkWhatsApp } from "@/lib/scheda";
@@ -43,11 +43,11 @@ const piattaforme = [
 ];
 
 const faq: Faq[] = [
-  { domanda: "Devo rifare il sito?", risposta: "No. Lavoriamo sul sito che hai già, qualunque sia la piattaforma. Se una cosa sulla tua piattaforma non si può sistemare, te lo diciamo nell'analisi, prima di iniziare." },
+  { domanda: "Devo rifare il sito?", risposta: "No. Lavoriamo sul sito che hai già, qualunque sia la piattaforma. Se una cosa sulla tua piattaforma non si può sistemare, te lo diciamo in consulenza, prima di iniziare." },
   { domanda: "Funziona con WordPress, Wix o Shopify?", risposta: "Sì. Su WordPress, Wix, Squarespace, Shopify e sui siti su misura. Su alcune piattaforme certe impostazioni tecniche sono bloccate: le aggiriamo con le pagine e i contenuti, che contano di più." },
   { domanda: "In quanto tempo vedo i risultati?", risposta: "La SEO è un lavoro di mesi, non di giorni. Nel primo mese il sito viene sistemato e le prime pagine nuove vanno online; da lì Google inizia a mostrarle e i numeri del report mensile ti dicono come va." },
   { domanda: "Mi garantite il primo posto su Google?", risposta: "No, e diffida di chi lo fa: nessuno decide al posto di Google. Ti garantiamo il lavoro fatto ogni settimana e i numeri veri di Search Console per vedere tu i risultati." },
-  { domanda: "Quanto costa?", risposta: "Dipende dal sito e da quante pagine servono. Dopo l'analisi gratuita ti diciamo un prezzo mensile chiaro, prima di iniziare." },
+  { domanda: "Quanto costa?", risposta: "Dipende dal sito e da quante pagine servono. In consulenza ti diciamo un prezzo mensile chiaro, prima di iniziare. La consulenza è gratuita." },
   { domanda: "Cosa vi serve da me?", risposta: "Un accesso al pannello del sito e a Google Search Console (se non ce l'hai, lo creiamo insieme). Per il resto facciamo noi: puoi rivedere le pagine prima che vadano online." },
   { domanda: "E la scheda Google Maps?", risposta: "Va di pari passo: se vuoi la gestiamo noi ogni settimana, con novità, risposte alle recensioni e i numeri del mese. È il nostro servizio principale." },
 ];
@@ -66,10 +66,10 @@ export default function SeoLocalePage() {
               lo colleghiamo alla scheda Google Maps. Su WordPress, Wix, Shopify o qualunque sito tu abbia, senza rifarlo.
             </p>
             <div className="tt-actions">
-              <a href="#analisi" className="tt-btn tt-btn--block-mobile">Voglio l&apos;analisi gratuita <span aria-hidden="true">→</span></a>
+              <a href="#analisi" className="tt-btn tt-btn--block-mobile">Prenota la consulenza gratuita <span aria-hidden="true">→</span></a>
               {wa && <a href={wa} className="tt-btn tt-btn--secondary tt-btn--block-mobile">Scrivici su WhatsApp</a>}
             </div>
-            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>Analisi gratuita del tuo sito · ti diciamo cosa sistemare anche se poi fai da solo</p>
+            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>Consulenza gratuita con Vitaliy · guardiamo il tuo sito e ti diciamo cosa sistemare, anche se poi fai da solo</p>
           </div>
           <div className="tt-fatto__esempio">
             <div className="tt-card tt-stack-4" aria-label="Esempio: come Google vede un sito prima e dopo">
@@ -200,14 +200,14 @@ export default function SeoLocalePage() {
       <section id="analisi" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
-            occhiello="Analisi gratuita"
-            testo={wa ? "Compila il modulo, oppure scrivici su WhatsApp se preferisci parlarne prima." : "Compila il modulo: ti chiamiamo noi."}
+            occhiello="Consulenza gratuita"
+            testo={wa ? "Compila il modulo e scegli l'orario della call, oppure scrivici su WhatsApp se preferisci." : "Compila il modulo e scegli l'orario della call."}
           >
             Guardiamo il tuo sito <span className="tt-mark">come lo vede Google.</span>
           </SectionHead>
           <div className="tt-card tt-section-body">
             <Suspense fallback={null}>
-              <SeoForm />
+              <ConsulenzaForm interesse="Sito trovato su Google (SEO)" pagina="/proposta/seo-locale" />
             </Suspense>
           </div>
         </div>

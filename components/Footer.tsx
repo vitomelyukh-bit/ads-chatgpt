@@ -13,7 +13,7 @@ export function Footer() {
         <div className="tt-footer-grid">
           <div className="tt-stack-4">
             <Link href="/" className="tt-logo" aria-label="TiTrovano, torna alla home"><Logo /></Link>
-            <p className="tt-small tt-muted">Più clienti da Google Maps per le attività locali italiane. E annunci su ChatGPT, Google e Meta quando servono.</p>
+            <p className="tt-small tt-muted">Più clienti da Google per le attività locali italiane: scheda Google Maps e sito, curati ogni settimana. E annunci online quando servono.</p>
           </div>
           <div>
             <h2 className="tt-label">Settori</h2>

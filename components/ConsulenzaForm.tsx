@@ -4,14 +4,14 @@ import { useActionState, useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
-import { richiediSeo, type SeoFormState } from "@/actions/richiedi-seo";
-import { PIATTAFORME } from "@/lib/seo-locale";
+import { richiediConsulenza, type ConsulenzaState } from "@/actions/richiedi-consulenza";
+import { INTERESSI, PIATTAFORME, type Interesse } from "@/lib/seo-locale";
 import { PrenotaCall } from "./PrenotaCall";
 
-const initial: SeoFormState = { status: "idle" };
+const initial: ConsulenzaState = { status: "idle" };
 
-export function SeoForm() {
-  const [state, action, pending] = useActionState(richiediSeo, initial);
+export function ConsulenzaForm({ interesse = "", pagina = "" }: { interesse?: Interesse | ""; pagina?: string }) {
+  const [state, action, pending] = useActionState(richiediConsulenza, initial);
   const id = useId();
   const confermaRef = useRef<HTMLDivElement>(null);
   const tracked = useRef(false);
@@ -23,7 +23,7 @@ export function SeoForm() {
   useEffect(() => {
     if (state.status === "success" && !tracked.current) {
       tracked.current = true;
-      track("SEO locale richiesta");
+      track("Consulenza richiesta", { pagina });
       confermaRef.current?.focus();
     }
   }, [state]);
@@ -33,8 +33,8 @@ export function SeoForm() {
       <div ref={confermaRef} tabIndex={-1} role="status" className="tt-success">
         <h3 className="tt-heading"><span className="tt-ok">Richiesta ricevuta.</span> Grazie.</h3>
         <p className="tt-body" style={{ marginTop: "var(--space-3)" }}>
-          Ti abbiamo mandato una email di conferma. Guardiamo il tuo sito e la tua zona, poi ti chiamiamo per dirti cosa
-          sistemare.
+          Ti abbiamo mandato una email di conferma. Scegli qui sotto un orario per la consulenza gratuita con Vitaliy, oppure
+          ti chiamiamo noi.
         </p>
         {state.token && (
           <div className="tt-booking">
@@ -62,6 +62,14 @@ export function SeoForm() {
     <form key={state.status === "error" ? state.attempt : 0} action={action} noValidate className="tt-form">
       {state.status === "error" && <p role="alert" className="tt-alert">Errore: {state.message}</p>}
 
+      <div className={cls("interesse")}>
+        <label htmlFor={`${id}-interesse`}>Cosa ti serve?</label>
+        <select {...field("interesse")} required defaultValue={val.interesse || interesse}>
+          <option value="" disabled>Scegli…</option>
+          {INTERESSI.map((x) => <option key={x} value={x}>{x}</option>)}
+        </select>
+        {errorText("interesse")}
+      </div>
       <div className={cls("attivita")}>
         <label htmlFor={`${id}-attivita`}>Nome dell&apos;attività</label>
         <input {...field("attivita")} defaultValue={val.attivita ?? attivitaLink} type="text" autoComplete="organization" required />
@@ -102,6 +110,7 @@ export function SeoForm() {
       </div>
 
       <input type="hidden" name="ref" value={val.ref ?? ref} />
+      <input type="hidden" name="pagina" value={pagina} />
       {/* Honeypot: nascosto a persone e lettori di schermo, i bot lo compilano. */}
       <div aria-hidden="true" className="tt-honeypot">
         <label htmlFor={`${id}-sito_web`}>Lascia vuoto questo campo</label>
@@ -113,16 +122,16 @@ export function SeoForm() {
           <input {...field("privacy")} defaultValue={undefined} defaultChecked={val.privacy === "on"} type="checkbox" required />
           <span>
             Ho letto l&apos;<Link href="/privacy">informativa privacy</Link> e acconsento a essere ricontattato per
-            l&apos;analisi gratuita.
+            la consulenza gratuita.
           </span>
         </label>
         {errorText("privacy")}
       </div>
 
       <button type="submit" disabled={pending} className="tt-btn tt-btn--block">
-        {pending ? "Invio in corso…" : <>Voglio l&apos;analisi gratuita <span aria-hidden="true">→</span></>}
+        {pending ? "Invio in corso…" : <>Prenota la consulenza gratuita <span aria-hidden="true">→</span></>}
       </button>
-      <p className="tt-small tt-muted">Gratis e senza impegno. Ti chiamiamo noi.</p>
+      <p className="tt-small tt-muted">Gratis e senza impegno. Dopo l&apos;invio scegli tu l&apos;orario della call.</p>
     </form>
   );
 }

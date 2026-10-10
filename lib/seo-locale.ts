@@ -1,9 +1,19 @@
 // Offerta SEO locale (landing riservata /proposta/seo-locale).
 // Le prove sono progetti reali: numeri verificati sui siti il 10 ottobre 2026.
 
-export const SETTORE_SEO = "SEO locale";
+// Le richieste di consulenza viaggiano nel token della call con settore "Consulenza · <interesse>".
+export const CONSULENZA = "Consulenza · ";
+
+export const INTERESSI = [
+  "Scheda Google Maps",
+  "Sito trovato su Google (SEO)",
+  "Tutti e due",
+  "Non lo so ancora",
+] as const;
+export type Interesse = (typeof INTERESSI)[number];
 
 export const PIATTAFORME = [
+  "Non ho ancora un sito",
   "WordPress",
   "Wix",
   "Shopify",
@@ -11,7 +21,6 @@ export const PIATTAFORME = [
   "Jimdo o altri costruttori",
   "Sito su misura",
   "Non lo so",
-  "Non ho ancora un sito",
 ] as const;
 
 export type Prova = {

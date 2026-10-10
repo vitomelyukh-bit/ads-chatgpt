@@ -109,27 +109,19 @@ export function serviceMaps() {
     offers: [
       {
         "@type": "Offer",
-        name: "Più clienti da Google Maps",
-        price: "59.00",
-        priceCurrency: "EUR",
-        priceSpecification: { "@type": "UnitPriceSpecification", price: "59.00", priceCurrency: "EUR", unitText: "mese", billingDuration: "P1M" },
-        url: absoluteUrl("/#prezzo"),
-      },
-      {
-        "@type": "Offer",
         name: "Card da banco per le recensioni",
         price: "40.00",
         priceCurrency: "EUR",
-        description: "Una tantum, spedizione inclusa, arriva pronta all'uso.",
-        url: absoluteUrl("/#da-banco"),
+        description: "Una tantum, arriva pronta all'uso.",
+        url: absoluteUrl("/compra/card"),
       },
       {
         "@type": "Offer",
         name: "Piedistallo da banco per le recensioni",
         price: "49.99",
         priceCurrency: "EUR",
-        description: "Una tantum, spedizione inclusa, arriva pronto all'uso.",
-        url: absoluteUrl("/#da-banco"),
+        description: "Una tantum, arriva pronto all'uso.",
+        url: absoluteUrl("/compra/piedistallo"),
       },
     ],
   };

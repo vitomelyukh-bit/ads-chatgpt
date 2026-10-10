@@ -13,10 +13,10 @@ export function Header() {
         <span className="tt-nav-links">
           <Link href="/#come-funziona">Come funziona</Link>
           <Link href="/scheda-google">Scheda Google</Link>
-          <Link href="/#prezzo">Prezzo</Link>
+          <Link href="/#sito">Il tuo sito</Link>
           <Link href="/annunci-chatgpt">Annunci online</Link>
         </span>
-        <Link href="/#attiva" className="tt-btn">Inizia ora</Link>
+        <Link href="/#attiva" className="tt-btn">Consulenza gratuita</Link>
       </nav>
     </header>
   );
