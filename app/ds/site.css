@@ -603,3 +603,24 @@ body.tt { margin: 0; background: var(--paper); min-height: 100dvh; }
   .tt-nav-links::-webkit-scrollbar { display: none; }
   .tt-nav-links a { white-space: nowrap; flex: none; font-size: 15px; }
 }
+
+/* ---------- Layout larghi su desktop (sotto i 960px resta tutto in colonna) ---------- */
+.tt-points--2, .tt-steps-row .tt-steps, .tt-split .tt-faq, .tt-split .tt-steps { max-width: none; }
+.tt-prima-dopo { display: grid; gap: var(--space-4); }
+.tt-prima-dopo__col { padding: var(--space-4) var(--space-6); border-radius: var(--radius-md); background: var(--paper-raised); }
+.tt-prima-dopo__col--prima { color: var(--ink-muted); }
+.tt-prima-dopo__col ul { margin: var(--space-2) 0 0; padding-left: 20px; }
+.tt-prima-dopo__col .tt-ticks { padding-left: 0; }
+@media (min-width: 961px) {
+  .tt-points--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-12); row-gap: var(--space-12); }
+  .tt-points--2 > li:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - var(--space-6)); }
+  .tt-steps-row .tt-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--space-8); }
+  .tt-steps-row .tt-steps li { grid-template-columns: 1fr; }
+  .tt-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: start; }
+  .tt-split--form { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); }
+  .tt-split__aside { position: sticky; top: var(--space-24); }
+  .tt-split .tt-section-body:first-child { margin-top: 0; }
+  .tt-form--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-4); }
+  .tt-form--2 > .tt-full, .tt-form--2 > .tt-alert, .tt-form--2 > button, .tt-form--2 > p, .tt-form--2 > div:has(> .tt-check) { grid-column: 1 / -1; }
+}
+@media (min-width: 961px) { .tt-grid-3--tre { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

@@ -59,10 +59,10 @@ export function ConsulenzaForm({ interesse = "", pagina = "" }: { interesse?: In
   const cls = (name: string) => `tt-field${err[name] ? " tt-field--error" : ""}`;
 
   return (
-    <form key={state.status === "error" ? state.attempt : 0} action={action} noValidate className="tt-form">
+    <form key={state.status === "error" ? state.attempt : 0} action={action} noValidate className="tt-form tt-form--2">
       {state.status === "error" && <p role="alert" className="tt-alert">Errore: {state.message}</p>}
 
-      <div className={cls("interesse")}>
+      <div className={`${cls("interesse")} tt-full`}>
         <label htmlFor={`${id}-interesse`}>Cosa ti serve?</label>
         <select {...field("interesse")} required defaultValue={val.interesse || interesse}>
           <option value="" disabled>Scegli…</option>
@@ -103,7 +103,7 @@ export function ConsulenzaForm({ interesse = "", pagina = "" }: { interesse?: In
         <input {...field("telefono")} type="tel" autoComplete="tel" inputMode="tel" required />
         {errorText("telefono")}
       </div>
-      <div className={cls("email")}>
+      <div className={`${cls("email")} tt-full`}>
         <label htmlFor={`${id}-email`}>Email</label>
         <input {...field("email")} type="email" autoComplete="email" inputMode="email" required />
         {errorText("email")}

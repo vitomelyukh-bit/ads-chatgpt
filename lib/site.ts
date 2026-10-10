@@ -7,7 +7,7 @@ export const site = {
   locale: "it_IT",
   lang: "it-IT",
   description:
-    "Più clienti da Google Maps per le attività locali: aggiornamenti ogni settimana, risposte a tutte le recensioni e nuove recensioni. E annunci su ChatGPT, Google e Meta.",
+    "SEO locale per le attività: il tuo sito trovato su Google e dagli assistenti AI, con pagine e guide nuove ogni settimana. Poi la scheda Google Maps curata ogni settimana, e annunci online quando servono.",
 };
 
 export function absoluteUrl(path = "/") {

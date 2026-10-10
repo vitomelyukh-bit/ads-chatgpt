@@ -5,8 +5,8 @@
 export const CONSULENZA = "Consulenza · ";
 
 export const INTERESSI = [
-  "Scheda Google Maps",
   "Sito trovato su Google (SEO)",
+  "Scheda Google Maps",
   "Tutti e due",
   "Non lo so ancora",
 ] as const;

@@ -1,74 +1,75 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { FaqList } from "@/components/ds/FaqList";
 import { SectionHead } from "@/components/ds/SectionHead";
 import { StepList } from "@/components/ds/StepList";
 import { JsonLd } from "@/components/JsonLd";
-import { MapScene } from "@/components/ds/MapScene";
 import { MisureConfronto, ProdottoFoto } from "@/components/ProdottoFoto";
 import { MapsCard } from "@/components/ds/MapsCard";
 import { ServiceCards } from "@/components/ds/ServiceCards";
 import { ReviewReply } from "@/components/ds/ReviewReply";
 import { ConsulenzaForm } from "@/components/ConsulenzaForm";
+import { Slideshow } from "@/components/Slideshow";
 import type { Faq } from "@/lib/content";
-import { breadcrumbList, faqPage, organization, serviceMaps, website } from "@/lib/jsonld";
+import { breadcrumbList, faqPage, organization, serviceMaps, serviceSeo, website } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { EXTRA, linkWhatsApp } from "@/lib/scheda";
 import { ESEMPI_RISPOSTE } from "@/lib/esempi-risposte";
-import { Slideshow } from "@/components/Slideshow";
-import { Suspense } from "react";
+import { PROVE } from "@/lib/seo-locale";
 
+// Ordine del business: 1) SEO del sito, 2) scheda Google Maps, 3) il resto.
 export const metadata = pageMetadata({
-  title: "Più clienti da Google: scheda Maps e sito per la tua attività · TiTrovano",
+  title: "SEO locale: il tuo sito, trovato su Google · TiTrovano",
   description:
-    "Se su Google non ti trovano, i clienti scelgono il vicino. Curiamo la tua scheda Google Maps e il tuo sito ogni settimana. Prenota una consulenza gratuita.",
+    "Rendiamo il sito della tua attività leggibile da Google e dalle AI e lo riempiamo delle pagine che i clienti cercano nella tua zona. Su WordPress, Wix, Shopify o qualunque sito.",
   path: "/",
 });
 
-// I problemi che il titolare vive ogni giorno, detti con le sue parole.
 const problemi = [
-  { titolo: "Il cliente decide in pochi secondi", settore: "Pizzeria", esempio: "Una coppia in giro la sera cerca «pizzeria aperta adesso». Sul telefono vede due pizzerie vicine: una con foto recenti e risposte gentili, l'altra con l'orario di chiusura sbagliato. Prenotano nella prima, e l'altra non lo saprà mai.", testo: "Cerca dal telefono «pizzeria vicino a me», guarda stelle, ultime recensioni e orari, e sceglie. Se la tua scheda dice poco, sceglie il vicino. E tu non saprai mai di averlo perso." },
-  { titolo: "Chi è contento non scrive. Chi è arrabbiato sì.", settore: "Parrucchiere", esempio: "Un salone fa decine di pieghe e tagli a settimana, tutti clienti contenti. Su Google, però, l'ultima recensione è di una cliente che ha aspettato venti minuti. È la prima cosa che legge chi lo cerca.", testo: "Cento clienti escono soddisfatti e non lasciano traccia. Uno esce scontento e scrive tre righe. Su Google resta solo quella." },
-  { titolo: "Una critica senza risposta resta lì per mesi", settore: "Idraulico", esempio: "«È arrivato tardi e ha lasciato sporco», scritta mesi fa, senza risposta. Chi ha un tubo che perde e cerca un idraulico in zona la legge e passa al prossimo. Bastavano tre righe calme per cambiare tutto.", testo: "La legge chiunque ti cerca. Senza una risposta sembra che tu non te ne sia accorto, o che non ti importi. Con una risposta calma, la stessa critica dice: qui ci tengono." },
-  { titolo: "Il concorrente ti passa davanti", settore: "Centro estetico", esempio: "Due centri estetici nella stessa via. Il tuo lavora meglio, ma ha poche recensioni e l'ultima è dell'anno scorso. L'altro ne riceve ogni settimana. Chi cerca «estetista vicino a me» vede prima l'altro.", testo: "Lavora peggio di te, ma ha più recensioni e più recenti. Secondo Google numero e punteggio delle recensioni contano per chi compare più in alto: così i clienti della zona vanno da lui." },
-  { titolo: "E tu non hai tempo", settore: "Bar", esempio: "Il bar apre alle sei e chiude la sera. Rispondere alle recensioni dopo la chiusura, con i conti ancora da fare? Il proposito c'è sempre, ma non succede mai.", testo: "Apri presto, chiudi tardi, pensi a fornitori, conti e clienti. Google è sempre l'ultima cosa della lista. Per questo la scheda resta ferma." },
+  { titolo: "Google non capisce cosa fai, né dove", testo: "Titoli generici, una sola pagina \"Servizi\" per tutto, la città che non compare da nessuna parte. Chi cerca il tuo servizio nella tua zona trova qualcun altro." },
+  { titolo: "Il sito risponde a domande che nessuno fa", testo: "Chi cerca scrive \"massaggio linfodrenante Talenti prezzo\" o \"come sbloccare il conto di un defunto\", non \"benvenuti nel nostro studio\". Se quella pagina non c'è, non ti trova." },
+  { titolo: "Il testo non arriva a chi legge in fretta", testo: "Molti siti moderni mostrano i contenuti solo dopo che la pagina si è caricata nel browser. Alcuni programmi che leggono il web, compresi diversi assistenti AI, rischiano di vedere una pagina quasi vuota." },
+  { titolo: "È fermo da anni", testo: "Nessuna pagina nuova, nessuna risposta alle domande dei clienti, nessun collegamento con la scheda Google. Un sito così non ha niente di nuovo da far trovare." },
 ];
 
-// Ogni servizio detto come problema risolto.
 const cosaFacciamo = [
-  { titolo: "La tua attività sembra viva", testo: "Ogni settimana pubblichiamo una novità: un piatto, un prodotto, un'offerta, un evento. Chi ti trova vede un'attività aperta e curata, non una scheda dimenticata." },
-  { titolo: "Nessuna recensione resta senza risposta", testo: "Rispondiamo a tutte, positive e negative, a nome tuo e con il tono giusto. Grazie a chi è contento, calma e soluzioni a chi si lamenta." },
-  { titolo: "I clienti contenti finalmente scrivono", testo: "Spesso vorrebbero, ma non sanno come e lasciano stare. Gli diamo un link, un QR e un messaggio pronto da mandare su WhatsApp: un tocco e hanno fatto." },
-  { titolo: "Mai più clienti davanti alla porta chiusa", testo: "Ferie, festività, orari nuovi: ci mandi un messaggio su WhatsApp e su Google è tutto giusto. Nessuno arriva e trova chiuso." },
-  { titolo: "Sai sempre cosa succede", testo: "Ogni mese un riepilogo semplice: quante persone ti hanno visto su Google, quante ti hanno chiamato, quante hanno chiesto le indicazioni. Vedi tu, coi numeri, se ti conviene." },
+  { titolo: "Controllo tecnico di ogni pagina", testo: "Titoli, descrizioni, velocità da telefono, link rotti, sitemap, dati strutturati: guardiamo il sito come lo legge Google, sistemiamo quello che non va e lo ricontrolliamo in automatico." },
+  { titolo: "Una pagina per ogni servizio, nella tua zona", testo: "Ogni servizio importante ha la sua pagina chiara, con il posto in cui lavori. Mai pagine copia-incolla città per città." },
+  { titolo: "Guide sulle domande vere dei tuoi clienti", testo: "Ogni settimana nuove pagine su quello che i clienti cercano prima di scegliere. Niente riempitivi, niente numeri inventati, niente promesse." },
+  { titolo: "Leggibile anche dalle AI", testo: "Testi già nell'HTML, dati strutturati, file llms.txt: ChatGPT, Gemini e Perplexity possono leggere il sito e trovare le risposte che servono per consigliarti." },
+  { titolo: "Ogni mese i numeri veri", testo: "Colleghiamo Google Search Console: per quali ricerche compari, quante persone ti hanno visto e quante hanno cliccato. Niente grafici gonfiati." },
 ];
 
+const piattaforme = [
+  { nome: "WordPress", testo: "Lavoriamo dal tuo pannello: pagine, titoli, plugin SEO, velocità." },
+  { nome: "Wix e Squarespace", testo: "Usiamo gli strumenti SEO della piattaforma e aggiungiamo pagine e guide." },
+  { nome: "Shopify", testo: "Schede prodotto, collezioni e guide per chi cerca prima di comprare." },
+  { nome: "Siti su misura", testo: "Aggiungiamo un motore che a ogni pubblicazione genera pagine leggibili da Google, sitemap e llms.txt." },
+];
 
-// Il sito: stesso metodo della SEO dei progetti in /proposta/seo-locale.
-const perIlSito = [
-  { titolo: "Google capisce cosa fai e dove", testo: "Sistemiamo titoli, descrizioni, velocità da telefono e link rotti, e diamo a ogni servizio la sua pagina chiara, con il posto in cui lavori." },
-  { titolo: "Pagine che rispondono ai tuoi clienti", testo: "Ogni settimana nuove pagine sulle domande che i clienti fanno prima di scegliere. Niente riempitivi, niente promesse." },
-  { titolo: "Leggibile anche dalle AI", testo: "ChatGPT, Gemini e Perplexity possono leggere il sito e trovare le risposte che servono per consigliarti." },
-  { titolo: "Su qualunque sito", testo: "WordPress, Wix, Shopify o un sito su misura: lavoriamo su quello che hai, senza rifarlo." },
+const perLaScheda = [
+  { titolo: "Una novità ogni settimana", testo: "Un piatto, un prodotto, un'offerta, un evento: chi ti trova vede un'attività aperta e curata." },
+  { titolo: "Una risposta a ogni recensione", testo: "A nome tuo, con il tono giusto. Grazie a chi è contento, calma e soluzioni a chi si lamenta." },
+  { titolo: "Più recensioni dai clienti veri", testo: "Link, QR e un messaggio pronto per WhatsApp. Senza regali in cambio, come chiedono le regole di Google." },
+  { titolo: "Orari sempre giusti", testo: "Ferie, festivi, orari nuovi: ci mandi un messaggio e su Google è tutto aggiornato." },
 ];
 
 const passi = [
-  { titolo: "Prenoti la consulenza gratuita", testo: "Compili il modulo qui sotto e scegli l'orario. Prima della call guardiamo la tua scheda Google e il tuo sito." },
+  { titolo: "Prenoti la consulenza gratuita", testo: "Compili il modulo e scegli l'orario. Prima della call guardiamo il tuo sito e la tua scheda Google." },
   { titolo: "In call con Vitaliy", testo: "Ti mostriamo come ti vedono oggi i clienti su Google, cosa sistemare e quanto costa. Se non ti serviamo, te lo diciamo." },
-  { titolo: "Se parti, pensiamo a tutto noi", testo: "Approvi la richiesta di accesso di Google con un tocco, senza darci password. Da lì lavoriamo noi, ogni settimana." },
+  { titolo: "Se parti, pensiamo a tutto noi", testo: "Ci dai un accesso al sito e approvi quello di Google con un tocco, senza password. Da lì lavoriamo noi, ogni settimana." },
 ];
 
 const faq: Faq[] = [
-  { domanda: "Devo fare qualcosa?", risposta: "Solo all'inizio: ti arriva una email da Google con la nostra richiesta di accesso alla tua attività e tocchi Approva. Poi facciamo tutto noi. Se vuoi, ci mandi foto o novità su WhatsApp." },
-  { domanda: "Vi devo dare la password del mio account Google?", risposta: "No. Google ha un sistema apposta per far gestire un'attività anche a un'altra persona, senza password. Resti tu il proprietario e puoi toglierci l'accesso quando vuoi." },
-  { domanda: "Non ho ancora la mia attività su Google Maps. Va bene lo stesso?", risposta: "Sì. Ti aiutiamo a crearla. Google chiede una verifica che fai tu, di solito un breve video o un codice: ti guidiamo noi, passo per passo, su WhatsApp." },
-  { domanda: "Quando avrò già tante recensioni, serve ancora?", risposta: "Sì. Chi legge guarda soprattutto le recensioni più recenti: se le ultime sono di un anno fa, l'attività sembra ferma. Per questo il lavoro continua: nuove recensioni, risposte, novità ogni settimana. E ogni mese vedi i numeri, così decidi tu se ti conviene continuare." },
-  { domanda: "Mi garantite più clienti?", risposta: "No, e diffida di chi te lo garantisce: nessuno decide al posto di Google chi compare per primo. Ti garantiamo il lavoro fatto ogni settimana e un riepilogo mensile con i numeri veri della tua attività su Google." },
-  { domanda: "Come chiedete le recensioni? È tutto in regola?", risposta: "Sì. Le chiediamo solo ai tuoi clienti veri, senza regali o sconti in cambio e senza filtrare solo quelle positive, come chiedono le regole di Google. Niente recensioni finte: rischiano di farti penalizzare." },
-  { domanda: "Cosa succede alle recensioni negative?", risposta: "Rispondiamo anche a quelle, con calma e in modo professionale, per mostrare a chi legge che l'attività ascolta. Non possiamo cancellarle: solo Google può rimuovere le recensioni che violano le sue regole. Se ne troviamo una così, te lo segnaliamo." },
-  { domanda: "Quanto costa?", risposta: "Dipende da cosa ti serve: solo la scheda Google, anche il sito, o tutti e due. In consulenza ti diciamo un prezzo mensile chiaro, prima di iniziare. La consulenza è gratuita e senza impegno." },
-  { domanda: "Lavorate anche sul mio sito?", risposta: "Sì. Lo rendiamo chiaro per Google e per le AI e ogni settimana aggiungiamo pagine sulle domande dei tuoi clienti. Su WordPress, Wix, Shopify o qualunque sito, senza rifarlo." },
+  { domanda: "Devo rifare il sito?", risposta: "No. Lavoriamo sul sito che hai già, qualunque sia la piattaforma. Se una cosa sulla tua piattaforma non si può sistemare, te lo diciamo in consulenza, prima di iniziare." },
+  { domanda: "Funziona con WordPress, Wix o Shopify?", risposta: "Sì. Su WordPress, Wix, Squarespace, Shopify e sui siti su misura. Su alcune piattaforme certe impostazioni tecniche sono bloccate: le compensiamo con pagine e contenuti, che contano di più." },
+  { domanda: "In quanto tempo vedo i risultati?", risposta: "La SEO è un lavoro di mesi, non di giorni. Nel primo mese il sito viene sistemato e le prime pagine nuove vanno online; da lì Google inizia a mostrarle e il report mensile ti dice come va. La scheda Google Maps, invece, cambia aspetto da subito." },
+  { domanda: "Mi garantite il primo posto su Google?", risposta: "No, e diffida di chi lo fa: nessuno decide al posto di Google. Ti garantiamo il lavoro fatto ogni settimana e i numeri veri di Google per vedere tu i risultati." },
+  { domanda: "Quanto costa?", risposta: "Dipende da cosa ti serve: il sito, la scheda Google o tutti e due, e da quante pagine servono. In consulenza ti diciamo un prezzo mensile chiaro, prima di iniziare. La consulenza è gratuita e senza impegno." },
+  { domanda: "Cosa vi serve da me?", risposta: "Un accesso al pannello del sito e a Google Search Console (se non ce l'hai lo creiamo insieme). Per la scheda Google approvi la nostra richiesta di accesso, senza darci password. Puoi rivedere le pagine prima che vadano online." },
+  { domanda: "Non ho un sito. Potete aiutarmi lo stesso?", risposta: "Sì. Si può partire dalla scheda Google Maps, che per un'attività locale è la prima cosa che i clienti vedono. Se serve un sito, te lo diciamo in consulenza." },
+  { domanda: "Come chiedete le recensioni? È tutto in regola?", risposta: "Sì. Solo ai tuoi clienti veri, senza regali o sconti in cambio e senza filtrare solo quelle positive, come chiedono le regole di Google. Niente recensioni finte." },
   { domanda: "Posso disdire?", risposta: "Sì, quando vuoi, senza penali. Ti basta un messaggio su WhatsApp o una email." },
-  { domanda: "Come ricevo la card o il piedistallo?", risposta: "Te lo spediamo con corriere, già pronto all'uso con il link della tua attività, e ti avvisiamo quando parte. Se lo compri da solo, il costo della spedizione lo vedi prima di pagare." },
   { domanda: "Funziona in tutta Italia?", risposta: "Sì. La consulenza è al telefono e il resto si fa online, senza incontri di persona. Per qualsiasi cosa ci trovi su WhatsApp." },
 ];
 
@@ -80,53 +81,127 @@ export default function Home() {
 
   return (
     <>
-      <JsonLd data={[organization(), website(), serviceMaps(), breadcrumbList([]), faqPage(faq)]} />
+      <JsonLd data={[organization(), website(), serviceSeo(), serviceMaps(), breadcrumbList([]), faqPage(faq)]} />
 
-      <section className="tt-hero-map">
-        <div className="tt-wrap">
-          <MapScene>
-            <p className="tt-eyebrow" style={{ margin: "0 0 var(--space-3)" }}>Per ogni attività che vuole farsi trovare</p>
-            <h1>Più clienti da Google, <span className="tt-mark">senza muovere un dito.</span></h1>
-            <p>
-              I clienti della tua zona ti cercano su Google e su Maps. Se la tua scheda è ferma e il sito non si trova,
-              scelgono il vicino. Noi curiamo scheda e sito ogni settimana: novità, risposte alle recensioni, pagine che
-              rispondono ai tuoi clienti. Tu pensi a lavorare.
+      {/* Apertura: la SEO del sito */}
+      <div className="tt-wrap tt-page-head">
+        <div className="tt-fatto">
+          <div className="tt-stack-6">
+            <p className="tt-eyebrow" style={{ margin: 0 }}>SEO locale · per attività e professionisti</p>
+            <h1 className="tt-display-xl">Il tuo sito, <span className="tt-mark">finalmente trovato su Google.</span></h1>
+            <p className="tt-lead">
+              Lo rendiamo leggibile da Google e dalle AI, lo riempiamo delle pagine che i tuoi clienti cercano nella tua zona e lo
+              colleghiamo alla scheda Google Maps. Su WordPress, Wix, Shopify o qualunque sito tu abbia, senza rifarlo.
             </p>
-            <div className="tt-map__cta">
+            <div className="tt-actions">
               {cta()}
-              <a href="#come-funziona" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Come funziona</a>
+              <a href="#risultati" className="tt-btn tt-btn--secondary tt-btn--block-mobile">Guarda i risultati</a>
             </div>
-            <p className="tt-map__price"><b>Consulenza gratuita con Vitaliy</b> · ti diciamo cosa sistemare, anche se poi fai da solo</p>
-          </MapScene>
+            <p className="tt-body-strong" style={{ margin: 0, fontSize: 17 }}>Consulenza gratuita con Vitaliy · ti diciamo cosa sistemare, anche se poi fai da solo</p>
+          </div>
+          <div className="tt-fatto__esempio">
+            <div className="tt-card tt-prima-dopo" aria-label="Esempio: come Google vede un sito prima e dopo">
+              <p className="tt-eyebrow" style={{ margin: 0 }}>Come Google vede il sito</p>
+              <div className="tt-prima-dopo__col tt-prima-dopo__col--prima">
+                <p className="tt-small" style={{ margin: 0 }}><b>Prima</b></p>
+                <ul className="tt-small"><li>Home</li><li>Servizi</li><li>Contatti</li></ul>
+              </div>
+              <div className="tt-prima-dopo__col">
+                <p className="tt-small" style={{ margin: 0 }}><b>Dopo</b>, per esempio su Olizen</p>
+                <ul className="tt-ticks tt-small">
+                  <li>Massaggio linfodrenante a Roma</li>
+                  <li>Massaggi a Talenti</li>
+                  <li>Massaggio in gravidanza: da che mese?</li>
+                  <li>Ogni quanto fare un massaggio?</li>
+                  <li>…e altre pagine ogni settimana</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
       <section className="tt-section tt-section--sunk">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="01" occhiello="Il problema">
-            Lavori bene. Ma su Google <span className="tt-mark">non si vede.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-6">
-            <ul className="tt-points">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p><p className="tt-esempio"><span className="tt-tag">Esempio · {m.settore}</span>{m.esempio}</p></li>)}</ul>
-            <p className="tt-body-strong" style={{ margin: 0, fontSize: 20 }}>
-              Non ti serve un&apos;agenzia, un contratto lungo o imparare un programma. Ti serve qualcuno che lo faccia al posto tuo,
-              ogni settimana.
-            </p>
-            <p className="tt-small tt-muted">
-              Fonte: Google, <a href="https://support.google.com/business/answer/7091?hl=it">Suggerimenti per migliorare il posizionamento locale</a>.
-            </p>
+        <div className="tt-wrap">
+          <SectionHead n="01" occhiello="Il problema">Un bel sito <span className="tt-mark">che nessuno trova.</span></SectionHead>
+          <div className="tt-section-body">
+            <ul className="tt-points tt-points--2">{problemi.map((m) => <li key={m.titolo}><h3>{m.titolo}</h3><p>{m.testo}</p></li>)}</ul>
           </div>
         </div>
       </section>
 
-      <section className="tt-section">
+      <section id="sito" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap tt-split">
+          <div className="tt-split__aside">
+            <SectionHead n="02" occhiello="Cosa facciamo" testo="Il metodo che usiamo ogni giorno sui siti dei nostri clienti, applicato al tuo.">
+              Il tuo sito, <span className="tt-mark">trasformato in un posto da trovare.</span>
+            </SectionHead>
+            <div className="tt-section-body">{cta(true)}</div>
+          </div>
+          <div className="tt-section-body"><StepList passi={cosaFacciamo} /></div>
+        </div>
+      </section>
+
+      <section className="tt-section tt-section--sunk">
+        <div className="tt-wrap">
+          <SectionHead n="03" occhiello="Su qualunque sito" testo="Non serve cambiare piattaforma né rifare il sito. Lavoriamo su quello che hai.">
+            WordPress, Wix, Shopify… <span className="tt-mark">va bene tutto.</span>
+          </SectionHead>
+          <div className="tt-grid-3 tt-section-body">
+            {piattaforme.map((p) => (
+              <div key={p.nome} className="tt-card tt-stack-2">
+                <h3 className="tt-heading" style={{ margin: 0 }}>{p.nome}</h3>
+                <p className="tt-body tt-muted" style={{ margin: 0 }}>{p.testo}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="risultati" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap">
+          <SectionHead n="04" occhiello="Già al lavoro" testo="Lo stesso metodo gira ogni giorno su siti veri. Apri gli esempi: sono pagine online adesso.">
+            Non una promessa: <span className="tt-mark">siti che puoi aprire.</span>
+          </SectionHead>
+          <div className="tt-grid-3 tt-grid-3--tre tt-section-body">
+            {PROVE.map((p) => (
+              <article key={p.nome} className="tt-card tt-stack-4">
+                <div>
+                  <p className="tt-eyebrow" style={{ margin: 0 }}>{p.settore}</p>
+                  <h3 className="tt-heading" style={{ margin: "var(--space-2) 0 0" }}>{p.nome}</h3>
+                </div>
+                <p className="tt-body" style={{ margin: 0 }}>{p.cosa}</p>
+                <ul className="tt-ticks tt-small" style={{ margin: 0 }}>{p.numeri.map((n) => <li key={n}>{n}</li>)}</ul>
+                {p.link.url.startsWith("/") ? (
+                  <Link href={p.link.url} className="tt-small">{p.link.testo} →</Link>
+                ) : (
+                  <a href={p.link.url} className="tt-small" target="_blank" rel="noopener">Leggi: {p.link.testo} ↗</a>
+                )}
+              </article>
+            ))}
+          </div>
+          <p className="tt-small tt-muted" style={{ marginTop: "var(--space-4)" }}>
+            Numeri contati sulle sitemap e sui siti pubblici il 10 ottobre 2026. Crescono ogni settimana. Le regole che seguiamo sono
+            quelle della <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it">guida SEO di Google</a>.
+          </p>
+        </div>
+      </section>
+
+      <section id="maps" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap">
           <div className="tt-fatto">
             <div>
-              <SectionHead n="02" occhiello="Cosa facciamo">
-                Lo facciamo noi, <span className="tt-mark">ogni settimana.</span>
+              <SectionHead
+                n="05"
+                occhiello="E la scheda Google Maps"
+                testo="Per chi cerca vicino, la prima cosa che vede è la tua scheda Google. La curiamo noi, ogni settimana, insieme al sito."
+              >
+                Sito e Maps, <span className="tt-mark">che lavorano insieme.</span>
               </SectionHead>
-              <div className="tt-section-body tt-stack-6"><StepList passi={cosaFacciamo} /><p className="tt-body" style={{ margin: 0 }}><Link href="/scheda-google">Come funziona la gestione della scheda Google →</Link></p></div>
+              <div className="tt-section-body tt-stack-6">
+                <StepList passi={perLaScheda} />
+                <p className="tt-body" style={{ margin: 0 }}><Link href="/scheda-google">Come funziona la gestione della scheda Google →</Link></p>
+              </div>
             </div>
             <div className="tt-fatto__esempio">
               <p className="tt-label" style={{ margin: "0 0 var(--space-3)" }}>Il risultato, su Google Maps</p>
@@ -151,74 +226,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sito" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead
-            n="03"
-            occhiello="Il tuo sito"
-            testo="La scheda Maps porta chi ti cerca vicino. Il sito porta chi cerca il tuo servizio e vuole capire prima di scegliere."
-          >
-            E il sito, <span className="tt-mark">finalmente trovato.</span>
-          </SectionHead>
-          <div className="tt-section-body tt-stack-6">
-            <StepList passi={perIlSito} />
-            {cta(true)}
-          </div>
-        </div>
-      </section>
-
-      <section id="come-funziona" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="04" occhiello="Come funziona">
-            Si parte da <span className="tt-mark">una chiacchierata.</span>
-          </SectionHead>
+      <section id="come-funziona" className="tt-section" style={{ scrollMarginTop: "var(--space-8)" }}>
+        <div className="tt-wrap">
+          <SectionHead n="06" occhiello="Come funziona">Si parte da <span className="tt-mark">una chiacchierata.</span></SectionHead>
           <div className="tt-section-body tt-stack-8">
-            <StepList passi={passi} />
-            <aside className="tt-callout">
+            <div className="tt-steps-row"><StepList passi={passi} /></div>
+            <aside className="tt-callout" style={{ maxWidth: "var(--measure)" }}>
               <span className="tt-tag">Importante</span>
               <h3>Non ci dai nessuna password</h3>
-              <p>Google ti manda una richiesta di accesso via email e tu la approvi. La scheda resta tua: puoi toglierci l&apos;accesso quando vuoi.</p>
+              <p>Per Google approvi una richiesta di accesso via email, e la scheda resta tua. Per il sito ci crei un utente che puoi togliere quando vuoi.</p>
             </aside>
           </div>
         </div>
       </section>
 
-
-
-
-
-
       <section id="attiva" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead
-            n="05"
-            occhiello="Consulenza gratuita"
-            testo={wa ? "Due minuti per il modulo, poi scegli tu l'orario della call. Se preferisci, scrivici su WhatsApp." : "Due minuti per il modulo, poi scegli tu l'orario della call."}
-          >
-            Parliamone, <span className="tt-mark">gratis.</span>
-          </SectionHead>
+        <div className="tt-wrap tt-split tt-split--form">
+          <div className="tt-split__aside">
+            <SectionHead
+              n="07"
+              occhiello="Consulenza gratuita"
+              testo={wa ? "Due minuti per il modulo, poi scegli tu l'orario della call. Se preferisci, scrivici su WhatsApp." : "Due minuti per il modulo, poi scegli tu l'orario della call."}
+            >
+              Parliamone, <span className="tt-mark">gratis.</span>
+            </SectionHead>
+            <ul className="tt-ticks tt-section-body">
+              <li>Guardiamo il tuo sito e la tua scheda prima della call</li>
+              <li>Ti diciamo cosa sistemare, anche se poi fai da solo</li>
+              <li>Prezzo chiaro prima di iniziare, nessun impegno</li>
+              <li>Non ci dai nessuna password</li>
+            </ul>
+            {wa && <p className="tt-body"><a href={wa}>Preferisci scrivere? WhatsApp →</a></p>}
+          </div>
           <div className="tt-card tt-section-body">
             <Suspense fallback={null}>
               <ConsulenzaForm pagina="/" />
             </Suspense>
           </div>
-          <ul className="tt-ticks tt-small" style={{ marginTop: "var(--space-4)" }}>
-            <li>Consulenza gratuita e senza impegno</li>
-            <li>Ti diciamo un prezzo chiaro prima di iniziare</li>
-            <li>Non ci dai nessuna password</li>
-          </ul>
         </div>
       </section>
+
       <section className="tt-section">
-        <div className="tt-wrap tt-wrap--read">
-          <SectionHead n="06" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
-          <div className="tt-section-body tt-stack-6"><FaqList items={faq} />{cta()}</div>
+        <div className="tt-wrap tt-split">
+          <div className="tt-split__aside">
+            <SectionHead n="08" occhiello="Domande frequenti">Prima che tu <span className="tt-mark">lo chieda.</span></SectionHead>
+            <div className="tt-section-body">{cta()}</div>
+          </div>
+          <div className="tt-section-body"><FaqList items={faq} /></div>
         </div>
       </section>
+
       <section id="da-banco" className="tt-section tt-section--sunk" style={{ scrollMarginTop: "var(--space-8)" }}>
         <div className="tt-wrap tt-wrap--read">
           <SectionHead
-            n="07"
+            n="09"
             occhiello="Card e piedistallo"
             testo="Da mettere sul bancone o vicino alla cassa: il cliente avvicina il telefono e si apre subito la pagina per lasciarti una recensione. Niente app, niente ricerche."
           >
@@ -239,12 +300,13 @@ export default function Home() {
           <p className="tt-body" style={{ marginTop: "var(--space-6)" }}>Arrivano già pronti, collegati alla tua attività. Puoi comprarli da soli, oppure aggiungerli al servizio: ne parliamo in consulenza.</p>
         </div>
       </section>
+
       <section className="tt-section">
         <div className="tt-wrap">
           <SectionHead
-            n="08"
+            n="10"
             occhiello="Per crescere ancora"
-            testo="Quando la tua attività su Google è a posto, il passo successivo è la pubblicità: annunci su Google, Meta e TikTok. Ti diciamo in una call gratuita quale ha senso per te."
+            testo="Quando sito e scheda sono a posto, il passo successivo può essere la pubblicità. Ti diciamo in una call gratuita quale canale ha senso per te."
           >
             Anche annunci online, <span className="tt-mark">quando servono.</span>
           </SectionHead>
@@ -253,7 +315,7 @@ export default function Home() {
               { href: "/scheda-google", nome: "Google Maps", testo: "Scheda curata, recensioni con risposta, novità ogni settimana.", piu: "Consulenza gratuita", scena: "mappa", logo: "googlemaps" },
               { href: "/analisi-gratuita", nome: "Annunci su Google", testo: "Sei il primo risultato quando cercano quello che fai.", piu: "Consulenza gratuita", scena: "ricerca", logo: "google" },
               { href: "/analisi-gratuita", nome: "Annunci su Meta", testo: "Ti vedono su Facebook e Instagram le persone della tua zona.", piu: "Consulenza gratuita", scena: "feed", logo: "meta" },
-              { href: "/analisi-gratuita", nome: "Annunci su TikTok", testo: "Un video breve che arriva a chi abita o passa vicino a te.", piu: "Consulenza gratuita", scena: "video", logo: "tiktok" },
+              { href: "/annunci-chatgpt", nome: "Annunci su ChatGPT", testo: "Compari accanto alla risposta quando chiedono un consiglio.", piu: "Consulenza gratuita", scena: "chat" },
             ]} />
           </div>
         </div>

@@ -94,6 +94,21 @@ export function service() {
 }
 
 // Servizio principale "Più clienti da Google Maps" con le offerte.
+export function serviceSeo() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "SEO locale del sito",
+    serviceType: "Ottimizzazione per i motori di ricerca (SEO) per attività locali",
+    description:
+      "Controllo tecnico del sito, una pagina per ogni servizio e zona, guide ogni settimana sulle domande dei clienti, dati leggibili da Google e dagli assistenti AI, collegamento alla scheda Google Maps e report mensile da Google Search Console. Su WordPress, Wix, Shopify, Squarespace e siti su misura.",
+    areaServed: { "@type": "Country", name: "Italia" },
+    availableLanguage: "it",
+    provider: { "@id": orgId },
+    url: absoluteUrl("/"),
+  };
+}
+
 export function serviceMaps() {
   return {
     "@context": "https://schema.org",

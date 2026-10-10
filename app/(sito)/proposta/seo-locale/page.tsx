@@ -141,7 +141,7 @@ export default function SeoLocalePage() {
           >
             Non una promessa: <span className="tt-mark">siti che puoi aprire.</span>
           </SectionHead>
-          <div className="tt-grid-3 tt-section-body">
+          <div className="tt-grid-3 tt-grid-3--tre tt-section-body">
             {PROVE.map((p) => (
               <article key={p.nome} className="tt-card tt-stack-4">
                 <div>
