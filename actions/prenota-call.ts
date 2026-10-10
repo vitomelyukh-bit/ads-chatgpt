@@ -9,6 +9,7 @@ import { isRateLimited } from "@/lib/rate-limit";
 import { etichettaCompleta, libero, orariCandidati } from "@/lib/slots";
 import { email, TITROVANO } from "@/lib/email";
 import { site } from "@/lib/site";
+import { SETTORE_SEO } from "@/lib/seo-locale";
 
 export type EsitoPrenotazione = { ok: true; quando: string } | { ok: false; errore: string };
 
@@ -55,7 +56,8 @@ export async function prenotaCall(token: string, iso: string): Promise<EsitoPren
   const to = process.env.LEAD_TO_EMAIL?.split(",").map((s) => s.trim()).filter(Boolean);
   if (process.env.RESEND_API_KEY && from && to?.length) {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const invito = ics(inizio, fine, `Call con ${site.name}`, `Analisi gratuita: annunci su ChatGPT per ${lead.attivita}. Ti chiamiamo al ${lead.telefono}.`);
+    const tema = lead.settore === SETTORE_SEO ? "SEO locale del sito" : "annunci su ChatGPT";
+    const invito = ics(inizio, fine, `Call con ${site.name}`, `Analisi gratuita: ${tema} per ${lead.attivita}. Ti chiamiamo al ${lead.telefono}.`);
     const f = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
     const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Call con ${site.name}`)}&dates=${f(inizio)}/${f(fine)}&details=${encodeURIComponent(`Analisi gratuita per ${lead.attivita}. Ti chiamiamo al ${lead.telefono}.`)}`;
     const conferma = email({
@@ -65,7 +67,7 @@ export async function prenotaCall(token: string, iso: string): Promise<EsitoPren
       evidenzia: "confermata",
       blocchi: [
         { tipo: "evidenza", etichetta: "La tua call", testo: `${quando.charAt(0).toUpperCase()}${quando.slice(1)}` },
-        { tipo: "p", testo: `Ti chiamiamo al numero ${lead.telefono}. Dura circa ${booking.durataMin} minuti: guardiamo insieme il caso di ${lead.attivita} e quale canale ha più senso per te.` },
+        { tipo: "p", testo: `Ti chiamiamo al numero ${lead.telefono}. Dura circa ${booking.durataMin} minuti: guardiamo insieme il caso di ${lead.attivita} e ${lead.settore === SETTORE_SEO ? "cosa migliorare per farti trovare su Google" : "quale canale ha più senso per te"}.` },
         { tipo: "bottone", testo: "Aggiungi a Google Calendar →", url: gcal },
         { tipo: "nota", testo: "In allegato trovi anche l'invito per Outlook e Apple Calendar.\nSe devi spostarla, rispondi a questa email." },
       ],
