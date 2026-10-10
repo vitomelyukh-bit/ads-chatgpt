@@ -1,6 +1,458 @@
 {
-  "nota": "Backlog. Due temi: 'maps' (problemi della scheda Google Maps, due al giorno) e 'chatgpt' (annunci e AI, uno al giorno; senza campo tema = chatgpt). Vedi content-engine/WRITING.md. La routine prende il primo 'da-fare' del tema di oggi non sovrapposto a guide esistenti, lo segna 'fatto' con slug e data.",
+  "nota": "Backlog. Tre temi: 'seo' (il sito su Google, servizio principale: TRE guide al giorno), 'maps' e 'chatgpt' (in pausa; senza campo tema = chatgpt). Vedi content-engine/WRITING.md. La routine prende il primo 'da-fare' del tema di oggi non sovrapposto a guide esistenti, lo segna 'fatto' con slug e data.",
   "argomenti": [
+    {
+      "titolo": "Perché il mio sito WordPress non compare su Google? Le cause da controllare una per una",
+      "tema": "seo",
+      "stato": "fatto",
+      "slug": "sito-wordpress-non-compare-su-google",
+      "data": "2026-10-11"
+    },
+    {
+      "titolo": "«Pagina scansionata ma attualmente non indicizzata» in Search Console: cosa significa e cosa fare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito per un idraulico: quali pagine creare per farsi chiamare dalla propria zona",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix va bene per la SEO? Cosa si può fare davvero e cosa no",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Come far leggere il tuo sito a ChatGPT, Gemini e Perplexity: cosa serve davvero",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un dentista: quali pagine servono per farsi trovare su Google (rispettando le regole)",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il mio sito è sparito da Google: come capire cosa è successo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Yoast o Rank Math per il sito di un'attività locale: quale scegliere e come impostarlo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un avvocato: come farsi trovare da chi cerca un problema legale preciso",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Titolo e descrizione su Google sbagliati: come cambiare quello che compare nei risultati",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: come far trovare su Google i prodotti di un piccolo negozio",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un ristorante: perché su Google esce TheFork e non il tuo sito, e cosa fare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "«Pagina con reindirizzamento» e «Alternativa con tag canonico appropriato»: sono errori?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un centro estetico: una pagina per ogni trattamento, come scriverla",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Ho cambiato dominio: come non perdere le visite da Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito è lento dal telefono: come misurarlo e cosa sistemare per primo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un commercialista: quali argomenti scrivere per farsi trovare dalle aziende della zona",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Squarespace e SEO: impostazioni da controllare subito",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito fatto con un page builder (Elementor, Divi): rallenta il sito e penalizza la SEO?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un elettricista: farsi trovare per urgenze e lavori programmati",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Quante pagine deve avere il sito di un'attività locale?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Dati strutturati per un'attività locale: cosa sono e come aggiungerli senza programmare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di uno psicologo: come farsi trovare su Google rispettando il codice deontologico",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Search Console: come collegarla al tuo sito in 10 minuti (WordPress, Wix, Shopify)",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Lavoro in più città: devo fare una pagina per ogni città?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per una palestra o uno studio di pilates: pagine per corsi, orari e prove gratuite",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Google Sites o Jimdo: si può fare SEO con un sito gratuito?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito è in italiano e in inglese: come impostarlo perché Google mostri la lingua giusta",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un fisioterapista: le pagine che rispondono ai dolori dei pazienti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "«Rilevata, ma attualmente non indicizzata»: perché Google non indicizza le tue pagine",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il blog del mio sito non porta visite: come scegliere gli argomenti giusti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'impresa edile: come mostrare i lavori fatti in modo che Google li trovi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress: come togliere le pagine inutili che Google indicizza (tag, autori, allegati)",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un parrucchiere o barbiere: cosa mettere sul sito oltre alla prenotazione",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "llms.txt: cos'è e serve davvero al sito di un'attività?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Testi copiati dai fornitori o da altri siti: perché penalizzano e come riscriverli",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un B&B o di un piccolo hotel: farsi trovare oltre Booking",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il mio sito non ha HTTPS («Non sicuro»): cosa cambia per Google e come risolvere",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un veterinario: le domande dei proprietari di animali da cui partire",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix: come impostare titoli, descrizioni e indirizzi delle pagine",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'agenzia immobiliare: schede degli immobili e pagine di quartiere che funzionano",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Recensioni sul sito: come mostrarle in modo utile per i clienti e per Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per uno studio di architettura o un geometra: progetti e servizi che si fanno trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito fatto con l'AI in 5 minuti: perché non si posiziona e come sistemarlo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: descrizioni dei prodotti copiate dal fornitore, come riscriverle",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di una scuola guida: pagine per patenti, corsi e iscrizioni che Google capisce",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Search Console: le ricerche per cui compari e come usarle per scrivere pagine nuove",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un fotografo di matrimoni: portfolio che si fa trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito ha tante immagini pesanti: come alleggerirle senza perdere qualità",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un negozio di quartiere che vende anche online",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'officina meccanica o carrozzeria: pagine per servizi e marche",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Link da altri siti: quali servono a un'attività locale e quali evitare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress multilingua: WPML, Polylang o due siti separati?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un nutrizionista o un dietista: contenuti utili senza promesse vietate",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito compare su Google ma nessuno clicca: come migliorare titolo e descrizione",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'impresa di pulizie: farsi trovare dalle aziende e dai condomini",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Pagina «Chi siamo» e pagina contatti: cosa guarda Google e cosa guardano i clienti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un tatuatore: pagine per stili e artisti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Assistenti AI e attività locali: perché ChatGPT consiglia altri e non te",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Squarespace: pagine prodotto e blog che si fanno trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un ottico: pagine per occhiali, lenti ed esami della vista",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Errore 404 su Google: pagine che non esistono più, come sistemarle",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un traslocatore: preventivi, zone e tipi di trasloco",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Webflow e SEO: cosa controllare in un sito fatto su misura",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di una farmacia o parafarmacia: cosa si può pubblicare e come farsi trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le FAQ sul sito aiutano la SEO? Come scriverle bene",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un serramentista: farsi trovare da chi deve cambiare gli infissi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito ha la stessa pagina con indirizzi diversi (www, senza www, http): come sistemare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'enoteca o di un produttore di vino: vendere e farsi trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Core Web Vitals spiegati semplici: cosa sono e quando preoccuparsi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per una scuola di lingue o di musica: corsi, livelli e lezioni di prova",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito di una cooperativa o associazione: farsi trovare senza budget",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Breadcrumb, menu e link interni: come aiutano Google a capire il sito",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un centro medico o poliambulatorio: pagine per specialità e medici",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix: il sito non viene indicizzato, cosa controllare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un catering: menù, eventi e zone servite che Google capisce",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sitemap: cos'è, dove si trova sul tuo sito e come inviarla a Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un giardiniere o un'impresa del verde: lavori stagionali e zone",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito vecchio e lento da rifare: come non perdere le posizioni che hai",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un negozio di biciclette: officina, vendita e noleggio",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Pagine di servizio troppo corte: quanto testo serve e cosa scriverci",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'autoscuola nautica o di noleggio barche: farsi trovare in stagione",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il dominio con la parola chiave (es. idraulicoroma.it) aiuta ancora?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un'onicotecnica o una estetista a domicilio",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Perplexity e Gemini citano fonti: come diventare una fonte affidabile per la tua zona",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: collezioni e filtri che creano pagine duplicate, come gestirli",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'agenzia di viaggi: pagine per destinazioni che si fanno trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un fabbro: urgenze notturne e pronto intervento",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Quanto tempo ci vuole perché Google mostri le pagine nuove del sito?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un panificio o pasticceria: ordini, torte su misura e farsi trovare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
     {
       "titolo": "Come rispondere a una recensione negativa su Google (con esempi pronti)",
       "tema": "maps",

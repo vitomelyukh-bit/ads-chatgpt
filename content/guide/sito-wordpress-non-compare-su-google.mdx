@@ -1,0 +1,88 @@
+---
+title: "Sito WordPress che non compare su Google: le cause · TiTrovano"
+description: "Il tuo sito WordPress non esce su Google? Le cause più comuni, dall'opzione che blocca i motori di ricerca alle pagine non indicizzate, e come controllarle da solo."
+h1: "Perché il mio sito WordPress non compare su Google?"
+rispostaBreve: "Prima controlla se Google conosce il sito: cerca site:tuodominio.it su Google. Se non esce niente, la causa più comune su WordPress è l'opzione che chiede ai motori di ricerca di non indicizzarlo, attiva per errore dopo la messa online. Se invece il sito c'è ma non compare per le ricerche dei clienti, il problema non è tecnico: mancano le pagine giuste."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-11"
+dateModified: "2026-10-11"
+guideCorrelate:
+  - "attivita-non-compare-google-maps"
+faq:
+  - domanda: "Ho appena messo online il sito: quanto tempo serve per vederlo su Google?"
+    risposta: "Non c'è un tempo fisso. Google scrive che alcune modifiche hanno effetto in poche ore e altre in mesi. Collegare Search Console e inviare la sitemap aiuta Google a scoprire le pagine prima."
+  - domanda: "Se pago un plugin SEO il sito sale su Google?"
+    risposta: "No. Un plugin come Yoast o Rank Math aiuta a impostare titoli, descrizioni e sitemap, ma non scrive le pagine che i tuoi clienti cercano. Il punteggio verde del plugin non è una posizione su Google."
+---
+
+## Il sito c'è, ma per Google non esiste
+
+Hai pagato un sito WordPress, è online, lo apri dal telefono e funziona. Poi cerchi il tuo nome su Google e non esce. Oppure esce, ma solo se scrivi il nome esatto dell'attività: chi cerca «idraulico» o «estetista» nella tua zona non ti vede mai.
+
+Sono due problemi diversi, con soluzioni diverse. Il primo è tecnico e di solito si risolve in pochi minuti. Il secondo è il più frequente e richiede lavoro sui contenuti. Partiamo dal capire in quale dei due ti trovi.
+
+## Primo controllo: Google conosce il tuo sito?
+
+Apri Google e scrivi `site:` seguito dal tuo dominio, senza spazi e senza www. Per esempio:
+
+> site:idraulicorossi.it
+
+È lo stesso controllo che consiglia Google nella sua [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it).
+
+- **Non esce nessun risultato**: Google non ha il sito nel suo indice. Vai alla sezione successiva.
+- **Escono alcune pagine**: il sito è indicizzato. Il problema è che non compari per le ricerche dei clienti: salta alla sezione «Il sito c'è ma non ti trovano».
+
+## Se non esce niente: le cause tecniche su WordPress
+
+### L'opzione «Scoraggia i motori di ricerca» è attiva
+
+È la causa più comune, soprattutto sui siti appena pubblicati. Mentre si costruisce un sito, chi lo sviluppa spesso attiva un'opzione per chiedere a Google di non indicizzarlo. Poi il sito va online e l'opzione resta accesa.
+
+Si trova nel pannello di WordPress, in **Impostazioni → Lettura**, alla voce sulla visibilità ai motori di ricerca. Come spiega la [documentazione ufficiale di WordPress](https://wordpress.org/documentation/article/settings-reading-screen/), quando è spuntata il sito aggiunge in ogni pagina un'istruzione che chiede ai motori di ricerca di non indicizzarlo. Togli la spunta e salva.
+
+Se usi un plugin SEO come Yoast o Rank Math, controlla anche lì: entrambi permettono di escludere singole pagine o interi tipi di contenuto dai risultati. Una pagina dei servizi esclusa per sbaglio non comparirà mai.
+
+### Il sito è nuovo e Google non l'ha ancora trovato
+
+Se il sito è online da poco e nessun altro sito lo collega, Google potrebbe semplicemente non averlo ancora scoperto. Qui serve **Google Search Console**, lo strumento gratuito di Google per i proprietari di siti:
+
+1. aggiungi il sito a Search Console e verifica di esserne il proprietario;
+2. invia la sitemap (su WordPress di solito si trova all'indirizzo `/wp-sitemap.xml`, o in quello indicato dal tuo plugin SEO);
+3. con lo **strumento Controllo URL** controlla la home e, se serve, chiedi l'indicizzazione.
+
+Google spiega come funziona nella guida allo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it). Due cose da sapere: c'è un limite giornaliero di richieste, e chiedere l'indicizzazione non garantisce che la pagina compaia. Per molte pagine insieme, Google consiglia la sitemap.
+
+### Problemi meno frequenti
+
+- **Il sito è protetto da password** o da una pagina «in costruzione» di un plugin di manutenzione: Google vede solo quella.
+- **Il dominio è cambiato** e il vecchio non porta al nuovo: Google conosce ancora il vecchio indirizzo.
+- **Il sito va in errore** da telefono o è lentissimo: se Google non riesce ad aprirlo, non lo indicizza.
+
+## Il sito c'è ma non ti trovano
+
+Questo è il caso più comune, e nessuna impostazione lo risolve. Google mostra **pagine**, non siti. Se il tuo sito ha solo Home, Chi siamo, Servizi e Contatti, ha quattro possibilità di comparire. Chi cerca «perdita d'acqua sotto il lavandino» o «idraulico pronto intervento Roma nord» trova le pagine di chi ha scritto esattamente di quello.
+
+Cosa controllare:
+
+- **Ogni servizio importante ha una sua pagina?** Una pagina «Servizi» con un elenco puntato non basta. Serve una pagina per «Sostituzione scaldabagno», una per «Riparazione perdite» e così via, ognuna con un titolo chiaro.
+- **La zona compare nel testo?** Se lavori a Roma nord, scrivilo nelle pagine, con naturalezza. Non servono pagine copia-incolla per ogni quartiere: Google le considera spam.
+- **Il titolo della pagina dice cosa fai?** «Home» o «Benvenuti» non aiutano. Un titolo come «Idraulico a Roma nord: pronto intervento e preventivi» sì. Lo puoi cambiare dal plugin SEO, pagina per pagina.
+- **Rispondi alle domande dei clienti?** Prezzi indicativi, tempi, cosa fare in attesa del tecnico: sono le domande che i clienti fanno su Google prima di chiamare.
+
+> Esempio. Prima: una pagina «Servizi» con dieci voci in elenco. Dopo: «Sostituzione scaldabagno a Roma nord», con cosa include l'intervento, quanto dura, quali marche tratti e come chiedere un preventivo.
+
+Se hai anche un'attività con una sede, ricordati della scheda Google Maps: spesso è la prima cosa che vedono i clienti in zona. Se non compare nemmeno quella, leggi [perché la tua attività non compare su Google Maps](/guide/attivita-non-compare-google-maps).
+
+## La checklist da fare oggi
+
+- cerca `site:tuodominio.it` su Google;
+- in WordPress controlla **Impostazioni → Lettura** e le impostazioni del plugin SEO;
+- collega Google Search Console e invia la sitemap;
+- controlla la home con lo strumento Controllo URL;
+- conta le pagine dei tuoi servizi: ne hai una per ogni servizio importante?
+- cambia i titoli generici come «Home» o «Servizi» con titoli che dicono cosa fai e dove.
+
+## Se non hai tempo di farlo da solo
+
+I controlli tecnici li puoi fare in mezz'ora. Scrivere ogni settimana le pagine che i tuoi clienti cercano è un altro lavoro, ed è quello che fa la differenza. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito come lo vede Google e ti diciamo cosa sistemare.

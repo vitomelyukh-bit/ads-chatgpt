@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBox } from "@/components/CtaBox";
+import { CtaBoxSeo } from "@/components/CtaBoxSeo";
 import { CtaBoxMaps } from "@/components/CtaBoxMaps";
 import { FaqList } from "@/components/ds/FaqList";
 import { JsonLd } from "@/components/JsonLd";
@@ -54,7 +55,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
         <article className="tt-stack-8">
           <header className="tt-stack-4">
             <p className="tt-eyebrow" style={{ margin: 0 }}>
-              {g.tema === "maps" ? "Guida Google Maps" : "Guida"} · <time dateTime={g.dateModified}>{formatData(g.dateModified)}</time>
+              {g.tema === "seo" ? "Guida SEO" : g.tema === "maps" ? "Guida Google Maps" : "Guida"} · <time dateTime={g.dateModified}>{formatData(g.dateModified)}</time>
             </p>
             <h1 className="tt-display-lg">{g.h1}</h1>
           </header>
@@ -72,7 +73,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
         </article>
 
         <div style={{ marginTop: "var(--space-16)" }}>
-          {g.tema === "maps" ? <CtaBoxMaps /> : <CtaBox />}
+          {g.tema === "seo" ? <CtaBoxSeo /> : g.tema === "maps" ? <CtaBoxMaps /> : <CtaBox />}
         </div>
 
         {altre.length > 0 && (
@@ -81,7 +82,7 @@ export default async function GuidaPage({ params }: PageProps<"/guide/[slug]">) 
             <LinkCards items={altre.map((x) => ({ href: `/guide/${x.slug}`, label: x.h1 }))} />
           </section>
         )}
-        {settori.length > 0 && g.tema !== "maps" && (
+        {settori.length > 0 && g.tema === "chatgpt" && (
           <section className="tt-stack-6" style={{ marginTop: "var(--space-12)" }}>
             <h2 className="tt-heading">Cosa chiedono all&apos;AI i clienti di questi settori</h2>
             <LinkCards items={settori.map((x) => ({ href: `/settori/${x.slug}`, label: x.nome }))} />

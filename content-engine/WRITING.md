@@ -4,20 +4,40 @@ Questa guida la segue la routine automatica che pubblica le guide su titrovano.i
 
 ## Cos'è TiTrovano
 
-Il servizio principale è **"Più clienti da Google Maps"** (home del sito, `/`): ogni settimana pubblichiamo una novità sulla scheda Google Maps dell'attività, rispondiamo a tutte le recensioni, aiutiamo a riceverne di nuove (link, QR, card e piedistallo da banco), teniamo giusti orari e informazioni e mandiamo un riepilogo mensile con i numeri. Il titolare deve solo approvare la richiesta di accesso di Google.
+Il servizio principale è la **SEO locale del sito** (home del sito, `/`): rendiamo il sito di un'attività o di un professionista leggibile da Google e dagli assistenti AI, sistemiamo i problemi tecnici, aggiungiamo ogni settimana pagine per ogni servizio e zona e guide sulle domande dei clienti, colleghiamo Google Search Console e mandiamo un report mensile. Funziona su qualunque piattaforma: WordPress, Wix, Shopify, Squarespace, siti su misura. Non si compra dal sito: si prenota una **consulenza gratuita** con Vitaliy (`/#attiva`).
 
-Il secondo servizio è la gestione degli annunci su ChatGPT, descritto sotto.
+Il secondo servizio è la gestione della **scheda Google Maps** (novità ogni settimana, risposte alle recensioni, recensioni nuove, report). Il terzo, secondario, sono gli annunci online (ChatGPT, Google, Meta).
 
-## Due temi di guide, e quale scrivere oggi
+## Quale guida scrivere oggi
 
-Ogni guida ha nel frontmatter `tema: "maps"` oppure `tema: "chatgpt"`.
+Ogni guida ha nel frontmatter `tema: "seo"`, `tema: "maps"` oppure `tema: "chatgpt"`.
 
-**Ogni giorno: due guide Maps e una ChatGPT.** Per decidere, guarda le guide con `datePublished` di oggi:
-- se oggi c'è già una guida ChatGPT, scrivi una guida Maps;
-- se oggi ci sono già due guide Maps, scrivi una guida ChatGPT;
-- negli altri casi scrivi una guida Maps.
+**Ogni giorno: tre guide SEO.** Ogni esecuzione della routine scrive una guida con `tema: "seo"`. Se oggi (Europe/Rome) ci sono già tre guide SEO, non scrivere nulla. I temi `maps` e `chatgpt` sono in pausa: le guide esistenti restano online, ma non se ne scrivono di nuove finché questo file non cambia.
 
-Poi prendi dal backlog il primo argomento `da-fare` **di quel tema** (`"tema"` in `topics.json`; senza campo vuol dire `chatgpt`).
+Poi prendi dal backlog (`topics.json`) il primo argomento `"stato": "da-fare"` con `"tema": "seo"`.
+
+## Guide SEO (tema "seo"): come si scrivono
+
+Chi legge è un titolare o un professionista che ha già un sito e un dubbio preciso: «perché il mio sito WordPress non compare su Google», «Wix va bene per la SEO», «Search Console dice pagina scansionata ma non indicizzata», «sito del dentista: quali pagine servono». Lo cerca con parole molto specifiche, spesso la sua piattaforma o il suo settore. La SEO è un tema vecchio e affollato: vinciamo solo essendo **più specifici, più concreti e più onesti** degli articoli generici.
+
+- **Una domanda sola, molto specifica.** Mai "Guida completa alla SEO" o "10 consigli SEO". Il titolo deve contenere la parola che usa chi cerca: la piattaforma (WordPress, Wix, Shopify, Squarespace, Google Sites, Jimdo, Webflow), il messaggio esatto di Search Console, il settore (dentista, avvocato, ristorante, idraulico, estetista…) o la situazione ("dopo aver cambiato dominio", "sito nuovo da 3 mesi").
+- **Parti dal problema, con le sue parole**, e da perché gli costa clienti. Poi la **soluzione passo per passo**, verificata sulla documentazione ufficiale e **linkata**: almeno un link obbligatorio a Google Search Central (`developers.google.com/search`), all'aiuto di Search Console (`support.google.com/webmasters`), a `web.dev` o all'aiuto ufficiale della piattaforma (`wordpress.org`, `support.wix.com`, `help.shopify.com`, `support.squarespace.com`, documentazione di Yoast o Rank Math). Se un menu o un pulsante non riesci a verificarlo, descrivi il passaggio in modo generico invece di inventare nomi.
+- **Esempi concreti da copiare**: un titolo di pagina prima e dopo, una meta description, l'elenco delle pagine che dovrebbe avere il sito di quel settore, un testo per la pagina di un servizio. In blocchi `>`, con nomi di fantasia e dettagli realistici.
+- **Guide verticali per settore**: le pagine che servono, le ricerche tipiche dei clienti di quel settore (almeno 4, in un elenco), gli errori tipici dei siti di quel settore, regole particolari (per esempio la pubblicità sanitaria per dentisti e medici). Devono essere davvero diverse tra loro: niente testi uguali con il nome del settore cambiato. I settori in `content/settori/` riguardano gli annunci su ChatGPT: **non** mettere `settoriCorrelati` nelle guide SEO e non linkarli.
+- **Guide per piattaforma**: cosa si può fare davvero su quella piattaforma, cosa è bloccato e come compensare con contenuti e pagine. Mai parlare male di una piattaforma: dire con onestà cosa offre e cosa no.
+- **Assistenti AI**: quando è pertinente, spiega cosa serve perché ChatGPT, Gemini e Perplexity leggano il sito (testo presente nell'HTML, dati strutturati, pagine chiare). Mai promettere che un'AI ti consiglierà.
+- **Cosa non fare**: scorciatoie che violano le regole di Google (link comprati, testi duplicati, pagine città copia-incolla, recensioni finte), con link alle [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) quando servono.
+- **Niente promesse di posizionamento e niente tempi garantiti**: nessuno decide al posto di Google. Si può dire che la SEO richiede mesi, citando la fonte se si dà un ordine di grandezza.
+- **Chiusura**: un paragrafo breve "se non hai tempo di farlo da solo" con il link `[prenota la consulenza gratuita](/#attiva)`. Senza prezzi, senza enfasi.
+- Almeno un **link interno** a un'altra guida (`/guide/<slug>`), di preferenza un'altra guida SEO.
+- **Lunghezza**: da 700 a 1.300 parole. Specifiche, non lunghe: se un paragrafo non aiuta a risolvere il problema, toglilo.
+
+Fonti ufficiali utili (da ricontrollare quando le usi):
+- Guida introduttiva alla SEO: https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it
+- Norme anti-spam: https://developers.google.com/search/docs/essentials/spam-policies?hl=it
+- Report Indicizzazione delle pagine in Search Console: https://support.google.com/webmasters/answer/7440203?hl=it
+- Dati strutturati: https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data?hl=it
+- Titoli nei risultati: https://developers.google.com/search/docs/appearance/title-link?hl=it
 
 ## Guide Google Maps (tema "maps"): come si scrivono
 
@@ -39,7 +59,7 @@ Fonti ufficiali già verificate (ottobre 2026), da ricontrollare quando le usi:
 - Posizionamento locale: https://support.google.com/business/answer/7091?hl=it
 - Modifiche proposte da utenti e Google: https://support.google.com/business/answer/3480441?hl=it
 
-Le altre regole di questo file valgono anche per le guide Maps, tranne dove questa sezione dice diversamente.
+Le altre regole di questo file valgono anche per le guide SEO e Maps, tranne dove le loro sezioni dicono diversamente.
 
 ## Annunci su ChatGPT (tema "chatgpt")
 
@@ -88,9 +108,9 @@ Se una regola non si può rispettare, l'articolo non si pubblica.
 
 1. **Titolo** sotto forma di domanda o di risposta a un dubbio reale del titolare.
 2. **Risposta breve** (`rispostaBreve`): 2-3 frasi che rispondono subito e davvero alla domanda del titolo. È la prima cosa che si legge ed è quella che gli assistenti AI riprendono più facilmente.
-3. **Corpo** in MDX: da 500 a 1.200 parole, sezioni con `##` e, se servono, `###`. **Mai `#`** (l'H1 lo mette la pagina). Liste puntate quando aiutano. Niente tabelle (non sono supportate).
+3. **Corpo** in MDX: da 500 a 1.200 parole (guide SEO: da 700 a 1.300), sezioni con `##` e, se servono, `###`. **Mai `#`** (l'H1 lo mette la pagina). Liste puntate quando aiutano. Niente tabelle (non sono supportate).
 4. Almeno **un link interno a una guida esistente** o a un settore (`/guide/<slug>`, `/settori/<slug>`), dove ha senso nel testo.
-5. **Chiusura**: un paragrafo breve, senza enfasi. Tema chatgpt: collega all'[analisi gratuita](/analisi-gratuita). Tema maps: collega al servizio, `[lo facciamo noi](/)`.
+5. **Chiusura**: un paragrafo breve, senza enfasi. Tema seo: `[prenota la consulenza gratuita](/#attiva)`. Tema chatgpt: collega all'[analisi gratuita](/analisi-gratuita). Tema maps: collega al servizio, `[lo facciamo noi](/)`.
 6. **FAQ** facoltative (2-3 domande) solo se aggiungono qualcosa, con risposte brevi. Compaiono nella pagina e nel JSON-LD.
 
 ## Frontmatter
@@ -104,10 +124,10 @@ description: "Descrizione per Google, 120-170 caratteri, concreta, senza promess
 h1: "Titolo visibile, di solito una domanda"
 rispostaBreve: "Due o tre frasi che rispondono subito."
 ordine: 100
-tema: "maps"                  # "maps" oppure "chatgpt"
+tema: "seo"                   # "seo" (oggi l'unico da scrivere), "maps" oppure "chatgpt"
 datePublished: "AAAA-MM-GG"   # data di oggi (Europe/Rome)
 dateModified: "AAAA-MM-GG"    # uguale a datePublished
-settoriCorrelati:             # 1-3 slug esistenti in content/settori (facoltativo per tema maps)
+settoriCorrelati:             # solo tema chatgpt: 1-3 slug esistenti in content/settori (mai per tema seo)
   - "dentisti"
 guideCorrelate:               # 1-3 slug esistenti in content/guide
   - "come-sceglie-chatgpt-chi-consigliare"
@@ -122,7 +142,7 @@ Settori esistenti: guarda i file in `content/settori/`. Non creare nuovi settori
 ## Procedura
 
 1. Leggi questo file, `content-engine/topics.json` e i titoli e le risposte brevi di **tutte** le guide in `content/guide/`.
-2. Decidi il tema di oggi (vedi "Due temi di guide") e scegli dal backlog il primo argomento di quel tema con `"stato": "da-fare"` che **non si sovrappone** a una guida esistente. Se tutti sono fatti o sovrapposti, aggiungi tu nuovi argomenti al backlog rispettando le regole (vedi sotto) e usa il primo.
+2. Decidi il tema di oggi (vedi "Quale guida scrivere oggi") e scegli dal backlog il primo argomento di quel tema con `"stato": "da-fare"` che **non si sovrappone** a una guida esistente. Se tutti sono fatti o sovrapposti, aggiungi tu nuovi argomenti al backlog rispettando le regole (vedi sotto) e usa il primo.
 3. Se l'argomento richiede fatti su prodotti, aziende o regole, verificali con una ricerca web e tieni i link delle fonti ufficiali.
 4. Scrivi la guida seguendo struttura, stile e regole.
 5. Rileggila **da critico**: togli ogni frase che promette, che vende, che contiene numeri senza fonte, che ripete un'altra guida, che non servirebbe a un titolare.
@@ -143,6 +163,12 @@ Ogni articolo verticale deve:
 - essere **davvero diverso** dagli altri articoli: niente testi uguali con il nome del settore cambiato. Se l'articolo potrebbe valere per qualsiasi settore, non è verticale: riscrivilo o scegli un altro argomento.
 
 ## Nuovi argomenti per il backlog
+
+Tema seo: quando restano meno di 15 argomenti `da-fare`, aggiungine 30 in fondo. Devono essere **ricerche molto specifiche** che fa chi ha già un sito e vuole farsi trovare: alterna tre famiglie, una alla volta.
+- **Piattaforma**: un problema preciso su una piattaforma precisa ("Wix: pagine non indicizzate dopo la pubblicazione", "WordPress: Yoast o Rank Math per un sito locale", "Shopify: titoli delle collezioni duplicati").
+- **Messaggio o problema tecnico concreto**: errori di Search Console, sito sparito da Google, sito lento da telefono, cambio di dominio, HTTPS, pagine duplicate, sito in inglese e italiano.
+- **Settore**: il sito di un mestiere preciso e le pagine che gli servono ("SEO per un idraulico: quali pagine creare", "sito di uno psicologo: come farsi trovare rispettando il codice deontologico"). Settori sempre diversi, mai lo stesso due volte di fila.
+Più una quarta famiglia, una ogni 5: **SEO e assistenti AI** (farsi leggere da ChatGPT, Gemini e Perplexity). Niente pagine per città, niente confronti tra agenzie con nomi.
 
 Tema maps: quando finiscono, aggiungi altri problemi reali della scheda Google che un titolare cerca su Google (recensioni, visibilità, accesso, modifiche, foto, orari, domande e risposte, sospensioni), poi le varianti per settore dei temi più forti (es. "rispondere alle recensioni di un parrucchiere"), con esempi davvero diversi per ogni settore.
 

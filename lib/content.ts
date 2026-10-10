@@ -35,8 +35,8 @@ const guidaSchema = z.object({
   faq: z.array(faqItem).default([]),
   settoriCorrelati: z.array(z.string()).default([]),
   guideCorrelate: z.array(z.string()).default([]),
-  // "maps": problemi della scheda Google, chiude verso il servizio in home. "chatgpt": annunci e AI.
-  tema: z.enum(["maps", "chatgpt"]).default("chatgpt"),
+  // "seo": il sito trovato su Google (servizio principale). "maps": scheda Google. "chatgpt": annunci e AI.
+  tema: z.enum(["seo", "maps", "chatgpt"]).default("chatgpt"),
 });
 
 export type Faq = z.infer<typeof faqItem>;
@@ -110,7 +110,7 @@ export function guideCorrelateA(g: Guida, max = 4): Guida[] {
       x.slug !== g.slug &&
       !manuali.includes(x) &&
       x.tema === g.tema &&
-      (g.tema === "maps" || x.settoriCorrelati.some((s) => g.settoriCorrelati.includes(s))),
+      (g.tema !== "chatgpt" || x.settoriCorrelati.some((s) => g.settoriCorrelati.includes(s))),
   );
   return [...manuali, ...auto].slice(0, max);
 }

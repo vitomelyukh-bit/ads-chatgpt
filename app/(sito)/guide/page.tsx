@@ -14,8 +14,9 @@ export const metadata = pageMetadata({
 export default function GuidePage() {
   const tutte = getGuide();
   const gruppi = [
+    { id: "seo", titolo: "Il tuo sito su Google (SEO)", guide: tutte.filter((g) => g.tema === "seo") },
     { id: "google-maps", titolo: "Google Maps e recensioni", guide: tutte.filter((g) => g.tema === "maps") },
-    { id: "chatgpt", titolo: "ChatGPT, AI e annunci", guide: tutte.filter((g) => g.tema !== "maps") },
+    { id: "chatgpt", titolo: "ChatGPT, AI e annunci", guide: tutte.filter((g) => g.tema === "chatgpt") },
   ].filter((x) => x.guide.length > 0);
 
   return (

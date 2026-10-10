@@ -72,8 +72,14 @@ for (const g of guide) {
   const n = parole(g.body);
   if (String(d.datePublished) > "2026-10-03" && (n < 450 || n > 1400)) err(g.file, `corpo di ${n} parole: deve stare tra 500 e 1.200 circa`);
   const maps = d.tema === "maps";
-  if (d.tema && !["maps", "chatgpt"].includes(d.tema)) err(g.file, `tema deve essere "maps" o "chatgpt"`);
-  if (maps) {
+  const seo = d.tema === "seo";
+  if (d.tema && !["seo", "maps", "chatgpt"].includes(d.tema)) err(g.file, `tema deve essere "seo", "maps" o "chatgpt"`);
+  if (seo) {
+    // Guide SEO: chiudono verso la consulenza e si appoggiano a documentazione ufficiale (Google o piattaforma).
+    if (!/\]\(\/#attiva\)/.test(g.body)) err(g.file, `guida SEO: manca il link alla consulenza, es. [prenota la consulenza gratuita](/#attiva)`);
+    if (!/\]\(https:\/\/(developers\.google\.com\/search|support\.google\.com\/(webmasters|business)|search\.google\.com|wordpress\.org|developer\.wordpress\.org|support\.wix\.com|help\.shopify\.com|support\.squarespace\.com|yoast\.com|rankmath\.com|web\.dev)/.test(g.body))
+      err(g.file, `guida SEO: serve almeno un link a documentazione ufficiale (Google Search Central, Search Console, web.dev o la piattaforma)`);
+  } else if (maps) {
     // Guide Google Maps: chiudono verso il servizio in home e si appoggiano alle guide ufficiali di Google.
     if (!/\]\(\/(#attiva)?\)/.test(g.body)) err(g.file, `guida Maps: manca il link al servizio, es. [lo facciamo noi](/)`);
     if (!/\]\(https:\/\/support\.google\.com\//.test(g.body)) err(g.file, `guida Maps: serve almeno un link a una guida ufficiale di Google (support.google.com)`);
@@ -81,7 +87,7 @@ for (const g of guide) {
   if (!/\]\(\/(guide|settori)\/[a-z0-9-]+\)/.test(g.body)) err(g.file, `serve almeno un link interno a una guida o a un settore`);
   for (const s of d.settoriCorrelati ?? []) if (!settoriSlugs.has(s)) err(g.file, `settoriCorrelati: "${s}" non esiste`);
   for (const s of d.guideCorrelate ?? []) if (!guideSlugs.has(s) || s === g.slug) err(g.file, `guideCorrelate: "${s}" non valida`);
-  if (!maps && !(d.settoriCorrelati ?? []).length) err(g.file, `indica almeno un settore in settoriCorrelati`);
+  if ((!d.tema || d.tema === "chatgpt") && !(d.settoriCorrelati ?? []).length) err(g.file, `indica almeno un settore in settoriCorrelati`);
   // Articoli nuovi: verticali, con link alla pagina del loro settore.
   if (String(d.datePublished) > "2026-10-03" && d.settoriCorrelati?.[0] && !g.body.includes(`](/settori/${d.settoriCorrelati[0]})`)) {
     err(g.file, `articolo verticale: linka la pagina del settore principale (/settori/${d.settoriCorrelati[0]})`);
