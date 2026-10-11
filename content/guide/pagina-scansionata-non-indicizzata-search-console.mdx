@@ -1,0 +1,94 @@
+---
+title: "«Scansionata, ma non indicizzata»: cosa fare · TiTrovano"
+description: "Search Console dice «Pagina scansionata, ma attualmente non indicizzata»? Cosa significa, quando puoi ignorarlo e come sistemare le pagine che ti servono davvero."
+h1: "«Pagina scansionata ma attualmente non indicizzata» in Search Console: cosa significa e cosa fare?"
+rispostaBreve: "Vuol dire che Google ha visitato la pagina ma per ora ha deciso di non metterla nei risultati di ricerca. Non è un errore tecnico e non sempre è un problema: per archivi, tag e pagine di servizio è normale. Se invece riguarda una pagina importante, come quella di un servizio, di solito va resa più utile, diversa dalle altre e collegata meglio dal resto del sito."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-11"
+dateModified: "2026-10-11"
+guideCorrelate:
+  - "sito-wordpress-non-compare-su-google"
+  - "cosa-legge-ai-del-tuo-sito"
+faq:
+  - domanda: "Se chiedo l'indicizzazione tante volte, Google la indicizza prima?"
+    risposta: "No. Lo strumento Controllo URL ha un limite giornaliero di richieste e Google scrive che chiedere l'indicizzazione non garantisce che la pagina compaia. Una richiesta dopo aver migliorato la pagina basta."
+  - domanda: "Devo cancellare le pagine scansionate ma non indicizzate?"
+    risposta: "Non per forza. Se sono pagine che non servono a nessuno, come vecchi tag o pagine di prova, puoi toglierle o unirle ad altre. Se sono pagine che ti servono, conviene migliorarle invece di cancellarle."
+---
+
+## Il messaggio che ti fa pensare al peggio
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e trovi una riga che dice «Pagina scansionata, ma attualmente non indicizzata». Dentro ci sono magari proprio le pagine su cui avevi lavorato: «Ristrutturazione bagno», «Pulizia dei denti», «Menu del pranzo».
+
+Tradotto: Googlebot, il programma con cui Google legge i siti, è passato da quella pagina, l'ha letta e per ora ha deciso di non inserirla nel suo indice. Una pagina che non è nell'indice non può comparire su Google, nemmeno a chi cerca esattamente quel servizio. Se è una pagina che dovrebbe portarti clienti, ti sta costando richieste.
+
+La [guida di Search Console sul report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) lo dice chiaramente: una pagina «non indicizzata» non è necessariamente un errore. Per ogni motivo elencato nel report bisogna capire se c'è davvero qualcosa da correggere. «Attualmente» conta: la decisione può cambiare, in un senso o nell'altro.
+
+## Primo passo: è una pagina che ti serve?
+
+Clicca sulla riga e guarda l'elenco degli indirizzi. Spesso dentro trovi pagine che è normale non vedere su Google:
+
+- archivi per tag, per autore o per data, tipici di WordPress;
+- pagine numerate di un elenco, come `/blog/page/3/`;
+- indirizzi con parametri, come `?orderby=price` o `?replytocom=`;
+- feed, pagine di ringraziamento dopo un modulo, pagine del carrello;
+- vecchie pagine di prova rimaste online.
+
+Queste non ti portano clienti e puoi lasciarle stare. Il problema vero è quando nella lista ci sono la pagina di un servizio, la pagina di una zona in cui lavori o una guida che hai scritto per i clienti. Segnati quelle e lavora solo su quelle.
+
+## Perché Google lascia fuori una pagina importante
+
+Google non dà una spiegazione per ogni singola pagina. Ma le cause più frequenti si vedono aprendo la pagina e guardandola con occhio critico.
+
+### Dice poco, o dice la stessa cosa di altre pagine
+
+È il caso più comune nei siti delle attività locali. Pagine di servizio con tre righe e una foto, oppure dieci pagine quasi identiche in cui cambia solo il nome del servizio. Google preferisce indicizzare pagine che aggiungono qualcosa: lo spiega nella sua guida su come [creare contenuti utili e pensati per le persone](https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=it).
+
+### È copiata per ogni città
+
+«Idraulico a Monza», «Idraulico a Lissone», «Idraulico a Seregno», con lo stesso testo e il nome del paese cambiato. Pagine così rientrano tra quelle che le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) chiamano pagine doorway: create per comparire nelle ricerche più che per aiutare chi legge.
+
+### Nessuno ci arriva
+
+Se la pagina non è collegata dal menu, dalla home o da altre pagine del sito, per Google è poco importante. Succede spesso con le pagine aggiunte di recente e mai linkate.
+
+### È una copia di un'altra pagina
+
+A volte la stessa pagina esiste a due indirizzi, per esempio con e senza `/` finale, o con un parametro. Google ne sceglie una e lascia fuori le altre. La documentazione su come [indicare la versione principale di una pagina](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it) spiega come segnalare a Google quale preferisci.
+
+### Il testo non si vede davvero
+
+Se i prezzi, i servizi o il menu sono solo dentro un'immagine o un PDF, la pagina per Google è quasi vuota. Vale anche per gli assistenti AI come ChatGPT, Gemini e Perplexity: leggono soprattutto il testo della pagina, come spiega la guida su [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Come sistemarla, passo per passo
+
+1. **Apri la pagina con lo strumento Controllo URL** di Search Console. Guarda se Google la considera la versione principale o se ha scelto un altro indirizzo. Con il test dal vivo controlli anche che Google riesca a caricarla. Come funziona lo spiega la guida allo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it).
+2. **Controlla che non sia un doppione.** Se la stessa pagina esiste a più indirizzi, tienine uno solo e fai in modo che gli altri portino lì.
+3. **Riscrivi il contenuto** pensando alle domande che il cliente fa prima di chiamarti: cosa comprende il servizio, quanto dura, in quali zone lavori, cosa deve preparare lui, come chiedere un preventivo.
+4. **Collegala dal resto del sito**: dal menu o dalla pagina dei servizi, e da una o due pagine affini.
+5. **Verifica che sia nella sitemap.** Su WordPress di solito è il plugin SEO a crearla.
+6. **Chiedi l'indicizzazione una volta**, sempre dal Controllo URL, solo dopo aver fatto le modifiche.
+
+Poi aspetta. Non c'è un tempo fisso, e nessuno può decidere al posto di Google se e quando la pagina entrerà nell'indice.
+
+## Un esempio prima e dopo
+
+> Prima. Titolo: «Servizi - Edilnova». Testo: «Ci occupiamo di ristrutturazioni di bagni con professionalità e cura. Contattaci per un preventivo.» E una foto.
+
+> Dopo. Titolo: «Ristrutturazione bagno chiavi in mano: tempi, fasi e preventivo · Edilnova». Testo: cosa comprende il lavoro (demolizione, impianti, piastrelle, sanitari), quanto dura di solito un bagno piccolo e uno grande, cosa succede se l'appartamento è abitato durante i lavori, in quali comuni lavora l'impresa, tre domande frequenti dei clienti e un modulo con le informazioni da mandare per avere un preventivo serio.
+
+La seconda pagina risponde a domande vere. La prima potrebbe stare sul sito di qualsiasi impresa.
+
+## Cosa non fare
+
+- **Chiedere l'indicizzazione ogni giorno** senza cambiare niente: non serve, e le richieste hanno un limite.
+- **Pensare che «Convalida correzione» la faccia entrare nell'indice**: chiede a Google di ricontrollare, ma non lo obbliga a indicizzare.
+- **Comprare servizi di «indicizzazione forzata» o pacchetti di link**: i link comprati per manipolare Google sono vietati dalle norme anti-spam.
+- **Moltiplicare le pagine quasi uguali** sperando che qualcuna passi: peggiora il problema.
+
+Se il tuo sito è su WordPress e non compare proprio su Google, parti invece dai controlli in [perché il tuo sito WordPress non compare su Google](/guide/sito-wordpress-non-compare-su-google).
+
+## Se non hai tempo di farlo da solo
+
+Capire quali pagine contano e riscriverle una per una richiede ore, e va fatto con continuità. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report di Search Console e ti diciamo quali pagine sistemare per prime.
