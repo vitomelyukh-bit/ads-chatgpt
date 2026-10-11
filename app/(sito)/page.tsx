@@ -141,7 +141,7 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <p className="tt-small tt-muted">Esempio reale: le pagine del sito di Olizen, centro massaggi a Roma.</p>
+            <p className="tt-small tt-muted">«Prima» è il sito tipico di un'attività; «Dopo» sono pagine vere del sito di Olizen, centro massaggi a Roma.</p>
           </div>
           <div className="tt-section-body" data-reveal><StepList passi={cosaFacciamo} /></div>
         </div>
