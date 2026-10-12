@@ -1,0 +1,96 @@
+---
+title: "Sito sparito da Google: come capire cosa è successo · TiTrovano"
+description: "Il tuo sito non esce più su Google? Come capire se è sparito davvero o è solo sceso, e i controlli da fare in Search Console: noindex, azioni manuali, sicurezza."
+h1: "Il mio sito è sparito da Google: come capire cosa è successo?"
+rispostaBreve: "Prima capisci se il sito è sparito davvero o se è solo sceso: cerca site:tuodominio.it su Google. Se non esce niente, la causa è quasi sempre concreta e si trova in Search Console, per esempio un blocco messo per errore dopo un aggiornamento, un cambio di dominio senza reindirizzamenti, un'azione manuale o un problema di sicurezza. Se invece il sito c'è ma è sceso, spesso c'entra un aggiornamento di Google e non c'è un interruttore da riaccendere."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-12"
+dateModified: "2026-10-12"
+guideCorrelate:
+  - "sito-wordpress-non-compare-su-google"
+  - "pagina-scansionata-non-indicizzata-search-console"
+faq:
+  - domanda: "Il sito è tornato visibile ma più in basso di prima: è normale?"
+    risposta: "Può succedere. Rimettere a posto un blocco tecnico fa tornare le pagine nell'indice, ma la posizione dipende da come Google valuta le pagine rispetto a quelle degli altri. Nessuno può garantire che tornino esattamente dov'erano."
+  - domanda: "Devo rifare il sito da capo?"
+    risposta: "Quasi mai. Prima trova la causa con i controlli di questa guida. Rifare il sito senza sapere cosa è successo rischia di aggiungere problemi nuovi, come indirizzi cambiati senza reindirizzamenti."
+---
+
+## Ieri c'eri, oggi no
+
+Fino alla settimana scorsa il tuo sito usciva su Google. Magari un cliente ti ha detto «ti ho cercato e non ti ho trovato», oppure le telefonate dal sito sono calate di colpo. Cerchi il nome della tua attività e al posto del sito escono solo portali, la scheda Maps o un concorrente.
+
+È una situazione che mette ansia, ma di solito ha una causa precisa. La cosa peggiore da fare è cambiare tutto a caso. Google stesso, nella guida su come [analizzare un calo di traffico dalla Ricerca](https://developers.google.com/search/docs/monitor-debug/debugging-search-traffic-drops?hl=it), elenca poche famiglie di cause: problemi tecnici, azioni manuali, problemi di sicurezza, aggiornamenti dei sistemi di Google, stagionalità. Vanno controllate in ordine.
+
+## Primo controllo: sparito o sceso?
+
+Apri Google e cerca:
+
+> site:pasticceriabianchi.it
+
+- **Non esce nessun risultato**: il sito è uscito dall'indice di Google. Qui c'è quasi sempre un motivo tecnico o una penalizzazione, e si può trovare.
+- **Escono le pagine**: il sito c'è ancora. Non compare più per le ricerche dei clienti, o compare più in basso. È un problema diverso, ne parliamo più sotto.
+
+Un dettaglio che inganna molti: se in Search Console vedi i clic crollati, controlla di guardare la proprietà giusta. La [guida di Search Console sui cali di traffico](https://support.google.com/webmasters/answer/9079473?hl=it) dice che confondere la versione http e quella https del sito è probabilmente il motivo più comune del traffico «sparito». A volte il traffico c'è, ma lo stai cercando nella proprietà sbagliata.
+
+## Se non esce niente: i controlli in Search Console
+
+Search Console è lo strumento gratuito di Google per chi ha un sito. Se non l'hai mai collegato, fallo ora: senza, stai cercando a occhi chiusi.
+
+### 1. Azioni manuali
+
+Apri il report **Azioni manuali**. Se c'è una voce, vuol dire che una persona di Google ha verificato che il sito viola le [norme anti-spam](https://developers.google.com/search/docs/essentials/spam-policies?hl=it): link comprati, testi copiati, pagine create solo per Google, contenuti nascosti.
+
+La [guida al report Azioni manuali](https://support.google.com/webmasters/answer/9044175?hl=it) spiega cosa fare: correggere il problema su tutte le pagine interessate e poi chiedere un riesame dallo stesso report, descrivendo cosa hai sistemato. Google scrive che l'esame può richiedere da diversi giorni ad alcune settimane. Se hai comprato da poco un dominio già usato, dillo nella richiesta: la violazione può venire dal proprietario precedente.
+
+### 2. Problemi di sicurezza
+
+Apri il report **Problemi di sicurezza**. Un sito violato può contenere pagine di spam che tu non vedi, o software dannoso. Google in quel caso può mostrare un avviso a chi prova ad aprirlo, e il traffico cala anche se le pagine sono ancora nell'indice.
+
+Nella [guida al report Problemi di sicurezza](https://support.google.com/webmasters/answer/9044101?hl=it) trovi i tipi di problema e come chiedere una revisione dopo averli risolti. Qui serve chi gestisce tecnicamente il sito: va ripulito, aggiornato e vanno cambiate le password. Controlla anche, nelle impostazioni di Search Console, che tra gli utenti non ci sia qualcuno che non conosci.
+
+### 3. Un blocco messo per errore
+
+È la causa più comune dopo un rifacimento del sito, un cambio di tema o un aggiornamento di un plugin. Il sito chiede a Google di non indicizzarlo, e nessuno se ne accorge. Succede in tre modi:
+
+- un'istruzione **noindex** nelle pagine, spesso lasciata dalla versione di prova;
+- un file **robots.txt** che blocca tutto il sito;
+- una **password** o una pagina «in manutenzione» che Google vede al posto del sito.
+
+Il report **Indicizzazione delle pagine** ti aiuta: se le pagine indicizzate calano e nello stesso periodo crescono quelle escluse per noindex o bloccate da robots.txt, hai trovato la causa. Con lo **strumento Controllo URL**, fai il test dal vivo sulla home: ti dice se Google può indicizzarla. Su WordPress, guarda anche l'opzione che scoraggia i motori di ricerca, come spieghiamo in [perché il sito WordPress non compare su Google](/guide/sito-wordpress-non-compare-su-google).
+
+### 4. Una rimozione chiesta da qualcuno
+
+Nel menu di Search Console c'è lo **strumento per le rimozioni**. Chi ha accesso alla proprietà può nascondere un indirizzo dai risultati per circa sei mesi, come spiega la [guida allo strumento](https://support.google.com/webmasters/answer/9689846?hl=it). Se una vecchia agenzia o un collaboratore l'ha usato sul sito intero, lo vedi lì e puoi annullarlo dallo stesso strumento.
+
+### 5. Cambio di dominio o di indirizzi
+
+Hai cambiato dominio, sei passato da http a https o hai rifatto il sito con indirizzi nuovi? Se i vecchi indirizzi non portano a quelli nuovi, Google conosce pagine che non esistono più e deve scoprire da zero quelle nuove.
+
+Google, nella guida sugli [spostamenti di sito con modifiche degli URL](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it), consiglia di preparare un elenco con ogni vecchio indirizzo e il nuovo corrispondente, e di impostare reindirizzamenti permanenti lato server, uno per uno. Mandare tutte le vecchie pagine alla home non è la stessa cosa. E anche con i reindirizzamenti giusti, Google scrive nella guida sui cali di traffico che per un sito di medie dimensioni possono servire alcune settimane perché il cambiamento venga recepito.
+
+Controlla anche le cose banali: il dominio è stato rinnovato? Il sito si apre da telefono? Se il sito non risponde, Google non può leggerlo, e nemmeno i tuoi clienti.
+
+> Esempio. La Pasticceria Bianchi rifà il sito a marzo. La pagina «Torte di compleanno», che prima era /torte-compleanno/, diventa /prodotti/torte/. Senza reindirizzamento, chi arriva da Google sul vecchio indirizzo trova un errore, e la pagina nuova parte da zero.
+
+## Se il sito c'è ma è sceso
+
+Se `site:` mostra le pagine ma le ricerche dei clienti non ti trovano più, di solito non c'è niente di rotto. Le cause più frequenti sono altre.
+
+- **Un aggiornamento di Google.** Più volte l'anno Google cambia in modo ampio i suoi sistemi di classificazione: si chiamano aggiornamenti principali. Nella pagina sugli [aggiornamenti principali](https://developers.google.com/search/docs/appearance/core-updates?hl=it) Google consiglia di controllare le date sulla sua dashboard dello stato della Ricerca, aspettare almeno una settimana dopo la fine dell'aggiornamento e poi confrontare i dati in Search Console. Non c'è una correzione tecnica: si migliorano le pagine per chi le legge, e il recupero non è garantito.
+- **La stagionalità.** Un gelataio a novembre riceve meno visite che a luglio. Nel report **Rendimento** confronta lo stesso periodo dell'anno prima, non solo il mese precedente.
+- **Pagine uscite dall'indice una alla volta.** Se le pagine dei servizi compaiono come escluse, leggi la guida su [«Pagina scansionata ma attualmente non indicizzata»](/guide/pagina-scansionata-non-indicizzata-search-console).
+
+## Cosa non fare
+
+- **Non comprare link** per «tornare su»: è una delle violazioni che portano alle azioni manuali.
+- **Non creare un secondo sito** con gli stessi testi: avresti due copie in concorrenza.
+- **Non chiedere l'indicizzazione cento volte** dal Controllo URL: c'è un limite giornaliero e non accelera nulla se la causa resta.
+- **Non cambiare tutto insieme.** Una modifica alla volta, segnando la data, così capisci cosa ha funzionato.
+
+Una nota sugli assistenti AI come ChatGPT, Gemini e Perplexity: anche loro leggono il sito tramite programmi automatici. Un noindex o un robots.txt che blocca tutti i programmi fermano anche loro, non solo Google. Togliere il blocco rimuove l'ostacolo, ma nessuno può promettere che un'AI ti consigli.
+
+## Se non hai tempo di farlo da solo
+
+Questi controlli li puoi fare con calma in un pomeriggio. Se preferisci che li facciamo noi, [prenota la consulenza gratuita](/#attiva): guardiamo Search Console con te e ti diciamo cosa è successo e da dove ripartire.

@@ -44,7 +44,9 @@
     {
       "titolo": "Il mio sito è sparito da Google: come capire cosa è successo",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-sparito-da-google-cosa-fare",
+      "data": "2026-10-12"
     },
     {
       "titolo": "Yoast o Rank Math per il sito di un'attività locale: quale scegliere e come impostarlo",
