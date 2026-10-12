@@ -25,7 +25,9 @@
     {
       "titolo": "Wix va bene per la SEO? Cosa si può fare davvero e cosa no",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wix-va-bene-per-la-seo",
+      "data": "2026-10-12"
     },
     {
       "titolo": "Come far leggere il tuo sito a ChatGPT, Gemini e Perplexity: cosa serve davvero",
