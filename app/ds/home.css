@@ -236,3 +236,50 @@
 .tt-pres .tt-faq summary { font-size: 20px; }
 .tt-pres__fine { padding: var(--space-16) 0 var(--space-24); background: var(--ink); color: var(--paper); }
 .tt-pres__fine .tt-btn--secondary { background: transparent; color: var(--paper); border-color: var(--paper); }
+
+/* ---------- /visita: landing porta a porta, pensata per il telefono ---------- */
+.tt-vis { font-size: 18px; padding-bottom: 76px; }
+.tt-vis__wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--space-4); }
+.tt-vis__hero { padding: var(--space-12) 0 var(--space-16); }
+.tt-vis__hero .tt-vis__wrap { display: grid; gap: var(--space-6); }
+.tt-vis__h1 { margin: 0; font: 800 clamp(34px, 9vw, 60px)/1.04 var(--font-display); letter-spacing: -0.025em; text-wrap: balance; }
+.tt-vis__h2 { margin: 0; font: 800 clamp(30px, 7.5vw, 48px)/1.06 var(--font-display); letter-spacing: -0.02em; text-wrap: balance; }
+.tt-vis__lead { margin: 0; font-size: clamp(19px, 4.8vw, 23px); line-height: 1.45; color: var(--ink-muted); }
+.tt-vis__sotto { margin: var(--space-3) 0 0; font-size: clamp(18px, 4.4vw, 21px); line-height: 1.45; color: var(--ink-muted); }
+.tt-vis__cta { display: grid; gap: var(--space-3); }
+@media (min-width: 640px) { .tt-vis__cta { display: flex; flex-wrap: wrap; } }
+.tt-vis__sez { padding: var(--space-16) 0; scroll-margin-top: 64px; }
+.tt-vis__step { margin: 0 0 var(--space-3); font-weight: 700; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--brand); }
+.tt-vis__problemi { list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; gap: var(--space-4); }
+@media (min-width: 720px) { .tt-vis__problemi { grid-template-columns: 1fr 1fr; } }
+.tt-vis__prob { display: grid; gap: var(--space-3); padding: var(--space-6) var(--space-4); border-radius: var(--radius-lg); background: var(--paper-raised); box-shadow: var(--shadow-card); }
+.tt-vis__prob-head { display: flex; gap: var(--space-3); align-items: flex-start; }
+.tt-vis__segno { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--paper-sunk); font-size: 26px; }
+.tt-vis__prob h3 { margin: 0; font: 700 21px/1.2 var(--font-display); }
+.tt-vis__prob h3 small { display: block; margin-bottom: 2px; font: 600 13px var(--font-body); color: var(--ink-muted); }
+.tt-vis__succede, .tt-vis__facciamo { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: 17px; line-height: 1.45; }
+.tt-vis__succede b, .tt-vis__facciamo b { display: block; margin-bottom: 2px; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+.tt-vis__succede { background: color-mix(in oklab, var(--danger) 8%, var(--paper-raised)); }
+.tt-vis__succede b { color: var(--danger); }
+.tt-vis__facciamo { background: var(--brand-tint); }
+.tt-vis__facciamo b { color: var(--brand); }
+.tt-vis__demo { margin-top: var(--space-8); }
+.tt-vis__card { margin-top: var(--space-8); padding: var(--space-6) var(--space-4); border-radius: var(--radius-lg); background: var(--paper-raised); box-shadow: var(--shadow-card); }
+@media (min-width: 640px) { .tt-vis__card, .tt-vis__prob { padding: var(--space-8); } }
+.tt-vis__check { list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; gap: var(--space-3); }
+.tt-vis__check li { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-4); border-radius: var(--radius-md); background: var(--paper-sunk); font-weight: 600; }
+.tt-vis__check li::before { content: "✓"; flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: var(--on-brand); font-weight: 800; }
+.tt-vis__nota { margin: var(--space-12) 0 var(--space-3); color: var(--ink-muted); }
+.tt-vis__esempi { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+@media (min-width: 640px) { .tt-vis__esempi { grid-template-columns: 1fr 1fr; } }
+.tt-vis__esempi a { display: grid; gap: 2px; padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); color: var(--ink); text-decoration: none; min-height: var(--tap-min); }
+.tt-vis__esempi a span { color: var(--ink-muted); font-size: 16px; }
+.tt-vis__esempi a small { margin-top: 4px; color: var(--brand); font-weight: 600; font-size: 15px; }
+.tt-vis__fine .tt-vis__wrap { display: grid; gap: var(--space-4); }
+.tt-vis__fine .tt-vis__card { margin-top: var(--space-4); }
+.tt-vis__barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: grid; grid-template-columns: 1fr 1.3fr; gap: 8px; padding: 10px 12px max(10px, env(safe-area-inset-bottom)); background: color-mix(in oklab, var(--paper) 92%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+.tt-vis__barra a { display: grid; place-items: center; min-height: 50px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); color: var(--ink); font-weight: 700; font-size: 16px; text-decoration: none; }
+.tt-vis__barra a.tt-vis__barra-main { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+/* la barra prende il posto del pulsante WhatsApp flottante, che resta nel finale */
+.tt:has(.tt-vis) a.tt-wa-float { display: none; }
+@media (min-width: 900px) { .tt-vis__barra { display: none; } .tt-vis { padding-bottom: 0; } .tt:has(.tt-vis) a.tt-wa-float { display: flex; } }
