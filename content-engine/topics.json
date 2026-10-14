@@ -79,7 +79,9 @@
     {
       "titolo": "Sito di un ristorante: perché su Google esce TheFork e non il tuo sito, e cosa fare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-ristorante-google-thefork-invece-del-sito",
+      "data": "2026-10-14"
     },
     {
       "titolo": "«Pagina con reindirizzamento» e «Alternativa con tag canonico appropriato»: sono errori?",
