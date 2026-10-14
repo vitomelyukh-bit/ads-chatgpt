@@ -1,0 +1,99 @@
+---
+title: "«Pagina con reindirizzamento» e canonico: sono errori? · TiTrovano"
+description: "Search Console elenca pagine «con reindirizzamento» o «alternative con tag canonico appropriato»? Quando è normale e quando invece c'è da sistemare qualcosa."
+h1: "«Pagina con reindirizzamento» e «Pagina alternativa con tag canonico appropriato»: sono errori?"
+rispostaBreve: "Quasi sempre no. Sono indirizzi che Google ha visto ma non mette nei risultati perché portano, o rimandano, a un'altra pagina: quella che conta è la pagina di arrivo. C'è da intervenire solo se nell'elenco trovi una pagina che dovrebbe comparire su Google da sola, o se la pagina di arrivo non è quella giusta."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-14"
+dateModified: "2026-10-14"
+guideCorrelate:
+  - "pagina-scansionata-non-indicizzata-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+faq:
+  - domanda: "Devo cliccare «Convalida correzione» per queste due voci?"
+    risposta: "Se gli indirizzi nell'elenco sono quelli che ti aspetti, no: non c'è niente da correggere. La convalida ha senso solo dopo aver sistemato un problema vero, per esempio un reindirizzamento che portava alla pagina sbagliata."
+  - domanda: "Se il numero di pagine con reindirizzamento cresce, è un brutto segno?"
+    risposta: "Non da solo. Cresce, per esempio, dopo un cambio di dominio o il passaggio a https, perché Google ritrova i vecchi indirizzi. Conta che le pagine di arrivo siano indicizzate e corrette."
+---
+
+## Due righe che sembrano un allarme
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e sotto «Perché le pagine non sono indicizzate» trovi decine di indirizzi con due motivi: «Pagina con reindirizzamento» e «Pagina alternativa con tag canonico appropriato». Il report le conta tra le pagine non indicizzate e il pensiero viene subito: Google mi sta ignorando il sito.
+
+Nella maggior parte dei casi non è così. La [guida di Search Console sul report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) dice che una pagina non indicizzata non è per forza un errore. Queste due voci, in particolare, descrivono di solito un sito che funziona come dovrebbe. Il lavoro vero è controllare in pochi minuti che sia così anche per il tuo.
+
+## Cosa vuol dire «Pagina con reindirizzamento»
+
+È un indirizzo che, quando Google lo apre, lo manda da un'altra parte. Google non mette nei risultati l'indirizzo di partenza, perché nessuno ci arriverebbe davvero: valuta invece la pagina di arrivo, che può essere indicizzata oppure no, a seconda di come la giudica.
+
+Nei siti delle attività locali gli indirizzi che finiscono qui sono quasi sempre questi:
+
+- la versione `http://` del sito, che porta a quella `https://`;
+- la versione con `www` che porta a quella senza, o il contrario;
+- i vecchi indirizzi di un sito rifatto, rimandati alle pagine nuove;
+- il vecchio dominio dopo un cambio di nome;
+- pagine rinominate, come `/servizi-idraulica` diventata `/pronto-intervento-idraulico`.
+
+Se riconosci i tuoi indirizzi in questa lista, va bene così. Anzi, è il segno che chi aveva salvato un vecchio link, o lo trova su un altro sito, arriva comunque alla pagina giusta.
+
+## Cosa vuol dire «Pagina alternativa con tag canonico appropriato»
+
+Qui serve una parola tecnica: **canonica**. È la versione di una pagina che Google sceglie di mostrare quando trova più indirizzi con lo stesso contenuto. Il sito può suggerire quale preferisce con un tag `rel="canonical"`, una riga nel codice della pagina che dice «la versione principale è quest'altra».
+
+Questa voce significa che la pagina è una variante di un'altra, punta correttamente alla versione principale con quel tag, e Google ha rispettato il suggerimento. Il report lo descrive come uno stato che non richiede interventi.
+
+Succede spesso con:
+
+- indirizzi con parametri aggiunti da campagne o filtri, come `?utm_source=newsletter` o `?ordine=prezzo`;
+- la stessa scheda prodotto raggiungibile da più categorie di un negozio online;
+- versioni stampabili o varianti tecniche della stessa pagina.
+
+## Quando invece c'è qualcosa da sistemare
+
+Clicca su ciascuna delle due righe e scorri gli esempi. Cerca le pagine che dovrebbero comparire su Google da sole: la pagina di un servizio, quella dei contatti, una guida che hai scritto. Se ne trovi, ci sono tre casi tipici.
+
+### Il reindirizzamento porta alla pagina sbagliata
+
+Dopo il rifacimento del sito, chi l'ha messo online ha mandato tutti i vecchi indirizzi alla home. Così la vecchia pagina «Riparazione caldaie», che aveva link e visite, finisce sulla pagina principale e il cliente deve ricominciare a cercare. Ogni vecchia pagina dovrebbe portare alla pagina nuova più simile. Google consiglia i [reindirizzamenti permanenti lato server](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it), cioè impostati sul server o dal pannello della piattaforma, invece che con uno script dentro la pagina.
+
+### Il tag canonico punta dove non dovrebbe
+
+Capita con temi, plugin o pagine duplicate da un modello: la pagina «Pulizia dei denti» ha copiato il tag di un'altra e dice a Google che la versione principale è la home. Google allora può lasciarla fuori. Il tag di una pagina che vuoi su Google dovrebbe puntare a sé stessa.
+
+### Due segnali che si contraddicono
+
+Una pagina che reindirizza ma è ancora nella sitemap, oppure un tag canonico che indica un indirizzo diverso da quello in sitemap. La [documentazione di Google sulle versioni canoniche](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it) chiede di non dare indicazioni diverse per la stessa pagina, di mettere in sitemap solo le versioni principali e di linkare dal sito sempre quelle.
+
+## Come controllare una pagina, passo per passo
+
+1. **Copia l'indirizzo sospetto** dall'elenco del report.
+2. **Aprilo nel browser** e guarda dove arrivi. Se finisci sulla home o su una pagina che non c'entra, il reindirizzamento va corretto.
+3. **Incollalo nello [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it)** in alto in Search Console. Nella parte sull'indicizzazione trovi due righe: l'URL canonico dichiarato dall'utente, cioè quello che indica il tuo sito, e l'URL canonico selezionato da Google. Se coincidono con la pagina che vuoi, è tutto a posto.
+4. **Se la canonica non è quella giusta**, correggi il tag dal plugin SEO o dalle impostazioni della pagina. Su WordPress di solito lo gestisce Yoast o Rank Math, come spiegato nella guida su [quale dei due scegliere](/guide/yoast-o-rank-math-sito-attivita-locale).
+5. **Controlla la sitemap**: dentro devono esserci solo le pagine principali, non gli indirizzi che reindirizzano.
+6. **Chiedi l'indicizzazione** della pagina giusta, una volta sola, dopo aver fatto le modifiche.
+
+Non c'è un tempo fisso per vedere il report cambiare. Google decide quale versione è quella principale solo quando indicizza di nuovo la pagina, e il tag canonico per Google è un suggerimento forte, non un ordine.
+
+## Un esempio da copiare
+
+> Sito rifatto di un idraulico. Vecchio indirizzo: /servizi.html, dove c'erano tutti i lavori. Nuove pagine: /pronto-intervento, /sostituzione-caldaia, /disostruzione-scarichi.
+> Sbagliato: /servizi.html porta alla home.
+> Meglio: /servizi.html porta a una nuova pagina «Servizi» che elenca i tre lavori con un link a ciascuno, e ogni vecchia pagina di un singolo lavoro porta alla sua nuova pagina.
+
+Lo stesso ragionamento vale per un ristorante che sposta il menu da `/menu-2023` a `/menu`, o per uno studio che cambia dominio.
+
+## Cosa non fare
+
+- **Bloccare le varianti con il file robots.txt** per «pulire» il report: la documentazione di Google lo sconsiglia esplicitamente per indicare la versione principale di una pagina.
+- **Mettere un tag canonico verso la home** su tutte le pagine «per sicurezza»: rischi di togliere da Google le pagine dei tuoi servizi.
+- **Cancellare i vecchi reindirizzamenti** perché il report li conta: chi arriva da un vecchio link troverebbe una pagina di errore.
+- **Rincorrere lo zero** in queste due voci: un sito sano ne ha sempre qualcuna.
+
+Se nel report trovi anche la voce «Pagina scansionata, ma attualmente non indicizzata», quella invece merita più attenzione: la spieghiamo in [cosa fare con le pagine scansionate ma non indicizzate](/guide/pagina-scansionata-non-indicizzata-search-console). E se il sito non esce più nemmeno cercando il suo nome, parti da [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+## Se non hai tempo di farlo da solo
+
+Separare le voci normali da quelle che ti fanno perdere pagine richiede di controllare gli indirizzi uno per uno, soprattutto dopo un rifacimento o un cambio di dominio. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report e ti diciamo se c'è qualcosa da sistemare.
