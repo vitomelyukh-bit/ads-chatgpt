@@ -93,7 +93,9 @@
     {
       "titolo": "Sito di un centro estetico: una pagina per ogni trattamento, come scriverla",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-centro-estetico-pagina-trattamento",
+      "data": "2026-10-15"
     },
     {
       "titolo": "Ho cambiato dominio: come non perdere le visite da Google",
