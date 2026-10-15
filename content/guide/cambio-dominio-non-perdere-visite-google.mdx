@@ -1,0 +1,99 @@
+---
+title: "Ho cambiato dominio: come non perdere visite da Google · TiTrovano"
+description: "Cambi il dominio del sito? Reindirizzamenti pagina per pagina, strumento Cambio di indirizzo di Search Console e controlli da fare prima, durante e dopo."
+h1: "Ho cambiato dominio: come non perdere le visite da Google?"
+rispostaBreve: "Fai in modo che ogni vecchio indirizzo porti, con un reindirizzamento permanente, alla pagina nuova che gli corrisponde, non alla home. Poi verifica in Search Console sia il vecchio sia il nuovo dominio e usa lo strumento Cambio di indirizzo, che segnala a Google lo spostamento. Le visite possono oscillare per qualche settimana; intanto tieni i reindirizzamenti attivi a lungo: Google indica in genere almeno un anno."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-15"
+dateModified: "2026-10-15"
+guideCorrelate:
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+faq:
+  - domanda: "Posso lasciare scadere il vecchio dominio dopo qualche mese?"
+    risposta: "Meglio di no. Se scade, i reindirizzamenti smettono di funzionare e i vecchi link portano a un errore. Google consiglia di tenere i reindirizzamenti il più a lungo possibile, in genere almeno un anno, e di continuare a rinnovare il vecchio dominio, anche perché nessun altro lo compri e lo usi."
+  - domanda: "Il passaggio da http a https è un cambio di dominio?"
+    risposta: "No. Bastano i reindirizzamenti dalla versione http a quella https: lo strumento Cambio di indirizzo, dice Google, non va usato in questo caso, né per il passaggio tra www e senza www."
+---
+
+## Il nome è cambiato, le telefonate no (per ora)
+
+Hai cambiato nome all'attività, hai comprato un dominio più corto, oppure ti sei separato da un socio e il vecchio indirizzo non va più bene. Il sito nuovo è online, è perfino più bello. Due settimane dopo, cercando il tuo servizio su Google, esce ancora il vecchio indirizzo, oppure non esce niente.
+
+Succede perché per Google il nuovo dominio è un sito sconosciuto. Tutto quello che aveva imparato sul vecchio (quali pagine esistono, chi le linka, per quali ricerche sono utili) non passa da solo al nuovo. Passa se glielo indichi tu, pagina per pagina. Google lo spiega nella guida su come [spostare un sito con modifiche degli URL](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it): è la fonte da tenere aperta mentre lavori.
+
+## Prima del cambio: l'elenco dei vecchi indirizzi
+
+Il lavoro più importante si fa prima di spegnere qualcosa. Prepara un elenco con ogni indirizzo del vecchio sito e, accanto, l'indirizzo nuovo che deve prenderne il posto.
+
+Dove trovare i vecchi indirizzi:
+
+- la **sitemap** del vecchio sito, di solito raggiungibile aggiungendo `/sitemap.xml` al dominio;
+- il report **Rendimento** di Search Console, scheda Pagine: lì vedi quali pagine portano davvero visite da Google;
+- il report **Indicizzazione delle pagine**, per le pagine che Google conosce;
+- i link che hai messo tu in giro: scheda Google, profili social, portali di settore, firma delle email.
+
+Un esempio da copiare, per un'ottica che passa da otticaferri-snc.it a otticaferri.it:
+
+> otticaferri-snc.it/ → otticaferri.it/
+> otticaferri-snc.it/lenti-a-contatto/ → otticaferri.it/lenti-a-contatto/
+> otticaferri-snc.it/esame-della-vista.html → otticaferri.it/esame-vista/
+> otticaferri-snc.it/news/orari-agosto/ → otticaferri.it/contatti/ (la pagina non esiste più: va a quella più vicina)
+
+Un consiglio pratico di Google: se puoi, **non cambiare tutto insieme**. Dominio nuovo, grafica nuova, testi nuovi e struttura nuova nello stesso giorno rendono difficile capire cosa è andato storto se le visite calano. Se il sito va anche rifatto, tieni almeno gli stessi testi e lo stesso ordine delle pagine per il primo periodo.
+
+## Il giorno del cambio: reindirizzamenti uno per uno
+
+Un **reindirizzamento permanente** (in gergo «301») è un'istruzione sul server che dice: questa pagina si è spostata per sempre a quest'altro indirizzo. Chi clicca un vecchio link arriva alla pagina giusta, e Google capisce che deve trasferire lì quello che sapeva della vecchia. Google consiglia i [reindirizzamenti permanenti lato server](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it), impostati sul server o dal pannello della piattaforma, non con uno script nella pagina.
+
+Due errori frequenti:
+
+- **mandare tutto alla home.** È comodo, ma chi cercava «esame della vista» arriva sulla pagina principale e deve ricominciare. E Google non riceve l'informazione su dove sia finita quella pagina;
+- **reindirizzare solo il dominio**, con un inoltro che porta qualunque indirizzo alla home del sito nuovo. È lo stesso errore, fatto in un colpo.
+
+Come si impostano dipende da dove sta il vecchio dominio: dal pannello del provider, da un plugin di reindirizzamento su WordPress, dalle impostazioni della piattaforma su Wix o Shopify. Se non sai dove mettere le mani, chiedi a chi gestisce il dominio di applicare il tuo elenco: è quello il documento che gli serve.
+
+Nel sito nuovo, poi:
+
+- aggiorna i **link interni** perché puntino ai nuovi indirizzi, senza passare dai reindirizzamenti;
+- controlla che il tag **canonico** di ogni pagina punti al nuovo dominio, non al vecchio (lo spieghiamo in [«Pagina con reindirizzamento» e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console));
+- verifica che il sito nuovo non abbia un **noindex** rimasto dalla versione di prova.
+
+## In Search Console: lo strumento Cambio di indirizzo
+
+Aggiungi e verifica in Search Console **entrambi** i domini, il vecchio e il nuovo. Poi invia la sitemap del sito nuovo.
+
+A quel punto, dalla proprietà del vecchio dominio, usa lo [strumento Cambio di indirizzo](https://support.google.com/webmasters/answer/9370220?hl=it). Va usato dopo aver attivato i reindirizzamenti: prima di accettare la richiesta controlla che tu sia proprietario di tutti e due i siti e che alcune pagine abbiano davvero il reindirizzamento permanente. Secondo la guida di Google:
+
+- funziona solo per lo spostamento di un dominio o sottodominio intero, non di una sottocartella;
+- non serve per il passaggio da http a https né da www a senza www;
+- per 180 giorni Google preferisce il nuovo sito al vecchio e gli trasferisce i segnali; dopo, non considera più collegati i due siti.
+
+## Fuori dal sito: i link che controlli tu
+
+Google non è l'unico posto dove le persone trovano il vecchio indirizzo. Aggiorna il sito web nella tua **scheda Google**, nei profili social, nei portali dove sei iscritto, nella firma delle email, sui biglietti da visita alla prossima ristampa. Se qualche sito di settore o un'associazione ti linka, scrivi e chiedi di aggiornare il link: il reindirizzamento funziona comunque, ma un link diretto è più pulito.
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: leggono il web, e se trovano in giro indirizzi e nomi diversi possono fare confusione. Rendere coerenti le informazioni aiuta, anche se nessuno può promettere cosa diranno.
+
+## Dopo il cambio: cosa aspettarsi
+
+Google scrive che, con ogni cambiamento importante, le posizioni possono **oscillare** mentre il sito viene riletto, e che per un sito di medie dimensioni servono in genere alcune settimane perché la maggior parte delle pagine passi al nuovo indirizzo. Nessuno può dirti quanto durerà nel tuo caso, né garantire che le posizioni tornino identiche.
+
+Nelle settimane successive:
+
+- nel report **Rendimento** guarda il nuovo dominio crescere e il vecchio calare;
+- nel report **Indicizzazione delle pagine** del vecchio dominio vedrai crescere le pagine «con reindirizzamento»: è quello che deve succedere;
+- prova a mano alcuni vecchi indirizzi, soprattutto quelli che portavano più visite.
+
+Se invece dopo un mese il nuovo sito non esce nemmeno cercando il suo nome, parti dai controlli di [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+## Cosa non fare
+
+- **Spegnere il vecchio dominio** appena il nuovo è online: i reindirizzamenti vanno tenuti almeno un anno, dice Google, e più a lungo se arrivano ancora visite.
+- **Copiare il sito sui due domini** lasciandoli entrambi aperti: Google trova due copie dello stesso contenuto e deve sceglierne una, non per forza quella che vuoi tu.
+- **Comprare link** al nuovo dominio per «recuperare» in fretta: è contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+## Se non hai tempo di farlo da solo
+
+L'elenco dei vecchi indirizzi e i controlli dopo il cambio richiedono qualche ora di lavoro attento, e conviene farli prima di spegnere qualcosa. Se preferisci affidarli a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il vecchio sito e il nuovo e ti diciamo cosa manca.

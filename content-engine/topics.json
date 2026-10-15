@@ -100,7 +100,9 @@
     {
       "titolo": "Ho cambiato dominio: come non perdere le visite da Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "cambio-dominio-non-perdere-visite-google",
+      "data": "2026-10-15"
     },
     {
       "titolo": "Il sito è lento dal telefono: come misurarlo e cosa sistemare per primo",
