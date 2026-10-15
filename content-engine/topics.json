@@ -107,7 +107,9 @@
     {
       "titolo": "Il sito è lento dal telefono: come misurarlo e cosa sistemare per primo",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-lento-da-telefono-come-misurarlo",
+      "data": "2026-10-15"
     },
     {
       "titolo": "SEO per un commercialista: quali argomenti scrivere per farsi trovare dalle aziende della zona",

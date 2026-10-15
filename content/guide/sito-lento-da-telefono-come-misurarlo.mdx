@@ -1,0 +1,100 @@
+---
+title: "Sito lento dal telefono: come misurarlo e cosa sistemare · TiTrovano"
+description: "Il tuo sito si apre lento dal telefono? Come misurarlo con PageSpeed Insights e Search Console, come leggere i dati e cosa sistemare per primo, senza rifare tutto."
+h1: "Il sito è lento dal telefono: come misurarlo e cosa sistemare per primo?"
+rispostaBreve: "Misuralo con PageSpeed Insights e con il report Segnali web essenziali di Search Console, guardando prima i dati degli utenti reali e solo dopo il punteggio del test. Di solito il primo intervento utile è alleggerire l'immagine grande in cima alla pagina e togliere plugin, slider e script che non servono. La velocità conta per chi ti cerca dal telefono, ma per Google non sostituisce pagine utili e pertinenti."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-15"
+dateModified: "2026-10-15"
+guideCorrelate:
+  - "sito-wordpress-non-compare-su-google"
+  - "wix-va-bene-per-la-seo"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Devo arrivare a 100 nel punteggio di PageSpeed Insights?"
+    risposta: "No. Il punteggio viene da un test simulato e cambia un po' da una prova all'altra. Conta di più che i dati degli utenti reali superino la valutazione dei Segnali web essenziali. Inseguire il 100 spesso costa molto lavoro per un beneficio che chi visita il sito non nota."
+  - domanda: "Cambiare hosting rende il sito più veloce?"
+    risposta: "A volte sì, se il server risponde lento. Ma se il problema sono immagini pesanti o troppi script, il sito resta lento anche su un hosting migliore. Prima misura, poi decidi."
+---
+
+## Il cliente aspetta, poi torna indietro
+
+Chi cerca un servizio dal telefono, spesso è in giro, con una connessione che va e viene. Tocca il tuo sito tra i risultati, vede uno schermo bianco, poi una foto che si carica a pezzi, poi il testo che salta mentre prova a toccare «Chiama». Se nel frattempo il concorrente si è aperto subito, è lì che finisce la telefonata.
+
+Il guaio è che dal tuo telefono, con il wifi dell'ufficio e il sito già aperto cento volte, tutto sembra veloce. Per questo la velocità va **misurata**, non giudicata a occhio.
+
+## Due strumenti gratuiti di Google
+
+### PageSpeed Insights
+
+Apri [PageSpeed Insights](https://pagespeed.web.dev/), incolla l'indirizzo di una pagina e guarda i risultati per i dispositivi mobili. Prova la home, ma anche la pagina che porta più clienti: quella di un servizio, il menu, i contatti.
+
+Il risultato ha due parti, e la differenza è importante. Google la spiega nella [pagina di presentazione di PageSpeed Insights](https://developers.google.com/speed/docs/insights/v5/about?hl=it):
+
+- **in alto, i dati degli utenti reali**: come si è caricata la pagina per le persone che l'hanno davvero visitata con Chrome nelle ultime settimane. Se il sito ha poche visite, questa parte può mancare;
+- **sotto, il test di laboratorio**: un caricamento simulato, fatto in quel momento, con il punteggio da 0 a 100. Per Google da 90 in su è buono, sotto 50 è scarso.
+
+Il punteggio è utile per capire **cosa** rallenta la pagina, perché sotto elenca i problemi trovati. Ma è un test, e può cambiare da una prova all'altra. Quello che vivono i tuoi clienti è la parte in alto.
+
+### Il report Segnali web essenziali in Search Console
+
+Se hai collegato il sito a Search Console, apri il report [Segnali web essenziali](https://support.google.com/webmasters/answer/9205520?hl=it). Mostra le pagine divise tra cellulare e computer, con tre stati: buono, da migliorare, scadente. Raggruppa le pagine che si comportano in modo simile, così vedi subito se il problema riguarda tutto il sito o un solo tipo di pagina, per esempio tutte le schede prodotto.
+
+Anche qui i dati vengono dagli utenti reali, raccolti sugli ultimi 28 giorni. Un sito con poco traffico può non avere dati: in quel caso usa PageSpeed Insights e il test di laboratorio.
+
+## Le tre misure, spiegate semplici
+
+Google chiama queste misure **Segnali web essenziali** (in inglese Core Web Vitals) e ne descrive le soglie nella sua [guida sui Segnali web essenziali](https://developers.google.com/search/docs/appearance/core-web-vitals?hl=it):
+
+- **LCP, caricamento**: quanto tempo serve perché compaia l'elemento più grande in alto, di solito la foto o il titolo. Buono entro 2,5 secondi;
+- **INP, reattività**: quanto la pagina è pronta a rispondere quando tocchi un pulsante o apri un menu. Buono entro 200 millisecondi;
+- **CLS, stabilità**: quanto gli elementi si spostano mentre la pagina si carica, il testo che «salta». Buono fino a 0,1.
+
+Non serve ricordarle. Serve sapere quale delle tre è rossa, perché ognuna ha cause diverse.
+
+## Cosa sistemare per primo
+
+Parti dalla misura peggiore e dalla pagina che porta più clienti. Su un sito di un'attività locale le cause più comuni sono poche.
+
+### Se il caricamento è lento (LCP)
+
+- **La foto grande in cima**. Spesso è caricata così come esce dalla fotocamera o dal telefono, molto più grande di quanto serva. Ridimensionala alla larghezza in cui viene mostrata e salvala in un formato moderno come WebP. Su WordPress ci sono plugin che lo fanno; sulle altre piattaforme conviene comunque caricare foto già ridimensionate, invece degli originali.
+- **Slider e video in apertura**. Uno slider con cinque foto in alto carica cinque foto prima che il cliente legga una riga. Una sola immagine ben scelta, con sotto il testo, di solito basta.
+- **Il server**. Se PageSpeed Insights segnala che il server risponde lento, il problema è l'hosting o la mancanza di una cache: è il momento di parlarne con chi gestisce il sito.
+
+### Se la pagina risponde in ritardo (INP)
+
+Spesso la colpa è di troppi script: chat, pop-up, contatori, mappe, widget social, plugin installati per prova e mai tolti. Fai l'elenco di quello che è attivo sul sito e chiediti, per ognuno, se ti ha portato qualcosa nell'ultimo anno. Quello che non serve, toglilo.
+
+### Se il testo salta (CLS)
+
+Succede quando immagini, banner dei cookie o annunci compaiono dopo e spingono giù il resto. Le immagini dovrebbero avere le dimensioni indicate, in modo che il browser riservi lo spazio prima di caricarle. Controlla soprattutto i banner e i riquadri aggiunti in un secondo momento, che spesso compaiono sopra il testo già caricato.
+
+## Un esempio: la home di un B&B
+
+Ecco come potrebbe cambiare l'inizio della home di un piccolo B&B, il caso classico di sito bello ma pesante.
+
+> **Prima:** in alto uno slider con sei foto a tutto schermo, un video della colazione che parte da solo, un pop-up per l'iscrizione alla newsletter dopo due secondi, il widget di prenotazione caricato da un servizio esterno.
+>
+> **Dopo:** in alto una sola foto della camera più richiesta, ridimensionata; sotto, il titolo «B&B Il Gelso, quattro camere a dieci minuti dal centro» e il pulsante «Verifica disponibilità»; le altre foto in una galleria più in basso; il video in una pagina a parte; niente pop-up.
+
+Il contenuto è lo stesso. Cambia l'ordine in cui il telefono deve caricarlo.
+
+## Quanto conta per Google
+
+Google dice che i Segnali web essenziali sono usati dai suoi sistemi di ranking, ma anche che buoni valori nei report **non garantiscono** buone posizioni: prima vengono pagine pertinenti e utili. Un sito velocissimo senza una pagina per il servizio che il cliente cerca resta difficile da trovare. Se il tuo sito non compare proprio, la velocità di solito non è la prima cosa da guardare: parti dai controlli di [perché il mio sito WordPress non compare su Google](/guide/sito-wordpress-non-compare-su-google), che valgono in buona parte per ogni piattaforma.
+
+La velocità però conta per le persone, ed è lì che si perde il cliente: dopo che ti ha trovato, prima che ti chiami.
+
+## Cosa non fare
+
+- **Rifare il sito da zero** solo per il punteggio: spesso bastano pochi interventi mirati.
+- **Installare tre plugin di velocità insieme**: si pestano i piedi e possono rompere il sito. Uno, configurato bene, e poi misura di nuovo.
+- **Nascondere i contenuti** sul telefono per alleggerire la pagina: se un'informazione serve al cliente, deve esserci anche lì.
+
+Dopo ogni modifica, rifai il test su PageSpeed Insights. Nel report di Search Console, invece, i miglioramenti si vedono con calma, perché i dati coprono le ultime quattro settimane.
+
+## Se non hai tempo di farlo da solo
+
+Misurare è facile, capire quale intervento serve davvero sul tuo sito lo è meno, soprattutto con plugin e servizi esterni di mezzo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme i dati del tuo sito e ti diciamo da dove partire.
