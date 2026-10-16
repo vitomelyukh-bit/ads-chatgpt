@@ -1,0 +1,89 @@
+---
+title: "Squarespace e SEO: impostazioni da controllare · TiTrovano"
+description: "Le impostazioni di Squarespace che decidono se Google trova il tuo sito: pubblicazione, password, crawler, titoli SEO, reindirizzamenti e Search Console."
+h1: "Squarespace e SEO: quali impostazioni controllare subito?"
+rispostaBreve: "Prima controlla che il sito sia pubblicato, senza password e con i crawler dei motori di ricerca non bloccati: in prova o protetto da password, Google non lo indicizza. Poi scrivi un titolo SEO e una descrizione per ogni pagina, imposta i reindirizzamenti quando cambi un indirizzo e collega Search Console inviando la sitemap che Squarespace crea da solo. Il resto, come i dati strutturati e il certificato di sicurezza, Squarespace lo gestisce in automatico."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-16"
+dateModified: "2026-10-16"
+guideCorrelate:
+  - "wix-va-bene-per-la-seo"
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "sito-sparito-da-google-cosa-fare"
+faq:
+  - domanda: "Posso modificare il file robots.txt su Squarespace?"
+    risposta: "No. Secondo l'aiuto di Squarespace il file è lo stesso per tutti i siti e non si può modificare a mano: le uniche scelte sono le due caselle del pannello Crawler, una per i motori di ricerca e una per i crawler AI conosciuti."
+  - domanda: "Spostare una pagina tra quelle non collegate la nasconde a Google?"
+    risposta: "No. Toglie la pagina dal menu, ma visitatori e motori di ricerca possono ancora raggiungerla. Per tenerla fuori dai risultati usa l'opzione per nasconderla dalla ricerca nelle impostazioni SEO della pagina, oppure disattivala."
+---
+
+## Il sito è bello, ma su Google non esce
+
+Squarespace è scelto spesso da chi vuole un sito curato senza toccare codice: fioristi, fotografi, studi di design, piccoli ristoranti. Il problema tipico è questo: il sito è online da settimane, ma cercando il nome dell'attività su Google non compare, o compaiono solo i profili social.
+
+Quasi sempre non è colpa della piattaforma. È un'impostazione rimasta com'era durante la costruzione del sito, oppure mancano le informazioni che Google usa per capire cosa fai. Se il sito non si trova, ogni cliente che ti cerca per nome finisce su un portale o su un concorrente.
+
+Le impostazioni qui sotto vanno controllate in quest'ordine: le prime decidono se Google può vedere il sito, le altre come lo presenta.
+
+## 1. Il sito è pubblicato e senza password?
+
+Squarespace lo spiega nella pagina [Why doesn't my site appear in Google search results?](https://support.squarespace.com/hc/en-us/articles/205813898-Why-doesn-t-my-site-appear-in-Google-search-results): i siti in prova sono privati e i motori di ricerca non li indicizzano. Per renderli visibili serve un piano a pagamento e la disponibilità del sito impostata su pubblica.
+
+Lo stesso vale per la password. Una [password su tutto il sito](https://support.squarespace.com/hc/en-us/articles/205815528-Site-wide-passwords), messa magari per mostrare l'anteprima al grafico, impedisce a Google di leggere i contenuti. Controlla anche che non ci sia una password solo sulla home: è facile dimenticarla.
+
+## 2. I crawler non sono bloccati?
+
+Nelle impostazioni del sito c'è un pannello chiamato Crawler, con due caselle. Secondo l'aiuto di Squarespace su [come nascondere il sito dai risultati](https://support.squarespace.com/hc/en-us/articles/21829426828045-Hiding-your-site-from-search-results), se blocchi i crawler dei motori di ricerca la piattaforma aggiunge al file robots.txt una regola che chiede di non leggere nessuna pagina. Il sito, in pratica, sparisce da Google.
+
+La seconda casella blocca i crawler di intelligenza artificiale conosciuti. Squarespace la lascia non selezionata in partenza. Se la selezioni, chiedi a quei programmi di non leggere il sito, e Squarespace stessa avverte che così il sito può restare fuori dalle risposte delle chat e dalle loro fonti. È una scelta legittima, ma va fatta sapendolo: ne parliamo in [cosa legge l'AI del tuo sito web](/guide/cosa-legge-ai-del-tuo-sito).
+
+## 3. Titolo SEO e descrizione per ogni pagina
+
+Ogni pagina ha, nelle sue impostazioni, una scheda SEO con il campo per il titolo e quello per la descrizione. Se il titolo SEO è vuoto, Squarespace usa il nome della pagina nel menu, che spesso è una parola sola come «Servizi» o «Chi siamo». La home non ha questo campo: il suo titolo segue il formato scelto nelle impostazioni dell'aspetto nella ricerca, quindi controlla anche quello.
+
+Un esempio per una fioreria immaginaria:
+
+> **Prima:** Matrimoni — Fioreria Glicine
+>
+> **Dopo:** Fiori per matrimoni a Novara: bouquet e allestimenti | Fioreria Glicine
+>
+> **Descrizione:** Bouquet da sposa, allestimenti per chiesa e ricevimento, fiori di stagione. Ci incontriamo in negozio per scegliere insieme colori e budget.
+
+Ogni titolo deve essere diverso dagli altri e dire cosa c'è nella pagina. Google può comunque mostrare un testo diverso: le regole sono nella sua guida ai [link del titolo nei risultati](https://developers.google.com/search/docs/appearance/title-link?hl=it), e in [titolo e descrizione sbagliati su Google](/guide/titolo-descrizione-google-sbagliati-come-cambiarli) spieghiamo come intervenire.
+
+## 4. Indirizzi leggibili e reindirizzamenti
+
+Ogni pagina ha un indirizzo, lo slug, che puoi modificare. Meglio parole chiare, come `/fiori-matrimonio`, che sigle o numeri. Ma attenzione: secondo l'aiuto sugli [slug di Squarespace](https://support.squarespace.com/hc/en-us/articles/205814578-URL-slugs), se cambi un indirizzo il vecchio non porta da solo al nuovo. Chi arriva da Google o da un vecchio link trova una pagina di errore.
+
+Per evitarlo si usa il pannello dei [reindirizzamenti (URL mappings)](https://support.squarespace.com/hc/en-us/articles/205815308-URL-mappings). Si scrive una riga per ogni vecchio indirizzo, con la nuova destinazione e il tipo, 301 per uno spostamento definitivo:
+
+> /matrimoni -> /fiori-matrimonio 301
+
+Squarespace precisa che il reindirizzamento funziona solo se la vecchia pagina è stata eliminata o disattivata, e che le righe vengono lette dall'alto verso il basso. Dopo averlo salvato, apri il vecchio indirizzo nel browser e controlla dove arrivi.
+
+## 5. Search Console e sitemap
+
+Squarespace crea da solo la sitemap, l'elenco delle pagine del sito, all'indirizzo tuodominio.it/sitemap.xml. Va però comunicata a Google. La procedura è nella pagina [Verifying your site with Google Search Console](https://support.squarespace.com/hc/en-us/articles/205813918-Verifying-your-site-with-Google-Search-Console): Squarespace non supporta la verifica con il caricamento di un file, quindi di solito si usa un record TXT nelle impostazioni del dominio. Un sito ancora in prova non si può verificare.
+
+Una volta dentro, invia la sitemap. Se nelle prime ore leggi «Impossibile recuperare», Squarespace spiega che può succedere mentre Google la elabora. Per una pagina nuova o appena migliorata puoi chiedere l'indicizzazione con lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it), una volta sola.
+
+Se hai cambiato o aggiunto il dominio principale dopo il collegamento, ricollega il sito a Search Console.
+
+## 6. Cosa fa Squarespace da solo
+
+Alcune cose non devi impostarle. Secondo la pagina su [cosa fa Squarespace per la SEO](https://support.squarespace.com/hc/en-us/articles/206744067-What-Squarespace-does-for-SEO), la piattaforma aggiunge in automatico i dati strutturati, compresi quelli per le attività locali: sono informazioni in un formato che Google legge facilmente. Non si possono modificare né togliere.
+
+Quello che puoi fare è compilarne bene la fonte: nelle [impostazioni delle informazioni aziendali](https://support.squarespace.com/hc/en-us/articles/212872328-Business-Information-settings) inserisci nome, indirizzo, telefono e orari, uguali a quelli della scheda Google. Controlla anche che il certificato di sicurezza sia attivo, così il sito si apre con https, e aggiungi un testo alternativo alle immagini importanti, che descriva cosa mostrano.
+
+## Cosa la piattaforma non fa al posto tuo
+
+Squarespace offre gli strumenti, ma non scrive le pagine. Come per gli altri costruttori di siti, il limite di solito non è tecnico: è un sito di quattro pagine dove i servizi sono elencati in una riga. Ne abbiamo parlato anche per [Wix](/guide/wix-va-bene-per-la-seo), e vale allo stesso modo.
+
+Se fai bouquet da sposa, consegne a domicilio e abbonamenti per uffici, conviene una pagina per ciascuno, con il testo scritto e non dentro un'immagine. Evita invece le scorciatoie: pagine uguali con solo il nome del paese cambiato o testi copiati da altri siti sono contrari alle [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+Nessuna impostazione garantisce una posizione su Google. Queste servono a togliere gli ostacoli, perché il resto del lavoro possa contare.
+
+## Se non hai tempo di farlo da solo
+
+Se preferisci che qualcuno controlli queste impostazioni e scriva le pagine che mancano, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito Squarespace e ti diciamo da dove partire.

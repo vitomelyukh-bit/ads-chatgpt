@@ -121,7 +121,9 @@
     {
       "titolo": "Squarespace e SEO: impostazioni da controllare subito",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "squarespace-seo-impostazioni-da-controllare",
+      "data": "2026-10-16"
     },
     {
       "titolo": "Sito fatto con un page builder (Elementor, Divi): rallenta il sito e penalizza la SEO?",
