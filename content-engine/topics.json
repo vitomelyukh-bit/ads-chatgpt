@@ -128,7 +128,9 @@
     {
       "titolo": "Sito fatto con un page builder (Elementor, Divi): rallenta il sito e penalizza la SEO?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "page-builder-elementor-divi-seo",
+      "data": "2026-10-16"
     },
     {
       "titolo": "SEO per un elettricista: farsi trovare per urgenze e lavori programmati",

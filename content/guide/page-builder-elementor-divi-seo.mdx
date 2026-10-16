@@ -1,0 +1,85 @@
+---
+title: "Elementor o Divi penalizzano la SEO del sito? · TiTrovano"
+description: "Il sito è fatto con Elementor o Divi e temi che Google lo penalizzi? Cosa conta davvero: velocità, titoli, testi doppi su telefono e link. Come controllarlo."
+h1: "Sito fatto con un page builder (Elementor, Divi): rallenta il sito e penalizza la SEO?"
+rispostaBreve: "Google non penalizza un sito perché è fatto con Elementor o Divi: guarda la pagina che ne esce, cioè testo, titoli, link e velocità. I problemi nascono da come è stato costruito: sezioni copiate per telefono e computer, titoli usati come decorazione, pulsanti che non sono link veri, troppe animazioni. Quasi sempre si sistemano senza rifare il sito."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-16"
+dateModified: "2026-10-16"
+guideCorrelate:
+  - "sito-lento-da-telefono-come-misurarlo"
+  - "sito-wordpress-non-compare-su-google"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Conviene rifare il sito senza page builder?"
+    risposta: "Raramente come primo passo. Prima misura la velocità e controlla titoli, testi doppi e link: se il sito ha questi problemi sistemati e ha le pagine giuste, il page builder di solito non è quello che ti tiene lontano dai clienti."
+  - domanda: "Elementor gratuito e Pro cambiano qualcosa per Google?"
+    risposta: "Per Google no: vede solo la pagina pubblicata. La versione Pro aggiunge funzioni per costruire il sito, ma una pagina fatta con la versione gratuita può essere letta da Google allo stesso modo."
+---
+
+## La paura: «me l'hanno fatto con Elementor, forse è per questo»
+
+Il sito non arriva dove speravi, qualcuno ti dice che i page builder «appesantiscono» e ti viene il dubbio di aver speso soldi per uno strumento sbagliato. Un page builder è il programma che permette di costruire le pagine trascinando blocchi, senza scrivere codice: su WordPress i più diffusi sono Elementor e Divi.
+
+La risposta breve è che Google non premia e non penalizza uno strumento in quanto tale. Nella sua documentazione parla di pagine: cosa c'è scritto, come sono collegate, quanto si caricano in fretta dal telefono. Il page builder conta solo per **quello che mette dentro la pagina**. E lì, a volte, ci sono problemi veri.
+
+## I quattro problemi tipici di un sito fatto con un page builder
+
+### 1. Sezioni doppie: una per il computer, una per il telefono
+
+È l'errore più comune. Chi costruisce il sito vede che una sezione sul telefono non sta bene, la duplica, la sistema per lo schermo piccolo e nasconde l'originale su mobile. Su Elementor si fa con le opzioni di visibilità per dispositivo, descritte nella [guida di Elementor su come mostrare o nascondere elementi per dispositivo](https://elementor.com/help/show-or-hide-columns-per-device/).
+
+Il punto è che l'elemento nascosto **non sparisce**: viene nascosto con lo stile della pagina, ma il testo resta nel codice. Così la pagina contiene due volte lo stesso titolo, lo stesso paragrafo, a volte due titoli principali. Google, che da anni usa soprattutto la versione per telefono, nella sua [guida all'indicizzazione mobile-first](https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing?hl=it) chiede che il contenuto sia lo stesso su mobile e su computer.
+
+Cosa fare: dove possibile, usa **una sola sezione** e adattane le impostazioni per il telefono (dimensioni, spaziature, ordine) invece di duplicarla. Se una duplicazione serve davvero, che riguardi un'immagine o un pulsante, non i testi e i titoli.
+
+### 2. Titoli usati come decorazione
+
+Nei page builder il blocco «titolo» ha un menu per scegliere il livello: H1, H2 e così via, oppure un testo normale. Lo mostra la [guida al widget Titolo di Elementor](https://elementor.com/help/heading-widget/). Spesso viene lasciato il livello predefinito ovunque, anche per scritte come «Scopri di più» o «Chiamaci», mentre il vero titolo della pagina è un testo normale ingrandito.
+
+Google, nella [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it), dice che l'ordine semantico dei titoli è ottimo per chi usa i lettori di schermo, ma che per la Ricerca non conta se li usi fuori ordine. Non serve quindi una gerarchia perfetta. Serve che i titoli dicano **di cosa parla la pagina**, perché sono le prime parole che chi legge, e chi analizza la pagina, nota.
+
+> **Prima:** H1 «Benvenuti», H2 «La nostra passione», H2 «Scopri di più».
+>
+> **Dopo:** H1 «Elettricista per abitazioni e negozi a Monza e dintorni», H2 «Rifacimento impianti», H2 «Interventi urgenti in giornata», H2 «Come richiedere un sopralluogo».
+
+### 3. Pulsanti che non sono link
+
+Google segue i link fatti nel modo standard, con un indirizzo vero. La sua [guida sui link](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=it) spiega che non riesce a seguire in modo affidabile gli elementi che funzionano da link solo grazie a uno script. Con i blocchi «pulsante» dei page builder di solito il link è normale. Il rischio è nei componenti aggiunti: menu fatti con plugin esterni, intere schede rese cliccabili con un codice, filtri e caroselli.
+
+Se la pagina di un servizio è raggiungibile solo da uno di questi elementi, Google può faticare a trovarla. Il rimedio è semplice: ogni pagina importante deve avere almeno un link normale, nel menu o nel testo di un'altra pagina.
+
+### 4. Testi che compaiono solo dopo un clic
+
+Fisarmoniche, schede, «leggi tutto» e caroselli sono comodi sul telefono. Se il testo è già nella pagina e viene solo mostrato al clic, in genere non è un problema. Lo diventa quando il contenuto viene **caricato solo dopo** l'azione del visitatore: Google, nella guida all'indicizzazione mobile-first, avverte che non clicca e non scorre i contenuti per farli caricare.
+
+Le cose che il cliente deve sapere subito, cosa fai, dove lavori e come contattarti, tienile in testo visibile, non dentro una scheda chiusa.
+
+## E la velocità?
+
+È il motivo per cui i page builder hanno una cattiva fama: aggiungono codice a ogni pagina, e un sito con animazioni, slider, caratteri caricati da fuori e tanti componenti aggiuntivi si apre lento dal telefono. Ma la stessa cosa succede con qualsiasi tema pieno di effetti.
+
+Entrambi gli strumenti hanno impostazioni pensate per caricare meno codice. Elementor le raccoglie nella pagina sulle [funzioni per migliorare le prestazioni](https://elementor.com/help/what-are-performance-experiments/); Divi, nelle opzioni del tema, ha una scheda dedicata alle prestazioni, con opzioni per caricare solo gli stili e gli script che servono, descritta nella [guida alle opzioni del tema Divi](https://help.elegantthemes.com/en/articles/8626158-using-the-divi-theme-options). Attivale una alla volta e controlla che il sito non si rompa, soprattutto se usi anche un plugin di cache.
+
+Prima di toccare qualcosa, però, misura. Come si fa, e cosa sistemare per primo, lo trovi in [Il sito è lento dal telefono: come misurarlo](/guide/sito-lento-da-telefono-come-misurarlo).
+
+## Come controllare il tuo sito in un quarto d'ora
+
+- **Apri una pagina importante dal telefono** e poi dal computer: i testi sono gli stessi? Se no, cerca sezioni duplicate e nascoste.
+- **Guarda il codice della pagina**: dal computer, con il tasto destro scegli di vedere il sorgente e cerca il titolo principale. Se lo trovi due volte, hai una sezione doppia.
+- **Usa il Controllo URL di Search Console** sulla pagina: nella [guida allo strumento](https://support.google.com/webmasters/answer/9012289?hl=it) Google spiega come vedere la pagina così come l'ha letta.
+- **Controlla i titoli**: ogni pagina ha un solo titolo principale, che dice il servizio e la zona?
+- **Segui i link**: dal menu e dai testi arrivi a ogni pagina di servizio?
+
+## Cosa non fare
+
+- **Rifare il sito con un altro strumento** solo perché «il page builder penalizza»: se le pagine restano le stesse, cambiano poco anche i risultati.
+- **Nascondere testi pieni di parole chiave** sul telefono o in fondo alla pagina per «aiutare Google»: i testi nascosti per i motori di ricerca sono vietati dalle [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+- **Installare un componente aggiuntivo per ogni effetto**: ognuno aggiunge codice a tutte le pagine.
+
+Se il sito non compare affatto su Google, il page builder c'entra raramente: parti dai controlli di [perché il mio sito WordPress non compare su Google](/guide/sito-wordpress-non-compare-su-google).
+
+## Se non hai tempo di farlo da solo
+
+Controllare sezioni doppie, titoli e link pagina per pagina richiede pazienza, e qualche impostazione di prestazioni può rompere la grafica se attivata alla cieca. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito e ti diciamo cosa sistemare prima.
