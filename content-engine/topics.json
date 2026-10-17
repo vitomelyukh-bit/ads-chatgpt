@@ -135,7 +135,9 @@
     {
       "titolo": "SEO per un elettricista: farsi trovare per urgenze e lavori programmati",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-elettricista-urgenze-lavori-programmati",
+      "data": "2026-10-17"
     },
     {
       "titolo": "Quante pagine deve avere il sito di un'attività locale?",
