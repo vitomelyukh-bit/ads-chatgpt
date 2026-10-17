@@ -142,7 +142,9 @@
     {
       "titolo": "Quante pagine deve avere il sito di un'attività locale?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "quante-pagine-sito-attivita-locale",
+      "data": "2026-10-17"
     },
     {
       "titolo": "Dati strutturati per un'attività locale: cosa sono e come aggiungerli senza programmare",
