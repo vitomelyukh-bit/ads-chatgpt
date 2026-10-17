@@ -1,0 +1,105 @@
+---
+title: "Dati strutturati per un'attività locale: cosa sono · TiTrovano"
+description: "Dati strutturati LocalBusiness spiegati a un titolare: cosa scriverci, come aggiungerli su WordPress, Wix, Squarespace e Shopify, come controllarli senza errori."
+h1: "Dati strutturati per un'attività locale: cosa sono e come aggiungerli senza programmare?"
+rispostaBreve: "Sono un blocco di testo nascosto nella pagina che ripete a Google, in un formato ordinato, chi sei: nome, tipo di attività, indirizzo, telefono, orari. Per aggiungerli di solito non serve programmare: su WordPress li gestisce il plugin SEO, su Squarespace e in parte su Wix e Shopify ci pensa la piattaforma. Aiutano Google a capire la pagina, ma non la fanno salire da soli e devono dire le stesse cose che il cliente legge."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-17"
+dateModified: "2026-10-17"
+guideCorrelate:
+  - "yoast-o-rank-math-sito-attivita-locale"
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "cosa-legge-ai-del-tuo-sito"
+faq:
+  - domanda: "Se aggiungo i dati strutturati compaiono le stelline delle recensioni su Google?"
+    risposta: "Per il sito di un'attività, di regola no. Google non mostra le stelline per le recensioni che un'attività pubblica su se stessa nel proprio sito, nemmeno se arrivano da un widget esterno. Le stelline che vedi accanto al tuo nome di solito vengono dalla scheda Google."
+  - domanda: "Ho la scheda Google: servono anche i dati strutturati sul sito?"
+    risposta: "Non sono obbligatori, ma sono utili. La scheda descrive l'attività su Google Maps, i dati strutturati descrivono la pagina del tuo sito. Se dicono le stesse cose, con lo stesso nome, indirizzo e telefono, Google ha meno dubbi su chi sei."
+---
+
+## Il dubbio: «mi hanno detto che mancano i dati strutturati»
+
+Te l'ha scritto un'agenzia in un preventivo, o te l'ha segnalato un plugin con un avviso giallo. «Il sito non ha i dati strutturati.» Suona come un guasto grave, ma di solito non lo è.
+
+Il problema vero è un altro: se Google non ha informazioni chiare su chi sei, deve ricavarle dal testo, e a volte sbaglia. Può mostrare un nome diverso, mescolare due sedi o non collegare il sito alla tua attività. I dati strutturati sono uno dei modi per togliergli i dubbi.
+
+## Cosa sono, in parole semplici
+
+Sono poche righe di testo inserite nel codice della pagina. Il cliente non le vede: le legge Google. Dicono in un formato ordinato quello che la pagina già dice a parole, per esempio «questa è un'officina meccanica, si chiama così, è in questa via, apre a quest'ora».
+
+Il vocabolario usato si chiama schema.org e il formato che Google consiglia si chiama JSON-LD. Non devi impararli: ti basta sapere che esistono e che il tuo sito può già averli. Google spiega il funzionamento nella sua [introduzione ai dati strutturati](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data?hl=it).
+
+## Cosa scriverci per un'attività locale
+
+Per le attività con una sede si usa il tipo **LocalBusiness**, descritto nella [guida di Google ai dati strutturati delle attività locali](https://developers.google.com/search/docs/appearance/structured-data/local-business?hl=it). Il minimo sono il nome e l'indirizzo. Poi conviene aggiungere quello che un cliente cerca prima di chiamarti:
+
+- il **tipo più preciso** di attività, se esiste: per esempio Dentist, Plumber, Restaurant, AutoRepair, BeautySalon;
+- **indirizzo completo**, uguale a quello scritto nella pagina contatti e nella scheda Google;
+- **telefono**, con il prefisso;
+- **orari**, giorno per giorno;
+- l'**indirizzo della pagina** e il **logo** o una foto della sede.
+
+Ecco, in parole, cosa direbbero i dati strutturati di un'officina di fantasia:
+
+> Tipo: AutoRepair (officina)
+>
+> Nome: Officina Ferri
+>
+> Indirizzo: Via dei Mille 14, 24047 Treviglio (BG)
+>
+> Telefono: +39 0363 000000
+>
+> Orari: dal lunedì al venerdì 8:00-12:30 e 14:00-18:30, sabato 8:00-12:00
+>
+> Pagina: la pagina contatti del sito
+
+Ogni informazione deve comparire anche nel testo visibile. Le [linee guida generali di Google sui dati strutturati](https://developers.google.com/search/docs/appearance/structured-data/sd-policies?hl=it) lo dicono chiaramente: non si descrivono contenuti che chi legge la pagina non può vedere.
+
+Se hai più sedi, ognuna dovrebbe avere la sua pagina, con il suo indirizzo, i suoi orari e i suoi dati strutturati. Una sola pagina con tre indirizzi confonde Google quanto confonde un cliente.
+
+## Come aggiungerli, piattaforma per piattaforma
+
+Prima di aggiungere qualcosa, controlla cosa c'è già. Molti siti hanno i dati strutturati senza che il titolare lo sappia, e aggiungerli una seconda volta crea doppioni.
+
+### WordPress
+
+Lo fa il plugin SEO. Yoast e Rank Math aggiungono da soli i dati di base sul sito e sull'organizzazione. Per indirizzo e orari, Rank Math ha nella versione gratuita una sezione per i dati di una sede, mentre con Yoast serve l'estensione locale a pagamento: le differenze sono spiegate in [Yoast o Rank Math per un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale). Tieni attivo un solo plugin SEO.
+
+### Wix
+
+Wix aggiunge in automatico i dati strutturati ad alcuni tipi di pagina, come prodotti, servizi prenotabili e articoli del blog: lo spiega la guida sulle [impostazioni predefinite dei dati strutturati](https://support.wix.com/en/article/understanding-preset-markups-for-your-sites-pages). Per la pagina contatti o la home puoi incollare tu un blocco JSON-LD dalle impostazioni SEO avanzate della pagina, come descritto nella guida ai [dati strutturati su Wix](https://support.wix.com/en/article/adding-structured-data-markup-to-your-sites-pages-2546962). Il blocco lo può preparare chi ti segue il sito, partendo dall'esempio di Google. Per il resto, vedi [cosa si può fare con Wix](/guide/wix-va-bene-per-la-seo).
+
+### Squarespace
+
+Qui non devi fare nulla: secondo la pagina su [cosa fa Squarespace per la SEO](https://support.squarespace.com/hc/en-us/articles/206744067-What-Squarespace-does-for-SEO), la piattaforma aggiunge da sola i dati strutturati, compresi quelli per le attività locali. Non si possono modificare a mano: il tuo compito è controllare, con il test descritto più sotto, che nome, indirizzo e orari siano giusti.
+
+### Shopify
+
+Il tuo tema potrebbe già includere i dati strutturati dei prodotti. Per un negozio con un punto vendita fisico, i dati della sede sono un'aggiunta da fare con cura, senza installare più app che fanno la stessa cosa. Ne parliamo in [come far trovare su Google i prodotti di un piccolo negozio](/guide/shopify-prodotti-trovati-su-google-piccolo-negozio).
+
+## Come controllare che funzionino
+
+Ti servono due strumenti gratuiti, e nessuno dei due chiede di saper programmare:
+
+1. Apri il [test dei risultati avanzati](https://search.google.com/test/rich-results) di Google e incolla l'indirizzo della pagina contatti. Ti dice quali dati strutturati trova e se ci sono errori o avvisi.
+2. Se il test non trova niente ma sai che ci sono, prova con lo [Schema Markup Validator](https://validator.schema.org/), che controlla tutti i tipi di schema.org e non solo quelli che Google usa per i risultati avanzati.
+
+Poi confronta a occhio: nome, indirizzo, telefono e orari che escono dal test sono uguali a quelli della pagina e della scheda Google? Gli orari estivi sono stati tolti? Se qualcosa non torna, va corretto alla fonte, cioè nel plugin o nelle impostazioni della piattaforma.
+
+## Cosa non aspettarti, e cosa non fare
+
+I dati strutturati non sono una scorciatoia per salire. Google scrive che rendono una pagina idonea per alcuni risultati, ma non garantiscono che vengano mostrati. Una pagina senza testo utile resta debole anche con il codice perfetto.
+
+Due errori da evitare:
+
+- **Inventare o gonfiare**: un indirizzo dove non ricevi clienti, orari che non rispetti, servizi che non fai. Secondo le linee guida generali, dati strutturati ingannevoli possono portare a un'azione manuale, che toglie alla pagina i risultati avanzati.
+- **Aggiungere recensioni su te stesso per avere le stelline**: secondo la [guida di Google sugli snippet delle recensioni](https://developers.google.com/search/docs/appearance/structured-data/review-snippet?hl=it), le pagine di un'attività che pubblica recensioni su se stessa non ricevono le stelline nei risultati. Le recensioni sul sito sono utili ai clienti, ma non per questo motivo.
+
+## E gli assistenti AI?
+
+Nella guida [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features), Google mette tra le buone pratiche per le sue funzioni AI proprio che i dati strutturati corrispondano al testo visibile. ChatGPT, Gemini e Perplexity leggono comunque soprattutto il testo della pagina, come spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito). Quindi l'ordine è sempre lo stesso: prima le informazioni scritte bene, poi i dati strutturati che le ripetono. Nessuno può garantire che un assistente faccia il tuo nome.
+
+## Se non hai tempo di farlo da solo
+
+Controllare i dati strutturati è veloce, sistemarli su ogni sede e tenerli allineati alla scheda Google richiede un po' di costanza. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito e ti diciamo cosa c'è e cosa manca.
