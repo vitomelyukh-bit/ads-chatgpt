@@ -156,7 +156,9 @@
     {
       "titolo": "Sito di uno psicologo: come farsi trovare su Google rispettando il codice deontologico",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-psicologo-farsi-trovare-codice-deontologico",
+      "data": "2026-10-18"
     },
     {
       "titolo": "Search Console: come collegarla al tuo sito in 10 minuti (WordPress, Wix, Shopify)",
