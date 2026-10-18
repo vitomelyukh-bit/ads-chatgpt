@@ -1,0 +1,88 @@
+---
+title: "Collegare Search Console: WordPress, Wix e Shopify · TiTrovano"
+description: "Come collegare Google Search Console al sito: proprietà Dominio o Prefisso URL, verifica su WordPress, Wix e Shopify, sitemap e primi controlli da fare."
+h1: "Search Console: come collegarla al tuo sito WordPress, Wix o Shopify?"
+rispostaBreve: "Aggiungi il sito in Search Console con il tuo account Google e dimostra che è tuo: con un record DNS, che vale per tutto il dominio, oppure con un tag HTML che incolli nel sito. Su WordPress lo fanno il plugin Site Kit di Google o il campo apposito del plugin SEO, su Wix c'è la sezione Verifica del sito, su Shopify il tag va nel file theme.liquid del tema. Poi invii la sitemap e aspetti qualche giorno che compaiano i dati."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-18"
+dateModified: "2026-10-18"
+guideCorrelate:
+  - "pagina-scansionata-non-indicizzata-search-console"
+  - "sito-wordpress-non-compare-su-google"
+  - "shopify-prodotti-trovati-su-google-piccolo-negozio"
+faq:
+  - domanda: "Search Console costa qualcosa?"
+    risposta: "No, è uno strumento gratuito di Google. Serve solo un account Google, meglio se intestato all'attività e non a un collaboratore."
+  - domanda: "Collegare Search Console fa salire il sito su Google?"
+    risposta: "No. Search Console non cambia la posizione del sito: ti mostra come Google lo vede, per quali ricerche compare e quali pagine hanno problemi. È da lì che capisci cosa sistemare."
+---
+
+## Senza Search Console guardi il sito a occhi chiusi
+
+Hai un sito da mesi e non sai se Google lo legge. Non sai per quali ricerche compari, se qualche pagina è esclusa, se dopo l'ultimo aggiornamento del tema qualcosa si è rotto. Lo scopri solo quando un cliente ti dice «ti ho cercato ma non ti ho trovato».
+
+Google Search Console è lo strumento gratuito di Google che risponde a queste domande. Non fa salire il sito, ma ti dice cosa vede Google: le pagine indicizzate, quelle escluse e perché, le ricerche da cui arrivano le visite. Collegarla è il primo passo di qualunque lavoro sulla SEO, e si fa una volta sola.
+
+## Prima scelta: proprietà Dominio o Prefisso URL
+
+Entri in Search Console con un account Google e aggiungi una proprietà, cioè il sito da controllare. Google ti fa scegliere tra due tipi, come spiega la guida [Aggiungere una proprietà a Search Console](https://support.google.com/webmasters/answer/34592?hl=it):
+
+- **Dominio**: comprende tutto, con e senza www, http e https, e i sottodomini. Scrivi solo `tuodominio.it`, senza https. Si verifica soltanto con un record DNS, cioè una riga che aggiungi nel pannello di chi ti vende il dominio. Google la consiglia quando è possibile.
+- **Prefisso URL**: comprende solo gli indirizzi che iniziano esattamente come scrivi, per esempio `https://www.tuodominio.it`. Si verifica in più modi, tra cui un tag HTML da incollare nel sito.
+
+Se hai accesso al pannello del dominio, scegli Dominio. Se il dominio lo gestisce qualcun altro e non riesci a entrarci, il Prefisso URL con il tag HTML è la strada più semplice. Attenzione a scrivere l'indirizzo giusto: se il sito si apre con `https://www.` e tu scrivi `http://` senza www, la proprietà resta vuota.
+
+## La verifica: dimostrare che il sito è tuo
+
+Google deve sapere che sei il proprietario prima di mostrarti i dati. La guida [Verificare la proprietà del sito](https://support.google.com/webmasters/answer/9008080?hl=it) elenca i metodi: record DNS, file HTML, tag HTML, Google Analytics o Google Tag Manager, se li usi già e hai i permessi giusti.
+
+Una regola vale per tutti: **non togliere il codice di verifica dopo**. Google lo ricontrolla nel tempo. Se rifai il sito, cambi tema o cancelli il record DNS, la verifica salta.
+
+### Con il record DNS (proprietà Dominio)
+
+Search Console ti mostra un testo che inizia con `google-site-verification=`. Nel pannello del tuo dominio aggiungi un record di tipo TXT con quel testo; il campo del nome di solito va lasciato vuoto o con `@`, secondo le istruzioni del tuo fornitore. Per alcuni fornitori Search Console fa la verifica in automatico dopo l'accesso. Le modifiche DNS possono richiedere un po' di tempo: se la verifica non riesce subito, riprova più tardi.
+
+### Su WordPress
+
+Hai due strade.
+
+- **Site Kit di Google**: è il plugin ufficiale di Google, gratuito su [wordpress.org](https://wordpress.org/plugins/google-site-kit/). Durante la configurazione accedi con il tuo account Google e, secondo la [documentazione di Site Kit](https://sitekit.withgoogle.com/documentation/supported-services/search-console/), il plugin verifica il sito da solo, aggiungendo il codice di verifica. Se hai già una proprietà verificata, la collega.
+- **Il plugin SEO che hai già**: copi il tag HTML da Search Console, scegliendo la proprietà Prefisso URL, e lo incolli nel campo dedicato a Google. In Yoast è nella sezione delle connessioni del sito, come spiega la guida [How to add your website to Google Search Console](https://yoast.com/help/how-to-add-your-website-to-google-search-console/). Anche altri plugin SEO, come Rank Math, hanno un campo per il codice di verifica di Google. Salvi, torni su Search Console e premi Verifica.
+
+Prima di tutto controlla che WordPress non chieda ai motori di ricerca di ignorare il sito: è l'errore più comune, e lo spieghiamo in [perché il mio sito WordPress non compare su Google](/guide/sito-wordpress-non-compare-su-google).
+
+### Su Wix
+
+Secondo l'aiuto di Wix su [come verificare il sito con Google Search Console](https://support.wix.com/it/article/verificare-il-sito-con-google-search-console), servono un piano a pagamento e un dominio collegato. Il sito deve essere pubblicato, con l'indicizzazione attiva nelle impostazioni SEO e la home senza password.
+
+Puoi seguire la procedura guidata della Checklist per la configurazione SEO, che collega il sito e invia la sitemap a Google. Oppure fai a mano: in Search Console scegli Prefisso URL, scrivi l'indirizzo completo con https, copi il tag HTML. Nel pannello di Wix apri la sezione SEO, poi gli strumenti e impostazioni, poi Verifica del sito: incolli il tag nello spazio di Google Search Console, salvi e torni a premere Verifica. Un tag di Bing non funziona al posto di quello di Google.
+
+### Su Shopify
+
+Shopify spiega la procedura nella pagina [Finding and submitting your sitemap](https://help.shopify.com/en/manual/promoting-marketing/seo/find-site-map). Se il negozio è in modalità privata, va disattivata per la verifica; puoi riattivarla dopo.
+
+In Search Console scegli il metodo tag HTML e copia il tag intero, compresi i simboli `<` e `>`. Nel pannello di Shopify apri il negozio online, modifica il codice del tema attivo e apri il file `theme.liquid`. Incolla il tag su una riga vuota subito sotto `<head>`, salva e premi Verifica. Se cambi tema in futuro, ricordati di rimetterlo.
+
+## Dopo la verifica: sitemap e primi controlli
+
+La sitemap è l'elenco delle pagine del sito. WordPress con un plugin SEO, Wix e Shopify la creano da soli: di solito si trova a un indirizzo come `tuodominio.it/sitemap.xml`, oppure `sitemap_index.xml` con Yoast. Aprila nel browser per controllare che esista.
+
+Poi, nel report Sitemap di Search Console, incolla l'indirizzo e invia. La guida [Gestire le Sitemap](https://support.google.com/webmasters/answer/7451001?hl=it) chiarisce che «inviare» vuol dire solo dire a Google dove trovarla.
+
+Non aspettarti i dati subito. Secondo Google la raccolta inizia appena la proprietà viene aggiunta, ma servono alcuni giorni perché i numeri compaiano. Quando arrivano, guarda tre cose:
+
+- **Rendimento**: per quali ricerche esci e quante persone cliccano. Spesso scopri parole che non ti aspettavi.
+- **Indicizzazione delle pagine**: quali pagine sono su Google e quali no, con il motivo. Se leggi «scansionata ma attualmente non indicizzata», ne parliamo in [questa guida](/guide/pagina-scansionata-non-indicizzata-search-console).
+- **Controllo URL**: incolli l'indirizzo di una pagina e vedi se è su Google. Per una pagina nuova puoi chiedere l'indicizzazione, una volta sola.
+
+## Errori da evitare
+
+- **Usare l'account Google di chi ti ha fatto il sito.** Se poi non lavorate più insieme, perdi l'accesso. Verifica con un account dell'attività e aggiungi chi ti aiuta come utente, da Impostazioni, poi Utenti e autorizzazioni, come indica la guida su [proprietari e utenti](https://support.google.com/webmasters/answer/7687615?hl=it).
+- **Dare la password del tuo account Google.** Non serve: aggiungere un utente basta.
+- **Creare una proprietà per la versione sbagliata del sito**, per esempio senza www quando il sito usa il www, e pensare che Google non veda niente.
+- **Togliere il tag o il record dopo la verifica**, o perderlo rifacendo il sito.
+
+## Se non hai tempo di farlo da solo
+
+Se preferisci che qualcuno colleghi Search Console, controlli cosa vede Google e ti spieghi cosa sistemare, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito, su qualunque piattaforma sia fatto.
