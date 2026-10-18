@@ -170,7 +170,9 @@
     {
       "titolo": "Lavoro in più città: devo fare una pagina per ogni città?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "pagina-per-ogni-citta-servita",
+      "data": "2026-10-18"
     },
     {
       "titolo": "SEO per una palestra o uno studio di pilates: pagine per corsi, orari e prove gratuite",
