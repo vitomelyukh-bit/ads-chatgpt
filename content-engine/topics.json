@@ -184,7 +184,9 @@
     {
       "titolo": "Google Sites o Jimdo: si può fare SEO con un sito gratuito?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "google-sites-jimdo-seo-sito-gratuito",
+      "data": "2026-10-19"
     },
     {
       "titolo": "Il sito è in italiano e in inglese: come impostarlo perché Google mostri la lingua giusta",
