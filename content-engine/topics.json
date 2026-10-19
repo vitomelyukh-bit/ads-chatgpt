@@ -191,7 +191,9 @@
     {
       "titolo": "Il sito è in italiano e in inglese: come impostarlo perché Google mostri la lingua giusta",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-italiano-inglese-google-lingua-giusta",
+      "data": "2026-10-19"
     },
     {
       "titolo": "SEO per un fisioterapista: le pagine che rispondono ai dolori dei pazienti",

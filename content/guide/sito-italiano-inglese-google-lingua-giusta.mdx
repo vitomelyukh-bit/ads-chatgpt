@@ -1,0 +1,113 @@
+---
+title: "Sito in italiano e inglese: la lingua giusta su Google · TiTrovano"
+description: "Il turista straniero trova la pagina in italiano, o il cliente italiano quella in inglese: come impostare indirizzi, hreflang e traduzioni del sito bilingue."
+h1: "Sito in italiano e in inglese: come fare perché Google mostri la lingua giusta?"
+rispostaBreve: "Dai a ogni lingua un indirizzo suo, per esempio tuodominio.it/en/ per l'inglese, e collega le due versioni di ogni pagina con i tag hreflang, che dicono a Google quale pagina è la traduzione di quale. Scrivi ogni pagina in una lingua sola, traduci anche titolo e descrizione e non mandare le persone in automatico su una lingua in base al paese o al browser. Wix e Shopify aggiungono gli hreflang da soli; su WordPress lo fa il plugin multilingua."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-19"
+dateModified: "2026-10-19"
+guideCorrelate:
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "cosa-legge-ai-del-tuo-sito"
+faq:
+  - domanda: "Posso usare il traduttore automatico per la versione inglese?"
+    risposta: "Come punto di partenza sì, ma rileggi e correggi il testo prima di pubblicarlo. Le norme anti-spam di Google considerano un problema le pagine prodotte in serie, anche con traduzioni automatiche, che non aggiungono valore per chi legge. E un turista si accorge subito di un testo tradotto male."
+  - domanda: "Devo comprare un dominio .com per la versione inglese?"
+    risposta: "Non serve. Per un'attività locale una cartella come /en/ sullo stesso dominio è la soluzione più semplice da gestire. Un dominio diverso per ogni paese ha senso per chi vende davvero in mercati diversi, con prezzi, spedizioni e assistenza separati."
+---
+
+## Il problema: il turista trova la pagina sbagliata
+
+Hai un sito in italiano e una versione in inglese per i clienti stranieri. Ma un turista che cerca da Londra la tua cantina trova la pagina in italiano. Oppure succede il contrario: un cliente italiano cerca il tuo nome e su Google esce la home in inglese.
+
+Non è un dettaglio. Chi arriva sulla lingua che non capisce spesso torna indietro e sceglie il risultato successivo. Di solito la causa è una di queste: le due lingue stanno sullo stesso indirizzo, la pagina mescola italiano e inglese, oppure Google non sa che una pagina è la traduzione dell'altra.
+
+## Come capisce Google la lingua di una pagina
+
+Google lo spiega nella sua guida sui [siti multiregionali e multilingue](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=it): per capire la lingua di una pagina usa il testo visibile. Non usa l'attributo `lang` nel codice e nemmeno l'indirizzo.
+
+Questo ha due conseguenze pratiche:
+
+- **una lingua sola per pagina**, anche nel menu e nei pulsanti. Google consiglia di evitare le traduzioni affiancate, cioè il testo italiano con sotto quello inglese;
+- **niente pagine tradotte a metà**: se traduci solo il menu e lasci il testo in italiano, ottieni due pagine quasi uguali che non servono a nessuno.
+
+## Un indirizzo diverso per ogni lingua
+
+Google raccomanda di dare un indirizzo diverso a ogni versione linguistica, invece di cambiare lingua con un cookie o con le impostazioni del browser sullo stesso indirizzo. Se la pagina italiana e quella inglese hanno lo stesso indirizzo, Google ne vede una sola.
+
+Le strade sono tre:
+
+- **una cartella**: `tuodominio.it/en/`. Per Google è facile da impostare e da mantenere, perché resta tutto sullo stesso sito. Per un'attività locale è quasi sempre la scelta giusta;
+- **un sottodominio**: `en.tuodominio.it`. Funziona anche questo, ma Google fa notare che dall'indirizzo non sempre si capisce se «en» indica la lingua o il paese;
+- **un dominio per paese**, come un `.de` per la Germania: è un segnale forte per un mercato preciso, ma costa di più e va gestito come un sito a parte.
+
+Un parametro in fondo all'indirizzo, come `?lang=en`, Google lo indica come soluzione non consigliata.
+
+## Collegare le due versioni con hreflang
+
+Il tag hreflang è una riga di codice che dice a Google: «questa pagina esiste anche in quest'altra lingua, a quest'altro indirizzo». Così Google può mostrare a chi cerca in inglese la versione inglese. Le regole sono nella guida di Google sulle [versioni localizzate delle pagine](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=it).
+
+Per una pagina in due lingue, nella parte nascosta di entrambe le pagine vanno queste righe:
+
+> `<link rel="alternate" hreflang="it" href="https://www.tuodominio.it/degustazioni/">`
+> `<link rel="alternate" hreflang="en" href="https://www.tuodominio.it/en/wine-tasting/">`
+> `<link rel="alternate" hreflang="x-default" href="https://www.tuodominio.it/degustazioni/">`
+
+Tre cose da sapere:
+
+- **ogni pagina elenca tutte le versioni, compresa sé stessa**;
+- **i collegamenti devono essere reciproci**: se la pagina italiana indica quella inglese, anche quella inglese deve indicare quella italiana. Altrimenti Google può ignorare i tag;
+- **x-default** indica la pagina da mostrare a chi usa una lingua che non hai, per esempio un tedesco. Di solito è la versione principale.
+
+I codici della lingua seguono uno standard: `it` per l'italiano, `en` per l'inglese. Se non scrivi pagine diverse per paesi diversi, non serve aggiungere il codice del paese.
+
+Controlla anche il tag canonico: la pagina inglese non deve indicare come pagina principale quella italiana, perché sono due pagine diverse, non un doppione. Cosa fa il tag canonico lo spieghiamo in [«Pagina con reindirizzamento» e «Pagina alternativa con tag canonico appropriato»](/guide/pagina-con-reindirizzamento-tag-canonico-search-console).
+
+## Sulla tua piattaforma
+
+Quasi nessuno scrive questi tag a mano: li aggiunge la piattaforma o il plugin.
+
+- **Wix**: con Wix Multilingual, secondo l'[aiuto di Wix sulla SEO per i siti multilingue](https://support.wix.com/en/article/wix-multilingual-seo), i tag hreflang e x-default vengono aggiunti da soli. Titolo e descrizione di ogni pagina nella seconda lingua però vanno scritti da te, e puoi tradurre anche l'indirizzo della pagina.
+- **Shopify**: con Markets, secondo l'[aiuto di Shopify sulla SEO internazionale](https://help.shopify.com/en/manual/markets/seo), i tag hreflang vengono creati da soli per ogni cartella o dominio internazionale che imposti.
+- **WordPress**: la [documentazione ufficiale](https://developer.wordpress.org/advanced-administration/multilingual/) dice che WordPress, da solo, non gestisce un sito in più lingue: serve un plugin multilingua. Controlla nella documentazione del plugin che usi se aggiunge gli hreflang da solo e che la funzione sia attiva.
+
+Per controllare, apri una pagina, visualizza il codice sorgente dal browser del computer e cerca la parola «hreflang». Devi trovare una riga per ogni lingua, anche nella versione inglese.
+
+## Non spostare le persone in automatico
+
+Molti siti, appena entri, ti mandano sulla lingua del tuo browser o del tuo paese. Google lo sconsiglia: il suo programma che legge i siti in genere si collega dagli Stati Uniti, e se viene sempre spostato sull'inglese rischia di non vedere mai la versione italiana.
+
+Meglio un link ben visibile in alto, «English» o «Italiano», che porta alla stessa pagina nell'altra lingua, non alla home.
+
+## Tradurre davvero, non solo le parole
+
+Il turista non cerca con le parole che useresti tu in italiano. Cerca in inglese, con le sue domande. Per esempio:
+
+- «wine tasting near Lake Garda»;
+- «winery tour with lunch english speaking»;
+- «bike rental with child seat»;
+- «can I book a tasting the same day».
+
+La versione inglese deve rispondere a queste domande, non essere la copia parola per parola di quella italiana. Un esempio, con nomi di fantasia:
+
+> Prima: titolo della pagina inglese «Degustazioni · Cantina Vallerossa», uguale a quello italiano.
+> Dopo: «Wine tasting and winery tour, tours in English · Cantina Vallerossa».
+> Descrizione: «Guided tour of the cellar and tasting of five wines with local cheese. Tours in English every day, booking online or by WhatsApp.»
+
+Su come scrivere bene titolo e descrizione trovi di più in [titolo e descrizione su Google sbagliati](/guide/titolo-descrizione-google-sbagliati-come-cambiarli).
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: leggono il testo della pagina. Una pagina inglese chiara, con orari, prezzi della visita e modo di prenotare scritti come testo, è più facile da capire. Nessuno può garantire che un assistente faccia il tuo nome, ma una pagina in un inglese confuso è un ostacolo in più. Ne parliamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Cosa non fare
+
+- **Non pubblicare traduzioni automatiche senza rileggerle**: le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) considerano abuso le pagine prodotte in serie che non danno valore a chi legge, anche quando sono traduzioni automatiche.
+- **Non tradurre solo la home** lasciando in italiano le pagine dei servizi: chi arriva da Google entra quasi sempre da una pagina interna.
+- **Non mettere tutte le lingue nella stessa pagina**, una sotto l'altra.
+
+Dopo le modifiche, Google ha bisogno di tempo per visitare di nuovo le pagine. Nella sua [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it) scrive che alcune modifiche hanno effetto in poche ore e altre in diversi mesi.
+
+## Se non hai tempo di farlo da solo
+
+Impostare gli indirizzi e gli hreflang si fa una volta. Scrivere e aggiornare due versioni di ogni pagina è il lavoro che resta. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): controlliamo come Google vede le due lingue del tuo sito e ti diciamo da cosa partire.
