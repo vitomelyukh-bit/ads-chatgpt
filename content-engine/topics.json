@@ -198,7 +198,9 @@
     {
       "titolo": "SEO per un fisioterapista: le pagine che rispondono ai dolori dei pazienti",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-fisioterapista-pagine-dolori-pazienti",
+      "data": "2026-10-20"
     },
     {
       "titolo": "«Rilevata, ma attualmente non indicizzata»: perché Google non indicizza le tue pagine",
