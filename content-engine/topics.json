@@ -205,7 +205,9 @@
     {
       "titolo": "«Rilevata, ma attualmente non indicizzata»: perché Google non indicizza le tue pagine",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "rilevata-non-indicizzata-search-console",
+      "data": "2026-10-20"
     },
     {
       "titolo": "Il blog del mio sito non porta visite: come scegliere gli argomenti giusti",

@@ -1,0 +1,96 @@
+---
+title: "«Rilevata, ma non indicizzata»: cosa fare · TiTrovano"
+description: "Search Console dice «Rilevata, ma attualmente non indicizzata»? Perché Google conosce la pagina ma non l'ha ancora visitata, e cosa controllare sul tuo sito."
+h1: "«Rilevata, ma attualmente non indicizzata»: perché Google non visita le tue pagine?"
+rispostaBreve: "Vuol dire che Google conosce l'indirizzo della pagina ma non l'ha ancora visitata: di solito ha rimandato la visita per non sovraccaricare il sito. Su un sito piccolo e nuovo spesso si risolve da solo con il tempo. Se però riguarda pagine importanti e resta lì per settimane, controlla la velocità del server, i link interni e quanti indirizzi inutili produce il sito."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-20"
+dateModified: "2026-10-20"
+guideCorrelate:
+  - "pagina-scansionata-non-indicizzata-search-console"
+  - "sito-lento-da-telefono-come-misurarlo"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "È la stessa cosa di «Scansionata, ma attualmente non indicizzata»?"
+    risposta: "No. «Rilevata» vuol dire che Google non ha ancora aperto la pagina. «Scansionata» vuol dire che l'ha aperta e letta, e per ora ha deciso di non metterla nei risultati. Le cause e le soluzioni sono diverse."
+  - domanda: "Devo togliere le pagine dalla sitemap per far passare prima le altre?"
+    risposta: "Togli dalla sitemap solo gli indirizzi che non vuoi su Google, come tag, pagine di prova o doppioni. Le pagine che ti servono devono restarci: la sitemap aiuta Google a sapere che esistono."
+---
+
+## Cosa ti sta dicendo Search Console
+
+Apri **Indicizzazione delle pagine** in Search Console e trovi la riga «Rilevata, ma attualmente non indicizzata». Dentro ci sono pagine che hai pubblicato da poco: «Sostituzione caldaia», «Sbiancamento dentale», «Menu degustazione».
+
+La [guida di Search Console sul report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) lo spiega così: Google ha trovato la pagina, ma non l'ha ancora scansionata, cioè non l'ha ancora aperta e letta. In genere voleva farlo, ma prevedeva che la visita avrebbe sovraccaricato il sito e l'ha riprogrammata. Per questo, nel report, la data dell'ultima scansione è vuota.
+
+Finché la pagina resta lì, non può comparire su Google. Chi cerca proprio quel servizio non la trova, e la richiesta va a qualcun altro.
+
+## La differenza con «Scansionata, ma non indicizzata»
+
+I due messaggi sembrano uguali, ma raccontano due momenti diversi.
+
+- **Rilevata**: Google sa che l'indirizzo esiste, per esempio dalla sitemap o da un link, ma non è ancora entrato nella pagina.
+- **Scansionata**: Google è entrato, ha letto il testo e per ora ha deciso di non metterlo nei risultati.
+
+Nel primo caso il nodo di solito è arrivarci: tempo, server, link, troppi indirizzi da visitare. Nel secondo è quasi sempre il contenuto della pagina. Se il tuo problema è il secondo, trovi i passi in [«Pagina scansionata ma attualmente non indicizzata»](/guide/pagina-scansionata-non-indicizzata-search-console).
+
+## Primo controllo: è davvero un problema?
+
+Spesso no. Google scrive che «non indicizzato» non è per forza un errore e che una pagina rilevata può essere indicizzata in seguito, senza che tu debba fare niente.
+
+Prima di preoccuparti guarda tre cose:
+
+1. **Da quanto tempo è pubblicata.** Nella guida [«Perché non vedo la mia pagina nella Ricerca Google?»](https://support.google.com/webmasters/answer/34441?hl=it) Google consiglia di aspettare almeno una settimana dopo l'invio della sitemap o la richiesta di indicizzazione, prima di pensare che ci sia un problema.
+2. **Quali pagine sono nell'elenco.** Se sono archivi di tag, pagine di autore, indirizzi con `?` e parametri o vecchie bozze, non ti portano clienti: lasciale stare o toglile.
+3. **Quante sono rispetto al sito.** Se sono le due pagine pubblicate ieri, è normale. Se è metà del sito da mesi, c'è qualcosa da sistemare.
+
+## Le cause più comuni su un sito di un'attività locale
+
+### Il server risponde lento o dà errori
+
+Google regola quanto visitare un sito in base a come risponde. Nella sua guida sulla [gestione del budget di scansione](https://developers.google.com/crawling/docs/crawl-budget) spiega che, se il sito risponde in modo rapido e costante, Google può visitarlo di più; se rallenta o restituisce errori del server, lo visita di meno. Un hosting economico condiviso con molti altri siti, o un sito pieno di plugin, può bastare a frenarlo.
+
+Per verificarlo apri il report [Statistiche di scansione](https://support.google.com/webmasters/answer/9679690?hl=it) dalle impostazioni di Search Console: mostra il tempo medio di risposta e lo stato dell'host, cioè se Google ha avuto problemi a raggiungere il server. Il report c'è solo per le proprietà di tipo dominio o per quelle che partono dalla radice del sito.
+
+### Il sito produce troppi indirizzi inutili
+
+Su WordPress capita spesso: ogni tag, ogni autore, ogni allegato e ogni filtro di un catalogo diventa un indirizzo in più. Anche un calendario di prenotazione o un negozio online con i filtri per colore e taglia può creare centinaia di indirizzi quasi uguali. Google li trova tutti e deve scegliere cosa visitare prima. La stessa guida di Google indica gli indirizzi doppi o di poco valore come una delle cose che fanno perdere tempo alla scansione.
+
+Su WordPress puoi escludere archivi di tag, autori e allegati dal plugin SEO: lo spieghiamo in [Yoast o Rank Math per il sito di un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+
+### La pagina esiste solo nella sitemap
+
+Se nessuna pagina del sito linka la nuova pagina, Google la conosce solo dalla sitemap e non ha segnali che sia importante. Succede spesso con le pagine dei servizi aggiunte e mai inserite nel menu.
+
+### Il sito è nuovo
+
+Se il sito è online da poco, Google sta ancora scoprendo le sue pagine e può volerci tempo prima che le visiti tutte. Qui la cosa più utile è avere poche pagine buone, ben collegate, invece di pubblicarne tante in un giorno.
+
+## Come sistemarla, passo per passo
+
+1. **Scegli le pagine che contano**: servizi, zone in cui lavori davvero, contatti, le guide per i clienti. Lavora su quelle.
+2. **Collegale dal sito**: dal menu, dalla pagina dei servizi e da una o due pagine affini, con un testo del link che dice cosa c'è dentro.
+3. **Pulisci la sitemap**: dentro solo le pagine che vuoi su Google, non tag, pagine di prova o doppioni.
+4. **Riduci gli indirizzi inutili**: escludi archivi e allegati che non servono e non generare pagine quasi uguali.
+5. **Controlla il server**: se le Statistiche di scansione mostrano risposte lente o errori, parlane con chi gestisce l'hosting. Se il sito è lento anche per i visitatori, parti da [come misurare la velocità dal telefono](/guide/sito-lento-da-telefono-come-misurarlo).
+6. **Chiedi l'indicizzazione delle pagine principali** con lo strumento Controllo URL, una volta sola e solo dopo le modifiche: le richieste hanno un limite giornaliero.
+
+Poi dai tempo a Google. Non c'è una data fissa e nessuno può decidere al posto suo quando la pagina entrerà nell'indice.
+
+## Un esempio
+
+> Studio dentistico Sorriso Chiaro, sito WordPress. In «Rilevata, ma attualmente non indicizzata» ci sono le pagine «Impianti dentali» e «Ortodonzia invisibile», pubblicate da un mese, insieme a decine di indirizzi come /tag/igiene/ e /author/admin/. Le due pagine non sono nel menu: si raggiungono solo dalla sitemap.
+>
+> Cosa fa lo studio: esclude tag e autori dal plugin SEO, aggiunge le due pagine al menu Trattamenti e le collega dalla pagina della prima visita, poi chiede l'indicizzazione di quelle due.
+
+## Cosa non fare
+
+- **Chiedere l'indicizzazione ogni giorno** delle stesse pagine: non accelera niente.
+- **Bloccare pezzi del sito nel robots.txt** per «liberare spazio» alle altre pagine: Google sconsiglia di usarlo così.
+- **Comprare servizi di indicizzazione forzata o pacchetti di link**: i link comprati per manipolare Google sono vietati dalle [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+- **Pubblicare decine di pagine uguali** con il nome del servizio o del paese cambiato: aumenti gli indirizzi da visitare e rischi di finire tra le pagine doorway.
+
+## Se non hai tempo di farlo da solo
+
+Capire quali indirizzi pulire, quali pagine collegare e se il problema è l'hosting richiede tempo e qualche controllo tecnico. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report di Search Console e ti diciamo da dove partire.
