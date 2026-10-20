@@ -212,7 +212,9 @@
     {
       "titolo": "Il blog del mio sito non porta visite: come scegliere gli argomenti giusti",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "blog-sito-non-porta-visite-argomenti-giusti",
+      "data": "2026-10-20"
     },
     {
       "titolo": "Sito di un'impresa edile: come mostrare i lavori fatti in modo che Google li trovi",
