@@ -233,7 +233,9 @@
     {
       "titolo": "SEO per un parrucchiere o barbiere: cosa mettere sul sito oltre alla prenotazione",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-parrucchiere-barbiere-oltre-prenotazione",
+      "data": "2026-10-21"
     },
     {
       "titolo": "llms.txt: cos'è e serve davvero al sito di un'attività?",
