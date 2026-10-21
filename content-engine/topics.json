@@ -219,7 +219,9 @@
     {
       "titolo": "Sito di un'impresa edile: come mostrare i lavori fatti in modo che Google li trovi",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-impresa-edile-mostrare-lavori-fatti-google",
+      "data": "2026-10-21"
     },
     {
       "titolo": "WordPress: come togliere le pagine inutili che Google indicizza (tag, autori, allegati)",
