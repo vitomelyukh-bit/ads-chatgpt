@@ -1,0 +1,98 @@
+---
+title: "WordPress: togliere tag, autori e allegati da Google · TiTrovano"
+description: "Su Google escono pagine /tag/, /author/ o di una sola foto del tuo sito WordPress? Quali togliere, come farlo con Yoast o Rank Math e cosa non fare."
+h1: "WordPress: come togliere da Google le pagine inutili (tag, autori, allegati)?"
+rispostaBreve: "WordPress crea da solo pagine per ogni tag, autore, data e immagine caricata, e Google può trovarle e mostrarle. Per un sito locale quasi sempre non servono: le escludi dai risultati con l'impostazione noindex del plugin SEO, mandi gli indirizzi degli allegati direttamente al file e cancelli i tag che non usi. Non bloccarle con il file robots.txt, perché così Google non vede l'istruzione di toglierle."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-21"
+dateModified: "2026-10-21"
+guideCorrelate:
+  - "yoast-o-rank-math-sito-attivita-locale"
+  - "rilevata-non-indicizzata-search-console"
+  - "sito-wordpress-non-compare-su-google"
+faq:
+  - domanda: "Togliere le pagine dei tag fa salire le pagine dei servizi?"
+    risposta: "Non direttamente, e nessuno può prometterlo. Toglie però dai risultati pagine che nessun cliente vuole aprire, e lascia nella sitemap e nei report di Search Console solo quello che conta, così vedi meglio cosa sistemare."
+  - domanda: "Le categorie le devo togliere come i tag?"
+    risposta: "Dipende. Se il blog ha poche categorie curate, ognuna con un testo introduttivo, possono restare. Se hai una sola categoria «Senza categoria» o tante categorie con un articolo ciascuno, trattale come i tag."
+---
+
+## Cerchi il tuo sito e trovi pagine che non hai mai scritto
+
+Scrivi `site:tuodominio.it` su Google e, accanto alla home e ai servizi, escono indirizzi strani: `/tag/caldaia/`, `/author/admin/`, `/2023/05/`, o una pagina con dentro solo una foto e il nome del file, tipo «IMG_4521». Non le hai create tu. Le ha create WordPress.
+
+Non è un'emergenza. Ma sono pagine che un cliente non vuole aprire: se arriva lì da Google, vede un elenco vuoto o un'immagine senza testo e torna indietro. In più riempiono la sitemap e i report di Search Console, e rendono più difficile capire perché le pagine dei servizi non compaiono.
+
+## Le pagine che WordPress crea da solo
+
+- **Tag**: ogni tag che aggiungi a un articolo diventa una pagina con l'elenco degli articoli che lo usano. Con tag usati una volta sola, sono pagine con un articolo e basta.
+- **Categorie**: come i tag, ma di solito sono meno e più ordinate.
+- **Autore**: una pagina con gli articoli di ogni utente. Se scrivi solo tu, ripete il blog. A volte nell'indirizzo compare il nome utente, per esempio «admin».
+- **Archivi per data**: una pagina per ogni mese o anno di articoli.
+- **Allegati**: per ogni immagine o PDF caricato, WordPress può creare una pagina che mostra solo quel file.
+- **Ricerca interna**: le pagine dei risultati del campo «Cerca» del sito.
+
+## Prima di togliere: quali ti servono davvero
+
+Non tutto va tolto. Chiediti per ogni tipo: **un cliente che arriva qui da Google trova quello che cercava?**
+
+- Le pagine dei **servizi**, la home, i contatti e gli articoli utili restano sempre.
+- I **tag**, per un sito di un'attività locale, quasi mai servono.
+- L'**autore** serve solo se più persone firmano gli articoli e la pagina presenta davvero chi scrive, per esempio i medici di uno studio.
+- Gli **archivi per data** non servono quasi a nessuno.
+- Gli **allegati** servono solo a siti che vivono di immagini, come un archivio fotografico.
+
+## Come vedere quante ce ne sono
+
+Due controlli veloci:
+
+1. Su Google cerca `site:tuodominio.it/tag/` e `site:tuodominio.it/author/`. Ti fai un'idea di quante sono già nei risultati.
+2. In Search Console apri il report **Indicizzazione delle pagine** e guarda gli esempi di indirizzi, sia tra le pagine indicizzate sia tra quelle non indicizzate. Google spiega come leggerlo nella [guida al report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it).
+
+Se gli indirizzi di tag e allegati sono molti più delle pagine vere, vale la pena fare pulizia.
+
+## Come toglierle, nell'ordine giusto
+
+### Allegati: mandali al file
+
+Da WordPress 6.4, sui siti **nuovi** le pagine degli allegati sono disattivate: l'indirizzo porta direttamente al file. Sui siti che esistevano prima e sono stati aggiornati, restano attive come prima. Lo spiega la [nota ufficiale degli sviluppatori di WordPress](https://make.wordpress.org/core/2023/10/16/changes-to-attachment-pages/). Non c'è una voce nel pannello per cambiarlo: lo fa il plugin SEO.
+
+- **Yoast**: nelle impostazioni, nella parte avanzata, c'è la sezione sulle pagine dei media. Se le pagine dei media sono disattivate, gli indirizzi degli allegati vengono reindirizzati al file, come spiega la [guida di Yoast sulle pagine dei media](https://yoast.com/help/yoast-seo-settings-media-pages/).
+- **Rank Math**: nelle impostazioni di titoli e meta c'è una sezione per i media, dove puoi escludere gli allegati dai risultati. Le opzioni di Rank Math sono descritte nella sua [guida per escludere pagine dai risultati](https://rankmath.com/kb/how-to-noindex-urls/).
+
+### Tag, autori e date: escludili dai risultati
+
+Qui si usa **noindex**: un'istruzione nella pagina che dice a Google di non mostrarla nei risultati. La pagina resta online, ma esce da Google dopo che Google l'ha visitata di nuovo. È spiegato nella guida di Google su come [bloccare l'indicizzazione con noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing?hl=it).
+
+Non serve toccare il codice, lo fa il plugin:
+
+- **Yoast**: nella sezione [Categorie e tag](https://yoast.com/help/yoast-seo-settings-categories-tags/) scegli, per i tag, di non mostrarli nei risultati di ricerca. Nella sezione degli [archivi autore](https://yoast.com/help/yoast-seo-settings-author-archives/) fai lo stesso per gli autori, o disattiva del tutto quegli archivi se scrive una sola persona.
+- **Rank Math**: in titoli e meta apri la voce dei tag, poi quella degli autori, e imposta noindex nelle opzioni robots.
+
+Con il noindex, di solito il plugin toglie quelle pagine anche dalla sitemap. Controlla aprendo la sitemap nel browser.
+
+### Tag che non usi: cancellali o uniscili
+
+Se hai trenta tag usati una volta ciascuno, il noindex le toglie da Google ma il disordine resta. Dal pannello di WordPress, nella sezione dei tag degli articoli, puoi cancellare quelli inutili. Gli articoli restano: perdono solo il tag. Le pagine dei tag cancellati smettono di esistere e Google, con le visite successive, le toglie.
+
+## Un esempio
+
+> Autofficina Ferretti, sito WordPress online da quattro anni. Con `site:` escono le pagine dei servizi, ma anche 40 pagine di tag come /tag/tagliando/ e /tag/gomme-invernali/, la pagina /author/admin/ e decine di pagine allegato con le foto dell'officina.
+>
+> Cosa fa: in Yoast sceglie di non mostrare i tag nei risultati e disattiva gli archivi autore, perché scrive solo il titolare. Disattiva le pagine dei media, così le foto portano al file. Cancella i tag usati una volta sola. Poi riapre la sitemap per controllare che ci siano solo pagine, servizi e articoli, e la invia di nuovo in Search Console.
+
+Nomi e dettagli sono di fantasia.
+
+## Cosa non fare
+
+- **Non bloccarle con robots.txt.** Se blocchi un indirizzo con il file robots.txt, Google non lo visita e quindi non vede il noindex: la pagina può restare nei risultati, anche senza descrizione. Google lo dice nella stessa guida sul noindex.
+- **Non mettere noindex a tutto.** Capita di escludere per errore tutte le pagine o tutti gli articoli. Dopo ogni modifica, controlla con lo strumento Controllo URL una pagina di servizio: deve risultare indicizzabile.
+- **Non usare lo strumento Rimozioni come soluzione.** In Search Console nasconde un indirizzo dai risultati per circa sei mesi, come scrive la [guida allo strumento Rimozioni](https://support.google.com/webmasters/answer/9689846?hl=it), poi la pagina può tornare. Serve per le urgenze, non per fare pulizia.
+- **Non aspettarti un cambiamento il giorno dopo.** Google deve tornare su ogni pagina per vedere la novità, e può volerci del tempo. Nel frattempo è normale vedere ancora qualche tag nei risultati.
+
+Se dopo la pulizia restano pagine di servizio fuori dall'indice, il problema è un altro: lo trovi spiegato in [«Rilevata, ma attualmente non indicizzata»](/guide/rilevata-non-indicizzata-search-console). E se devi ancora scegliere il plugin, leggi [Yoast o Rank Math per il sito di un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+
+## Se non hai tempo di farlo da solo
+
+La pulizia non è lunga, ma va fatta con attenzione per non escludere le pagine giuste. Se preferisci affidarla a noi, insieme alle pagine dei servizi che ti mancano, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito WordPress come lo vede Google e ti diciamo cosa sistemare.

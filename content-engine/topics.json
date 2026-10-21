@@ -226,7 +226,9 @@
     {
       "titolo": "WordPress: come togliere le pagine inutili che Google indicizza (tag, autori, allegati)",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-togliere-pagine-inutili-tag-autori-allegati",
+      "data": "2026-10-21"
     },
     {
       "titolo": "SEO per un parrucchiere o barbiere: cosa mettere sul sito oltre alla prenotazione",
