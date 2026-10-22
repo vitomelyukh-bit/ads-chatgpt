@@ -1,0 +1,97 @@
+---
+title: "llms.txt: serve davvero al sito di un'attività? · TiTrovano"
+description: "Cos'è il file llms.txt, cosa dicono Google, OpenAI e Perplexity, quando ha senso aggiungerlo al sito di un'attività locale e cosa conta di più."
+h1: "llms.txt: cos'è e serve davvero al sito di un'attività?"
+rispostaBreve: "È un file di testo, proposto nel 2024, che riassume il sito per gli assistenti AI e indica le pagine più utili. Google dice che per le sue funzioni AI non serve, e OpenAI e Perplexity, nelle loro pagine sui crawler, spiegano come farsi leggere con il robots.txt, non con llms.txt. Puoi aggiungerlo se il plugin lo crea in un clic, ma per un'attività locale contano molto di più testi chiari, pagine raggiungibili e crawler non bloccati."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-22"
+dateModified: "2026-10-22"
+guideCorrelate:
+  - "cosa-legge-ai-del-tuo-sito"
+  - "dati-strutturati-attivita-locale-senza-programmare"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Se aggiungo llms.txt compaio nelle risposte di ChatGPT?"
+    risposta: "No, non c'è nessun legame garantito. Il file al massimo aiuta un programma a trovare le tue pagine principali. Cosa compare in una risposta lo decide l'assistente, in base a quello che trova e alla domanda."
+  - domanda: "llms.txt può danneggiare il sito su Google?"
+    risposta: "Secondo la guida di Google per le funzioni AI della Ricerca, no: Google Search non lo usa, quindi non aiuta e non penalizza. L'unico rischio pratico è un file vecchio che elenca pagine cancellate o informazioni non più vere."
+---
+
+## Il dubbio: «mi hanno detto che mi manca llms.txt»
+
+Te l'ha scritto un'agenzia in un'offerta, o l'hai visto in un video: «se non hai il file llms.txt, ChatGPT non ti trova». Detto così sembra un guasto, e fa paura perché sempre più clienti fanno domande agli assistenti AI prima di scegliere.
+
+Prima di spendere tempo, conviene capire cos'è, chi lo usa davvero e cosa ti costa trascurare altro per inseguirlo.
+
+## Cos'è llms.txt, in parole semplici
+
+È un file di testo che si mette nella cartella principale del sito, all'indirizzo tuosito.it/llms.txt. L'idea è stata proposta a settembre 2024 da Jeremy Howard di Answer.AI, sul sito [llmstxt.org](https://llmstxt.org/): dare agli assistenti AI un riassunto del sito e un elenco delle pagine più utili, in un formato semplice, invece di costringerli a leggere tutto.
+
+Il formato è quello del Markdown, cioè testo con pochi simboli: il nome del sito su una riga che inizia con il simbolo #, una breve descrizione, poi sezioni con i link alle pagine principali e una frase per ognuna.
+
+È una **proposta**, non uno standard approvato da qualche ente o adottato da tutti. È diverso dal file robots.txt, che invece dice ai programmi automatici cosa possono leggere e cosa no.
+
+## Cosa dice Google
+
+Google ha una guida ufficiale su come preparare il sito alle funzioni di AI generativa della Ricerca, come le risposte scritte dall'AI che compaiono in cima ai risultati: [Optimizing your website for generative AI features on Google Search](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
+
+La posizione è netta: per comparire in queste funzioni non servono file speciali per l'AI, né llms.txt né versioni Markdown delle pagine, perché Google Search non li usa. Google aggiunge che crearli per altri servizi che li usano va bene. Quindi su Google il file non aiuta e non danneggia.
+
+La stessa guida ricorda che le funzioni AI di Google si basano sui normali sistemi di ricerca: valgono le buone pratiche SEO di sempre, a partire da contenuti utili, scritti come testo e raggiungibili dai link del sito.
+
+## E ChatGPT, Perplexity e gli altri?
+
+OpenAI spiega nella sua [documentazione sui crawler](https://developers.openai.com/api/docs/bots) che il programma usato per la ricerca di ChatGPT si chiama OAI-SearchBot e che i siti che lo bloccano nel robots.txt non vengono mostrati nelle risposte di ricerca. Perplexity fa lo stesso con PerplexityBot, nella sua [pagina sui crawler](https://docs.perplexity.ai/guides/bots). In queste pagine, a ottobre 2026, la porta d'ingresso indicata è il robots.txt, non llms.txt.
+
+Questo non vuol dire che il file sia inutile per tutti: molti siti di documentazione tecnica lo pubblicano, compreso quello di Perplexity. Ma per un'attività locale, oggi, non è il file che decide se un assistente legge il tuo sito.
+
+Quello che conta davvero è più semplice: il sito non deve bloccare i crawler degli assistenti, e le informazioni importanti devono essere scritte come testo nelle pagine. Ne parliamo in dettaglio in [Cosa legge l'AI del tuo sito web?](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Quando può avere senso aggiungerlo
+
+Ci sono casi in cui aggiungerlo non fa male e costa poco:
+
+- **usi Yoast o Rank Math** su WordPress: tutti e due hanno un'opzione per generare il file in automatico, descritta nelle guide ufficiali di [Yoast](https://yoast.com/help/enable-llmstxt/) e di [Rank Math](https://rankmath.com/kb/llms-txt/); Yoast ha una funzione simile anche nella sua app per Shopify;
+- **il sito ha molte pagine** e vuoi indicare quali sono le principali, per esempio un e-commerce o uno studio con tante schede di servizio;
+- **hai già sistemato le basi** e ti resta mezz'ora da dedicare a una cosa in più.
+
+Rank Math stessa, nella sua guida, ricorda che llms.txt è una proposta e che la sua adozione è ancora limitata. Il modo giusto di pensarlo è un indice in più, non una scorciatoia.
+
+Se usi un plugin, controlla quali pagine mette nell'elenco. Yoast, per esempio, di partenza prende i contenuti aggiornati più di recente, che non sempre sono quelli importanti: meglio scegliere a mano le pagine dei servizi e dei contatti.
+
+## Un esempio per un'attività locale
+
+Ecco come potrebbe essere il file di un idraulico di fantasia. Ogni riga ha una funzione: nome, descrizione, pagine principali con una frase che dice cosa contengono.
+
+> `# Idraulica Ferri`
+>
+> `> Idraulico a Treviglio e nei comuni vicini. Pronto intervento per perdite e scarichi otturati, sostituzione caldaie, rifacimento bagni.`
+>
+> `## Servizi`
+>
+> `- [Pronto intervento](https://www.tuosito.it/pronto-intervento): orari, zone servite, come chiamare.`
+>
+> `- [Sostituzione caldaia](https://www.tuosito.it/sostituzione-caldaia): come funziona il sopralluogo, tempi, pratiche.`
+>
+> `## Contatti`
+>
+> `- [Contatti](https://www.tuosito.it/contatti): indirizzo, telefono, orari di apertura.`
+
+Nota una cosa: il file non dice nulla che il sito non dica già. Se la pagina del pronto intervento non spiega orari e zone, l'elenco non lo può sostituire. E ogni informazione deve coincidere con il sito e con la scheda Google, altrimenti aggiungi confusione invece di toglierla.
+
+## Cosa fare prima di pensare a llms.txt
+
+Se il tempo è poco, questo è l'ordine che ha più senso:
+
+1. **Controlla che il sito non blocchi i crawler** di Google e degli assistenti. Google spiega come funziona il file robots.txt nella sua [introduzione a robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro?hl=it); chi gestisce il sito può verificarlo in pochi minuti.
+2. **Scrivi come testo** servizi, zona, orari e contatti. Niente informazioni chiave solo in foto o in PDF.
+3. **Dai a ogni servizio importante una pagina** raggiungibile dal menu, con un titolo chiaro.
+4. **Aggiungi i dati strutturati** della tua attività, che Google usa davvero: li spieghiamo in [Dati strutturati per un'attività locale](/guide/dati-strutturati-attivita-locale-senza-programmare).
+5. Solo dopo, se il plugin lo permette, **attiva llms.txt** e scegli tu le pagine da elencare.
+
+Diffida di chi ti vende llms.txt come la soluzione per farti consigliare dall'AI. Nessuno può garantire cosa risponde un assistente: si può solo rendere il sito chiaro e leggibile, per Google e per tutti gli altri.
+
+## Se non hai tempo di farlo da solo
+
+Controllare i blocchi, sistemare i testi delle pagine e decidere cosa serve davvero al tuo sito richiede qualche ora e un po' di pratica. Se preferisci che ce ne occupiamo noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito e ti diciamo da dove partire.

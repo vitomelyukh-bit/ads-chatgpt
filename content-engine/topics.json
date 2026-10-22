@@ -240,7 +240,9 @@
     {
       "titolo": "llms.txt: cos'è e serve davvero al sito di un'attività?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "llms-txt-serve-sito-attivita",
+      "data": "2026-10-22"
     },
     {
       "titolo": "Testi copiati dai fornitori o da altri siti: perché penalizzano e come riscriverli",
