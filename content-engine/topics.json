@@ -254,7 +254,9 @@
     {
       "titolo": "Sito di un B&B o di un piccolo hotel: farsi trovare oltre Booking",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-bed-and-breakfast-farsi-trovare-oltre-booking",
+      "data": "2026-10-22"
     },
     {
       "titolo": "Il mio sito non ha HTTPS («Non sicuro»): cosa cambia per Google e come risolvere",
