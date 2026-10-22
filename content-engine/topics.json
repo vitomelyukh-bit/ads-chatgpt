@@ -247,7 +247,9 @@
     {
       "titolo": "Testi copiati dai fornitori o da altri siti: perché penalizzano e come riscriverli",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "testi-copiati-fornitore-altri-siti-google",
+      "data": "2026-10-22"
     },
     {
       "titolo": "Sito di un B&B o di un piccolo hotel: farsi trovare oltre Booking",
