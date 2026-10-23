@@ -280,7 +280,9 @@
     {
       "titolo": "Sito di un'agenzia immobiliare: schede degli immobili e pagine di quartiere che funzionano",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-agenzia-immobiliare-schede-immobili-pagine-quartiere",
+      "data": "2026-10-23"
     },
     {
       "titolo": "Recensioni sul sito: come mostrarle in modo utile per i clienti e per Google",
