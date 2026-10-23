@@ -268,7 +268,9 @@
     {
       "titolo": "SEO per un veterinario: le domande dei proprietari di animali da cui partire",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-veterinario-domande-proprietari-animali",
+      "data": "2026-10-23"
     },
     {
       "titolo": "Wix: come impostare titoli, descrizioni e indirizzi delle pagine",
