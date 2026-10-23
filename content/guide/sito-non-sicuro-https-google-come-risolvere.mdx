@@ -1,0 +1,95 @@
+---
+title: "Sito «Non sicuro» senza HTTPS: cosa cambia per Google · TiTrovano"
+description: "Il browser segna il tuo sito come «Non sicuro»? Cosa significa, cosa cambia per Google e per i clienti, e come passare a HTTPS senza perdere le pagine."
+h1: "Il mio sito non ha HTTPS («Non sicuro»): cosa cambia per Google e come risolvere?"
+rispostaBreve: "Vuol dire che il sito viaggia senza connessione cifrata: Chrome lo segnala come «Non sicuro» e Google ha annunciato che Chrome, dalla versione prevista per ottobre 2026, chiederà conferma prima di aprire per la prima volta un sito pubblico senza HTTPS. Per Google la sicurezza è uno dei segnali dell'esperienza sulla pagina, ma pesa meno della pertinenza dei contenuti. Si risolve attivando un certificato, spesso gratuito, e reindirizzando ogni pagina http alla sua versione https."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-23"
+dateModified: "2026-10-23"
+guideCorrelate:
+  - "cambio-dominio-non-perdere-visite-google"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+faq:
+  - domanda: "Il certificato SSL va pagato?"
+    risposta: "Spesso no. Wix, Shopify e Squarespace lo attivano gratis per i domini collegati, e molti hosting offrono certificati gratuiti come quelli di Let's Encrypt. Un certificato a pagamento non fa salire il sito su Google: per la ricerca conta che il certificato sia valido."
+  - domanda: "Passare a HTTPS fa perdere le posizioni su Google?"
+    risposta: "Google tratta il passaggio come uno spostamento del sito: per qualche settimana le posizioni possono oscillare mentre rilegge le pagine. Con reindirizzamenti permanenti pagina per pagina, Google indica che non si perde la forza dei link. Nessuno però può garantire posizioni identiche."
+---
+
+## Cosa vede il cliente quando apre il tuo sito
+
+Un cliente ti cerca, clicca sul tuo sito e accanto all'indirizzo, al posto del lucchetto, compare la scritta «Non sicuro». Molti non sanno cosa voglia dire, ma capiscono una cosa: il browser non si fida. Se il tuo sito ha un modulo per chiedere un preventivo o prenotare, è proprio lì che qualcuno si ferma.
+
+Chrome mostra «Non sicuro» quando la pagina non usa una connessione privata, cioè quando i dati tra il telefono del cliente e il tuo sito viaggiano senza essere cifrati. Lo spiega la guida di Chrome su [come capire se la connessione a un sito è sicura](https://support.google.com/chrome/answer/95617?hl=it). La soluzione si chiama **HTTPS**: l'indirizzo comincia con `https://` invece di `http://` e il sito usa un certificato, un piccolo file che dimostra che il dominio è davvero tuo.
+
+C'è poi una novità. Google ha annunciato che con Chrome 154, previsto per ottobre 2026, l'opzione che usa sempre connessioni sicure sarà attiva per tutti: prima di aprire per la prima volta un sito pubblico senza HTTPS, Chrome chiederà il permesso all'utente. Lo trovi nel post [HTTPS by default](https://security.googleblog.com/2025/10/https-by-default.html) del blog sulla sicurezza di Google. Tradotto: un sito senza HTTPS non avrà più solo una scritta piccola accanto all'indirizzo, ma un avviso prima di entrare.
+
+## Cosa cambia per Google
+
+Qui serve onestà, perché si leggono molte esagerazioni. Google ha descritto HTTPS come uno dei segnali dell'esperienza sulla pagina, insieme alla velocità e all'uso da telefono, nel post che presentava il [report HTTPS di Search Console](https://developers.google.com/search/blog/2022/09/https-search-console-report?hl=it). Ma nella sua [documentazione sull'esperienza sulla pagina](https://developers.google.com/search/docs/appearance/page-experience?hl=it) ripete che conta prima di tutto la pertinenza: una pagina che risponde bene alla ricerca può comparire anche se l'esperienza non è perfetta.
+
+Quindi passare a HTTPS da solo non ti porta in prima pagina. Il motivo vero per farlo è un altro: chi arriva sul sito non deve trovare un avviso che lo spaventa. E un passaggio fatto male, quello sì, può creare problemi su Google: pagine doppie, reindirizzamenti sbagliati, sito che non si apre.
+
+## Primo passo: capire dove sta il tuo sito
+
+Come si attiva HTTPS dipende dalla piattaforma.
+
+- **Wix**: genera da solo un certificato gratuito per ogni dominio collegato, e non si può disattivare. Se il sito risulta ancora «Non sicuro», di solito il dominio non è collegato del tutto: l'[aiuto di Wix su HTTPS e SSL](https://support.wix.com/en/article/about-ssl-and-https) spiega che il certificato arriva dopo che i record DNS sono aggiornati, anche fino a 48 ore.
+- **Shopify**: il certificato è gratuito per i domini aggiunti al negozio; per un dominio comprato altrove può servire fino a 48 ore, come dice l'[aiuto di Shopify sulle connessioni sicure](https://help.shopify.com/en/manual/domains/managing-domains/secure-connections).
+- **Squarespace**: ogni dominio che punta al sito riceve un certificato senza impostazioni da fare, come spiega la guida [sui certificati SSL di Squarespace](https://support.squarespace.com/hc/en-us/articles/205815898-Understanding-SSL-certificates).
+- **WordPress su un hosting tuo**: il certificato lo attiva l'hosting, quasi sempre dal suo pannello di controllo. Molti offrono certificati gratuiti. Se non trovi l'opzione, chiedi all'assistenza dell'hosting: è una richiesta normale.
+
+Su Wix, Shopify e Squarespace, quindi, il problema raramente è il certificato in sé: è quasi sempre il dominio collegato a metà, o un vecchio indirizzo stampato in giro con `http://`.
+
+## Su WordPress: i passaggi dopo il certificato
+
+Avere il certificato non basta: WordPress deve sapere che il suo indirizzo è cambiato.
+
+1. Da **Impostazioni › Generali** cambia l'indirizzo di WordPress e l'indirizzo del sito da `http://` a `https://`, come spiega la [documentazione di WordPress sul cambio di indirizzo](https://wordpress.org/documentation/article/changing-the-site-url/). Fai prima un backup completo.
+2. Imposta un **reindirizzamento permanente** da ogni indirizzo http al corrispondente https. Spesso lo fa l'hosting con un'opzione apposita; altrimenti si scrive nella configurazione del server.
+3. Sostituisci nel contenuto i vecchi indirizzi `http://` delle immagini e dei link interni. Cambiare l'indirizzo del sito non aggiorna da solo quelli già scritti negli articoli e nelle pagine.
+
+Il terzo punto serve a evitare il **contenuto misto**: la pagina è in https, ma un'immagine o uno script arriva ancora da http. Il browser può bloccare quegli elementi o non mostrare il lucchetto. Lo spiega web.dev in [che cos'è il contenuto misto](https://web.dev/articles/what-is-mixed-content).
+
+Un esempio di come deve comportarsi il sito di una ferramenta di fantasia, Ferramenta Bassi:
+
+> http://ferramentabassi.it/ → https://ferramentabassi.it/
+> http://ferramentabassi.it/duplicazione-chiavi/ → https://ferramentabassi.it/duplicazione-chiavi/
+> http://www.ferramentabassi.it/orari/ → https://ferramentabassi.it/orari/
+
+Ogni pagina va alla sua gemella in https, non alla home.
+
+## Cosa dice Google sul passaggio
+
+Per Google, passare da http a https è uno spostamento del sito con cambio di indirizzi. La guida [Come proteggere il sito con il protocollo HTTPS](https://developers.google.com/search/docs/advanced/security/https?hl=it) e quella sugli [spostamenti di sito](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it) danno alcune indicazioni pratiche:
+
+- usa **reindirizzamenti permanenti lato server**, pagina per pagina;
+- non far tornare nessuna pagina https verso http e non bloccare la versione https nel file robots.txt;
+- tieni il **certificato valido e rinnovato**: un certificato non valido o scaduto spinge Google a preferire la versione http;
+- valuta **HSTS**, un'impostazione del server che dice al browser di chiedere sempre la versione https, anche se qualcuno digita http.
+
+A differenza di un cambio di dominio, qui **non** si usa lo strumento Cambio di indirizzo di Search Console: bastano i reindirizzamenti. Se invece stai cambiando anche il dominio, segui la guida su [come cambiare dominio senza perdere visite](/guide/cambio-dominio-non-perdere-visite-google).
+
+## In Search Console: cosa controllare dopo
+
+Search Console tratta http e https come indirizzi diversi. Se hai una proprietà solo per `http://`, aggiungi quella https, oppure meglio una proprietà Dominio, che li comprende tutti. Poi invia la sitemap con gli indirizzi https.
+
+Nelle settimane successive:
+
+- apri il [report HTTPS](https://support.google.com/webmasters/answer/11396518?hl=it): mostra se Google trova ancora pagine indicizzate in http e perché, per esempio un certificato non valido o una sitemap con indirizzi http;
+- nel report Indicizzazione delle pagine vedrai crescere le pagine «con reindirizzamento»: è normale, ne parliamo in [«Pagina con reindirizzamento» e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console);
+- controlla a mano due o tre vecchi indirizzi, scrivendoli con `http://`, e verifica che si aprano in https senza avvisi.
+
+Fuori dal sito, aggiorna l'indirizzo con `https://` nella scheda Google, nei profili social e nei portali. Anche gli assistenti AI come ChatGPT, Gemini e Perplexity leggono il web: indirizzi coerenti ovunque evitano che trovino versioni diverse del tuo sito.
+
+## Cosa non fare
+
+- **Attivare il certificato e fermarti lì**, lasciando aperte sia la versione http sia quella https: Google trova due copie di ogni pagina.
+- **Reindirizzare tutto alla home**: chi aveva salvato la pagina di un servizio si ritrova all'inizio, e Google non capisce dove sia finita quella pagina.
+- **Mettere un plugin che «nasconde» l'avviso** senza sistemare i reindirizzamenti: il browser controlla la connessione, non la grafica.
+
+## Se non hai tempo di farlo da solo
+
+Su Wix, Shopify e Squarespace spesso basta sistemare il collegamento del dominio; su un WordPress con anni di articoli serve più attenzione ai reindirizzamenti e ai vecchi indirizzi nei testi. Se preferisci che lo controlliamo noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il sito e ti diciamo cosa manca.

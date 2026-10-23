@@ -261,7 +261,9 @@
     {
       "titolo": "Il mio sito non ha HTTPS («Non sicuro»): cosa cambia per Google e come risolvere",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-non-sicuro-https-google-come-risolvere",
+      "data": "2026-10-23"
     },
     {
       "titolo": "SEO per un veterinario: le domande dei proprietari di animali da cui partire",
