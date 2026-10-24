@@ -294,7 +294,9 @@
     {
       "titolo": "SEO per uno studio di architettura o un geometra: progetti e servizi che si fanno trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-architetto-geometra-progetti-servizi",
+      "data": "2026-10-24"
     },
     {
       "titolo": "Sito fatto con l'AI in 5 minuti: perché non si posiziona e come sistemarlo",
