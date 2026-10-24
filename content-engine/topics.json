@@ -301,7 +301,9 @@
     {
       "titolo": "Sito fatto con l'AI in 5 minuti: perché non si posiziona e come sistemarlo",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-fatto-con-ai-non-si-posiziona",
+      "data": "2026-10-24"
     },
     {
       "titolo": "Shopify: descrizioni dei prodotti copiate dal fornitore, come riscriverle",
