@@ -313,7 +313,9 @@
     {
       "titolo": "Sito di una scuola guida: pagine per patenti, corsi e iscrizioni che Google capisce",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-scuola-guida-pagine-patenti-corsi-iscrizioni",
+      "data": "2026-10-25"
     },
     {
       "titolo": "Search Console: le ricerche per cui compari e come usarle per scrivere pagine nuove",
