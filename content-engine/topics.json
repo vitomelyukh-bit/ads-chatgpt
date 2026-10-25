@@ -327,7 +327,9 @@
     {
       "titolo": "SEO per un fotografo di matrimoni: portfolio che si fa trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-fotografo-matrimoni-portfolio",
+      "data": "2026-10-25"
     },
     {
       "titolo": "Il sito ha tante immagini pesanti: come alleggerirle senza perdere qualità",
