@@ -320,7 +320,9 @@
     {
       "titolo": "Search Console: le ricerche per cui compari e come usarle per scrivere pagine nuove",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "search-console-ricerche-per-pagine-nuove",
+      "data": "2026-10-25"
     },
     {
       "titolo": "SEO per un fotografo di matrimoni: portfolio che si fa trovare",
