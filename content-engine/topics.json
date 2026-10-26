@@ -353,7 +353,9 @@
     {
       "titolo": "Link da altri siti: quali servono a un'attività locale e quali evitare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "link-altri-siti-attivita-locale-quali-evitare",
+      "data": "2026-10-26"
     },
     {
       "titolo": "WordPress multilingua: WPML, Polylang o due siti separati?",
