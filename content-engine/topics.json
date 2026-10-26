@@ -346,7 +346,9 @@
     {
       "titolo": "Sito di un'officina meccanica o carrozzeria: pagine per servizi e marche",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-officina-meccanica-carrozzeria-servizi-marche",
+      "data": "2026-10-26"
     },
     {
       "titolo": "Link da altri siti: quali servono a un'attività locale e quali evitare",
