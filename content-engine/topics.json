@@ -339,7 +339,9 @@
     {
       "titolo": "SEO per un negozio di quartiere che vende anche online",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-negozio-quartiere-vende-anche-online",
+      "data": "2026-10-26"
     },
     {
       "titolo": "Sito di un'officina meccanica o carrozzeria: pagine per servizi e marche",
