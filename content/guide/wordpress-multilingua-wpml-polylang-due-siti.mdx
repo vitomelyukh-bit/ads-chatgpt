@@ -1,0 +1,98 @@
+---
+title: "WordPress multilingua: WPML, Polylang o due siti? · TiTrovano"
+description: "Sito WordPress in più lingue: quando bastano Polylang o WPML, quando ha senso un secondo sito, cosa controllare per Google e come non perdere indirizzi."
+h1: "WordPress multilingua: WPML, Polylang o due siti separati?"
+rispostaBreve: "Per quasi tutte le attività locali basta un solo sito WordPress con un plugin multilingua: Polylang ha una versione gratuita, WPML è solo a pagamento ma comprende più funzioni, come la traduzione automatica. Due siti separati hanno senso solo se lavori su mercati davvero diversi, con persone, prezzi o servizi diversi, perché raddoppiano il lavoro di gestione. Qualunque strada scegli, ogni lingua deve avere un indirizzo suo e le versioni di ogni pagina devono essere collegate tra loro."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-27"
+dateModified: "2026-10-27"
+guideCorrelate:
+  - "sito-italiano-inglese-google-lingua-giusta"
+  - "yoast-o-rank-math-sito-attivita-locale"
+  - "cambio-dominio-non-perdere-visite-google"
+faq:
+  - domanda: "Posso passare da Polylang a WPML, o al contrario, più avanti?"
+    risposta: "Si può, ma è un piccolo trasloco: le traduzioni vanno importate e gli indirizzi delle pagine tradotte possono cambiare. Se cambiano, servono i reindirizzamenti dai vecchi ai nuovi. Per questo conviene scegliere con calma all'inizio."
+  - domanda: "Il plugin multilingua sostituisce il plugin SEO?"
+    risposta: "No. Il plugin multilingua gestisce lingue e traduzioni, il plugin SEO titoli, descrizioni e sitemap. Lavorano insieme: controlla che la combinazione che usi sia supportata, e che titolo e descrizione siano tradotti in ogni lingua."
+---
+
+## Il dubbio: «quale strada scelgo per l'inglese?»
+
+Hai un sito WordPress e vuoi la versione in inglese, magari anche in tedesco. Il tuo web designer propone WPML, un amico usa Polylang, un'agenzia ti suggerisce un secondo sito solo per gli stranieri. Ognuno è convinto della sua scelta, e tu non sai chi ha ragione.
+
+La scelta conta, perché è difficile da cambiare dopo. Se tra due anni passi da una soluzione all'altra, gli indirizzi delle pagine tradotte possono cambiare, e con loro quello che Google ha già imparato del tuo sito. Meglio decidere una volta, sapendo cosa compri.
+
+## Prima di scegliere: cosa chiede Google, in ogni caso
+
+Il plugin è solo lo strumento. Le regole per Google sono le stesse con qualunque soluzione, e le abbiamo spiegate in [sito in italiano e in inglese: come far mostrare la lingua giusta](/guide/sito-italiano-inglese-google-lingua-giusta). In breve:
+
+- **ogni lingua ha un indirizzo suo**, di solito una cartella come `/en/`;
+- **le versioni della stessa pagina sono collegate** con i tag hreflang, come spiega la guida di Google sulle [versioni localizzate delle pagine](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=it);
+- **una lingua sola per pagina**, compresi titolo e descrizione.
+
+WordPress da solo non gestisce più lingue: la [documentazione ufficiale di WordPress sui siti multilingua](https://developer.wordpress.org/advanced-administration/wordpress/multilingual/) indica due strade, un plugin che gestisce le traduzioni nello stesso sito oppure un sito separato per ogni lingua. Vediamole.
+
+## Polylang: si parte gratis
+
+Polylang ha una versione gratuita nella directory ufficiale dei plugin di WordPress e una versione Pro a pagamento.
+
+Con la versione gratuita traduci pagine, articoli, categorie e menu a mano: per ogni pagina italiana crei la sua gemella in inglese e le colleghi. La lingua può stare in una cartella dell'indirizzo, in un sottodominio o in un dominio diverso, come spiega la [guida di Polylang sugli indirizzi](https://polylang.pro/documentation/support/guides/url-modifications/).
+
+Secondo la scheda del plugin, alcune funzioni sono solo nella versione Pro: per esempio la traduzione automatica con DeepL e la traduzione della parte fissa di alcuni indirizzi, come quella delle categorie. Per un sito di poche pagine dei servizi, scritte e tradotte da te, spesso la versione gratuita basta.
+
+## WPML: più funzioni, solo a pagamento
+
+WPML non ha una versione gratuita né una prova: si paga un abbonamento e, secondo le [domande frequenti di WPML](https://wpml.org/faq/do-you-have-a-trial-or-demo-version-of-the-wpml-plugin/), si può chiedere il rimborso entro 30 giorni. Controlla sul suo sito i piani aggiornati, perché cambiano.
+
+Secondo la sua [documentazione su indirizzi e SEO](https://wpml.org/documentation/customizing-wpml/urls-slugs-seo/), WPML aggiunge da solo i tag hreflang, usa le cartelle come impostazione predefinita e permette di tradurre anche la parte finale degli indirizzi. A seconda del piano comprende la traduzione automatica, che va comunque riletta, e componenti per negozi WooCommerce e per i plugin SEO più diffusi.
+
+Ha senso quando il sito è grande, ha un negozio, usa molti plugin che vanno tradotti, oppure quando vuoi una prima traduzione automatica da correggere invece di scrivere tutto da zero.
+
+## Due siti separati: solo per mercati davvero diversi
+
+Puoi anche fare un secondo sito WordPress per l'inglese, oppure una rete multisito con un sito per ogni lingua. La documentazione di WordPress fa notare che i siti separati richiedono più gestione: due volte gli aggiornamenti, i plugin, i backup e i controlli di sicurezza.
+
+E c'è un problema in più: i tag hreflang devono collegare pagine che stanno in siti diversi. Serve un plugin apposito o qualcuno che li gestisca a mano, e ogni pagina nuova va collegata.
+
+Ha senso solo se l'altro sito è davvero un'altra attività: un'offerta diversa per un mercato estero, con persone, prezzi o servizi propri. Per tradurre il sito del tuo agriturismo, è lavoro doppio senza un vantaggio vero.
+
+## Come scegliere, in pratica
+
+- **Sito di poche pagine, traduci tu o un traduttore**: Polylang gratuito.
+- **Negozio online, molti plugin o tante pagine da tradurre**: WPML, oppure Polylang con le estensioni giuste. Prima di comprare, controlla nella documentazione che il tuo tema, il page builder e il plugin SEO siano supportati.
+- **Vuoi una prima traduzione automatica**: uno dei due plugin con la traduzione automatica, poi rileggi tutto.
+- **Mercati diversi con offerte diverse**: valuta due siti, sapendo quanto lavoro aggiungono.
+
+Un esempio di pagine da tradurre per primo, con nomi di fantasia:
+
+> Agriturismo Le Querce, sito in italiano con dodici pagine. Si traducono subito in inglese: home, camere, colazione e ristorante, «come arrivare», contatti e prenotazione. Restano solo in italiano, per ora: le notizie del blog e la pagina dei corsi di cucina, che si fanno solo in italiano.
+
+> Titolo della pagina inglese: «Farm stay rooms with breakfast in the hills · Agriturismo Le Querce»
+
+Meglio sei pagine tradotte bene che dodici tradotte a metà.
+
+## I controlli dopo l'installazione
+
+1. **Apri una pagina tradotta**, visualizza il codice sorgente dal computer e cerca «hreflang»: deve esserci una riga per ogni lingua, anche nella versione inglese.
+2. **Prova il selettore della lingua**: dalla pagina «Camere» deve portare a «Rooms», non alla home inglese.
+3. **Controlla titoli e descrizioni** in ogni lingua nel plugin SEO: devono essere tradotti, non copiati dall'italiano. Se usi Yoast o Rank Math, vedi anche [Yoast o Rank Math per il sito di un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+4. **Apri la sitemap** e verifica che contenga anche le pagine inglesi, poi controlla in Search Console che vengano lette.
+5. **Niente spostamento automatico** in base alla lingua del browser: se il plugin ha un'opzione per farlo, valutala con attenzione, perché Google sconsiglia di mandare le persone in automatico su una lingua.
+
+Se un giorno cambi plugin e gli indirizzi cambiano, tratta il passaggio come un trasloco: vecchi indirizzi reindirizzati ai nuovi, uno per uno, come spieghiamo in [cambio di dominio senza perdere visite](/guide/cambio-dominio-non-perdere-visite-google).
+
+## Cosa non fare
+
+- **Non pubblicare la traduzione automatica senza rileggerla.** Le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) considerano un abuso le pagine prodotte in serie che non danno valore a chi legge, anche quando sono traduzioni automatiche.
+- **Non usare due plugin multilingua insieme**, nemmeno per prova sul sito pubblicato: rischi lingue e indirizzi in conflitto.
+- **Non creare pagine in altre lingue vuote o quasi**, solo per avere la bandierina nel menu.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity leggono il testo delle pagine. Una pagina inglese chiara, con servizi, orari, posizione e modo di prenotare scritti come testo, è più facile da capire per loro come per un turista. Nessuno può garantire che un assistente faccia il tuo nome, ma una traduzione confusa non aiuta.
+
+## Se non hai tempo di farlo da solo
+
+Installare il plugin si fa in un pomeriggio. Scegliere bene, tradurre le pagine giuste e tenerle aggiornate in ogni lingua è il lavoro che resta. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito WordPress e ti diciamo quale strada ha senso.
