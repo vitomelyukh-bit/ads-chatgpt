@@ -379,7 +379,9 @@
     {
       "titolo": "Sito di un'impresa di pulizie: farsi trovare dalle aziende e dai condomini",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-impresa-pulizie-aziende-condomini",
+      "data": "2026-10-27"
     },
     {
       "titolo": "Pagina «Chi siamo» e pagina contatti: cosa guarda Google e cosa guardano i clienti",
