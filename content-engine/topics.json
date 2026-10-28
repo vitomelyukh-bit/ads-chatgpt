@@ -410,7 +410,9 @@
     {
       "titolo": "Sito di un ottico: pagine per occhiali, lenti ed esami della vista",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-ottico-pagine-occhiali-lenti-esame-vista",
+      "data": "2026-10-28"
     },
     {
       "titolo": "Errore 404 su Google: pagine che non esistono più, come sistemarle",
