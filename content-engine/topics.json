@@ -393,7 +393,9 @@
     {
       "titolo": "SEO per un tatuatore: pagine per stili e artisti",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-tatuatore-pagine-stili-artisti",
+      "data": "2026-10-28"
     },
     {
       "titolo": "Assistenti AI e attività locali: perché ChatGPT consiglia altri e non te",
