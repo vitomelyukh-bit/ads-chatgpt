@@ -1,0 +1,97 @@
+---
+title: "Webflow e SEO: cosa controllare nel tuo sito · TiTrovano"
+description: "Sito fatto in Webflow da un grafico o un'agenzia: le impostazioni da controllare perché Google lo trovi, dal dominio webflow.io ai titoli delle pagine CMS."
+h1: "Webflow e SEO: cosa controllare in un sito fatto su misura?"
+rispostaBreve: "Webflow produce pagine pulite e ha quasi tutte le impostazioni SEO che servono, ma molte vanno attivate a mano: sitemap, dominio predefinito, tag canonico e blocco dell'indirizzo webflow.io. Poi controlla che ogni pagina abbia un titolo e una descrizione suoi, comprese quelle generate dal CMS, e che i reindirizzamenti ci siano quando cambi un indirizzo. Se il sito non si trova, di solito il motivo è in una di queste impostazioni o nelle pagine che mancano, non nella piattaforma."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-29"
+dateModified: "2026-10-29"
+guideCorrelate:
+  - "squarespace-seo-impostazioni-da-controllare"
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "dati-strutturati-attivita-locale-senza-programmare"
+faq:
+  - domanda: "Posso controllare queste impostazioni se il sito l'ha fatto un'agenzia?"
+    risposta: "Sì, se hai accesso al progetto Webflow anche solo per leggere le impostazioni. Se non ce l'hai, chiedi all'agenzia di confermarti punto per punto le voci di questa guida: sono controlli di pochi minuti."
+  - domanda: "Su Webflow servono plugin SEO come su WordPress?"
+    risposta: "No. Titoli, descrizioni, sitemap, reindirizzamenti, tag canonico e dati strutturati si gestiscono dalle impostazioni del sito e delle pagine. Molte di queste funzioni però richiedono un piano del sito a pagamento."
+---
+
+## Il sito è bello, ma non sai se Google lo legge
+
+Webflow è la piattaforma che scelgono spesso grafici e agenzie per siti curati nel dettaglio: studi di architettura, cantine, agenzie creative, centri benessere. Il titolare riceve un sito che funziona bene da vedere, ma raramente sa cosa c'è sotto. E se dopo qualche mese su Google esce l'indirizzo provvisorio del sito, o le pagine hanno tutte lo stesso titolo, i clienti che ti cercano finiscono altrove.
+
+La buona notizia è che, di norma, Webflow pubblica pagine con il testo scritto direttamente nel codice, quindi leggibili da Google e dagli assistenti AI. Il punto debole è un altro: diverse impostazioni importanti non sono attive finché qualcuno non le accende. Ecco cosa controllare, in ordine.
+
+## 1. L'indirizzo webflow.io non deve comparire su Google
+
+Ogni sito Webflow ha un indirizzo di prova del tipo `nomesito.webflow.io`, usato durante la costruzione. Se resta visibile ai motori di ricerca, Google può trovare due copie dello stesso sito.
+
+Webflow spiega nella sua guida su [come disattivare l'indicizzazione](https://help.webflow.com/hc/en-us/articles/33961368603539) che il blocco si attiva dalle impostazioni del sito, nella parte SEO, dove c'è un interruttore per l'indicizzazione dell'indirizzo di prova; poi si salva e si pubblica. Serve un piano a pagamento. Webflow avverte anche che le pagine già finite nei risultati non spariscono da sole: per nasconderle in fretta c'è lo [strumento per le rimozioni di Search Console](https://support.google.com/webmasters/answer/9689846?hl=it), che però le toglie solo per circa sei mesi.
+
+Prova subito: cerca su Google `site:nomesito.webflow.io`. Se escono pagine, questo è il primo lavoro.
+
+## 2. Dominio predefinito e tag canonico
+
+Se il tuo dominio si apre sia con il www sia senza, Google deve sapere qual è quello giusto. Nella guida su come [impostare un dominio predefinito](https://help.webflow.com/hc/en-us/articles/33961339571475-Set-a-default-domain), Webflow spiega che, una volta scelto, gli altri domini collegati portano a quello con un reindirizzamento permanente.
+
+Poi c'è il tag canonico, un'indicazione nascosta nella pagina che dice a Google quale indirizzo considerare l'originale. Webflow lo imposta per tutto il sito con il campo per il [tag canonico globale](https://help.webflow.com/hc/en-us/articles/33961263684115-Set-canonical-tags-to-improve-SEO): scrivi l'indirizzo del dominio predefinito con https, con il www se lo usi, e senza la barra finale. Google spiega il perché di queste indicazioni nella sua guida sugli [URL duplicati](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it).
+
+## 3. Sitemap e Search Console
+
+La sitemap è l'elenco delle pagine del sito che dai a Google. In Webflow va attivata: secondo la guida su come [creare una sitemap](https://help.webflow.com/hc/en-us/articles/33961355371667-Create-a-sitemap-in-Webflow), si accende la sitemap generata in automatico nelle impostazioni SEO e si pubblica. Da lì si aggiorna a ogni pubblicazione, all'indirizzo tuodominio.it/sitemap.xml.
+
+Per collegare Search Console con il metodo del tag HTML, nelle stesse impostazioni c'è un campo per il codice di verifica di Google: va incollato solo il codice, non tutto il tag. Il procedimento generale, anche per altre piattaforme, è in [come collegare Search Console al sito](/guide/collegare-search-console-wordpress-wix-shopify). Quando invii la sitemap, usa la versione del dominio che hai reso predefinita.
+
+## 4. Titolo e descrizione per ogni pagina
+
+Ogni pagina ha nelle sue impostazioni una sezione SEO con il titolo e la meta description, cioè il testo che Google può mostrare sotto il titolo. Webflow lo spiega nella guida su come [aggiungere titolo SEO e descrizione](https://help.webflow.com/hc/en-us/articles/33961237278611). Se il grafico li ha lasciati vuoti o uguali, Google ha poco da usare.
+
+Un esempio per uno studio di interior design immaginario:
+
+> **Prima:** Servizi | Studio Ardesia
+>
+> **Dopo:** Progetto d'interni per appartamenti a Treviso | Studio Ardesia
+>
+> **Descrizione:** Rilievo, progetto e scelta dei materiali per ristrutturare casa. Primo incontro in studio per capire spazi, tempi e budget.
+
+Google può comunque scegliere un titolo diverso: le regole sono nella sua guida ai [link del titolo](https://developers.google.com/search/docs/appearance/title-link?hl=it), e in [titolo e descrizione sbagliati su Google](/guide/titolo-descrizione-google-sbagliati-come-cambiarli) vedi come intervenire.
+
+## 5. Le pagine del CMS: attenzione ai titoli tutti uguali
+
+Il CMS di Webflow è la parte che genera molte pagine dallo stesso modello: articoli, progetti, servizi, prodotti. Qui c'è l'errore più frequente. Le impostazioni SEO del modello valgono per tutte le pagine di quella raccolta, quindi un titolo scritto a mano lì finisce identico su ogni pagina.
+
+Webflow permette di inserire nel titolo e nella descrizione i campi della raccolta, così ogni pagina ha i suoi valori. Un modello sensato per i progetti dello studio:
+
+> **Titolo:** [Nome del progetto] – [Tipo di intervento] | Studio Ardesia
+>
+> **Descrizione:** [campo «riassunto», scritto per ogni progetto]
+
+Il campo del riassunto va scritto davvero, progetto per progetto. Un modello che ripete la stessa frase con il nome cambiato non aiuta nessuno.
+
+## 6. Reindirizzamenti quando cambi un indirizzo
+
+Se rinomini una pagina o rifai il sito, i vecchi indirizzi devono portare ai nuovi. Nella guida sui [reindirizzamenti](https://help.webflow.com/hc/en-us/articles/33961294898835-How-do-I-set-up-redirects-in-Webflow) Webflow indica la sezione dei reindirizzamenti 301 nelle impostazioni di pubblicazione: scrivi il vecchio percorso e il nuovo, aggiungi e pubblica.
+
+> /servizi-casa → /progetto-interni-appartamenti
+
+Due dettagli: non puoi reindirizzare un percorso che appartiene ancora a una pagina esistente, e quando cambi lo slug di una pagina Webflow può creare il reindirizzamento da solo, se lasci attiva l'opzione. Dopo ogni modifica apri il vecchio indirizzo e controlla dove arrivi. Se stai passando a Webflow da un altro sito, leggi anche [come cambiare dominio senza perdere visite](/guide/cambio-dominio-non-perdere-visite-google).
+
+## 7. Immagini, dati strutturati e testo nascosto nel design
+
+Tre controlli veloci:
+
+- **Testo alternativo**: secondo la guida di Webflow sul [testo alternativo](https://help.webflow.com/hc/en-us/articles/33961330170643-Include-alt-text-on-images), dal pannello delle risorse puoi dare a ogni immagine una descrizione o segnarla come decorativa. Il pannello Audit segnala le immagini senza descrizione, ma non quelle collegate al CMS: quelle vanno guardate a mano.
+- **Dati strutturati**: le pagine hanno un campo per lo [schema markup](https://help.webflow.com/hc/en-us/articles/45766917223955-Add-schema-markup-in-Webflow-to-improve-SEO-and-AEO), dove mettere nome, indirizzo, telefono e orari dell'attività. Uguali alla scheda Google, e in un posto solo per non duplicarli. Cosa scriverci lo spieghiamo in [dati strutturati per un'attività locale](/guide/dati-strutturati-attivita-locale-senza-programmare).
+- **Testo dentro le immagini**: nei siti molto grafici capita che slogan, servizi o orari siano disegnati dentro un'immagine. Google e gli assistenti AI leggono il testo della pagina: quello che conta va scritto come testo.
+
+## Cosa Webflow non fa al posto tuo
+
+Con queste impostazioni a posto, Google può leggere il sito. Ma un sito Webflow di cinque pagine bellissime, con tutti i servizi in una riga, resta difficile da trovare. Servono pagine con testo vero per ogni servizio che i clienti cercano, scritte con le loro parole. Evita le scorciatoie, come pagine uguali per ogni paese o testi copiati: sono contrarie alle [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+Nessuna impostazione garantisce una posizione su Google: servono a togliere gli ostacoli, perché il resto del lavoro conti.
+
+## Se non hai tempo di farlo da solo
+
+Se preferisci che qualcuno controlli il tuo progetto Webflow e scriva le pagine che mancano, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il sito e ti diciamo da dove partire.
