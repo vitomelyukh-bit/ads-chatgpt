@@ -417,7 +417,9 @@
     {
       "titolo": "Errore 404 su Google: pagine che non esistono più, come sistemarle",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "errore-404-search-console-pagine-non-esistono",
+      "data": "2026-10-29"
     },
     {
       "titolo": "SEO per un traslocatore: preventivi, zone e tipi di trasloco",

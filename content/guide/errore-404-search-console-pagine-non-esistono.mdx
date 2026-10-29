@@ -1,0 +1,97 @@
+---
+title: "Errore 404 su Google: come sistemare le pagine sparite · TiTrovano"
+description: "Search Console segnala pagine «Non trovata (404)»? Quando sono un problema, quando si ignorano, quando serve un reindirizzamento e cosa sono i soft 404."
+h1: "Errore 404 su Google: cosa fare con le pagine che non esistono più?"
+rispostaBreve: "Un 404 vuol dire solo che a quell'indirizzo non c'è più niente, e secondo Google non danneggia il resto del sito. Va sistemato quando la pagina era importante, quando la linki ancora tu o quando sta nella sitemap: se il contenuto si è spostato, metti un reindirizzamento permanente verso la pagina che ne prende il posto. Se invece non c'è un sostituto, lascia il 404 e non mandare tutto alla home."
+tema: "seo"
+ordine: 100
+datePublished: "2026-10-29"
+dateModified: "2026-10-29"
+guideCorrelate:
+  - "cambio-dominio-non-perdere-visite-google"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+faq:
+  - domanda: "Come faccio a far sparire i 404 dal report di Search Console?"
+    risposta: "Non c'è un pulsante per cancellarli. Il report si aggiorna da solo quando Google torna a visitare quegli indirizzi. Se un 404 è giusto, perché la pagina non deve più esistere, puoi lasciarlo lì: non è un problema da risolvere."
+  - domanda: "Meglio 404 o 410 per una pagina tolta per sempre?"
+    risposta: "Per Google cambia poco: nella sua documentazione scrive che tratta allo stesso modo quasi tutti i codici 4xx, e che gli indirizzi che li restituiscono escono dall'indice. Usa quello che la tua piattaforma ti permette di impostare più facilmente."
+---
+
+## Il problema: Search Console ti segnala pagine «non trovate»
+
+Apri Search Console e nel report sull'indicizzazione delle pagine trovi la voce **Non trovata (404)**, con un elenco di indirizzi. Magari sono pagine di servizi che non fai più, prodotti tolti dal negozio, articoli cancellati durante il rifacimento del sito. Oppure indirizzi che non ricordi nemmeno di aver avuto.
+
+La prima reazione è pensare che il sito sia «pieno di errori» e che Google lo stia punendo. Di solito non è così. Ma alcuni di quei 404 ti stanno davvero facendo perdere clienti: quelli su pagine che la gente cercava, linkava o salvava nei preferiti. Chi arriva lì trova una pagina vuota e torna indietro.
+
+## Cosa vuol dire, per Google, un 404
+
+Un 404 è una risposta del server che dice: «a questo indirizzo non c'è niente». È normale che un sito ne abbia, perché le pagine cambiano.
+
+Google lo dice chiaramente nella guida di Search Console sugli [errori 404](https://support.google.com/webmasters/answer/2445990?hl=it): i 404 non danneggiano l'indicizzazione o il posizionamento del resto del sito. Nella sua pagina sui [codici di stato HTTP](https://developers.google.com/search/docs/crawling-indexing/http-network-errors?hl=it) spiega cosa succede a quegli indirizzi: Google non li inserisce nell'indice, e quelli che c'erano già vengono tolti.
+
+Quindi la domanda giusta non è «come elimino tutti i 404», ma «quali di questi indirizzi meritavano di restare vivi».
+
+## Quali 404 sistemare e quali ignorare
+
+Prendi l'elenco del report e dividilo in tre gruppi.
+
+- **Da sistemare subito**: pagine che linki ancora tu dal menu, dai testi o dal piè di pagina, e pagine che compaiono nella sitemap. Sono gli stessi casi che la guida al [report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) indica come quelli da correggere.
+- **Da sistemare se avevano valore**: pagine che portavano visite o richieste, anche se oggi non le linki più. Per esempio la vecchia pagina «Riparazione persiane», che i clienti avevano salvato o che altri siti linkano.
+- **Da lasciare come sono**: indirizzi che non devono esistere. Pagine di prova, vecchi tag, indirizzi scritti male da qualcun altro, prodotti finiti senza un sostituto. Un 404 qui è la risposta giusta.
+
+Per capire da dove arriva un indirizzo, apri il singolo URL nel report e usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it): ti dice, quando lo sa, in quale sitemap o pagina Google l'ha trovato.
+
+## Come sistemarli, caso per caso
+
+### La pagina si è spostata: reindirizzamento permanente
+
+Se il contenuto esiste ancora a un altro indirizzo, metti un **reindirizzamento permanente (301)** dal vecchio al nuovo. Così chi arriva dal vecchio link finisce nel posto giusto, e Google capisce che deve mostrare il nuovo indirizzo. Lo spiega la guida di Google su [reindirizzamenti e Ricerca Google](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it).
+
+> Prima: `falegnameriarossi.it/servizi/persiane` → pagina non trovata.
+>
+> Dopo: `falegnameriarossi.it/servizi/persiane` → reindirizzamento a `falegnameriarossi.it/riparazione-persiane-legno`, la pagina nuova che parla dello stesso lavoro.
+
+Dove si impostano dipende dalla piattaforma:
+
+- **WordPress**: WordPress da solo non gestisce i reindirizzamenti; serve un plugin. Rank Math, per esempio, ha un modulo che registra i 404 e permette di reindirizzarli, come spiega la sua guida sul [monitor dei 404](https://rankmath.com/kb/monitor-404-errors/).
+- **Wix**: con lo strumento per i [reindirizzamenti 301](https://support.wix.com/en/article/setting-up-301-redirects) nel pannello SEO.
+- **Shopify**: dalla sezione dei [reindirizzamenti URL](https://help.shopify.com/en/manual/online-store/menus-and-links/url-redirect). Shopify ricorda che quando elimini un prodotto puoi mandare il vecchio indirizzo a un prodotto simile.
+
+Se hai spostato tutto il sito su un nuovo dominio, il lavoro è più ampio: leggi [come cambiare dominio senza perdere visite](/guide/cambio-dominio-non-perdere-visite-google).
+
+### Il link è sbagliato: correggilo alla fonte
+
+Se il 404 nasce da un link nel tuo stesso sito, il reindirizzamento è un cerotto. Correggi il link nel menu o nel testo, così punta direttamente alla pagina giusta. Poi aggiorna la sitemap: deve contenere solo pagine che esistono.
+
+### La pagina non ha un sostituto: lascia il 404
+
+Se hai smesso di fare un servizio e non c'è una pagina che ne prenda il posto, il 404 va bene. Non reindirizzare tutto alla home: per chi arriva è spiazzante, e Google può trattare un reindirizzamento verso una pagina che non c'entra come un **soft 404**, cioè come una pagina inesistente. Un esempio simile, con gli immobili venduti, è in [schede degli immobili e pagine di quartiere](/guide/sito-agenzia-immobiliare-schede-immobili-pagine-quartiere).
+
+## I soft 404: il caso da non sottovalutare
+
+Nel report puoi trovare anche la voce **Soft 404**. Vuol dire che la pagina sembra vuota o dice «non trovato», ma il server risponde che è tutto a posto. Google lo descrive nella pagina sui codici di stato.
+
+Succede spesso con:
+
+- pagine di categoria rimaste vuote, per esempio «Offerte» senza nessuna offerta;
+- schede prodotto esaurite ridotte a un titolo e a un pulsante disattivato;
+- pagine con pochissimo testo, che Google scambia per pagine di errore.
+
+Qui le strade sono due. Se la pagina deve esistere, riempila: cosa fai, per chi, come contattarti. Se non deve esistere, fai in modo che risponda con un vero 404, oppure reindirizzala alla pagina che ne prende davvero il posto.
+
+## Una pagina 404 che aiuta chi arriva
+
+Anche quando il 404 è giusto, chi ci arriva è un potenziale cliente. Una buona pagina di errore dice in una frase che la pagina non c'è più e offre una strada:
+
+> «Questa pagina non esiste più. Forse cercavi uno di questi lavori: serramenti in legno, riparazione persiane, porte interne. Oppure chiamaci o scrivici su WhatsApp.»
+
+Controlla solo che, dietro, il server continui a rispondere con il codice 404. Su WordPress, Wix e Shopify la pagina di errore si personalizza dal tema o dall'editor.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity possono riportare link al tuo sito. Se l'indirizzo è vecchio o sbagliato, il visitatore finisce su un 404. Rank Math, per esempio, ha una guida per [riconoscere i 404 che arrivano da ChatGPT](https://rankmath.com/kb/fix-404-errors-from-chatgpt/). Valgono le stesse regole: reindirizza gli indirizzi che hanno un sostituto chiaro e tieni la pagina di errore utile. Nessuno può decidere quali link mostrerà un assistente, ma puoi fare in modo che chi arriva trovi qualcosa.
+
+## Se non hai tempo di farlo da solo
+
+Dividere i 404 tra quelli da sistemare e quelli da lasciare si fa con calma, una volta, partendo da Search Console. Tenere il sito in ordine mentre aggiungi e togli pagine è un lavoro continuo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo i report del tuo sito e ti diciamo quali errori contano davvero.
