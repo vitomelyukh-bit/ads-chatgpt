@@ -438,7 +438,9 @@
     {
       "titolo": "Sito di una farmacia o parafarmacia: cosa si può pubblicare e come farsi trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-farmacia-parafarmacia-cosa-pubblicare",
+      "data": "2026-10-30"
     },
     {
       "titolo": "Le FAQ sul sito aiutano la SEO? Come scriverle bene",
