@@ -445,7 +445,9 @@
     {
       "titolo": "Le FAQ sul sito aiutano la SEO? Come scriverle bene",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "faq-sito-aiutano-seo-come-scriverle",
+      "data": "2026-10-30"
     },
     {
       "titolo": "SEO per un serramentista: farsi trovare da chi deve cambiare gli infissi",
