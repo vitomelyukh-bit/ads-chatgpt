@@ -1,0 +1,96 @@
+---
+title: "Immagini pesanti sul sito: come alleggerirle · TiTrovano"
+description: "Foto caricate dal telefono che rallentano il sito? Come trovare le immagini pesanti, che misure usare, formati, compressione e cosa fa già la tua piattaforma."
+h1: "Il sito ha tante immagini pesanti: come alleggerirle senza perdere qualità?"
+rispostaBreve: "Prima riduci le dimensioni: una foto larga quanto lo schermo di un computer non ha bisogno dei pixel di una fotocamera. Poi salvala compressa in un formato moderno come WebP, controllando a occhio che resti nitida, e lascia che le immagini più in basso si carichino solo quando servono. WordPress, Shopify, Wix e Squarespace fanno già una parte del lavoro, ma non tutto, soprattutto per le foto caricate così come escono dal telefono."
+ordine: 100
+tema: "seo"
+datePublished: "2026-10-30"
+dateModified: "2026-10-30"
+guideCorrelate:
+  - "sito-lento-da-telefono-come-misurarlo"
+  - "seo-fotografo-matrimoni-portfolio"
+  - "sito-impresa-edile-mostrare-lavori-fatti-google"
+faq:
+  - domanda: "Se comprimo le foto, su Google si vedranno peggio?"
+    risposta: "Se la compressione è moderata, di solito la differenza a occhio non si nota. Fai una prova su una foto, confrontala con l'originale sullo schermo del telefono e del computer, e solo dopo applica le stesse impostazioni a tutte."
+  - domanda: "Devo ricaricare tutte le immagini che ho già sul sito?"
+    risposta: "Non tutte insieme. Parti dalle pagine che portano più clienti e dalle immagini grandi in cima alle pagine. Le foto piccole in fondo a un vecchio articolo possono aspettare."
+---
+
+## Il problema: foto belle, pagina lenta
+
+Le foto dei tuoi lavori, del locale o dei prodotti sono spesso la parte migliore del sito. Ma se sono caricate così come escono dal telefono o dalla macchina fotografica, ogni pagina chiede a chi la apre di scaricare file molto più grandi di quanto serva.
+
+Dal wifi dell'ufficio non te ne accorgi. Chi ti cerca dal telefono, in macchina o in un negozio, vede invece uno schermo che si riempie a pezzi. È lì che rischi di perdere il contatto: dopo che ti ha trovato, prima che ti chiami.
+
+## Come capire quali immagini pesano
+
+Fai il test della pagina su [PageSpeed Insights](https://pagespeed.web.dev/) con il telefono come dispositivo. Tra i suggerimenti, quelli che parlano di immagini indicano quali file sono troppo grandi o in un formato poco efficiente. Come leggere tutto il resto del test lo spieghiamo in [il sito è lento dal telefono: come misurarlo](/guide/sito-lento-da-telefono-come-misurarlo).
+
+Poi guarda le foto che hai caricato. Due numeri contano:
+
+- **le dimensioni in pixel**, cioè quanto è larga e alta la foto;
+- **il peso del file**, in KB o MB.
+
+Una foto del telefono è spesso larga diverse migliaia di pixel e pesa qualche MB. Sul sito verrà mostrata in uno spazio molto più piccolo.
+
+## Il primo passo: ridimensionare
+
+È l'intervento che fa più differenza, e non toglie qualità a quello che si vede. Se una foto viene mostrata al massimo a tutta larghezza su un computer, quei pixel in più li scarica il telefono del cliente senza vederli mai.
+
+Alcune indicazioni ufficiali delle piattaforme, utili come riferimento:
+
+- **Squarespace** consiglia, nella guida sul [formato delle immagini per il web](https://support.squarespace.com/hc/en-us/articles/206542517-Formatting-images-for-display-on-the-web), una larghezza intorno ai 2500 pixel per la maggior parte delle immagini e file sotto i 500 KB, anche se accetta file molto più grandi.
+- **Shopify**, per le foto dei prodotti quadrate, indica 2048 per 2048 pixel come misura che di solito rende meglio, e nella guida sulla [fotografia dei prodotti](https://help.shopify.com/en/manual/products/product-media/product-photography) suggerisce di non superare i 200 KB per immagine.
+- **WordPress** riduce da solo le foto più grandi di 2560 pixel di lato e crea copie più piccole da mostrare sugli schermi stretti. Lo spiega la [presentazione della funzione per le immagini grandi](https://make.wordpress.org/core/2019/10/09/introducing-handling-of-big-images-in-wordpress-5-3/).
+
+Per le foto che stanno dentro una colonna di testo, o in una galleria a più colonne, la larghezza utile è molto minore. Se non sai quanto spazio occupa una foto, chiedilo a chi ha fatto il sito.
+
+## Il secondo passo: formato e compressione
+
+JPEG va bene per le foto, PNG per loghi e grafiche con trasparenza. **WebP** e **AVIF** sono formati più recenti che, a parità di aspetto, di solito pesano meno. Google, nella sua guida sulle [best practice per le immagini](https://developers.google.com/search/docs/appearance/google-images), elenca tra i formati che la Ricerca supporta BMP, GIF, JPEG, PNG, WebP, SVG e AVIF: usare WebP non ti toglie da Google Immagini.
+
+Cosa fa la tua piattaforma:
+
+- **Shopify** consegna le immagini in WebP o AVIF ai browser che li supportano, partendo dal file che hai caricato.
+- **Squarespace** converte in WebP le immagini caricate.
+- **Wix** comprime le immagini e le converte in formati moderni, come spiega la sua guida su come [ottimizzare i media del sito](https://support.wix.com/en/article/site-performance-optimizing-your-media).
+- **WordPress** accetta WebP, ma la conversione automatica dipende dal plugin o dall'hosting che usi.
+
+Anche dove la piattaforma converte da sola, caricare foto già ridimensionate resta utile: parte da un file più leggero e ti evita sorprese nelle sezioni che seguono regole proprie, come gallerie, sfondi e app esterne.
+
+Per comprimere puoi usare un programma di fotoritocco o uno strumento gratuito come Squoosh, che lavora nel browser. Fai una prova su una foto, guardala ingrandita accanto all'originale e solo dopo usa le stesse impostazioni per tutte.
+
+## Il terzo passo: caricare solo quando serve
+
+Le immagini in fondo alla pagina possono aspettare che il cliente ci arrivi scorrendo. È il caricamento differito, che nel codice si ottiene con `loading="lazy"` e che molte piattaforme e plugin aggiungono già da soli.
+
+C'è un'eccezione importante. La guida di web.dev sul [caricamento differito delle immagini](https://web.dev/articles/browser-level-image-lazy-loading) spiega di non applicarlo alle immagini visibili appena si apre la pagina: la foto grande in cima deve caricarsi subito, altrimenti la pagina sembra più lenta, non più veloce.
+
+La stessa guida ricorda di indicare larghezza e altezza delle immagini. Così il browser riserva lo spazio prima che la foto arrivi e il testo non salta mentre il cliente prova a toccare «Chiama».
+
+## Già che ci sei: nome del file e testo alternativo
+
+Quando ricarichi una foto alleggerita, sistema anche le due cose che aiutano Google a capire cosa mostra. Google consiglia nomi di file descrittivi e un testo alternativo, l'attributo alt, che descriva l'immagine nel contesto della pagina, senza elenchi di parole chiave.
+
+Un esempio per una falegnameria, con nomi di fantasia:
+
+> **Prima:** IMG_4821.jpg, larga oltre 4000 pixel, alt vuoto, caricata in cima alla pagina «Cucine su misura».
+>
+> **Dopo:** cucina-rovere-su-misura-falegnameria-bassi.webp, ridimensionata alla larghezza in cui viene mostrata, alt «Cucina su misura in rovere naturale con isola centrale, realizzata dalla Falegnameria Bassi».
+
+La stessa guida di Google ricorda di non mettere testo importante dentro le immagini. Orari, prezzi dei listini e offerte vanno scritti nella pagina: Google e gli assistenti AI come ChatGPT, Gemini e Perplexity leggono soprattutto il testo, come spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Cosa non fare
+
+- **Togliere le foto per fare prima.** Per chi sceglie un artigiano, un ristorante o un centro estetico, vedere i lavori conta. Alleggeriscile, non eliminarle.
+- **Comprimere fino a rovinarle.** Una foto sgranata dei tuoi lavori fa più danni di una pagina un po' più lenta.
+- **Installare più plugin di ottimizzazione insieme.** Su WordPress rischiano di lavorare due volte sulle stesse immagini o di entrare in conflitto. Uno, configurato bene, basta.
+- **Riempire il testo alternativo di parole chiave.** Google lo sconsiglia: peggiora l'esperienza di chi usa un lettore di schermo e può sembrare spam.
+
+Dopo le modifiche rifai il test su PageSpeed Insights. Ricorda però che una pagina più veloce aiuta chi ti visita, ma da sola non ti fa comparire per ricerche a cui il sito non risponde.
+
+## Se non hai tempo di farlo da solo
+
+Alleggerire una decina di foto è un lavoro da un pomeriggio. Rifarlo su tutto il sito, pagina per pagina, mentre lavori, è un'altra cosa. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme le pagine del tuo sito e ti diciamo da quali immagini partire.
