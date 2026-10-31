@@ -466,7 +466,9 @@
     {
       "titolo": "Sito di un'enoteca o di un produttore di vino: vendere e farsi trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-enoteca-produttore-vino-vendere-farsi-trovare",
+      "data": "2026-10-31"
     },
     {
       "titolo": "Core Web Vitals spiegati semplici: cosa sono e quando preoccuparsi",
