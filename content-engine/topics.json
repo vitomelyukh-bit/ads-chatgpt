@@ -478,7 +478,9 @@
     {
       "titolo": "SEO per una scuola di lingue o di musica: corsi, livelli e lezioni di prova",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-scuola-lingue-musica-corsi-livelli-prova",
+      "data": "2026-10-31"
     },
     {
       "titolo": "Il sito di una cooperativa o associazione: farsi trovare senza budget",
