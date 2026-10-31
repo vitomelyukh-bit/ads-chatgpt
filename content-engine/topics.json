@@ -454,7 +454,9 @@
     {
       "titolo": "SEO per un serramentista: farsi trovare da chi deve cambiare gli infissi",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-serramentista-chi-deve-cambiare-infissi",
+      "data": "2026-10-31"
     },
     {
       "titolo": "Il sito ha la stessa pagina con indirizzi diversi (www, senza www, http): come sistemare",
