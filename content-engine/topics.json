@@ -485,7 +485,9 @@
     {
       "titolo": "Il sito di una cooperativa o associazione: farsi trovare senza budget",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-associazione-cooperativa-farsi-trovare-senza-budget",
+      "data": "2026-11-01"
     },
     {
       "titolo": "Breadcrumb, menu e link interni: come aiutano Google a capire il sito",
