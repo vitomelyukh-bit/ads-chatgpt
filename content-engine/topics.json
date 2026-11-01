@@ -499,7 +499,9 @@
     {
       "titolo": "SEO per un centro medico o poliambulatorio: pagine per specialità e medici",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-centro-medico-poliambulatorio-specialita-medici",
+      "data": "2026-11-01"
     },
     {
       "titolo": "Wix: il sito non viene indicizzato, cosa controllare",
