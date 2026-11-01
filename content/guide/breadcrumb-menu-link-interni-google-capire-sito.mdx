@@ -1,0 +1,115 @@
+---
+title: "Breadcrumb, menu e link interni: cosa servono a Google · TiTrovano"
+description: "Come menu, breadcrumb e link tra le pagine aiutano Google a trovare e capire il sito di un'attività locale, con esempi di testo dei link da copiare."
+h1: "Breadcrumb, menu e link interni: come aiutano Google a capire il sito?"
+rispostaBreve: "Google trova le pagine soprattutto seguendo i link, e dal testo dei link capisce di cosa parla la pagina di arrivo. Un menu fatto con link veri, i breadcrumb che mostrano dove si trova ogni pagina e qualche link nel testo tra pagine collegate rendono il sito più facile da leggere per Google e per i clienti. Non servono trucchi: serve che ogni pagina importante sia raggiungibile e che il link dica dove porta."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-01"
+dateModified: "2026-11-01"
+guideCorrelate:
+  - "quante-pagine-sito-attivita-locale"
+  - "rilevata-non-indicizzata-search-console"
+  - "dati-strutturati-attivita-locale-senza-programmare"
+faq:
+  - domanda: "Quanti link interni deve avere una pagina?"
+    risposta: "Non c'è un numero giusto. Metti un link quando aiuta chi legge a fare il passo successivo: un servizio collegato, la pagina dei contatti, una guida che risponde alla domanda dopo."
+  - domanda: "Il menu a tendina con tante voci è un problema?"
+    risposta: "Per Google no, se le voci sono link veri. Per chi legge dal telefono spesso sì: un menu con poche voci chiare e pagine di gruppo che portano ai singoli servizi è più comodo."
+---
+
+## Il problema: pagine che esistono ma che nessuno raggiunge
+
+Capita spesso. Il titolare fa scrivere una bella pagina sulla «sostituzione della caldaia», la pubblica, e dopo settimane non compare su Google. Guardando il sito si scopre che quella pagina non è nel menu e nessun'altra pagina la collega. Esiste, ma è un'isola.
+
+Google scopre le pagine nuove soprattutto seguendo i link da pagine che conosce già, come spiega la [guida di Google su come funziona la Ricerca](https://developers.google.com/search/docs/fundamentals/how-search-works?hl=it). Una pagina senza link che arrivano è più difficile da trovare e, quando viene trovata, Google ha meno indizi per capire quanto conta nel sito. Lo stesso vale per il cliente: se non la vede dal menu, non la apre.
+
+## Cosa sono menu, breadcrumb e link interni
+
+- **Menu**: le voci in alto (o nell'icona con le tre righe sul telefono) che portano alle pagine principali.
+- **Breadcrumb**: la riga piccola sopra il titolo che mostra il percorso, per esempio «Home › Servizi › Riscaldamento › Sostituzione caldaia». Ogni pezzo è un link al livello superiore.
+- **Link interni**: i collegamenti dentro il testo tra una pagina e l'altra del tuo sito, per esempio dalla pagina della caldaia a quella della manutenzione.
+
+Tutti e tre fanno la stessa cosa: dicono a Google e al cliente come sono organizzate le pagine e quali sono collegate tra loro.
+
+## Primo controllo: i link sono link veri?
+
+Le [best practice di Google per i link](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=it) sono chiare: Google segue in modo affidabile solo i link fatti con l'elemento HTML `<a>` con un indirizzo nell'attributo `href`. Un pulsante che porta a un'altra pagina solo grazie a uno script, senza un vero link, rischia di non essere seguito.
+
+Non devi leggere il codice per accorgertene. Due prove semplici:
+
+- Dal computer, passa il mouse su una voce del menu: in basso nel browser dovrebbe comparire l'indirizzo della pagina. Se non compare niente, chiedi a chi ha fatto il sito come è costruito quel menu.
+- In Search Console, con il Controllo URL, puoi vedere l'HTML che Google ha letto e verificare che i link ci siano.
+
+I menu dei temi WordPress, di Wix, Squarespace e Shopify di solito usano link normali. Il dubbio nasce con menu fatti su misura, slider e pulsanti aggiunti con un page builder.
+
+## Il testo del link conta
+
+Google usa il testo cliccabile del link (si chiama «anchor text») per capire di cosa parla la pagina di arrivo. Nelle stesse best practice chiede un testo descrittivo, breve e pertinente, e sconsiglia formule generiche come «clicca qui».
+
+> Prima: «Facciamo anche la manutenzione annuale. Per saperne di più clicca qui.»
+> Dopo: «Facciamo anche la manutenzione annuale della caldaia, con il controllo dei fumi e la compilazione del libretto.» Qui il link è sulle parole «manutenzione annuale della caldaia».
+
+> Prima, nel menu: «Servizi 1», «Servizi 2», «Altro».
+> Dopo: «Riscaldamento», «Impianti idraulici», «Pronto intervento», «Contatti».
+
+Non esagerare nel verso opposto: lo stesso link ripetuto dieci volte nella pagina con «idraulico economico zona nord» non aiuta nessuno ed è il tipo di testo che le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) chiamano keyword stuffing.
+
+## Come organizzare il menu di un sito locale
+
+Il menu deve rispecchiare come pensa il cliente, non l'organigramma dell'azienda. Per un'attività locale funziona quasi sempre uno schema così:
+
+- Home
+- Servizi, con una pagina di gruppo che elenca e collega ogni servizio
+- Lavori fatti o Galleria, se mostri i lavori
+- Chi siamo
+- Contatti
+
+Esempio per un idraulico di fantasia, Termoidraulica Rossi:
+
+> Home › Riscaldamento › Sostituzione caldaia
+> Home › Riscaldamento › Manutenzione caldaia
+> Home › Impianti idraulici › Rifacimento bagno
+> Home › Pronto intervento › Perdite d'acqua
+
+La pagina di gruppo «Riscaldamento» non è solo un elenco di link: due righe per ogni servizio, con il link alla pagina dedicata. Così il cliente sceglie e Google capisce che quelle pagine appartengono allo stesso argomento. Se non sai quante pagine fare, parti dalla guida su [quante pagine deve avere il sito di un'attività locale](/guide/quante-pagine-sito-attivita-locale).
+
+## I breadcrumb: quando servono davvero
+
+Su un sito di cinque pagine i breadcrumb aggiungono poco. Diventano utili quando hai più livelli: servizi raggruppati, schede di prodotti, guide divise per argomento. Al cliente dicono dove si trova e gli permettono di risalire di un livello con un tocco.
+
+Per Google esistono i [dati strutturati di breadcrumb](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=it): un codice che descrive il percorso della pagina. Da gennaio 2025, però, Google non mostra più il percorso nei risultati da telefono ma solo il dominio, come spiegato nel [blog di Google Search Central](https://developers.google.com/search/blog/2025/01/simplifying-breadcrumbs); da computer il percorso può ancora comparire. Il vantaggio principale resta quindi la navigazione del sito.
+
+Come aggiungerli senza programmare:
+
+- **WordPress con Yoast o Rank Math**: entrambi hanno un'opzione per i breadcrumb nelle impostazioni. Su molti temi però vanno anche mostrati nella pagina: la [guida di Yoast ai breadcrumb](https://yoast.com/help/implement-wordpress-seo-breadcrumbs/) spiega che serve il supporto del tema o una piccola modifica al tema. Se usi già uno dei due plugin, leggi anche [Yoast o Rank Math per un sito locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+- **Shopify e altri costruttori di siti**: dipende dal tema. Controlla nelle impostazioni del tema o nella sua documentazione prima di installare app.
+
+I dati strutturati devono corrispondere a quello che il visitatore vede: un percorso nel codice diverso da quello mostrato non ha senso. Per gli altri dati strutturati utili a un'attività locale c'è la guida sui [dati strutturati senza programmare](/guide/dati-strutturati-attivita-locale-senza-programmare).
+
+## Link nel testo: dove metterli
+
+Il menu porta alle pagine principali, i link nel testo collegano le pagine vicine. Qualche abitudine semplice:
+
+- da ogni servizio, un link al servizio collegato (caldaia → manutenzione, rifacimento bagno → sostituzione sanitari);
+- da ogni guida del blog, un link al servizio di cui parla;
+- da ogni pagina, un modo chiaro per contattarti;
+- dalla home, un link alle pagine che contano di più, non solo all'ultima notizia.
+
+Se Search Console mostra pagine «rilevate ma non indicizzate», i link interni sono una delle prime cose da guardare: lo spieghiamo nella guida su [«Rilevata, ma attualmente non indicizzata»](/guide/rilevata-non-indicizzata-search-console).
+
+## Errori tipici
+
+- **Pagine orfane**: pagine pubblicate ma non collegate da nessuna parte, spesso landing page di vecchie campagne.
+- **Menu diverso tra telefono e computer**, con voci che sul telefono spariscono.
+- **Link rotti** dopo aver cambiato l'indirizzo di una pagina.
+- **Footer con decine di link** a pagine città tutte uguali: è lo schema delle pagine doorway, vietato dalle norme anti-spam.
+- **Link interni marcati «nofollow»**: tra le tue pagine di solito non serve: è un'indicazione pensata soprattutto per i link verso altri siti che non vuoi raccomandare.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity, quando cercano sul web, leggono le pagine in modo simile a un motore di ricerca: seguono link e leggono testo. Un sito con link chiari e pagine ben collegate è più facile da esplorare. Nessuno può garantire che facciano il tuo nome, ma una pagina che non si raggiunge è difficile che venga letta.
+
+## Se non hai tempo di farlo da solo
+
+Rivedere menu e collegamenti richiede un pomeriggio con il sito aperto e un po' di metodo. Se preferisci che lo guardiamo noi, [prenota la consulenza gratuita](/#attiva): controlliamo come sono collegate le tue pagine e ti diciamo cosa sistemare per primo.
