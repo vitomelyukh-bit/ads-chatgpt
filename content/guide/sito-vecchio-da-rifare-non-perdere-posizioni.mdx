@@ -1,0 +1,104 @@
+---
+title: "Rifare il sito senza perdere le posizioni su Google · TiTrovano"
+description: "Devi rifare un sito vecchio e lento? Cosa salvare prima, come gestire indirizzi e sito di prova, i controlli del giorno del lancio e cosa guardare dopo."
+h1: "Sito vecchio e lento da rifare: come non perdere le posizioni che hai su Google?"
+rispostaBreve: "Prima di rifarlo, segnati quali pagine e quali ricerche ti portano visite oggi, e tieni il più possibile gli stessi indirizzi e i testi che funzionano. Dove un indirizzo cambia, metti un reindirizzamento permanente verso la pagina nuova che gli corrisponde. Il giorno del lancio controlla che il sito non sia ancora bloccato come sito di prova, invia la sitemap e segui Search Console nelle settimane dopo: qualche oscillazione è normale, secondo Google."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-02"
+dateModified: "2026-11-02"
+guideCorrelate:
+  - "cambio-dominio-non-perdere-visite-google"
+  - "errore-404-search-console-pagine-non-esistono"
+  - "sito-lento-da-telefono-come-misurarlo"
+faq:
+  - domanda: "Se rifaccio il sito ma tengo lo stesso dominio, devo usare lo strumento Cambio di indirizzo?"
+    risposta: "No. Quello strumento serve quando cambi dominio. Se il dominio resta lo stesso e cambiano solo gli indirizzi delle pagine, bastano i reindirizzamenti permanenti dalle vecchie pagine alle nuove."
+  - domanda: "Posso approfittare del rifacimento per togliere pagine vecchie?"
+    risposta: "Sì, ma guardale prima in Search Console. Se una pagina porta ancora visite, trasferisci il suo contenuto in una pagina nuova e reindirizzala lì. Se non la cerca nessuno e non ha un sostituto, puoi lasciarla sparire con un normale errore 404."
+---
+
+## Il sito nuovo è più bello, ma il telefono squilla meno
+
+Il sito ha dieci anni, da telefono si legge male e ci mette troppo a caricarsi. Decidi di rifarlo: piattaforma nuova, grafica nuova, foto nuove. Il giorno del lancio sei contento. Un mese dopo ti accorgi che le richieste da Google sono calate e che per «plantare su misura» non esci più dove uscivi prima.
+
+Di solito non è colpa della grafica. È che, rifacendo il sito, sono cambiati gli indirizzi delle pagine, sono spariti testi che Google conosceva bene, oppure è rimasto attivo un blocco messo durante i lavori. Tutte cose che si possono evitare, se le guardi **prima** di spegnere il sito vecchio.
+
+## Prima di toccare qualcosa: cosa ti porta clienti oggi
+
+Il sito vecchio, anche se brutto, ha pagine che funzionano. Vanno trovate e salvate.
+
+Apri Search Console (se non l'hai ancora collegata, ti spieghiamo come in [questa guida](/guide/collegare-search-console-wordpress-wix-shopify)) e nel report **Rendimento**:
+
+- nella scheda **Pagine**, segnati le pagine che ricevono più clic da Google;
+- nella scheda **Query**, segnati le ricerche per cui compari e per cui le persone cliccano;
+- esporta i dati e conservali: dopo il lancio ti serviranno per confrontare il prima e il dopo.
+
+Poi apri quelle pagine e salva i testi, i titoli e le descrizioni che hanno. Spesso una pagina va bene su Google perché risponde a una domanda precisa con le parole giuste: se nel sito nuovo diventa tre righe sotto una bella foto, quella risposta non c'è più.
+
+## Tieni uguale quello che puoi
+
+Ogni pagina che cambia indirizzo è una pagina che Google deve ritrovare. Per questo la scelta più prudente è tenere **gli stessi indirizzi** dove la nuova piattaforma lo permette. Anche Wix, nella sua guida ai [reindirizzamenti 301](https://support.wix.com/en/article/setting-up-301-redirects), suggerisce di creare i reindirizzamenti per le pagine del vecchio sito quando non è possibile ricreare pagine con gli stessi indirizzi.
+
+Lo stesso vale per il resto:
+
+- **i testi** delle pagine che portano visite: puoi migliorarli, ma non tagliarli a metà;
+- **i titoli delle pagine** che funzionano: se li cambi, fallo con calma, dopo il lancio;
+- **le pagine di servizio**: se nel sito vecchio c'era una pagina per ogni servizio, non riunirle in un'unica pagina «Servizi».
+
+Google consiglia, nella guida su come [spostare un sito con modifiche agli URL](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it), di dividere i cambiamenti in passi più piccoli quando ha senso, invece di fare tutto insieme. Se devi anche cambiare dominio, valuta di farlo in un secondo momento: i passaggi specifici sono in [Ho cambiato dominio: come non perdere le visite](/guide/cambio-dominio-non-perdere-visite-google).
+
+## Dove gli indirizzi cambiano: reindirizzamenti uno per uno
+
+Quando passi da una piattaforma all'altra, molti indirizzi cambiano per forza. Prepara un elenco: a sinistra il vecchio indirizzo, a destra la pagina nuova che ne prende il posto. Un esempio, per uno studio di podologia che passa da un vecchio sito fatto a mano a WordPress:
+
+> /servizi.php?id=3 → /plantari-su-misura/
+> /servizi.php?id=5 → /unghia-incarnita/
+> /chi-siamo.html → /studio/
+> /news/2019-chiusura-estiva.html → nessun sostituto: resta un 404
+
+Ogni riga diventa un **reindirizzamento permanente** (in gergo «301»): chi clicca un vecchio link, o un vecchio risultato su Google, arriva alla pagina giusta. Su WordPress si impostano con un plugin di reindirizzamento, su Wix con lo strumento apposito, sugli altri siti dal pannello della piattaforma o dal server.
+
+Non mandare tutto alla home: chi cercava «unghia incarnita» deve trovare quella pagina, non la pagina principale. Se un contenuto non ha un sostituto, un 404 va bene: lo spieghiamo in [Errore 404 su Google](/guide/errore-404-search-console-pagine-non-esistono).
+
+## Il sito di prova: tienilo fuori da Google, ma ricordati di aprirlo
+
+Mentre lavori al sito nuovo, è normale averne una copia di prova. Non deve finire su Google, altrimenti hai due versioni dello stesso sito. La guida di Google sul [file robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro?hl=it) ricorda che per tenere una pagina fuori dai risultati servono un `noindex` o una protezione con password: il blocco nel robots.txt da solo non basta.
+
+Il problema è il giorno del lancio. Google, nella guida sugli spostamenti, nota che chi blocca la scansione durante lo sviluppo deve preparare in anticipo il robots.txt del sito definitivo. Succede spesso che il blocco messo sul sito di prova resti attivo anche sul sito vero: tutto sembra a posto, ma Google non può leggere niente.
+
+## Il giorno del lancio: i controlli da fare
+
+Tieni questa lista e spuntala voce per voce:
+
+- **nessun blocco rimasto**: niente `noindex` sulle pagine e niente robots.txt che blocca tutto. Su WordPress, controlla anche l'opzione che scoraggia i motori di ricerca nelle impostazioni di lettura;
+- **i reindirizzamenti funzionano**: prova a mano i vecchi indirizzi delle pagine più visitate e controlla che portino alla pagina giusta, non alla home e non a una catena di passaggi;
+- **Search Console resta verificata**: Google raccomanda di assicurarsi che la verifica continui a funzionare dopo lo spostamento. Se avevi verificato il sito con un tag nella pagina, con il tema nuovo quel tag può sparire;
+- **la sitemap nuova** è online e inviata in Search Console;
+- **titoli e descrizioni** delle pagine principali sono scritti, non lasciati vuoti o uguali per tutte;
+- **i link interni** del menu e dei testi puntano ai nuovi indirizzi;
+- **dati strutturati**: se il vecchio sito aveva le informazioni dell'attività (nome, indirizzo, orari) in forma leggibile dalle macchine, verifica che ci siano ancora;
+- **la velocità da telefono** è davvero migliorata: misurala come spiegato in [Il sito è lento dal telefono](/guide/sito-lento-da-telefono-come-misurarlo).
+
+## Dopo il lancio: cosa aspettarsi e cosa guardare
+
+Google scrive che, con ogni cambiamento importante a un sito, le posizioni possono **oscillare per un po'** mentre il sito viene riletto. Nessuno può dirti quanto durerà nel tuo caso, né promettere che le posizioni torneranno identiche.
+
+Nelle settimane dopo il lancio:
+
+- nel report **Rendimento**, confronta le settimane dopo il lancio con le stesse settimane prima, partendo dalle pagine e dalle ricerche che avevi segnato;
+- nel report **Indicizzazione delle pagine**, guarda se crescono le pagine «non trovate» o quelle escluse da un `noindex`;
+- se una pagina importante ha perso molte visite, confronta il testo nuovo con quello vecchio che avevi salvato: spesso il motivo è lì.
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: leggono il testo presente nella pagina. Se il sito nuovo mette le informazioni importanti dentro immagini o le carica solo dopo un clic, per loro quelle informazioni sono più difficili da trovare.
+
+## Cosa non fare
+
+- **Rifare tutto in un giorno**: piattaforma, dominio, testi e struttura insieme. Se le visite calano, non saprai cosa le ha fatte calare.
+- **Copiare testi da altri siti** per riempire le pagine nuove in fretta: tra più pagine uguali Google tende a mostrarne una sola, e non per forza la tua.
+- **Lasciare online il sito vecchio** a un altro indirizzo accanto a quello nuovo: due copie dello stesso contenuto confondono Google.
+- **Comprare link** per «recuperare» le posizioni: è contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+## Se non hai tempo di farlo da solo
+
+L'elenco delle pagine da salvare e i controlli del lancio richiedono qualche ora di lavoro attento, e conviene farli prima che il sito nuovo vada online. Se preferisci affidarli a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il sito vecchio e il progetto di quello nuovo e ti diciamo cosa tenere.

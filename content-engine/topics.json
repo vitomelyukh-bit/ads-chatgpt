@@ -530,7 +530,9 @@
     {
       "titolo": "Sito vecchio e lento da rifare: come non perdere le posizioni che hai",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-vecchio-da-rifare-non-perdere-posizioni",
+      "data": "2026-11-02"
     },
     {
       "titolo": "SEO per un negozio di biciclette: officina, vendita e noleggio",
