@@ -511,7 +511,9 @@
     {
       "titolo": "Sito di un catering: menù, eventi e zone servite che Google capisce",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-catering-menu-eventi-zone-servite",
+      "data": "2026-11-02"
     },
     {
       "titolo": "Sitemap: cos'è, dove si trova sul tuo sito e come inviarla a Google",
