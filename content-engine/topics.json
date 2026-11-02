@@ -523,7 +523,9 @@
     {
       "titolo": "SEO per un giardiniere o un'impresa del verde: lavori stagionali e zone",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-giardiniere-impresa-verde-lavori-stagionali",
+      "data": "2026-11-02"
     },
     {
       "titolo": "Sito vecchio e lento da rifare: come non perdere le posizioni che hai",
