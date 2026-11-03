@@ -551,7 +551,9 @@
     {
       "titolo": "Sito di un'autoscuola nautica o di noleggio barche: farsi trovare in stagione",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-scuola-nautica-noleggio-barche-stagione",
+      "data": "2026-11-03"
     },
     {
       "titolo": "Il dominio con la parola chiave (es. idraulicoroma.it) aiuta ancora?",
