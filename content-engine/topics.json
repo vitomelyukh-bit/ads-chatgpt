@@ -544,7 +544,9 @@
     {
       "titolo": "Pagine di servizio troppo corte: quanto testo serve e cosa scriverci",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "pagine-servizio-troppo-corte-quanto-testo-serve",
+      "data": "2026-11-03"
     },
     {
       "titolo": "Sito di un'autoscuola nautica o di noleggio barche: farsi trovare in stagione",
