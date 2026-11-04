@@ -565,7 +565,9 @@
     {
       "titolo": "SEO per un'onicotecnica o una estetista a domicilio",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-estetista-onicotecnica-a-domicilio",
+      "data": "2026-11-04"
     },
     {
       "titolo": "Perplexity e Gemini citano fonti: come diventare una fonte affidabile per la tua zona",
