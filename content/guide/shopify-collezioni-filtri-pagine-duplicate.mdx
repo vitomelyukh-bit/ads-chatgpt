@@ -1,0 +1,82 @@
+---
+title: "Shopify: collezioni e filtri che creano pagine duplicate · TiTrovano"
+description: "Filtri, ordinamenti e prodotti dentro le collezioni creano su Shopify tanti indirizzi per la stessa pagina. Cosa fa già Shopify, cosa controllare e cosa evitare."
+h1: "Shopify: collezioni e filtri creano pagine duplicate, come gestirle?"
+rispostaBreve: "Su Shopify lo stesso prodotto si apre da più indirizzi, e filtri e ordinamenti delle collezioni ne aggiungono altri. Di solito non serve intervenire: Shopify mette da solo il tag canonico e il suo robots.txt blocca già le collezioni ordinate e alcune di quelle filtrate. Il lavoro vero è controllare che il tema non abbia tolto queste protezioni e trasformare i filtri che i clienti cercano davvero in collezioni con un testo loro."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-04"
+dateModified: "2026-11-04"
+guideCorrelate:
+  - "shopify-prodotti-trovati-su-google-piccolo-negozio"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "testi-copiati-fornitore-altri-siti-google"
+faq:
+  - domanda: "Google mi penalizza per le pagine duplicate dei filtri?"
+    risposta: "No. Tra più indirizzi con lo stesso contenuto Google ne sceglie uno da mostrare e mette da parte gli altri. Il rischio è che scelga quello sbagliato o che perda tempo a leggere indirizzi inutili, non una penalizzazione."
+  - domanda: "Devo installare un'app per gestire i duplicati?"
+    risposta: "Per un negozio piccolo di solito no: tag canonici e robots.txt li gestisce già Shopify. Un'app che modifica i canonici o il robots.txt, se configurata male, può fare più danni del problema che dovrebbe risolvere."
+---
+
+## In Search Console compaiono indirizzi che non hai mai creato
+
+Apri Search Console e nel report sull'indicizzazione trovi indirizzi strani: `/collections/borse?sort_by=price-ascending`, `/collections/borse/pelle+nero`, `/collections/borse/products/borsa-tracolla-cuoio`. Accanto, scritte come «Duplicata, Google ha scelto una pagina canonica diversa dall'utente» o «Bloccata da robots.txt».
+
+Tu hai creato una collezione e qualche prodotto. Tutti quegli indirizzi li ha generati il negozio da solo, ogni volta che un cliente filtra, ordina o apre un prodotto da una collezione. La domanda giusta non è come farli sparire, ma se stanno togliendo visibilità alle pagine che contano.
+
+## Da dove vengono tutti questi indirizzi
+
+Su Shopify le copie nascono in tre modi.
+
+- **Il prodotto aperto da una collezione.** Lo stesso prodotto si apre da `/products/borsa-tracolla-cuoio` e da `/collections/borse/products/borsa-tracolla-cuoio`. La documentazione per sviluppatori di Shopify sul filtro [`within`](https://shopify.dev/docs/api/liquid/filters/within), quello che i temi usano per creare il secondo tipo di link, avverte che sono due indirizzi con lo stesso contenuto e che bisogna tenerne conto per la SEO.
+- **L'ordinamento.** Quando un cliente ordina per prezzo o per novità, all'indirizzo si aggiunge `?sort_by=`. Stessi prodotti, ordine diverso.
+- **I filtri.** I filtri per tag creano indirizzi come `/collections/borse/pelle`, e combinandoli compare il `+`. I filtri dell'app Search & Discovery aggiungono parametri come `?filter.v.availability=1`, come spiega la [guida di Shopify sui filtri](https://shopify.dev/docs/storefronts/themes/navigation-search/filtering/storefront-filtering).
+
+Con venti prodotti e cinque filtri, le combinazioni possibili diventano molte più delle pagine vere del negozio.
+
+## È un problema? Meno di quanto sembra
+
+Avere pagine con lo stesso contenuto non porta a una penalizzazione: Google raggruppa gli indirizzi uguali, ne sceglie uno da mostrare e mette da parte gli altri, come spiega nella guida su [cos'è la canonicalizzazione](https://developers.google.com/search/docs/crawling-indexing/canonicalization?hl=it). Ne abbiamo parlato anche a proposito dei [testi copiati dal fornitore](/guide/testi-copiati-fornitore-altri-siti-google).
+
+I rischi veri sono due. Google può scegliere come principale un indirizzo che non vuoi, per esempio la versione filtrata al posto della collezione. E può passare tempo a leggere tante combinazioni inutili: nella sua guida sulla [gestione della navigazione a facet](https://developers.google.com/crawling/docs/faceted-navigation), cioè i filtri dei cataloghi, Google scrive che spesso non c'è un buon motivo per lasciargli scansionare gli indirizzi filtrati.
+
+## Cosa fa già Shopify da solo
+
+Prima di toccare qualcosa, sappi cosa è già impostato.
+
+- **Il tag canonico.** È un'indicazione nel codice della pagina che dice a Google quale indirizzo è quello principale. La [panoramica SEO di Shopify](https://help.shopify.com/en/manual/promoting-marketing/seo/seo-overview) spiega che viene aggiunto in automatico per evitare contenuti duplicati nei risultati.
+- **Il robots.txt.** È il file che dice ai motori di ricerca quali indirizzi non leggere. Secondo la guida di Shopify su [come modificare il robots.txt](https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt), quello predefinito blocca già le collezioni ordinate e quelle filtrate combinando più tag (gli indirizzi con il `+`), perché ripetono la collezione principale. Shopify aggiunge che non serve modificarlo senza un motivo preciso.
+
+Per questo «Bloccata da robots.txt» accanto a un indirizzo con `sort_by` o con il `+` non è un errore: è la protezione che funziona.
+
+## I controlli da fare, passo per passo
+
+1. **Apri `tuodominio.it/robots.txt`.** Cerca le righe che contengono `collections` insieme a `sort_by` o al `+`. Se mancano, il tema potrebbe avere un vecchio modello `robots.txt.liquid`: la stessa guida di Shopify spiega che eliminandolo torna il file predefinito aggiornato. Se il modello l'ha creato uno sviluppatore, chiedigli prima perché.
+2. **Guarda il report [Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it).** Apri le voci sulle pagine duplicate e scorri gli esempi. Se dentro ci sono solo filtri, ordinamenti e prodotti aperti da collezione, va bene così. Se c'è una collezione principale o una scheda prodotto, quella va controllata.
+3. **Usa il [Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it)** sulla scheda di un prodotto importante. Confronta la pagina canonica dichiarata con quella selezionata da Google: dovrebbero essere entrambe l'indirizzo `/products/…`.
+4. **Guarda dove puntano i link della collezione.** Apri una collezione e passa sopra un prodotto: se il link è `/collections/…/products/…`, il tema usa il filtro `within`. La guida di Google su [come indicare la pagina canonica](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it) consiglia di collegare, dentro il sito, l'indirizzo principale. Cambiare questi link è una modifica al tema: chiedila a chi lo segue.
+
+## Quando un filtro merita una pagina vera
+
+C'è un caso in cui il filtro nasconde un'occasione. Se i clienti cercano proprio quella combinazione, per esempio «borse in pelle nere», l'indirizzo filtrato non è la pagina giusta per farsi trovare: è bloccato, non ha un titolo suo e non ha testo.
+
+Meglio creare una collezione dedicata, con prodotti scelti da te, un titolo, una descrizione per Google e qualche riga utile sopra i prodotti. Un esempio per una pelletteria di fantasia:
+
+> Collezione: «Borse in pelle nere»
+> Titolo per Google: «Borse in pelle nera fatte a mano: tracolla, shopper, a mano · Pelletteria Corvo»
+> Testo sopra i prodotti: «Tutte le nostre borse in vera pelle nera, tagliate e cucite nel laboratorio. Trovi modelli a tracolla per tutti i giorni, shopper capienti per il lavoro e borse a mano per le occasioni. Ogni scheda indica misure interne, peso e cura della pelle.»
+
+Per capire quali combinazioni valgono una collezione, guarda le ricerche per cui compari già: lo spieghiamo in [come usare Search Console per scrivere pagine nuove](/guide/search-console-ricerche-per-pagine-nuove). Poche collezioni che corrispondono a ricerche vere valgono più di decine di combinazioni.
+
+## Cosa non fare
+
+- **Non bloccare `/products/` o `/collections/` nel robots.txt** per «pulire» Search Console: togli a Google proprio le pagine che vuoi mostrare.
+- **Non mescolare blocco e noindex sugli stessi indirizzi.** Il noindex è l'indicazione che chiede a Google di non mostrare una pagina. Ma se l'indirizzo è bloccato nel robots.txt, Google non lo legge: lo dice la guida al report Indicizzazione delle pagine.
+- **Non installare più app SEO insieme.** Se due app, o un'app e il tema, scrivono ciascuna un tag canonico, Google riceve indicazioni in conflitto e può ignorarle.
+- **Non creare collezioni quasi uguali** che cambiano solo per una parola, con lo stesso testo copiato: sono di nuovo pagine duplicate, solo create a mano.
+
+Per tutto il resto delle schede prodotto, dai titoli alle foto, trovi i passaggi in [come far trovare su Google i prodotti di un piccolo negozio Shopify](/guide/shopify-prodotti-trovati-su-google-piccolo-negozio).
+
+## Se non hai tempo di farlo da solo
+
+I controlli richiedono poco, ma leggere i report di Search Console e capire quali filtri meritano una collezione è un lavoro che si fa con calma. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo negozio come lo vede Google e ti diciamo da dove partire.
