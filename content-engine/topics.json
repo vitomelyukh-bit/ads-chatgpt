@@ -558,7 +558,9 @@
     {
       "titolo": "Il dominio con la parola chiave (es. idraulicoroma.it) aiuta ancora?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "dominio-parola-chiave-aiuta-seo",
+      "data": "2026-11-04"
     },
     {
       "titolo": "SEO per un'onicotecnica o una estetista a domicilio",
