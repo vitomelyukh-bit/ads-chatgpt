@@ -591,7 +591,9 @@
     {
       "titolo": "SEO per un fabbro: urgenze notturne e pronto intervento",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-fabbro-urgenze-notturne-pronto-intervento",
+      "data": "2026-11-05"
     },
     {
       "titolo": "Quanto tempo ci vuole perché Google mostri le pagine nuove del sito?",
