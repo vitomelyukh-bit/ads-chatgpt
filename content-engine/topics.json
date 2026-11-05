@@ -584,7 +584,9 @@
     {
       "titolo": "Sito di un'agenzia di viaggi: pagine per destinazioni che si fanno trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-agenzia-viaggi-pagine-destinazioni",
+      "data": "2026-11-05"
     },
     {
       "titolo": "SEO per un fabbro: urgenze notturne e pronto intervento",
@@ -1349,6 +1351,156 @@
     },
     {
       "titolo": "Recensioni negative: cosa può succedere quando un cliente chiede all'AI",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix: passare dall'indirizzo wixsite gratuito a un dominio tuo senza perdere Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Search Console: «Esclusa in base al tag noindex», quando è un problema e come toglierlo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un'agenzia di onoranze funebri: pagine utili e rispettose per le famiglie",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: varianti di prodotto (taglie e colori), una pagina o tante per Google?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Turisti stranieri che chiedono a ChatGPT: cosa deve avere il sito in inglese per farsi leggere",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "«Soft 404» in Search Console: cosa significa per il sito di un'attività",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un dog sitter o di una pensione per animali: quali pagine creare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress: dopo il cambio di tema titoli e intestazioni sono sbagliati, come controllarli",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Titoli H1, H2 e H3 in una pagina di servizio: come usarli senza esagerare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Schede su portali e directory di settore: servono per Google e per gli assistenti AI?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per un'impresa di disinfestazione: urgenze, aziende e lavori di stagione",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WooCommerce: categorie e tag dei prodotti, quali far trovare su Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "«Duplicata, Google ha scelto una pagina canonica diversa dall'utente»: cosa fare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un wedding planner: pagine per servizi e stili senza copiare le location",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Nome dell'attività scritto in modi diversi: perché confonde Google e gli assistenti AI",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix: pagine dinamiche e collezioni del CMS, come evitare pagine vuote su Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito mostra cose diverse da telefono e da computer: cosa vede Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un asilo nido o di una scuola dell'infanzia privata: cosa cercano i genitori",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress: indirizzi delle pagine con date o numeri, conviene cambiarli?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Video sul sito: cosa capiscono Google e gli assistenti AI di un video senza testo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un'agenzia di assicurazioni: pagine per polizze e clienti della zona",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: prodotti esauriti o tolti dal catalogo, cosa fare con la pagina",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Dati strutturati con errori in Search Console: quali sistemare e quali ignorare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "SEO per una scuola di sci o un maestro di sci: farsi trovare prima della stagione",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Prezzi indicativi sul sito: aiutano clienti, Google e assistenti AI a capire cosa offri?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito hackerato e pagine strane su Google: come accorgersene e cosa fare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un laboratorio di analisi: pagine per esami, preparazione e orari dei prelievi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress: Site Kit di Google, cosa fa e cosa non fa per la SEO",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Indirizzi con parametri (?utm, ?ref): Google li vede come pagine doppie?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Chatbot sul sito: aiuta Google o gli assistenti AI a capire la tua attività?",
+      "tema": "seo",
       "stato": "da-fare"
     }
   ]
