@@ -1,0 +1,107 @@
+---
+title: "«Esclusa in base al tag noindex»: è un problema? · TiTrovano"
+description: "Search Console segna pagine «Escluse in base al tag noindex»? Come capire quali sono escluse apposta, da dove arriva il noindex e come toglierlo dove serve."
+h1: "Search Console dice «Esclusa in base al tag noindex»: quando è un problema e come toglierlo?"
+rispostaBreve: "Vuol dire che Google ha visitato la pagina, ha trovato un'istruzione che chiede di non mostrarla nei risultati e l'ha rispettata. Per pagine come tag, area riservata o «grazie per averci scritto» va bene così. È un problema solo se nell'elenco ci sono pagine che i clienti devono trovare: lì va tolto il noindex dal plugin SEO o dalle impostazioni della pagina, e poi chiesto a Google di ricontrollare."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-06"
+dateModified: "2026-11-06"
+guideCorrelate:
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+faq:
+  - domanda: "Ho tolto il noindex: quanto ci vuole perché la pagina torni su Google?"
+    risposta: "Non c'è un tempo fisso. Google deve visitare di nuovo la pagina e vedere che l'istruzione non c'è più. Con lo strumento Controllo URL puoi chiedere una nuova visita per le pagine più importanti, ma la richiesta non garantisce che la pagina compaia."
+  - domanda: "Devo togliere il noindex da tutte le pagine dell'elenco per avere un report pulito?"
+    risposta: "No. Un sito in salute ha quasi sempre qualche pagina esclusa apposta. Togliere il noindex da tag, archivi o pagine di ringraziamento aggiunge a Google pagine che non servono a nessun cliente."
+---
+
+## Una riga nel report che sembra una condanna
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e, tra i motivi per cui alcune pagine non sono indicizzate, trovi «Esclusa in base al tag "noindex"». A volte con poche pagine, a volte con decine. Il dubbio è sempre lo stesso: Google mi sta tagliando fuori?
+
+Il **noindex** è un'istruzione scritta nel codice della pagina che dice ai motori di ricerca «non mostrare questa pagina nei risultati». Non è una decisione di Google contro di te: è il tuo sito che lo chiede, e Google obbedisce. La [guida di Google sul noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing?hl=it) spiega che, quando trova questa istruzione, toglie la pagina dai risultati anche se altri siti la collegano.
+
+Quindi la domanda giusta non è «come faccio sparire questa voce», ma «le pagine in questo elenco le volevo davvero fuori da Google?».
+
+## Quando va bene così
+
+Molti siti escludono di proposito pagine che non servono a chi cerca. Se nell'elenco trovi solo queste, non devi fare niente:
+
+- pagine dei tag, degli autori o degli archivi per data, tipiche di WordPress;
+- la pagina «grazie, ti ricontatteremo» che compare dopo l'invio di un modulo;
+- carrello, pagamento, area clienti, pagina di accesso;
+- risultati della ricerca interna del sito;
+- pagine di prova, bozze o versioni vecchie lasciate online.
+
+Per le pagine inutili di WordPress il noindex è proprio la soluzione consigliata, come spieghiamo in [come togliere da Google tag, autori e allegati](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati).
+
+## Quando invece è un problema
+
+Clicca sulla riga del report e scorri gli esempi. Cerca le pagine che un cliente dovrebbe trovare:
+
+- la home;
+- le pagine dei servizi, come «Sostituzione caldaia» o «Sbiancamento dentale»;
+- la pagina contatti o quella della sede;
+- gli articoli del blog che rispondono alle domande dei clienti;
+- le schede dei prodotti, se vendi online.
+
+Anche una sola di queste pagine con il noindex è una pagina che non uscirà mai su Google, per quanto sia scritta bene.
+
+## Da dove arriva il noindex
+
+Search Console ti dice che il noindex c'è, ma non chi l'ha messo. Le cause più frequenti nei siti delle attività locali sono queste.
+
+### Un'impostazione per tutto il sito
+
+Su WordPress c'è un'opzione nelle impostazioni di lettura che chiede ai motori di ricerca di non indicizzare il sito. La [documentazione di WordPress](https://wordpress.org/documentation/article/settings-reading-screen/) spiega che, se è attiva, il sito aggiunge un'istruzione in ogni pagina. Chi costruisce il sito la accende durante i lavori e a volte si dimentica di spegnerla. Wix e Squarespace hanno impostazioni simili, generali e per singola pagina.
+
+### Il plugin SEO, pagina per pagina o per tipo di contenuto
+
+Yoast e Rank Math permettono di escludere dai risultati una singola pagina oppure un intero tipo di contenuto, per esempio tutte le pagine o tutti gli articoli. Basta una spunta sbagliata nelle impostazioni generali per escludere tutti i servizi in un colpo. Le opzioni di Rank Math sono descritte nella sua [guida per escludere pagine dai risultati](https://rankmath.com/kb/how-to-noindex-urls/).
+
+### Una pagina copiata da un modello
+
+Hai duplicato la pagina «Privacy», che era esclusa, per creare «Riparazione tapparelle». La copia si porta dietro anche il noindex.
+
+### Un'istruzione dal server
+
+Il noindex può arrivare anche come intestazione HTTP, cioè un'informazione che il server manda insieme alla pagina senza che compaia nel testo. Google lo prevede soprattutto per file come i PDF. Se non trovi nessuna impostazione ma il noindex c'è, è il caso di chiedere a chi gestisce l'hosting o il sito.
+
+## Come toglierlo, passo per passo
+
+1. **Fai l'elenco.** Dal report copia gli indirizzi delle pagine che devono comparire su Google. Lascia stare le altre.
+2. **Controlla una pagina alla volta** con lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it), nella barra in alto di Search Console. Ti dice se Google ha trovato il noindex nell'ultima visita.
+3. **Trova la causa**: prima l'impostazione generale del sito, poi le impostazioni del plugin SEO per quel tipo di contenuto, infine quelle della singola pagina.
+4. **Togli l'esclusione e salva.** Se usi una cache o un plugin che velocizza il sito, svuotala, altrimenti Google può ricevere ancora la versione vecchia.
+5. **Fai il test dal vivo** nello strumento Controllo URL: deve dire che la pagina può essere indicizzata.
+6. **Chiedi l'indicizzazione** solo per le pagine più importanti, una volta. Per molte pagine insieme, assicurati che siano nella sitemap.
+7. **Clicca «Convalida correzione»** nella riga del report, così Google ricontrolla gli indirizzi segnalati. Come leggere il report e le sue voci lo spiega la [guida di Search Console sull'Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it).
+
+Sui tempi, Google è onesto: la pagina cambia stato solo dopo una nuova visita, e per pagine poco importanti la visita può arrivare anche dopo mesi. Per questo conviene chiedere la nuova visita per le pagine chiave invece di aspettare.
+
+## Un esempio da copiare
+
+> Sito di un'impresa di pulizie, rifatto da poco. Nel report «Esclusa in base al tag noindex» ci sono 14 indirizzi.
+> Da lasciare così: /tag/uffici, /tag/condomini, /author/admin, /grazie.
+> Da sistemare: /pulizie-condomini, /pulizie-uffici, /sanificazione, /contatti.
+> Causa trovata: nel plugin SEO le «Pagine» erano impostate come escluse dai risultati, mentre gli articoli no. Una spunta, tolta, sistema tutte e quattro le pagine dei servizi.
+
+## Cosa non fare
+
+- **Non bloccare le pagine con il file robots.txt** pensando di ottenere lo stesso effetto. Google scrive che, se una pagina è bloccata lì, non la visita e quindi non vede il noindex: la pagina può restare nei risultati.
+- **Non scrivere «noindex» dentro il robots.txt**: Google non supporta questa istruzione in quel file.
+- **Non togliere il noindex a tutto** per svuotare la riga del report: aggiungi a Google pagine vuote o ripetitive che non aiutano nessuno.
+- **Non cliccare «Convalida correzione» prima di aver corretto**: se Google trova ancora il noindex, la convalida non va a buon fine.
+
+## E gli assistenti AI?
+
+Una pagina esclusa dai motori di ricerca è più difficile da trovare anche per gli assistenti come ChatGPT, Gemini e Perplexity quando cercano sul web prima di rispondere. Togliere un noindex sbagliato rimuove un ostacolo, ma nessuno può promettere che un'AI faccia il tuo nome. Cosa serve perché leggano bene il sito lo trovi in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+Se nel report ci sono anche pagine con reindirizzamento o con tag canonico, quasi sempre sono voci normali: le spieghiamo in [«Pagina con reindirizzamento» e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console).
+
+## Se non hai tempo di farlo da solo
+
+Capire quali esclusioni sono volute e quali ti costano clienti vuol dire controllare gli indirizzi uno per uno, insieme alle impostazioni del sito e del plugin. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report e ti diciamo cosa va sistemato.

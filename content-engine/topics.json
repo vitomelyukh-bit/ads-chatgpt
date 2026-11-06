@@ -1369,7 +1369,9 @@
     {
       "titolo": "Search Console: «Esclusa in base al tag noindex», quando è un problema e come toglierlo",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "esclusa-tag-noindex-search-console",
+      "data": "2026-11-06"
     },
     {
       "titolo": "SEO per un'agenzia di onoranze funebri: pagine utili e rispettose per le famiglie",
