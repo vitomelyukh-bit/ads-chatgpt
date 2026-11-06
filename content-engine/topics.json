@@ -605,7 +605,9 @@
     {
       "titolo": "Sito di un panificio o pasticceria: ordini, torte su misura e farsi trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-panificio-pasticceria-ordini-torte-su-misura",
+      "data": "2026-11-06"
     },
     {
       "titolo": "Come rispondere a una recensione negativa su Google (con esempi pronti)",
