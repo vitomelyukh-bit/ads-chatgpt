@@ -1362,7 +1362,9 @@
     {
       "titolo": "Wix: passare dall'indirizzo wixsite gratuito a un dominio tuo senza perdere Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wix-indirizzo-wixsite-dominio-tuo-google",
+      "data": "2026-11-06"
     },
     {
       "titolo": "Search Console: «Esclusa in base al tag noindex», quando è un problema e come toglierlo",

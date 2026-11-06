@@ -1,0 +1,93 @@
+---
+title: "Wix, da wixsite a un dominio tuo senza perdere Google · TiTrovano"
+description: "Hai un sito Wix su un indirizzo wixsite e vuoi un dominio tuo: cosa fa Wix da solo, cosa devi controllare tu e cosa non si può fare con l'indirizzo gratuito."
+h1: "Wix: come passare dall'indirizzo wixsite gratuito a un dominio tuo senza perdere Google?"
+rispostaBreve: "Collega il dominio al sito con un piano Premium: Wix manda in automatico chi apre il vecchio indirizzo wixsite al dominio nuovo. Dall'indirizzo gratuito non puoi creare reindirizzamenti tuoi e lo strumento Cambio di indirizzo di Google non si usa, quindi il lavoro è un altro: collegare Search Console al dominio nuovo, inviare la sitemap e aggiornare i link che controlli tu. Per qualche settimana Google può mostrare ancora il vecchio indirizzo."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-06"
+dateModified: "2026-11-06"
+guideCorrelate:
+  - "wix-va-bene-per-la-seo"
+  - "cambio-dominio-non-perdere-visite-google"
+  - "google-sites-jimdo-seo-sito-gratuito"
+faq:
+  - domanda: "Posso tenere il sito gratuito e mettere solo un inoltro dal mio dominio?"
+    risposta: "Molti provider lo permettono dal pannello del dominio, ma per Google il sito resta sull'indirizzo wixsite e il dominio diventa solo una porta d'ingresso. Se vuoi che il dominio sia quello che compare nei risultati, va collegato al sito con un piano Premium."
+  - domanda: "Il vecchio indirizzo wixsite smette di funzionare?"
+    risposta: "No: dopo il collegamento Wix lo manda al dominio nuovo. Se però il piano Premium scade, il dominio viene scollegato e il sito torna sull'indirizzo gratuito."
+---
+
+## Il sito funziona, ma l'indirizzo non è tuo
+
+Hai fatto il sito con Wix, gratis, e l'indirizzo è qualcosa come `ariapilates.wixsite.com/studio`. Sul biglietto da visita sembra poco professionale, e quando un cliente lo detta al telefono sbaglia sempre. Hai comprato `studioaria.it` e vuoi passare a quello.
+
+La paura è legittima: il sito in qualche ricerca esce già, magari per il nome dello studio. Non vuoi ricominciare da zero. La buona notizia è che su Wix il passaggio è più semplice di un cambio di dominio classico, perché una parte del lavoro la fa la piattaforma. La parte che resta a te è poca, ma va fatta.
+
+## Cosa fa Wix da solo
+
+Per collegare un dominio tuo serve un piano Premium: senza, il sito resta sull'indirizzo gratuito. Wix lo spiega nella guida sull'[upgrade del sito](https://support.wix.com/en/article/upgrading-your-site-to-premium-3066683).
+
+Una volta collegato il dominio, secondo l'aiuto di Wix su [l'indirizzo gratuito che compare ancora nei risultati](https://support.wix.com/en/article/your-free-wix-url-appearing-in-search-engine-results-after-upgrading):
+
+- chi apre il vecchio indirizzo wixsite viene mandato **in automatico** al dominio collegato;
+- Google può continuare a mostrare l'indirizzo gratuito **finché non rilegge il sito**;
+- per accelerare, Wix suggerisce di inviare la sitemap ai motori di ricerca.
+
+Se colleghi più domini allo stesso sito, per esempio il `.it` e il `.com`, nei risultati compare solo il **dominio principale**, come spiega la guida su [più domini e SEO](https://support.wix.com/en/article/multiple-domains-on-your-site-and-seo). Scegli quale deve essere prima di iniziare e non cambiarlo dopo.
+
+## Cosa non si può fare con l'indirizzo gratuito
+
+Qui il caso Wix è diverso dalla nostra guida sul [cambio di dominio](/guide/cambio-dominio-non-perdere-visite-google), dove ogni vecchia pagina va reindirizzata a mano.
+
+- **Niente reindirizzamenti tuoi dal wixsite.** Lo strumento per i reindirizzamenti 301 di Wix funziona solo con un dominio collegato: non puoi creare regole che partono dall'indirizzo gratuito, come dice la guida sui [reindirizzamenti di una pagina](https://support.wix.com/en/article/setting-up-a-301-redirect-for-a-page-on-your-site). Ti affidi al reindirizzamento automatico di Wix.
+- **Niente strumento Cambio di indirizzo.** Lo [strumento di Search Console](https://support.google.com/webmasters/answer/9370220?hl=it) funziona per domini interi, non per indirizzi a livello di cartella. Il tuo sito gratuito è proprio una cartella dentro un dominio di Wix, quindi non è il caso d'uso previsto.
+
+Per questo conviene **non cambiare altro** nello stesso momento. Se tieni uguale la parte finale degli indirizzi (`/corsi`, `/orari`, `/contatti`), per Google il passaggio è più leggibile. Grafica nuova, testi nuovi e pagine rinominate puoi farli qualche settimana dopo, uno alla volta.
+
+## Passo per passo
+
+1. **Prima del collegamento, fai l'elenco delle pagine.** Apri il sito com'è oggi e segnati gli indirizzi di tutte le pagine. Ti servirà per i controlli dopo.
+2. **Collega il dominio.** Dalla dashboard di Wix scegli il collegamento del dominio e segui la procedura guidata. Ci sono due strade: cambiare i name server del dominio con quelli di Wix, oppure aggiungere i record DNS che Wix ti indica presso il provider dove hai comprato il dominio. La guida di Wix sul [collegamento con i name server](https://support.wix.com/en/article/connecting-a-domain-to-the-wix-name-servers) avverte che le modifiche possono richiedere fino a 48 ore. Se hai email su quel dominio, chiedi al provider prima di toccare i name server, per non perderle.
+3. **Collega Search Console al dominio nuovo.** Wix lo permette proprio perché ora hai un piano Premium e un dominio collegato. Se non l'hai mai fatto, i passaggi sono in [come collegare Search Console a Wix](/guide/collegare-search-console-wordpress-wix-shopify).
+4. **Invia la sitemap.** Di solito sta su `tuodominio.it/sitemap.xml`. Se la colleghi dalla checklist SEO di Wix, Wix la invia per te.
+5. **Controlla le pagine principali.** Con lo strumento Controllo URL di Search Console guarda la home e le pagine dei servizi: devono risultare sul dominio nuovo, senza blocchi. Per quelle che contano di più puoi chiedere l'indicizzazione.
+6. **Prova a mano i vecchi indirizzi.** Apri dall'elenco qualche pagina interna del vecchio wixsite, da telefono e da computer, e guarda dove arrivi.
+
+Un esempio dell'elenco, per lo studio di pilates di prima:
+
+> ariapilates.wixsite.com/studio → studioaria.it
+> ariapilates.wixsite.com/studio/corsi → studioaria.it/corsi
+> ariapilates.wixsite.com/studio/lezione-di-prova → studioaria.it/lezione-di-prova
+> ariapilates.wixsite.com/studio/contatti → studioaria.it/contatti
+
+Se una pagina interna ti porta in un posto sbagliato, non puoi correggerlo con un reindirizzamento dal wixsite: scrivi all'assistenza di Wix e intanto aggiorna tutti i link che puntano a quella pagina.
+
+## Fuori dal sito: i link che controlli tu
+
+Il reindirizzamento automatico aiuta chi clicca un vecchio link, ma è meglio che i link portino direttamente al dominio nuovo. Aggiorna l'indirizzo del sito:
+
+- nel tuo profilo dell'attività su Google;
+- su Facebook, Instagram e gli altri profili;
+- nei portali di settore e nelle associazioni dove compari;
+- nella firma delle email, su WhatsApp Business, nei volantini alla prossima stampa.
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: leggono il web, e trovare lo stesso nome con lo stesso indirizzo dappertutto rende più chiaro chi sei. Nessuno però può promettere cosa diranno.
+
+## Cosa aspettarsi nelle settimane dopo
+
+Per un po' su Google potresti vedere entrambi gli indirizzi, o il vecchio al posto del nuovo: Wix stesso dice che succede finché Google non rilegge il sito. Nel report **Rendimento** di Search Console guarda le visite arrivare sul dominio nuovo. Google, nella guida sugli [spostamenti di un sito](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it), scrive che le posizioni possono oscillare mentre il sito viene riletto. Nessuno può dirti quanto durerà, né garantire che tornino uguali.
+
+Se dopo un mese il dominio nuovo non esce nemmeno cercando il nome dell'attività, parti dai controlli di [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+## Cosa non fare
+
+- **Lasciar scadere il piano Premium.** Secondo l'aiuto di Wix, a piano scaduto il dominio viene scollegato e il sito torna sull'indirizzo gratuito. Per Google è un altro cambio di indirizzo, nella direzione sbagliata. Tieni attivo il rinnovo e controlla la data di scadenza.
+- **Rifare il sito in una copia nuova** e collegare lì il dominio, lasciando online quella vecchia: il reindirizzamento automatico riguarda il sito a cui colleghi il dominio, e la vecchia copia resta pubblicata sul suo indirizzo wixsite finché non la togli. Se devi rifarlo, fallo nello stesso sito o pianifica il passaggio pagina per pagina.
+- **Comprare link** al dominio nuovo per «recuperare» in fretta: è contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+Un dominio tuo è un buon passo, ma da solo non fa salire il sito: secondo la [guida introduttiva alla SEO di Google](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it) le parole nel dominio contano pochissimo, lo spieghiamo in [il dominio con la parola chiave aiuta ancora?](/guide/dominio-parola-chiave-aiuta-seo). Contano le pagine. Per capire cosa scrivere, leggi [cosa si può fare davvero su Wix](/guide/wix-va-bene-per-la-seo).
+
+## Se non hai tempo di farlo da solo
+
+Collegare il dominio è questione di un pomeriggio, i controlli nelle settimane dopo richiedono un po' di attenzione. Se preferisci affidarli a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito Wix come lo vede Google e ti diciamo cosa sistemare.
