@@ -1,0 +1,93 @@
+---
+title: "Shopify: varianti di taglie e colori, una pagina o tante? · TiTrovano"
+description: "Su Shopify taglie e colori conviene tenerli come varianti di un solo prodotto o creare prodotti separati? Cosa dice Google, i controlli da fare e un esempio."
+h1: "Shopify: varianti di prodotto (taglie e colori), una pagina o tante per Google?"
+rispostaBreve: "Se cambiano solo taglia o colore e la descrizione resta la stessa, tieni un solo prodotto con le varianti: Google accetta che le varianti abbiano indirizzi con un parametro e che la pagina principale sia quella senza parametro. Crea prodotti separati solo quando una variante è in pratica un altro prodotto, con un testo suo, e i clienti la cercano proprio con quel nome. Dividere per avere più pagine, con lo stesso testo copiato, crea solo doppioni."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-07"
+dateModified: "2026-11-07"
+guideCorrelate:
+  - "shopify-collezioni-filtri-pagine-duplicate"
+  - "shopify-prodotti-trovati-su-google-piccolo-negozio"
+  - "testi-copiati-fornitore-altri-siti-google"
+faq:
+  - domanda: "In Search Console vedo indirizzi con ?variant=: devo bloccarli?"
+    risposta: "No. Se accanto c'è «Pagina alternativa con tag canonico appropriato», Google ha capito che sono versioni della stessa scheda e mostra quella principale. Bloccarli nel robots.txt gli impedirebbe di leggere il tag canonico."
+  - domanda: "Posso dare a ogni colore un indirizzo come /maglia-rossa senza creare un prodotto nuovo?"
+    risposta: "Con le varianti normali di Shopify no: la variante si identifica con il parametro nell'indirizzo. Per avere un indirizzo e un testo diversi per ogni colore servono prodotti separati, collegati tra loro, oppure l'app Combined Listings sui piani che la prevedono."
+---
+
+## Il dubbio: «se faccio un prodotto per ogni colore, compaio di più?»
+
+Vendi una maglia in cinque colori e quattro taglie. Su Shopify l'hai caricata come un solo prodotto con le varianti. Poi qualcuno ti dice che i negozi grandi hanno una pagina per ogni colore, e ti chiedi se dovresti fare lo stesso per farti trovare da chi cerca «maglia in lino verde salvia».
+
+La risposta dipende da una cosa sola: quella variante ha davvero qualcosa di diverso da dire? Se la risposta è no, dividere il prodotto ti dà più pagine quasi identiche, non più visibilità.
+
+## Come funzionano le varianti su Shopify
+
+Su Shopify un prodotto può avere fino a tre opzioni, per esempio taglia, colore e materiale, e ogni combinazione è una variante con prezzo, codice, disponibilità e foto propri. A novembre 2026 l'aiuto di Shopify sulle [varianti di prodotto](https://help.shopify.com/en/manual/products/variants/add-variants) indica un limite di 2.048 varianti per prodotto.
+
+Tutte le varianti stanno nella stessa scheda, allo stesso indirizzo `/products/maglia-lino`. In molti temi, quando il cliente sceglie un colore, all'indirizzo si aggiunge un parametro come `?variant=` seguito da un numero. Titolo per Google, meta description e testo sono quelli del prodotto: non puoi scriverne uno diverso per ogni variante.
+
+## Cosa dice Google
+
+Google ha due guide utili.
+
+- La guida sulla [struttura degli URL per l'e-commerce](https://developers.google.com/search/docs/specialty/ecommerce/designing-a-url-structure-for-ecommerce-sites?hl=it) chiede che ogni variante si possa raggiungere con un indirizzo suo, anche con un parametro come `?color=green`. E aggiunge che, se le varianti si identificano con parametri facoltativi, la pagina canonica, cioè quella principale, deve essere l'indirizzo senza parametro. È proprio lo schema di Shopify.
+- La guida sui [dati strutturati delle varianti](https://developers.google.com/search/docs/appearance/structured-data/product-variants?hl=it) spiega come descrivere nel codice un gruppo di prodotti che cambiano per taglia o colore. Prevede sia le varianti tutte su una pagina, sia le varianti su pagine diverse. Nessuno dei due modi è presentato come quello che si posiziona meglio.
+
+In pratica Google non ti chiede di dividere. Ti chiede che sia chiaro quali indirizzi sono varianti dello stesso prodotto e quale è la pagina principale.
+
+## Quando tenere un solo prodotto
+
+È la scelta giusta nella maggior parte dei casi:
+
+- cambiano solo taglia, colore o misura, e la descrizione resta identica;
+- chi cerca usa il nome del prodotto, non quello della variante;
+- il catalogo è piccolo e preferisci una scheda ricca a cinque schede povere.
+
+Una sola scheda raccoglie anche tutti i link e le recensioni, invece di dividerli su più pagine.
+
+## Quando creare prodotti separati
+
+Ha senso quando la variante è, nei fatti, un altro prodotto:
+
+- cambia il materiale, l'uso o il pubblico, non solo l'aspetto (una giacca imbottita e la stessa giacca in versione leggera da mezza stagione);
+- hai cose diverse da scrivere: misure, cura, a chi è adatta, foto in uso;
+- i clienti la cercano proprio con quel nome. Lo vedi nelle ricerche per cui compari già in Search Console, come spieghiamo in [come usare le ricerche per scrivere pagine nuove](/guide/search-console-ricerche-per-pagine-nuove).
+
+Se dividi, collega i prodotti tra loro con un blocco «altri colori» o «altre versioni» in ogni scheda, così cliente e Google trovano subito le altre. Sui piani Plus ed enterprise c'è anche l'app [Combined Listings](https://help.shopify.com/en/manual/products/combined-listings-app): prodotti separati, ciascuno con titolo, descrizione e indirizzo propri, che nel negozio si mostrano come varianti di una sola scheda.
+
+Un esempio per una sartoria online di fantasia:
+
+> Prima: tre prodotti, «Camicia Oxford bianca», «Camicia Oxford azzurra», «Camicia Oxford rosa», con la stessa descrizione copiata.
+> Dopo: un prodotto, «Camicia Oxford in cotone, collo button-down · Sartoria Lini», con le varianti di colore e taglia e una foto per ogni colore.
+
+> Prima: un prodotto «Giacca Montagna» con la variante «imbottita» e «leggera».
+> Dopo: due prodotti collegati, «Giacca imbottita impermeabile per l'inverno» e «Giacca leggera antivento per la mezza stagione», ognuno con il suo testo su temperature, peso e lavaggio.
+
+## I controlli da fare, passo per passo
+
+1. **Usa il [Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) di Search Console** su un indirizzo con `?variant=`. La pagina canonica dichiarata e quella scelta da Google dovrebbero essere l'indirizzo `/products/…` senza parametro.
+2. **Apri il report [Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it).** Se gli indirizzi con `?variant=` compaiono come «Pagina alternativa con tag canonico appropriato», va tutto bene: perché non è un errore lo spieghiamo nella guida su [reindirizzamenti e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console).
+3. **Controlla le foto delle varianti.** Collega a ogni variante la sua foto e scrivi un testo alternativo che nomini il colore, per esempio «camicia Oxford azzurra, collo button-down». Così anche chi cerca un colore vede l'immagine giusta.
+4. **Metti nella descrizione l'elenco dei colori e delle taglie.** Se il testo dice solo «disponibile in vari colori», Google e i clienti non sanno quali. Scrivi «bianco, azzurro, rosa, blu notte» e, se servono, le misure per taglia.
+5. **Controlla i dati strutturati** incollando l'indirizzo della scheda nel [test dei risultati avanzati](https://search.google.com/test/rich-results). Guarda se il prodotto risulta con le sue offerte e i prezzi giusti. Se il tema li gestisce male, chiedi a chi lo segue, invece di aggiungere un'app che li scrive due volte.
+
+## E gli assistenti AI?
+
+Chi chiede a ChatGPT, Gemini o Perplexity «camicia Oxford azzurra in cotone, dove comprarla?» trova più facilmente una scheda che scrive nel testo colori, taglie e materiali, invece di nasconderli in un menu a tendina. Nessuno può garantirti che un assistente faccia il nome del tuo negozio, ma una scheda chiara aiuta: lo spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Cosa non fare
+
+- **Non duplicare il prodotto per ogni colore con lo stesso testo.** Sono pagine quasi uguali: Google ne sceglie una e mette da parte le altre, come succede con i [testi copiati dal fornitore](/guide/testi-copiati-fornitore-altri-siti-google).
+- **Non bloccare `?variant=` nel robots.txt.** Google non leggerebbe il tag canonico che gli dice qual è la pagina principale.
+- **Non cambiare il canonico delle varianti con codice trovato nei forum** senza sapere cosa fa: un errore può far indicare come principale la home o un indirizzo sbagliato.
+- **Non creare prodotti diversi solo per inserire nomi di città o parole chiave**: le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) le trattano come pagine create per i motori di ricerca, non per i clienti.
+
+Per il resto della scheda, dal titolo alla descrizione, trovi i passaggi in [come far trovare su Google i prodotti di un piccolo negozio Shopify](/guide/shopify-prodotti-trovati-su-google-piccolo-negozio). E se filtri e collezioni ti riempiono Search Console di indirizzi strani, leggi [collezioni e filtri che creano pagine duplicate](/guide/shopify-collezioni-filtri-pagine-duplicate).
+
+## Se non hai tempo di farlo da solo
+
+Decidere quali varianti meritano una scheda propria e riscrivere i testi, prodotto per prodotto, richiede tempo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo catalogo come lo vede Google e ti diciamo da quali prodotti partire.
