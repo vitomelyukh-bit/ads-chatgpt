@@ -1400,7 +1400,9 @@
     {
       "titolo": "Sito di un dog sitter o di una pensione per animali: quali pagine creare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-dog-sitter-pensione-animali-pagine",
+      "data": "2026-11-07"
     },
     {
       "titolo": "WordPress: dopo il cambio di tema titoli e intestazioni sono sbagliati, come controllarli",
