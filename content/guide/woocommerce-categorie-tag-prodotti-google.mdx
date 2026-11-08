@@ -1,0 +1,101 @@
+---
+title: "WooCommerce: categorie e tag dei prodotti su Google · TiTrovano"
+description: "Nel tuo negozio WooCommerce categorie e tag creano pagine che Google può mostrare. Quali tenere, come scriverle e quali togliere dai risultati con Yoast o Rank Math."
+h1: "WooCommerce: categorie e tag dei prodotti, quali far trovare su Google?"
+rispostaBreve: "Di solito conviene far trovare le categorie dei prodotti e togliere dai risultati i tag. Una categoria raccoglie prodotti che un cliente cerca insieme e, con un titolo e un testo suoi, può rispondere a una ricerca; i tag spesso ripetono le categorie o contengono un solo prodotto. Si gestisce dal plugin SEO, senza toccare il codice."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-08"
+dateModified: "2026-11-08"
+guideCorrelate:
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "shopify-collezioni-filtri-pagine-duplicate"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Posso cambiare l'indirizzo delle categorie per togliere la parola «product-category»?"
+    risposta: "Si può, ma su un negozio già online cambia l'indirizzo di tutte le categorie e servono i reindirizzamenti dai vecchi ai nuovi. Per Google quella parola nell'indirizzo conta poco: se il negozio è già indicizzato, di solito non vale il rischio."
+  - domanda: "Devo cancellare i tag dei prodotti?"
+    risposta: "Non per forza. Se li usi per i filtri o per organizzare il catalogo puoi tenerli e toglierli solo dai risultati di Google. Se invece sono tag usati una volta sola e non servono a nessuno, puoi cancellarli: i prodotti restano."
+---
+
+## Su Google esce la pagina del tag, non quella della categoria
+
+Hai un negozio WooCommerce, cerchi il tuo nome su Google e accanto ai prodotti escono indirizzi come `/product-tag/regalo/` o `/product-category/tazze/?orderby=price`. Il cliente che apre il tag trova tre prodotti a caso, senza una riga di testo. Quello che apre la categoria vede una griglia di foto e basta.
+
+Il problema non è che queste pagine esistano. È che sono le pagine che più facilmente rispondono a una ricerca come «tazze in ceramica fatte a mano», e oggi non dicono niente né al cliente né a Google.
+
+## Categorie, tag e attributi: cosa crea WooCommerce
+
+WooCommerce organizza i prodotti in tre modi, come spiega la sua guida su [categorie, tag e attributi](https://woocommerce.com/document/managing-product-taxonomies/):
+
+- **Categorie**: i reparti del negozio, anche con sottocategorie. Ognuna ha una pagina con i suoi prodotti e un campo descrizione che alcuni temi mostrano sotto il nome.
+- **Tag**: etichette libere che aggiungi dalla scheda del prodotto. Anche ogni tag ha la sua pagina.
+- **Attributi**: caratteristiche come colore, taglia o materiale, che servono soprattutto per i filtri.
+
+Gli indirizzi di categorie e tag partono da una base che trovi in WordPress, in **Impostazioni › Permalink**, nella parte facoltativa: di solito `product-category` e `product-tag`, come indica la [documentazione di WooCommerce sui permalink](https://woocommerce.com/document/permalinks/).
+
+## Le categorie: le pagine da far trovare
+
+Una categoria è una pagina che Google può mostrare per una ricerca generica, quando il cliente non sa ancora quale prodotto vuole. Google lo dice nella sua guida su [come far capire la struttura di un e-commerce](https://developers.google.com/search/docs/specialty/ecommerce/help-google-understand-your-ecommerce-site-structure): consiglia di collegare il menu alle categorie, le categorie alle sottocategorie e queste a tutti i prodotti, perché i link indicano quali pagine sono importanti.
+
+Perché una categoria funzioni servono tre cose:
+
+1. **Un nome che il cliente userebbe.** «Linea Aurora» dice qualcosa a te, «Tazze e mug in ceramica» lo dice a chi cerca.
+2. **Un titolo e una descrizione per Google**, che imposti dal plugin SEO nella pagina di modifica della categoria.
+3. **Qualche riga di testo vero** nel campo descrizione: cosa trova il cliente, come scegliere, cosa hanno in comune quei prodotti.
+
+Un esempio per un negozio di fantasia, Ceramiche Valdora:
+
+> Prima — titolo: «Tazze Archivi - Ceramiche Valdora»
+> Dopo — titolo: «Tazze e mug in ceramica fatte a mano · Ceramiche Valdora»
+>
+> Descrizione per Google: «Tazze da colazione, mug e tazzine da caffè modellate e smaltate a mano nel nostro laboratorio. Adatte alla lavastoviglie, spedite imballate una per una.»
+>
+> Testo sopra i prodotti: «Ogni tazza è fatta al tornio e smaltata a mano, quindi forma e colore cambiano un po' da un pezzo all'altro. Trovi mug da 350 ml per tè e tisane, tazze da colazione con piattino e set di tazzine da caffè. In ogni scheda ci sono misure, capienza e istruzioni per la cura.»
+
+Non servono pagine lunghe: bastano poche righe che il cliente leggerebbe davvero. Se le descrizioni dei prodotti sono quelle del fornitore, vale lo stesso discorso delle [schede copiate da altri siti](/guide/testi-copiati-fornitore-altri-siti-google).
+
+Due attenzioni. Le **categorie vuote** o con un solo prodotto non aiutano: uniscile o aspetta di avere più articoli. E le **sottocategorie** hanno senso solo se corrispondono a una ricerca diversa: «tazzine da caffè» sì, «tazze blu» di solito no.
+
+## I tag: quasi sempre fuori dai risultati
+
+In molti negozi piccoli i tag sono nati per caso: «regalo», «novità», «tazza», «tazze», «bestseller». Il risultato sono pagine che ripetono le categorie o mostrano un prodotto solo. Un cliente che arriva lì da Google non trova niente di più di quello che troverebbe nella categoria.
+
+Per questo la scelta più semplice è lasciare i tag sul sito, se ti servono, ma escluderli dai risultati con **noindex**: un'istruzione nella pagina che chiede a Google di non mostrarla. È spiegato nella guida di Google su come [bloccare l'indicizzazione con noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing?hl=it).
+
+Fa eccezione il tag che raccoglie prodotti che i clienti cercano davvero insieme e che non sta in nessuna categoria. In quel caso, meglio trasformarlo in una categoria con il suo testo.
+
+## Come si fa con Yoast o Rank Math
+
+Non serve scrivere codice. Le voci possono cambiare tra una versione e l'altra, ma il percorso è questo:
+
+- **Yoast**: nelle impostazioni, alla sezione [Categorie e tag](https://yoast.com/help/yoast-seo-settings-categories-tags/), con WooCommerce attivo trovi anche le categorie e i tag dei prodotti. Per i tag dei prodotti disattiva l'opzione che li mostra nei risultati di ricerca; per le categorie lasciala attiva.
+- **Rank Math**: con il modulo WooCommerce attivo, nella sezione Titoli e meta ci sono le voci per le categorie e i tag dei prodotti, dove scegli il noindex. Rank Math spiega queste opzioni nella guida sui [contenuti duplicati nei negozi WooCommerce](https://rankmath.com/kb/woocommerce-duplicate-content-issues/).
+
+Dopo la modifica apri la sitemap del sito nel browser: i tag dovrebbero sparire, le categorie restare. Se devi ancora scegliere il plugin, leggi [Yoast o Rank Math per il sito di un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+
+## Filtri e ordinamenti: indirizzi da non inseguire
+
+Quando un cliente ordina per prezzo o filtra per colore, all'indirizzo della categoria si aggiungono parametri dopo il `?`. Sono le stesse pagine con i prodotti in un altro ordine, o un sottoinsieme. Nella sua guida sulla [navigazione con filtri](https://developers.google.com/crawling/docs/faceted-navigation), Google spiega che di solito non serve fargli leggere questi indirizzi e che si possono bloccare nel file robots.txt, tenendo sempre raggiungibile la categoria senza filtri.
+
+Qui vale la regola già vista per le [pagine inutili di WordPress](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati): o blocchi un indirizzo con il robots.txt, o gli metti il noindex, non tutte e due le cose. Se Google non può aprire la pagina, non vede l'istruzione. Per un negozio con poche decine di prodotti spesso basta che il plugin SEO metta il tag canonico, l'indicazione che dice a Google quale indirizzo è quello principale.
+
+Se un filtro corrisponde a una ricerca vera, per esempio «piatti in ceramica bianca», fai come con i tag: crea una categoria con un testo suo. Su Shopify il ragionamento è lo stesso, lo trovi in [collezioni e filtri che creano pagine duplicate](/guide/shopify-collezioni-filtri-pagine-duplicate).
+
+## Come controllare il risultato
+
+1. Su Google cerca `site:tuodominio.it/product-tag/` e `site:tuodominio.it/product-category/` (con le basi del tuo sito, se le hai cambiate).
+2. In Search Console apri il report [Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) e guarda gli esempi: le categorie devono stare tra le pagine indicizzate.
+3. Con il Controllo URL verifica una categoria importante: deve risultare indicizzabile.
+
+Le modifiche non si vedono il giorno dopo: Google deve tornare su ogni pagina.
+
+## Cosa non fare
+
+- **Non cambiare la base dei permalink** su un negozio già indicizzato senza reindirizzare ogni vecchio indirizzo: tutte le categorie cambierebbero indirizzo insieme.
+- **Non mettere noindex alle categorie** per «fare pulizia»: togli dai risultati proprio le pagine che possono rispondere alle ricerche generiche.
+- **Non creare categorie quasi uguali** con lo stesso testo e una parola cambiata, magari una per ogni città: sono pagine duplicate fatte a mano e le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) le considerano un problema.
+
+## Se non hai tempo di farlo da solo
+
+Decidere quali categorie tenere, quali tag togliere e scrivere i testi è un lavoro che si fa una volta con calma, poi si mantiene. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo negozio come lo vede Google e ti diciamo da dove partire.

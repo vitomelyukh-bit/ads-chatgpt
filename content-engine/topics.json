@@ -1431,7 +1431,9 @@
     {
       "titolo": "WooCommerce: categorie e tag dei prodotti, quali far trovare su Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "woocommerce-categorie-tag-prodotti-google",
+      "data": "2026-11-08"
     },
     {
       "titolo": "«Duplicata, Google ha scelto una pagina canonica diversa dall'utente»: cosa fare",
