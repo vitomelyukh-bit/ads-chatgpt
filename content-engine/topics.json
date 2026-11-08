@@ -1407,7 +1407,9 @@
     {
       "titolo": "WordPress: dopo il cambio di tema titoli e intestazioni sono sbagliati, come controllarli",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-cambio-tema-titoli-intestazioni-sbagliati",
+      "data": "2026-11-08"
     },
     {
       "titolo": "Titoli H1, H2 e H3 in una pagina di servizio: come usarli senza esagerare",

@@ -1,0 +1,102 @@
+---
+title: "WordPress: titoli sbagliati dopo il cambio di tema · TiTrovano"
+description: "Hai cambiato tema WordPress e su Google escono titoli strani, o le pagine hanno due titoli principali? Come controllare tag title e intestazioni, pagina per pagina."
+h1: "WordPress: dopo il cambio di tema titoli e intestazioni sono sbagliati, come controllarli?"
+rispostaBreve: "Quando cambi tema, i testi delle pagine restano, ma cambia il modo in cui il tema scrive il titolo della pagina e le intestazioni: può raddoppiare il tag title, mettere il nome del sito come titolo principale di ogni pagina o nascondere quello vero. Controlla il codice di tre o quattro pagine importanti cercando il tag title e i titoli H1, poi correggi dal plugin SEO, dalle opzioni del tema o dai modelli. Infine fai rileggere le pagine a Google da Search Console."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-08"
+dateModified: "2026-11-08"
+guideCorrelate:
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "page-builder-elementor-divi-seo"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Cambiando tema perdo i titoli e le descrizioni che avevo scritto in Yoast o Rank Math?"
+    risposta: "Di norma no: quei testi li salva il plugin SEO, non il tema. Vanno invece ricontrollati i campi SEO che alcuni temi hanno per conto loro, perché sono legati al tema e con quello nuovo possono non essere più usati."
+  - domanda: "Una pagina con due H1 viene penalizzata da Google?"
+    risposta: "Google non parla di penalizzazioni per questo. Scrive però che, se ci sono più titoli grandi e con lo stesso peso, può fare fatica a capire qual è quello principale. Per chi legge, e per chi usa un lettore di schermo, è comunque meglio un solo titolo principale chiaro."
+---
+
+## Il problema: il sito è più bello, ma su Google esce male
+
+Hai cambiato tema al sito WordPress, magari per rinnovare la grafica o perché quello vecchio non veniva più aggiornato. Il sito sembra a posto. Qualche settimana dopo cerchi la tua attività su Google e trovi titoli strani: «Pagina – Il mio blog WordPress», il nome del sito ripetuto due volte, oppure una frase presa a caso dalla pagina.
+
+Oppure è tutto normale su Google, ma un controllo ti segnala che ogni pagina ha due titoli principali, o nessuno. Sono problemi diversi con la stessa origine: **il tema decide come vengono scritti il titolo della pagina e le intestazioni**. Il testo che hai scritto è rimasto uguale, la cornice intorno no.
+
+Conviene sistemarlo presto. Il titolo è la prima riga che un cliente legge di te nei risultati, e le intestazioni sono quello che Google, gli assistenti AI e chi legge dal telefono guardano per capire di cosa parla la pagina.
+
+## Due cose diverse da tenere distinte
+
+- **Il tag title**: il titolo «nascosto» della pagina, quello che compare nella scheda del browser e che Google usa più spesso per il titolo nei risultati. Su WordPress di solito lo scrivi nel plugin SEO.
+- **Le intestazioni (H1, H2, H3)**: i titoli visibili dentro la pagina. L'H1 è il titolo principale, gli H2 sono i titoli delle sezioni, e così via.
+
+Google spiega nella guida sui [link del titolo](https://developers.google.com/search/docs/appearance/title-link?hl=it) che per il titolo nei risultati guarda soprattutto il tag title, ma anche il titolo principale visibile e le intestazioni. Se il tema li scrive male, Google può scegliere una riga che non è quella che volevi.
+
+## Cosa cambia di solito con un tema nuovo
+
+### Il tag title doppio o scritto dal tema
+
+Dalla versione 4.1, WordPress lascia che sia il sistema, e quindi il plugin SEO, a scrivere il tag title: il tema deve solo dichiarare di supportarlo, come spiega l'[annuncio ufficiale di WordPress sui tag title](https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/). Alcuni temi vecchi o fatti in casa scrivono ancora il titolo per conto loro. Il risultato può essere un titolo che ignora quello impostato nel plugin, oppure due tag title nella stessa pagina.
+
+### Il nome del sito al posto del titolo principale
+
+Alcuni temi mettono il logo o il nome dell'attività in un H1 su ogni pagina. Così la pagina «Riparazione caldaie» ha come titolo principale «Termoidraulica Ferri», uguale a tutte le altre, e il titolo vero diventa secondario.
+
+### Il titolo vero nascosto, o duplicato
+
+Molti temi hanno un'opzione per nascondere il titolo della pagina, comoda quando la pagina è costruita con un page builder. Se poi nel page builder nessun blocco è impostato come H1, la pagina resta senza titolo principale. Succede anche il contrario: il tema mostra il titolo e il page builder ne aggiunge un altro, e gli H1 diventano due.
+
+### Intestazioni usate per la grafica
+
+Nei widget laterali e nel piè di pagina, alcuni temi trasformano scritte come «Contatti» o «Seguici» in intestazioni. Riempie la pagina di titoli che non dicono niente del servizio.
+
+### Campi SEO del vecchio tema
+
+Titoli e descrizioni scritti in Yoast o Rank Math sono salvati dal plugin, quindi in genere restano. Se invece il vecchio tema aveva **campi SEO suoi**, quei testi possono non essere più usati con il tema nuovo, e le pagine tornano ai titoli automatici.
+
+## Come controllare, pagina per pagina
+
+Scegli tre o quattro pagine che contano: la home, la pagina del servizio più richiesto, quella dei contatti, un articolo del blog. Per ognuna:
+
+1. **Apri il codice della pagina**: dal computer, tasto destro e «visualizza sorgente pagina» (il nome cambia un po' da browser a browser).
+2. **Cerca `<title`** con la ricerca del browser. Deve comparire una volta sola, con il testo che hai scritto nel plugin SEO.
+3. **Cerca `<h1`**. Guarda quante volte compare e cosa c'è scritto dopo: deve essere il titolo della pagina, non il nome del sito o «Benvenuti».
+4. **Scorri gli `<h2`**: sono i titoli delle sezioni del servizio, o scritte del menu e del piè di pagina?
+5. **Confronta con Google**: nello [strumento Controllo URL di Search Console](https://support.google.com/webmasters/answer/9012289?hl=it) puoi vedere la pagina come l'ha letta Google e chiedere una nuova lettura dopo le correzioni.
+
+Ecco come può apparire la stessa pagina prima e dopo la sistemazione:
+
+> **Prima**
+> Tag title: «Servizi – Termoidraulica Ferri – Termoidraulica Ferri»
+> H1: «Termoidraulica Ferri»
+> H2: «Seguici», «Orari», «Newsletter»
+>
+> **Dopo**
+> Tag title: «Manutenzione e riparazione caldaie a Lodi · Termoidraulica Ferri»
+> H1: «Manutenzione e riparazione caldaie»
+> H2: «Cosa comprende la manutenzione», «Guasti che ripariamo in giornata», «Come prenotare un intervento»
+
+## Come correggere
+
+- **Tag title doppio o sbagliato**: controlla nelle impostazioni del plugin SEO che il formato dei titoli sia quello che vuoi. Se il tema scrive il titolo per conto suo, chiedi allo sviluppatore del tema, o a chi gestisce il sito, di lasciarlo al sistema. Non modificare i file di un tema comprato: al primo aggiornamento le modifiche si perdono. Si usa un tema figlio.
+- **Nome del sito in H1**: cerca nelle opzioni del tema, o della sua intestazione, un'impostazione per il livello del titolo del sito. Se non c'è, va cambiato nel modello dell'intestazione.
+- **Titolo nascosto o doppio**: decidi chi mostra il titolo, il tema o il page builder, e tieni uno solo dei due.
+- **Temi a blocchi**: titolo della pagina, intestazione e piè di pagina stanno nei modelli dell'Editor del sito. Per i titoli dentro il testo, la [guida di WordPress al blocco Intestazione (Heading)](https://wordpress.org/documentation/article/heading-block/) spiega che l'editor considera il titolo della pagina come H1 e che il livello di ogni titolo si cambia, da H1 a H6, dalla barra del blocco.
+
+Non serve una gerarchia perfetta. Google scrive nella [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it) che l'ordine dei titoli è utile per i lettori di schermo, ma che per la Ricerca non conta se sono fuori ordine. Conta che il titolo principale sia chiaro e dica di cosa parla la pagina. Ne parliamo anche in [Elementor e Divi penalizzano la SEO?](/guide/page-builder-elementor-divi-seo), a proposito dei titoli usati come decorazione.
+
+## La prossima volta: controlla prima di attivare
+
+WordPress permette di vedere un tema in **anteprima** prima di attivarlo, dalla pagina dei temi, come descrive la [guida al Customizer](https://wordpress.org/documentation/article/customizer/). Meglio ancora, prova il tema nuovo su una copia del sito. Fai i controlli di sopra sulle stesse pagine, prima e dopo: ti bastano dieci minuti e sai subito cosa cambierà.
+
+## Cosa non fare
+
+- **Riempire titoli e H1 di parole chiave e nomi di paesi** per «recuperare»: va contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) e rende la pagina peggiore da leggere.
+- **Mettere un H1 nascosto** con il testo che vorresti far leggere a Google: i testi nascosti per i motori di ricerca sono vietati dalle stesse norme.
+
+Se dopo il cambio di tema il sito è proprio sparito da Google, il problema è un altro, spesso un blocco all'indicizzazione rimasto attivo: parti da [Il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare). Se invece è solo il testo nei risultati a non piacerti, trovi tutti i passaggi in [Titolo e descrizione su Google sbagliati](/guide/titolo-descrizione-google-sbagliati-come-cambiarli).
+
+## Se non hai tempo di farlo da solo
+
+Controllare il codice di qualche pagina è un lavoro da mezz'ora. Capire da dove arriva il titolo sbagliato, tra tema, plugin e page builder, a volte richiede più pazienza. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito WordPress e ti diciamo cosa sistemare.
