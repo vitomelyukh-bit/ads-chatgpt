@@ -1424,7 +1424,9 @@
     {
       "titolo": "SEO per un'impresa di disinfestazione: urgenze, aziende e lavori di stagione",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-disinfestazione-urgenze-aziende-lavori-stagione",
+      "data": "2026-11-08"
     },
     {
       "titolo": "WooCommerce: categorie e tag dei prodotti, quali far trovare su Google",
