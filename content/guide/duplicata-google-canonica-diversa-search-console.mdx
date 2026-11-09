@@ -1,0 +1,105 @@
+---
+title: "«Google ha scelto una canonica diversa»: cosa fare · TiTrovano"
+description: "Search Console segnala «Duplicata, Google ha scelto una pagina canonica diversa dall'utente»? Come capire quale pagina ha scelto Google, perché e quando correggere."
+h1: "«Duplicata, Google ha scelto una pagina canonica diversa dall'utente»: cosa fare?"
+rispostaBreve: "Vuol dire che sul tuo sito una pagina si dichiara principale, ma Google ha trovato un'altra pagina molto simile e ha deciso di mostrare quella. Non è una penalizzazione: il tag canonico per Google è un suggerimento, non un ordine. Devi intervenire solo se la pagina che Google ha scelto non è quella che vuoi far trovare ai clienti."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-09"
+dateModified: "2026-11-09"
+guideCorrelate:
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "pagina-per-ogni-citta-servita"
+  - "sito-italiano-inglese-google-lingua-giusta"
+faq:
+  - domanda: "Se Google ha scelto la versione https o senza www al posto della mia, devo preoccuparmi?"
+    risposta: "No, di solito Google ha scelto la versione giusta e il tuo sito dà indicazioni vecchie. Correggi il tag canonico, i link interni e la sitemap perché indichino tutti quella versione."
+  - domanda: "Posso usare il noindex sulla pagina che Google ha scelto, così mostra la mia?"
+    risposta: "Google lo sconsiglia: il noindex non serve a scegliere la versione principale tra pagine dello stesso sito e rischi di togliere dai risultati entrambe. Usa un reindirizzamento o il tag canonico, e rendi le pagine davvero diverse se devono restare due."
+---
+
+## Il messaggio che spaventa
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e tra i motivi per cui alcune pagine non sono indicizzate trovi una riga lunga: «Duplicata, Google ha scelto una pagina canonica diversa dall'utente». Dentro c'è magari proprio la pagina del servizio che ti porta più telefonate.
+
+Tradotto: la pagina dice a Google «la versione principale sono io», ma Google ha trovato un'altra pagina quasi uguale e ha deciso che è quella da mostrare nei risultati. Quando un cliente cerca quel servizio, gli esce l'altra. Se l'altra è un doppione, una versione vecchia o la pagina di un portale, il cliente arriva nel posto sbagliato.
+
+## Cosa vuol dire, in parole semplici
+
+Quando Google trova più indirizzi con lo stesso contenuto, li raggruppa e ne sceglie uno solo da mostrare: la **pagina canonica**. Il sito può suggerire quale preferisce con il tag `rel="canonical"`, una riga nel codice della pagina. Google spiega nella guida su [cos'è la canonicalizzazione](https://developers.google.com/search/docs/crawling-indexing/canonicalization?hl=it) che questa indicazione è un suggerimento: per decidere guarda anche altri segnali, come i reindirizzamenti, la versione http o https, la presenza nella sitemap.
+
+Questa voce è la sorella di «Pagina alternativa con tag canonico appropriato», che invece indica che Google ha seguito il tuo suggerimento. Le due voci le abbiamo spiegate in [«Pagina con reindirizzamento» e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console). Qui il caso è diverso: Google non ti ha dato retta, e va capito perché.
+
+## Primo passo: scopri quale pagina ha scelto Google
+
+1. Nel report clicca sulla voce e copia uno degli indirizzi dell'elenco.
+2. Incollalo nella barra in alto di Search Console: si apre lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it).
+3. Nella parte sull'indicizzazione leggi due righe: **URL canonico dichiarato dall'utente** e **URL canonico selezionato da Google**.
+
+Un esempio di cosa puoi trovare, per un idraulico di fantasia:
+
+> URL ispezionato: idraulicomarchi.it/installazione-caldaia
+> Canonico dichiarato dall'utente: idraulicomarchi.it/installazione-caldaia
+> Canonico selezionato da Google: idraulicomarchi.it/sostituzione-caldaia
+
+Prima di correggere qualcosa, Google nella pagina su come [risolvere i problemi di canonicalizzazione](https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting?hl=it) suggerisce di chiederti una cosa: la pagina che ha scelto è forse più utile per chi cerca? A volte la risposta è sì, e allora il lavoro è solo mettere d'accordo i segnali.
+
+## Le cause più comuni sui siti delle attività locali
+
+### Due pagine di servizio con lo stesso testo
+
+È il caso dell'esempio sopra. «Installazione caldaia» e «Sostituzione caldaia» sono state scritte copiando lo stesso testo e cambiando il titolo. Per Google sono la stessa pagina, quindi ne tiene una. Lo stesso succede con «Pulizia del viso» e «Pulizia del viso profonda» in un centro estetico, o con «Divorzio» e «Separazione» nel sito di un avvocato, se dicono le stesse cose.
+
+### Pagine per città copiate
+
+Una pagina per ogni comune, con lo stesso testo e solo il nome del paese cambiato. Google le vede come doppioni e ne sceglie una, spesso non quella che ti aspetti. Oltre a non funzionare, le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) le considerano pagine doorway. Come gestire le zone in modo onesto lo trovi in [devo fare una pagina per ogni città?](/guide/pagina-per-ogni-citta-servita).
+
+### Una versione vecchia rimasta online
+
+Dopo un rifacimento restano attive sia `/menu-2024` sia `/menu`, sia `/servizi.html` sia `/servizi`. I link dei vecchi articoli, delle email o dei social puntano ancora alla versione vecchia, e Google la ritiene più importante.
+
+### Segnali in contraddizione
+
+Il tag dice una cosa, il resto del sito un'altra. Per esempio: il canonico indica la versione con `www`, ma la sitemap e i link del menu usano quella senza, oppure la versione http si apre ancora senza reindirizzare. Spesso la colpa è di un tema o di un plugin che scrive il tag sbagliato, un problema che anche Google elenca tra i più frequenti. Su WordPress il tag di solito lo gestisce il plugin SEO: lo trovi spiegato nella guida su [Yoast o Rank Math](/guide/yoast-o-rank-math-sito-attivita-locale).
+
+### Lingue diverse con lo stesso testo
+
+La pagina «in inglese» è in realtà quasi tutta in italiano, oppure le due versioni non sono collegate tra loro. Google le scambia per doppioni. Come impostarle bene lo spieghiamo in [sito in italiano e in inglese](/guide/sito-italiano-inglese-google-lingua-giusta).
+
+### Il tuo testo ripubblicato altrove
+
+Il canonico scelto da Google può anche essere un indirizzo di un altro sito, per esempio un portale o un'associazione che ha ripubblicato il tuo articolo. Qui la strada che Google indica è chiedere a chi ha ripubblicato il testo di non farlo indicizzare, o di scrivere un testo suo.
+
+## Come sistemare, caso per caso
+
+**Se le due pagine devono restare entrambe**, rendile davvero diverse. Ognuna deve rispondere a una domanda sua. Un esempio di prima e dopo:
+
+> Prima, su tutte e due: «Installiamo e sostituiamo caldaie di tutte le marche, con preventivo gratuito e tecnici qualificati.»
+> Dopo, su «Sostituzione caldaia»: «Hai una caldaia vecchia che si blocca? Ti spieghiamo come scegliere quella nuova, cosa succede il giorno del cambio, come smaltiamo la vecchia e quali documenti ti lasciamo.»
+> Dopo, su «Installazione caldaia»: «Casa nuova o ristrutturata, senza impianto? Ti spieghiamo il sopralluogo, dove si può mettere la caldaia, i tempi del cantiere e cosa serve per il collaudo.»
+
+**Se una delle due non serve**, tieni la migliore e porta l'altra su di lei con un reindirizzamento permanente. Nella guida su [come indicare la pagina canonica](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it), Google descrive il reindirizzamento e il tag canonico come segnali forti e la sitemap come segnale debole.
+
+**Se Google ha scelto la versione giusta**, per esempio quella https o quella senza `www`, correggi il tuo sito perché dica la stessa cosa.
+
+In tutti i casi, alla fine metti d'accordo i segnali:
+
+- il tag canonico della pagina che vuoi deve puntare a sé stessa, con l'indirizzo completo;
+- i link del menu e dei testi devono portare a quella versione;
+- nella sitemap deve esserci solo quella;
+- le versioni da scartare devono reindirizzare, non restare aperte.
+
+Poi torna su Controllo URL e chiedi una nuova indicizzazione della pagina giusta. Non c'è un tempo fisso: Google aggiorna la sua scelta quando rilegge le pagine.
+
+## Cosa non fare
+
+- **Bloccare con il robots.txt** la pagina scelta da Google: la documentazione lo sconsiglia per indicare la versione principale, perché Google non può più leggere la pagina e i suoi segnali.
+- **Usare lo strumento di rimozione degli URL** per «cancellare» il doppione: nasconde per un periodo tutte le versioni di quell'indirizzo, comprese quelle che vuoi tenere, e non sceglie la versione principale.
+- **Mettere tag canonici diversi** sulla stessa pagina, uno dal tema e uno dal plugin: Google può ignorarli entrambi.
+- **Scrivere di nuovo la stessa pagina** con un altro titolo per «recuperare» il servizio: crei solo un altro doppione.
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: anche loro leggono il web, e due pagine uguali con indirizzi diversi rendono meno chiaro quale sia quella che descrive davvero il tuo servizio.
+
+## Se non hai tempo di farlo da solo
+
+Capire quale pagina tenere, cosa riscrivere e dove mettere i reindirizzamenti richiede di guardare le pagine una per una. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report e ti diciamo quali pagine sistemare per prime.

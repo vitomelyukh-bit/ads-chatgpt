@@ -1438,7 +1438,9 @@
     {
       "titolo": "«Duplicata, Google ha scelto una pagina canonica diversa dall'utente»: cosa fare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "duplicata-google-canonica-diversa-search-console",
+      "data": "2026-11-09"
     },
     {
       "titolo": "Sito di un wedding planner: pagine per servizi e stili senza copiare le location",
