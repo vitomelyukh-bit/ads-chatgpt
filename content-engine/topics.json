@@ -1445,7 +1445,9 @@
     {
       "titolo": "Sito di un wedding planner: pagine per servizi e stili senza copiare le location",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-wedding-planner-pagine-servizi-stili",
+      "data": "2026-11-09"
     },
     {
       "titolo": "Nome dell'attività scritto in modi diversi: perché confonde Google e gli assistenti AI",
