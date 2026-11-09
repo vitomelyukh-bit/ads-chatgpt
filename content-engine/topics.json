@@ -1525,7 +1525,9 @@
     {
       "titolo": "Chatbot sul sito: aiuta Google o gli assistenti AI a capire la tua attività?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "chatbot-sito-aiuta-google-assistenti-ai",
+      "data": "2026-11-09"
     }
   ]
 }
