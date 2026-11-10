@@ -1471,7 +1471,9 @@
     {
       "titolo": "Sito di un asilo nido o di una scuola dell'infanzia privata: cosa cercano i genitori",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-asilo-nido-scuola-infanzia-cosa-cercano-genitori",
+      "data": "2026-11-10"
     },
     {
       "titolo": "WordPress: indirizzi delle pagine con date o numeri, conviene cambiarli?",
