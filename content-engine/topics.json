@@ -1464,7 +1464,9 @@
     {
       "titolo": "Il sito mostra cose diverse da telefono e da computer: cosa vede Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-diverso-telefono-computer-cosa-vede-google",
+      "data": "2026-11-10"
     },
     {
       "titolo": "Sito di un asilo nido o di una scuola dell'infanzia privata: cosa cercano i genitori",
