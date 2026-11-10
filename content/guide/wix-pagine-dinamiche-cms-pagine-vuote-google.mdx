@@ -1,0 +1,95 @@
+---
+title: "Wix, pagine dinamiche del CMS vuote su Google: cosa fare · TiTrovano"
+description: "Sul tuo sito Wix le collezioni del CMS creano pagine quasi vuote o di prova che finiscono su Google? Come trovarle, completarle, metterle in bozza o toglierle."
+h1: "Wix: pagine dinamiche e collezioni del CMS, come evitare pagine vuote su Google?"
+rispostaBreve: "Su Wix ogni elemento di una collezione collegata a una pagina dinamica diventa una pagina con il suo indirizzo, anche se è un elemento di prova o ha metà dei campi vuoti. Per evitarlo, completa gli elementi che servono, metti in bozza quelli non pronti ed elimina quelli di prova. Poi imposta titolo e descrizione con campi sempre compilati e controlla in Search Console le pagine segnalate come soft 404 o non indicizzate."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-10"
+dateModified: "2026-11-10"
+guideCorrelate:
+  - "wix-va-bene-per-la-seo"
+  - "errore-404-search-console-pagine-non-esistono"
+  - "pagine-servizio-troppo-corte-quanto-testo-serve"
+faq:
+  - domanda: "Se tolgo un elemento dal menu o dalla pagina elenco, sparisce da Google?"
+    risposta: "No. Wix ricorda che una pagina nascosta dal menu può comparire lo stesso nei risultati, e un filtro sulla pagina elenco cambia solo cosa mostri, non la collezione. La pagina dell'elemento resta raggiungibile finché l'elemento è pubblicato."
+  - domanda: "Posso dire a Google di non indicizzare solo alcuni elementi della collezione?"
+    risposta: "L'impostazione di indicizzazione delle pagine dinamiche vale per il tipo di pagina, quindi per tutti gli elementi insieme. Per un singolo elemento non pronto la strada più semplice è metterlo in bozza o completarlo."
+---
+
+## Il problema: pagine che non hai mai scritto
+
+Hai usato il CMS di Wix per mostrare i lavori fatti, i corsi o i prodotti a noleggio. Comodo: compili una riga nella collezione e Wix crea la pagina da solo. Poi apri Search Console e trovi indirizzi che non ricordavi: `/lavori/prova-2`, `/lavori/titolo`, una pagina con solo una foto e il nome della zona.
+
+Quelle pagine le vede anche chi ti cerca. Un cliente che arriva su una scheda vuota pensa che il sito sia abbandonato e torna ai risultati. E Google, davanti a tante pagine quasi uguali e senza testo, può decidere di non mostrarle o di trattarle come pagine di errore.
+
+## Come funzionano le pagine dinamiche
+
+Una pagina dinamica è un modello. Wix lo collega a una collezione del CMS e ne ricava due tipi di pagina:
+
+- la **pagina elenco**, per esempio `/lavori`, che mostra tutti gli elementi;
+- la **pagina elemento**, una per ogni riga della collezione, con l'indirizzo creato dai campi che hai scelto, per esempio `/lavori/cucina-in-rovere-zona-nord`.
+
+Il punto è proprio questo: **ogni riga pubblicata diventa una pagina**. Le righe di prova, quelle importate da un foglio di calcolo con metà colonne vuote, le offerte scadute. Wix non sa quali sono pronte: lo sai solo tu.
+
+## Le cause più comuni
+
+- **Elementi di prova** rimasti dalla costruzione del sito, con nomi come «Titolo» o «Prova».
+- **Campi vuoti**: la pagina mostra il titolo e una foto, ma la descrizione, la zona e il materiale non ci sono.
+- **Elementi superati**: un corso finito, un'offerta chiusa, un mezzo venduto.
+- **Titoli tutti uguali**: il titolo per Google usa un campo che spesso è vuoto, e decine di pagine finiscono con lo stesso titolo.
+- **Pagine elenco senza elementi**: una categoria creata e mai riempita, che mostra solo «nessun risultato».
+
+## Passo per passo
+
+### 1. Fai l'inventario
+
+Apri la collezione nel CMS e ordinala in modo da vedere le righe con i campi vuoti. Poi apri `tuodominio.it/sitemap.xml` e cerca la parte con le pagine dinamiche: lì vedi gli indirizzi che Wix segnala a Google.
+
+In Search Console guarda il [report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it). Le voci da cercare sono «Soft 404», «Duplicata» e «Scansionata, ma attualmente non indicizzata». Se non conosci quest'ultima, la spieghiamo in [pagina scansionata ma non indicizzata](/guide/pagina-scansionata-non-indicizzata-search-console).
+
+### 2. Per ogni elemento, una decisione
+
+- **Serve ed è incompleto:** completalo. Una pagina elemento utile dice cos'è, per chi, dove, con qualche dettaglio concreto e un modo per contattarti. Quanto testo serve lo vediamo in [pagine di servizio troppo corte](/guide/pagine-servizio-troppo-corte-quanto-testo-serve).
+- **Serve ma non è pronto:** mettilo in bozza. Wix permette di attivare lo stato di pubblicazione degli elementi nelle impostazioni della collezione: secondo la guida su [come gestire lo stato degli elementi](https://support.wix.com/en/article/cms-controlling-live-site-item-visibility-from-your-collection), gli elementi in bozza non vengono letti dai dataset e quindi non compaiono sul sito pubblicato. Il cambio vale subito, senza ripubblicare.
+- **Non serve:** eliminalo. Se quella pagina era già su Google ed esiste una pagina che ne prende davvero il posto, crea un reindirizzamento 301 con lo strumento di Wix per i [reindirizzamenti](https://support.wix.com/en/article/setting-up-a-301-redirect-for-a-page-on-your-site). Se non c'è un sostituto, va bene che risponda «non trovata»: i dettagli sono in [errore 404 su Google](/guide/errore-404-search-console-pagine-non-esistono).
+
+Dopo una bozza o un'eliminazione, apri l'indirizzo in una finestra anonima e controlla che la pagina non si veda più.
+
+### 3. Sistema titolo e descrizione del modello
+
+Le pagine elemento hanno impostazioni SEO proprie, che Wix descrive nella guida sulle [impostazioni SEO delle pagine dinamiche](https://support.wix.com/en/article/seo-settings-for-dynamic-pages). Titolo e descrizione si costruiscono con le variabili, cioè i campi della collezione collegata, come spiega la guida sulle [variabili nelle impostazioni SEO](https://support.wix.com/en/article/using-variables-in-seo-patterns).
+
+La regola pratica: usa solo **campi che sono sempre compilati**. Un esempio per una falegnameria con la collezione dei lavori:
+
+> Prima: «Lavori | Legno & Misura» (uguale per tutte le pagine)
+> Dopo: «Cucina in rovere su misura, zona nord · Legno & Misura»
+
+> Descrizione: «Cucina in rovere massello progettata per uno spazio stretto: misure, finiture e tempi del lavoro. Chiedi un sopralluogo per la tua cucina.»
+
+Per avere un risultato così, il titolo dell'elemento e la zona devono essere sempre compilati. Se un campo resta spesso vuoto, non metterlo nel titolo. Google comunque può scegliere un titolo diverso, come spiega nella guida sui [titoli nei risultati](https://developers.google.com/search/docs/appearance/title-link?hl=it); ne parliamo anche in [titolo e descrizione su Google sbagliati](/guide/titolo-descrizione-google-sbagliati-come-cambiarli).
+
+### 4. Pagine elenco e categorie
+
+Se hai pagine elenco per categoria, non lasciarne nessuna vuota: riempila o togli la categoria. Una pagina che dice solo «nessun risultato» è il caso tipico che Google può trattare come soft 404, come descrive nella pagina sui [codici di stato e i soft 404](https://developers.google.com/search/docs/crawling-indexing/http-network-errors?hl=it).
+
+### 5. Una collezione intera che non deve stare su Google
+
+A volte una collezione serve solo dentro il sito, per esempio le schede del personale usate in un'altra pagina. In quel caso puoi togliere dall'indicizzazione tutto il tipo di pagina dalle impostazioni SEO della pagina dinamica. Attenzione: vale per **tutti** gli elementi di quella collezione, non per uno solo. Come funziona il tag noindex lo spieghiamo in [esclusa in base al tag noindex](/guide/esclusa-tag-noindex-search-console).
+
+## Cosa non basta
+
+- **Togliere la pagina dal menu.** Wix stesso avverte che una pagina nascosta dal menu può comparire lo stesso nei risultati.
+- **Filtrare la pagina elenco.** Secondo l'aiuto di Wix sui filtri dei dataset, cambiano solo cosa mostri, non la collezione: le pagine elemento restano raggiungibili.
+- **Aspettare che Google le dimentichi subito.** Anche dopo averle tolte, possono restare nei risultati per un po', finché Google non ripassa.
+
+## Cosa non fare
+
+Non usare la collezione per sfornare decine di pagine quasi uguali cambiando solo una parola, per esempio una per ogni paese della zona con lo stesso testo. Le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) considerano un abuso i contenuti prodotti in serie senza valore per chi legge. Meglio dieci schede di lavori veri, con dettagli diversi, che cento schede vuote.
+
+Le stesse pagine complete servono anche agli assistenti AI come ChatGPT, Gemini e Perplexity: leggono il testo che trovano nella pagina, e una scheda con solo una foto non dice loro niente. Nessuno però può garantire cosa diranno di te. Per il quadro generale della piattaforma, leggi [Wix va bene per la SEO?](/guide/wix-va-bene-per-la-seo).
+
+## Se non hai tempo di farlo da solo
+
+Rivedere una collezione riga per riga richiede un pomeriggio di pazienza, poi qualche controllo nelle settimane dopo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito Wix come lo vede Google e ti diciamo quali pagine sistemare.

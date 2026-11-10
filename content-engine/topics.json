@@ -1457,7 +1457,9 @@
     {
       "titolo": "Wix: pagine dinamiche e collezioni del CMS, come evitare pagine vuote su Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wix-pagine-dinamiche-cms-pagine-vuote-google",
+      "data": "2026-11-10"
     },
     {
       "titolo": "Il sito mostra cose diverse da telefono e da computer: cosa vede Google",
