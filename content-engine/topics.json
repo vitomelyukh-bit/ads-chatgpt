@@ -1485,7 +1485,9 @@
     {
       "titolo": "Video sul sito: cosa capiscono Google e gli assistenti AI di un video senza testo",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "video-sito-cosa-capisce-google-assistenti-ai",
+      "data": "2026-11-11"
     },
     {
       "titolo": "Sito di un'agenzia di assicurazioni: pagine per polizze e clienti della zona",
