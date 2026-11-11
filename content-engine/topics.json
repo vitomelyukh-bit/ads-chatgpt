@@ -1492,7 +1492,9 @@
     {
       "titolo": "Sito di un'agenzia di assicurazioni: pagine per polizze e clienti della zona",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-agenzia-assicurazioni-pagine-polizze-clienti-zona",
+      "data": "2026-11-11"
     },
     {
       "titolo": "Shopify: prodotti esauriti o tolti dal catalogo, cosa fare con la pagina",
