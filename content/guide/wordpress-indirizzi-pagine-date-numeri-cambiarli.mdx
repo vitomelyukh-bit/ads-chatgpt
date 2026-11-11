@@ -1,0 +1,95 @@
+---
+title: "WordPress: indirizzi con date o numeri, cambiarli? · TiTrovano"
+description: "Gli articoli del tuo sito WordPress hanno indirizzi come /2021/03/nome/ o ?p=123? Quando conviene cambiarli, come farlo senza perdere visite e cosa non fare."
+h1: "WordPress: indirizzi delle pagine con date o numeri, conviene cambiarli?"
+rispostaBreve: "Spesso no: per Google le parole nell'indirizzo contano pochissimo, e cambiare la struttura dei permalink cambia l'indirizzo di tutti gli articoli insieme, con il rischio di perdere visite e link. Conviene quando gli indirizzi sono solo numeri, come ?p=123, o quando il sito è giovane e gli articoli portano ancora poche visite. Se lo fai, ogni vecchio indirizzo deve portare al nuovo con un reindirizzamento permanente."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-11"
+dateModified: "2026-11-11"
+guideCorrelate:
+  - "errore-404-search-console-pagine-non-esistono"
+  - "sito-vecchio-da-rifare-non-perdere-posizioni"
+  - "yoast-o-rank-math-sito-attivita-locale"
+faq:
+  - domanda: "Le pagine dei servizi hanno anche loro la data nell'indirizzo?"
+    risposta: "Di solito no. In WordPress la struttura dei permalink con la data vale per gli articoli; le pagine, come «Chi siamo» o «Riparazione caldaie», hanno un indirizzo con il solo nome. Se vedi date o numeri anche lì, il sito è probabilmente impostato sulla struttura semplice con ?page_id=."
+  - domanda: "Togliere la data dall'indirizzo fa salire gli articoli su Google?"
+    risposta: "Nessuno può prometterlo. Google scrive che le parole nel percorso dell'indirizzo hanno un effetto quasi nullo sul posizionamento. Un indirizzo più pulito aiuta soprattutto chi lo legge e lo condivide."
+---
+
+## Apri il blog e trovi indirizzi lunghi e pieni di numeri
+
+Pubblichi un articolo su come scegliere un condizionatore e l'indirizzo esce così: `tuodominio.it/2021/03/15/come-scegliere-un-condizionatore/`. Oppure, peggio: `tuodominio.it/?p=482`. Qualcuno ti ha detto che «per la SEO» va sistemato, e ti chiedi se rischi qualcosa a lasciarlo così o a cambiarlo.
+
+La risposta dipende da cosa c'è nell'indirizzo e da quante visite portano già quegli articoli. Il cambio si fa in un minuto, ma tocca **tutti** gli articoli insieme: per questo va deciso con calma.
+
+## Da dove vengono date e numeri
+
+In WordPress, il modo in cui si formano gli indirizzi degli articoli si chiama **struttura dei permalink** e si sceglie in **Impostazioni › Permalink**. La [guida ufficiale alla schermata dei permalink](https://wordpress.org/documentation/article/settings-permalinks-screen/) elenca le opzioni:
+
+- **Semplice**: `?p=123`, cioè il numero dell'articolo nel database.
+- **Giorno e nome**: `/2021/03/15/nome-articolo/`.
+- **Mese e nome**: `/2021/03/nome-articolo/`.
+- **Numerico**: `/archives/123`.
+- **Nome articolo**: `/nome-articolo/`.
+- **Struttura personalizzata**, per esempio `/blog/%postname%/`.
+
+Molti siti hanno la data perché WordPress, al momento dell'installazione, se il server lo permette imposta proprio la struttura con giorno e nome. Nessuno l'ha scelta: è rimasta quella.
+
+Una cosa da sapere subito: questa impostazione riguarda gli **articoli**. Le **pagine**, come «Servizi» o «Contatti», hanno un indirizzo con il solo nome, salvo nella struttura semplice, dove diventano `?page_id=12`. Quindi le pagine dei servizi, che per un'attività locale sono le più importanti, spesso hanno già indirizzi puliti.
+
+Poi ci sono i numeri «per sbaglio»: se crei due pagine con lo stesso titolo, WordPress aggiunge un numero alla seconda, e nasce `/servizi-2/`. Lo stesso succede con le pagine di prova rimaste online, come `/pagina-di-esempio/`.
+
+## Cosa dice Google sugli indirizzi
+
+Nella sua [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it) Google mette le parole chiave nel dominio e nel percorso dell'indirizzo tra le cose su cui non vale la pena concentrarsi: hanno un effetto quasi nullo, oltre a comparire nei breadcrumb dei risultati. Nella stessa guida e in quella sulla [struttura degli URL](https://developers.google.com/search/docs/crawling-indexing/url-structure?hl=it) consiglia però indirizzi semplici, con parole leggibili invece di lunghi numeri identificativi, separate da trattini.
+
+In pratica:
+
+- un indirizzo con la data **non è un errore** e non penalizza l'articolo;
+- un indirizzo fatto solo di numeri, come `?p=482`, è meno utile a chi lo legge, nei risultati e quando qualcuno lo condivide;
+- la data può far sembrare vecchio un articolo che hai aggiornato: chi vede `/2019/` nell'indirizzo può pensare che parli di regole superate.
+
+## Quando conviene cambiare e quando lasciare stare
+
+**Conviene cambiare** se:
+
+- il sito usa la struttura **semplice** (`?p=123`). È il caso più facile: WordPress stesso porta i vecchi indirizzi con `?p=` al nuovo indirizzo dell'articolo;
+- il sito è **giovane**, con pochi articoli che portano ancora poche visite;
+- stai già **rifacendo il sito** e devi comunque preparare i reindirizzamenti, come spieghiamo in [Sito vecchio e lento da rifare](/guide/sito-vecchio-da-rifare-non-perdere-posizioni).
+
+**Meglio lasciare stare** se il blog ha anni di articoli con visite da Google, link da altri siti e condivisioni: il vantaggio è piccolo e il rischio è concreto. Per una sola pagina con un nome sbagliato, come `/servizi-2/`, non serve cambiare la struttura: basta correggere quella pagina.
+
+## Come cambiare senza perdere visite
+
+1. **Segnati cosa funziona oggi.** In Search Console, nel report Rendimento, guarda quali articoli ricevono clic ed esporta l'elenco. Fai anche un backup del sito.
+2. **Cambia la struttura** in Impostazioni › Permalink, scegliendo «Nome articolo» o una struttura personalizzata. Salva una volta sola: cambiarla di nuovo dopo qualche settimana costringe Google a ritrovare tutto due volte.
+3. **Reindirizza i vecchi indirizzi.** Ogni vecchio indirizzo con la data deve portare al nuovo con un **reindirizzamento permanente** (301), come raccomanda Google nella guida su [reindirizzamenti e Ricerca Google](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it). Lo fai con un plugin, per esempio [Redirection](https://wordpress.org/plugins/redirection/), oppure con lo strumento di reindirizzamento di Rank Math, descritto nella sua [guida ai reindirizzamenti](https://rankmath.com/kb/setting-up-redirections/). Molti di questi strumenti accettano una regola unica per tutti gli indirizzi con la data; se non sai scriverla, fai a mano almeno gli articoli che portano visite.
+4. **Prova i vecchi indirizzi.** Apri cinque o sei vecchi link presi dall'elenco del primo passo: devono aprire l'articolo giusto, non la home e non una pagina «non trovata».
+5. **Aggiorna i link interni** negli articoli e nel menu, così non passano dal reindirizzamento. Poi apri la sitemap del sito e controlla che mostri i nuovi indirizzi.
+
+Un esempio di come appare il lavoro, per un installatore di climatizzatori:
+
+> Prima: /2021/03/15/come-scegliere-un-condizionatore/
+> Dopo: /come-scegliere-un-condizionatore/
+> Regola di reindirizzamento: ogni indirizzo che inizia con anno, mese e giorno porta all'indirizzo con il solo nome dell'articolo.
+
+Nomi e dettagli sono di fantasia.
+
+## Cambiare il nome di un solo articolo o di una pagina
+
+Se cambi lo slug, cioè la parte finale dell'indirizzo, di un **articolo**, WordPress ricorda il vecchio nome e di solito porta chi lo apre al nuovo. Per le **pagine** WordPress non tiene questo elenco dei vecchi nomi: il reindirizzamento lo devi creare tu. Alcuni plugin lo fanno in automatico quando cambi lo slug, per esempio il [gestore dei reindirizzamenti di Yoast](https://yoast.com/features/redirect-manager/), che però è nella versione a pagamento.
+
+WordPress, quando un indirizzo non esiste, prova anche a indovinare l'articolo giusto dal nome, come descrive la [documentazione per gli sviluppatori](https://developer.wordpress.org/reference/functions/redirect_guess_404_permalink/). È un tentativo, non una regola: può portare a un articolo dal nome simile ma sbagliato. Per le pagine che contano non affidarti a questo.
+
+## Cosa non fare
+
+- **Mandare tutti i vecchi indirizzi alla home.** Chi cercava come scegliere un condizionatore deve trovare quell'articolo. Se un contenuto non esiste più, va bene che risponda «non trovata»: lo spieghiamo in [Errore 404 su Google](/guide/errore-404-search-console-pagine-non-esistono).
+- **Riempire gli indirizzi di parole chiave**, come `/condizionatori-economici-installazione-condizionatori/`. Non aiuta e si legge male.
+- **Cambiare struttura e testi insieme.** Se dopo le visite calano, non saprai quale delle due modifiche è stata.
+- **Aspettarti un effetto immediato.** Google deve visitare di nuovo gli articoli e seguire i reindirizzamenti: per qualche tempo vedrai ancora i vecchi indirizzi nei risultati e nel report Indicizzazione delle pagine.
+
+## Se non hai tempo di farlo da solo
+
+Il cambio richiede un elenco ordinato dei vecchi indirizzi e qualche controllo dopo. Se preferisci affidarlo a noi, insieme al resto della SEO del sito, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito WordPress come lo vede Google e ti diciamo se conviene cambiare gli indirizzi o lasciarli come sono.

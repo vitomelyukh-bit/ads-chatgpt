@@ -1478,7 +1478,9 @@
     {
       "titolo": "WordPress: indirizzi delle pagine con date o numeri, conviene cambiarli?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-indirizzi-pagine-date-numeri-cambiarli",
+      "data": "2026-11-11"
     },
     {
       "titolo": "Video sul sito: cosa capiscono Google e gli assistenti AI di un video senza testo",
