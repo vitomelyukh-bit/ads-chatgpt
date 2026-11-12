@@ -1513,7 +1513,9 @@
     {
       "titolo": "SEO per una scuola di sci o un maestro di sci: farsi trovare prima della stagione",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-scuola-sci-maestro-sci-prima-stagione",
+      "data": "2026-11-12"
     },
     {
       "titolo": "Prezzi indicativi sul sito: aiutano clienti, Google e assistenti AI a capire cosa offri?",
