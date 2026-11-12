@@ -1499,7 +1499,9 @@
     {
       "titolo": "Shopify: prodotti esauriti o tolti dal catalogo, cosa fare con la pagina",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "shopify-prodotti-esauriti-tolti-catalogo-pagina",
+      "data": "2026-11-12"
     },
     {
       "titolo": "Dati strutturati con errori in Search Console: quali sistemare e quali ignorare",

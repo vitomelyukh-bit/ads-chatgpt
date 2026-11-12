@@ -1,0 +1,99 @@
+---
+title: "Shopify: prodotto esaurito o tolto, che fare con la pagina · TiTrovano"
+description: "Su Shopify un prodotto è esaurito o non lo vendi più: tenere la pagina, archiviarla, reindirizzarla o lasciare il 404? Cosa dice Google e i passaggi da fare."
+h1: "Shopify: prodotti esauriti o tolti dal catalogo, cosa fare con la pagina?"
+rispostaBreve: "Se il prodotto torna, lascia la pagina online e segnala che è esaurito: Google stesso consiglia di non togliere le schede dei prodotti non disponibili. Se non lo vendi più e hai un prodotto che ne prende davvero il posto, archivialo o eliminalo e reindirizza il vecchio indirizzo a quello nuovo. Se un sostituto non c'è, lascia che la pagina dia errore 404 invece di mandare tutti alla home."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-12"
+dateModified: "2026-11-12"
+guideCorrelate:
+  - "errore-404-search-console-pagine-non-esistono"
+  - "shopify-prodotti-trovati-su-google-piccolo-negozio"
+  - "shopify-collezioni-filtri-pagine-duplicate"
+faq:
+  - domanda: "Se archivio un prodotto e poi lo rimetto in vendita, l'indirizzo resta lo stesso?"
+    risposta: "Sì, se non cambi l'handle, cioè la parte finale dell'indirizzo. Ricorda che Shopify rimette i prodotti tolti dall'archivio in stato Bozza: per venderli e mostrarli di nuovo devi riportarli ad Attivo."
+  - domanda: "Conviene nascondere i prodotti esauriti dalle collezioni?"
+    risposta: "Dipende da quanto restano esauriti. Se tornano in pochi giorni, puoi lasciarli visibili. Se la collezione si riempie di articoli che non si possono comprare, spostali in fondo o nascondili: la pagina della collezione resta utile per chi arriva da Google."
+---
+
+## Il dubbio: «il prodotto è finito, che faccio con la sua pagina?»
+
+Hai un negozio su Shopify. Una borsa che vendeva bene è esaurita da settimane, oppure il fornitore ha smesso di produrre un modello. La scheda è ancora lì, con il pulsante «Esaurito», e magari compare ancora su Google.
+
+Le scelte possibili sono quattro: lasciarla, archiviarla, eliminarla, reindirizzarla. Quella sbagliata ti fa perdere chi arrivava da Google o da un link salvato, e chi trova una pagina vuota di solito non torna. La scelta giusta dipende da una domanda: **il prodotto torna, oppure no?**
+
+## Esaurito ma torna: lascia la pagina online
+
+Se il prodotto rientra in magazzino, non toccare la pagina. Google lo dice nella guida su come [mettere in pausa un'attività online](https://developers.google.com/search/docs/crawling-indexing/pause-online-business?hl=it): togliere le schede dei prodotti non disponibili lascia i clienti senza informazioni di prima mano, ed è meglio tenere la pagina e segnarla come esaurita.
+
+Quello che conta è che la pagina resti utile anche senza il pulsante «Aggiungi al carrello». Una scheda ridotta a titolo, foto e scritta «Esaurito» rischia di sembrare vuota: Google può segnalarla in Search Console come **soft 404**, cioè una pagina che risponde «tutto a posto» ma sembra una pagina di errore. Lo spiega la pagina sui [codici di stato HTTP](https://developers.google.com/search/docs/crawling-indexing/http-network-errors?hl=it).
+
+Cosa aggiungere a una scheda esaurita:
+
+- una frase su quando torna, se lo sai, o su come essere avvisati;
+- descrizione, misure e materiali, come prima;
+- due o tre prodotti simili disponibili, con il link.
+
+Un esempio per una pelletteria di fantasia:
+
+> «La borsa Tracolla Margherita in cuoio color cognac è esaurita. Ne stiamo cucendo una nuova serie: lasciaci la tua email e ti scriviamo appena è pronta. Intanto puoi guardare la Tracolla Margherita in cuoio nero o la Borsa Ortensia, con la stessa pelle e le stesse cuciture a mano.»
+
+Controlla anche i dati strutturati, cioè le informazioni nel codice che dicono a Google prezzo e disponibilità. La guida sui [dati strutturati dei prodotti](https://developers.google.com/search/docs/appearance/structured-data/product-snippet?hl=it) prevede valori come esaurito (`OutOfStock`), in preordine (`PreOrder`) o ordinabile con consegna più lunga (`BackOrder`). Incolla l'indirizzo della scheda nel [test dei risultati avanzati](https://search.google.com/test/rich-results) e guarda se la disponibilità indicata è quella vera. Se non lo è, il problema di solito sta nel tema o in un'app: chiedi a chi li gestisce.
+
+## Non torna più: archiviare o eliminare?
+
+Su Shopify ogni prodotto ha uno stato, per esempio Attivo, Bozza o Archiviato. Secondo l'aiuto di Shopify sullo [stato dei prodotti](https://help.shopify.com/en/manual/products/product-status):
+
+- **archiviare** toglie il prodotto dal negozio ma tiene scheda, foto e testi, e puoi riprenderlo in futuro;
+- **eliminare** lo cancella per sempre, senza modo di recuperarlo.
+
+Per Google le due scelte hanno lo stesso effetto: il vecchio indirizzo non apre più la scheda. Archiviare è quasi sempre meglio, perché non perdi testi e foto. C'è un dettaglio da sapere: i prodotti archiviati restano dentro le collezioni, anche se i clienti non li vedono. Nelle collezioni automatiche Shopify suggerisce una condizione per escluderli.
+
+Dopo aver archiviato, resta la domanda vera: dove deve finire chi apre il vecchio indirizzo?
+
+### C'è un prodotto che lo sostituisce: reindirizza
+
+Se esiste un modello nuovo che prende il posto del vecchio, metti un **reindirizzamento permanente** (301): chi apre il vecchio indirizzo arriva al nuovo, e Google capisce che deve mostrare quello. Google lo spiega nella guida su [reindirizzamenti e Ricerca Google](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it).
+
+Su Shopify si fa dalla sezione dei [reindirizzamenti URL](https://help.shopify.com/en/manual/online-store/menus-and-links/url-redirect), che trovi tra le impostazioni dei menu del negozio. Due cose che l'aiuto di Shopify chiarisce:
+
+- il reindirizzamento funziona solo se il vecchio indirizzo dà errore: se il prodotto è ancora attivo, non scatta;
+- si reindirizza l'indirizzo preciso del prodotto, come `/products/tracolla-margherita-cognac`, non `/products` o `/collections` in generale.
+
+> Da: `/products/tracolla-margherita-cognac`
+> A: `/products/tracolla-margherita-cognac-2026`, il modello nuovo con la stessa forma e lo stesso cuoio.
+
+Se archivi spesso prodotti, Shopify Flow, l'app di automazioni di Shopify, ha un'azione per [creare reindirizzamenti](https://help.shopify.com/en/manual/shopify-flow/reference/actions/create-redirect-url) quando un prodotto passa ad Archiviato. Usala solo se sai dove mandare ogni prodotto: un reindirizzamento automatico verso una pagina che non c'entra fa più danni che altro.
+
+### Non c'è un sostituto: lascia il 404
+
+Se il prodotto non ha un erede, la risposta giusta è il 404, cioè «questa pagina non c'è più». Non danneggia il resto del negozio: Google scrive nella guida agli [errori 404](https://support.google.com/webmasters/answer/2445990?hl=it) che non danneggiano il posizionamento delle altre pagine.
+
+Quello da evitare è mandare tutti i prodotti tolti alla home o a una collezione generica. Nella guida sui [cambi di indirizzo](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it) Google avverte che reindirizzare tante pagine verso una destinazione che non c'entra confonde chi arriva e può essere trattato come un soft 404. Una collezione va bene solo se contiene davvero prodotti dello stesso tipo, per esempio tutte le tracolle in cuoio.
+
+Rendi utile la pagina 404 del tema: una frase chiara, la ricerca nel negozio e i link alle collezioni principali. Ne parliamo nella guida su [cosa fare con le pagine che non esistono più](/guide/errore-404-search-console-pagine-non-esistono).
+
+## Collezioni piene di prodotti esauriti
+
+Una collezione con metà articoli esauriti è frustrante per chi la apre. Shopify spiega come [nascondere o spostare in fondo i prodotti esauriti](https://help.shopify.com/en/manual/products/inventory/setup/hide-out-of-stock): nelle collezioni automatiche si aggiunge una condizione sulla quantità disponibile, e con l'app Search & Discovery puoi decidere se nella ricerca del negozio i prodotti esauriti compaiono, spariscono o finiscono in fondo.
+
+Nascondere un prodotto da una collezione non elimina la sua scheda: chi ha il link, o arriva da Google, la trova ancora. È il comportamento giusto per un prodotto che torna.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity possono riportare il link a una tua scheda anche dopo che il prodotto è finito. Se l'indirizzo apre una pagina che dice chiaramente «esaurito, torna a marzo» o porta al modello nuovo, chi arriva capisce subito dove si trova. Nessuno può decidere quali link mostrerà un assistente, ma puoi fare in modo che la pagina dica la verità: lo spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Cosa non fare
+
+- **Non eliminare in blocco** i prodotti esauriti per «pulire» il negozio: perdi testi e foto, e i link che altri avevano messo verso quelle pagine.
+- **Non reindirizzare tutto alla home**: per chi arriva è spiazzante e Google può trattarlo come un soft 404.
+- **Non lasciare schede esaurite vuote** per mesi: aggiungi alternative o decidi se il prodotto torna davvero.
+- **Non cambiare l'indirizzo** del prodotto quando torna in magazzino: i link vecchi smetterebbero di funzionare.
+
+Per il resto delle schede, dai titoli alle foto, trovi i passaggi in [come far trovare su Google i prodotti di un piccolo negozio Shopify](/guide/shopify-prodotti-trovati-su-google-piccolo-negozio).
+
+## Se non hai tempo di farlo da solo
+
+Decidere prodotto per prodotto cosa tenere, cosa reindirizzare e cosa lasciare andare richiede un controllo con calma, e va ripetuto a ogni cambio di stagione. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo negozio come lo vede Google e ti diciamo da quali pagine partire.
