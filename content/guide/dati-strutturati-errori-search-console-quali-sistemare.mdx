@@ -1,0 +1,85 @@
+---
+title: "Dati strutturati con errori in Search Console: cosa fare · TiTrovano"
+description: "Search Console segnala dati strutturati non validi o con avvisi? Come capire quali errori sistemare subito, quali avvisi ignorare e quali dati togliere."
+h1: "Dati strutturati con errori in Search Console: quali sistemare e quali ignorare?"
+rispostaBreve: "Sistema prima gli elementi «non validi»: hanno un problema critico e Google non li usa per i risultati avanzati. Gli avvisi sui campi facoltativi non tolgono nulla, quindi li completi solo se hai il dato vero da scrivere. Se l'errore riguarda dati che per il tuo sito non producono niente, come stelline su recensioni di te stesso o FAQ, spesso la scelta giusta è lasciarli stare o toglierli, non aggiustarli."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-12"
+dateModified: "2026-11-12"
+guideCorrelate:
+  - "dati-strutturati-attivita-locale-senza-programmare"
+  - "recensioni-sito-mostrarle-clienti-google"
+  - "faq-sito-aiutano-seo-come-scriverle"
+faq:
+  - domanda: "Gli errori nei dati strutturati fanno scendere il sito su Google?"
+    risposta: "Un elemento non valido perde la possibilità di comparire come risultato avanzato, per esempio con il prezzo o il percorso della pagina sotto il titolo. La pagina può comunque comparire nei risultati normali. Diverso è il caso di dati falsi o ingannevoli, che secondo le linee guida di Google possono portare a un'azione manuale."
+  - domanda: "Ho corretto l'errore ma il report lo segna ancora: perché?"
+    risposta: "Il report si aggiorna solo quando Google visita di nuovo le pagine. Dopo aver cliccato «Convalida correzione», il controllo può richiedere due settimane o più. Nel frattempo verifica la singola pagina con il test dal vivo dello strumento Controllo URL."
+---
+
+## Una mail da Search Console che spaventa
+
+Ti arriva una mail da Google Search Console: «nuovi problemi rilevati» nei dati strutturati del sito. Apri il report e trovi parole come «non valido», «campo mancante», «avviso». Non hai mai scritto una riga di codice e non sai se il sito sta perdendo clienti.
+
+I **dati strutturati** sono informazioni nascoste nel codice della pagina che dicono a Google, in un formato standard, cosa c'è scritto: il nome dell'attività, il prezzo di un prodotto, il percorso della pagina nel sito. Quasi sempre non li ha scritti nessuno a mano: li aggiungono il tema, il plugin SEO, un plugin delle recensioni o la piattaforma. Per questo gli errori spesso arrivano da strumenti che hai installato e dimenticato.
+
+## Due gruppi: non validi e validi
+
+Per ogni tipo di risultato avanzato che trova nel sito, Search Console ha un report. La [guida di Search Console sui report dei risultati avanzati](https://support.google.com/webmasters/answer/7552505?hl=it) divide gli elementi in due gruppi:
+
+- **non validi**: hanno almeno un problema critico. Google non li usa per mostrare il risultato avanzato;
+- **validi**: possono essere mostrati, anche se hanno problemi non critici, cioè gli avvisi.
+
+Gli **avvisi** non bloccano niente. Quasi sempre segnalano un campo facoltativo mancante: Google ti dice che con quel dato in più il risultato sarebbe più completo, non che c'è un guasto.
+
+Nota due cose. Un report compare solo se Google trova nel sito dati di un tipo che usa per i risultati avanzati, come breadcrumb, snippet di recensioni o prodotti. E avere dati validi rende la pagina idonea, ma non obbliga Google a mostrare il risultato avanzato.
+
+## Cosa sistemare, cosa ignorare, cosa togliere
+
+### Da sistemare
+
+- **Errori critici su dati che ti servono**: per esempio i prodotti di un negozio online. La [guida di Google sugli snippet dei prodotti](https://developers.google.com/search/docs/appearance/structured-data/product-snippet?hl=it) chiede almeno uno tra recensioni, valutazione media e offerta con il prezzo: senza nessuno dei tre l'elemento non è valido.
+- **Breadcrumb non validi**: il breadcrumb è il percorso della pagina («Home › Servizi › Impianti»). Lo crea quasi sempre il tema o il plugin SEO, e l'errore di solito sta in un'impostazione o nel modello di pagina.
+- **Dati che non corrispondono alla pagina**: un prezzo vecchio, orari cambiati, un prodotto che non vendi più. Le [linee guida generali sui dati strutturati](https://developers.google.com/search/docs/appearance/structured-data/sd-policies?hl=it) chiedono di non descrivere contenuti che chi legge la pagina non vede.
+
+### Da ignorare, o completare solo con dati veri
+
+- **Avvisi su campi facoltativi**: se il campo mancante è un dato che hai, per esempio le spese di spedizione o il codice del prodotto, aggiungilo. Se non ce l'hai, lascia l'avviso dov'è.
+- **Il caso classico dei negozi**: la guida di Google avverte che il test può segnalare un avviso se un prodotto ha il prezzo ma nessuna recensione. Non inventare recensioni per far sparire l'avviso.
+
+### Da lasciare stare o togliere
+
+- **Recensioni su te stesso**: la [guida di Google sugli snippet delle recensioni](https://developers.google.com/search/docs/appearance/structured-data/review-snippet?hl=it) esclude dalle stelline le recensioni che un'attività pubblica su se stessa, anche tramite widget. Correggere quegli errori non porta stelline. Ne parliamo in [recensioni sul sito: come mostrarle](/guide/recensioni-sito-mostrarle-clienti-google).
+- **FAQ**: secondo il [registro degli aggiornamenti della documentazione di Google](https://developers.google.com/search/updates), dal 7 maggio 2026 i risultati FAQ non compaiono più nella Ricerca. Le domande e risposte nella pagina restano utili ai clienti, come spieghiamo in [le FAQ sul sito aiutano la SEO?](/guide/faq-sito-aiutano-seo-come-scriverle), ma i loro errori non ti tolgono nulla su Google.
+- **Tipi abbandonati da Google**: nel 2025 Google ha annunciato di [togliere alcuni risultati avanzati poco usati](https://developers.google.com/search/blog/2025/06/simplifying-search-results), come le informazioni sui corsi e gli annunci di veicoli, e i relativi report da Search Console. Se un plugin li aggiunge ancora, non è un'urgenza.
+
+## Passo per passo
+
+1. **Apri il report** del tipo segnalato e guarda prima la tabella dei problemi critici. Clicca su un problema per vedere le pagine di esempio.
+2. **Controlla se è un errore di modello**: se lo stesso errore è su tutte le schede prodotto o su tutti gli articoli, nasce da un'impostazione del tema o del plugin. Correggi lì e sistemi tutte le pagine insieme.
+3. **Trova chi aggiunge quei dati**: plugin SEO, plugin delle recensioni, tema, app del negozio. Se due strumenti aggiungono lo stesso tipo, tienine uno solo.
+4. **Correggi o togli**, secondo l'elenco sopra. Se usi una cache, svuotala.
+5. **Prova una pagina** con il [test dei risultati avanzati](https://search.google.com/test/rich-results) o con il test dal vivo dello [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it).
+6. **Clicca «Convalida correzione»** nella pagina del problema. Secondo la guida di Search Console il controllo può richiedere due settimane o più, perché dipende da quando Google visita di nuovo le pagine.
+
+## Un esempio da copiare
+
+> Studio dentistico, sito WordPress. Search Console mostra tre report.
+> Breadcrumb: tutti validi, niente da fare.
+> Snippet di recensioni: 12 elementi non validi, tutti nelle pagine dei trattamenti, con l'errore «Campo "itemReviewed" mancante». Causa: un vecchio plugin di recensioni disattivato a metà. Decisione: togliere il plugin, perché le recensioni di uno studio su se stesso non danno stelline. Le recensioni restano in pagina come testo.
+> Prodotti: il report compare per una pagina sugli spazzolini consigliati, segnata come prodotto dal tema. Decisione: togliere quei dati, perché lo studio non vende online.
+
+## Cosa non fare
+
+- **Non inventare dati per riempire i campi**: valutazioni, recensioni o prezzi che non esistono. Le linee guida di Google prevedono azioni manuali per i dati strutturati ingannevoli.
+- **Non aggiungere tre plugin** per «avere più schema»: più strumenti scrivono gli stessi dati, più errori e doppioni nascono.
+- **Non inseguire lo zero assoluto negli avvisi**: non impediscono i risultati avanzati, quindi non vale la pena riempire campi con dati che non hai.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity leggono soprattutto il testo della pagina. Dati strutturati corretti aiutano a non lasciare informazioni contraddittorie su orari, indirizzo o prezzi, ma non fanno fare il tuo nome a un'AI. Le basi per un'attività locale, con cosa scrivere nei dati della sede, sono in [dati strutturati per un'attività locale senza programmare](/guide/dati-strutturati-attivita-locale-senza-programmare).
+
+## Se non hai tempo di farlo da solo
+
+Capire quale plugin aggiunge quali dati, e decidere cosa correggere e cosa togliere, richiede di guardare il report pagina per pagina. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme Search Console e ti diciamo cosa conta davvero.
