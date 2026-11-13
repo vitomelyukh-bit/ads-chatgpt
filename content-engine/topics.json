@@ -1529,7 +1529,9 @@
     {
       "titolo": "Sito hackerato e pagine strane su Google: come accorgersene e cosa fare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-hackerato-pagine-strane-google-cosa-fare",
+      "data": "2026-11-13"
     },
     {
       "titolo": "Sito di un laboratorio di analisi: pagine per esami, preparazione e orari dei prelievi",

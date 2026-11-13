@@ -1,0 +1,99 @@
+---
+title: "Sito hackerato, pagine strane su Google: cosa fare · TiTrovano"
+description: "Su Google escono pagine del tuo sito che non hai scritto? Come capire se il sito è stato violato, i controlli in Search Console e i passi per ripulirlo."
+h1: "Sito hackerato e pagine strane su Google: come accorgersene e cosa fare?"
+rispostaBreve: "Se cercando il tuo sito su Google trovi titoli in giapponese, farmaci, scommesse o pagine che non hai mai scritto, quasi sempre qualcuno ha sfruttato una falla per aggiungere contenuti di spam. Il controllo da fare subito è il report Problemi di sicurezza di Search Console, insieme a una ricerca site:tuodominio.it. Poi il sito va ripulito da chi lo gestisce tecnicamente, vanno chiusi gli accessi usati dall'intruso e solo alla fine si chiede a Google di verificarlo di nuovo."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-13"
+dateModified: "2026-11-13"
+guideCorrelate:
+  - "sito-sparito-da-google-cosa-fare"
+  - "collegare-search-console-wordpress-wix-shopify"
+  - "errore-404-search-console-pagine-non-esistono"
+faq:
+  - domanda: "Se apro il sito lo vedo normale: può essere comunque hackerato?"
+    risposta: "Sì. Alcune violazioni mostrano lo spam solo a Google o solo a chi arriva dai risultati di ricerca, mentre tu che scrivi l'indirizzo vedi il sito di sempre. Per questo conta quello che vedi su Google e nello strumento Controllo URL di Search Console, non solo quello che vedi aprendo la home."
+  - domanda: "Su Wix, Shopify o Squarespace può succedere?"
+    risposta: "Su queste piattaforme il server lo gestisce la piattaforma, quindi i casi tipici di file modificati riguardano soprattutto i siti che gestisci tu, come WordPress su un hosting. Resta però importante proteggere l'account: password unica, verifica in due passaggi e controllo periodico di chi ha accesso al sito e a Search Console."
+---
+
+## Il problema: su Google esce il tuo dominio, ma non le tue pagine
+
+Cerchi il nome della tua attività su Google e sotto il tuo indirizzo compaiono titoli in giapponese, offerte di farmaci, siti di scommesse o borse firmate a prezzi stracciati. Oppure un cliente ti scrive: «Ho cliccato sul vostro sito e sono finito su una pagina strana».
+
+Non è un errore di Google. Quasi sempre qualcuno è entrato nel sito sfruttando una falla, per esempio un plugin non aggiornato o una password debole, e ci ha aggiunto pagine di spam. Il danno per te è concreto: chi ti cerca vede risultati che non c'entrano con il tuo lavoro, Google può mostrare un avviso accanto al tuo sito e il traffico verso le tue pagine vere può calare.
+
+Google chiama questi casi **contenuti compromessi**: contenuti inseriti nel sito senza la tua autorizzazione a causa di una vulnerabilità. Li descrive nel [report Problemi di sicurezza](https://support.google.com/webmasters/answer/9044101?hl=it) e li elenca tra le violazioni delle [norme anti-spam](https://developers.google.com/search/docs/essentials/spam-policies?hl=it), anche quando la colpa non è tua.
+
+## I segnali da riconoscere
+
+Google raccoglie i sintomi più comuni nella pagina [Come faccio a sapere se il mio sito è stato compromesso?](https://web.dev/articles/how-do-i-know-if-my-site-was-hacked?hl=it). Per un'attività locale i più frequenti sono questi:
+
+- nei risultati di Google compaiono pagine del tuo dominio con titoli o descrizioni che non hai scritto;
+- Google mostra un avviso accanto al tuo sito, o il browser mostra un avviso prima di aprirlo;
+- ricevi da Search Console un messaggio su un problema di sicurezza;
+- chi arriva da Google viene mandato su un altro sito, mentre se scrivi tu l'indirizzo va tutto bene;
+- in Search Console, tra gli utenti, c'è qualcuno che non conosci.
+
+L'ultimo punto è più comune di quanto sembri. Nella guida sulla [compromissione con parole chiave giapponesi](https://web.dev/articles/fix-the-japanese-keyword-hack?hl=it) Google spiega che spesso chi ha violato il sito si aggiunge come proprietario in Search Console, per cambiare impostazioni come le sitemap.
+
+## Primo controllo: cerca il tuo sito come lo cerca Google
+
+Apri Google e scrivi `site:` seguito dal tuo dominio, senza spazi. Guarda i risultati pagina per pagina, non solo i primi.
+
+> Ricerca: site:idraulicaferretti.it
+>
+> Risultati normali: «Riparazione perdite e scarichi · Idraulica Ferretti», «Contatti e zone servite · Idraulica Ferretti».
+>
+> Risultati sospetti: idraulicaferretti.it/xk93/shop.php?id=2231 con un titolo in giapponese; idraulicaferretti.it/news/cheap-pills-online con un testo in inglese su farmaci senza ricetta.
+
+Se trovi risultati come quelli del secondo gruppo, annota gli indirizzi. Ti servono per il passo successivo e per chi ripulirà il sito.
+
+Attenzione: aprendo quegli indirizzi potresti vedere una pagina normale o un errore. Alcune violazioni usano il **cloaking**, cioè mostrano lo spam solo a Google e una pagina pulita alle persone. Google lo spiega nella guida sulla [compromissione con parole chiave e link nascosti](https://web.dev/articles/fix-the-cloaked-keywords-hack?hl=it). Per vedere quello che vede Google usa lo strumento [Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) di Search Console e guarda la pagina sottoposta a scansione.
+
+## Secondo controllo: Search Console
+
+Se Search Console non è ancora collegata, collegala ora: senza non vedi gli avvisi di Google. Come farlo su WordPress, Wix o Shopify è spiegato in [come collegare Search Console](/guide/collegare-search-console-wordpress-wix-shopify).
+
+Poi controlla tre cose:
+
+1. **Il report Problemi di sicurezza.** Se c'è un problema, il report lo nomina e mostra alcuni indirizzi di esempio. Se è vuoto ma la ricerca `site:` mostra pagine strane, non sei comunque al sicuro: vai avanti.
+2. **Utenti e autorizzazioni**, nelle impostazioni. Togli chiunque non riconosci. Google avverte che togliere l'utente non basta se resta sul sito il file o il codice che ha usato per verificarsi come proprietario: va eliminato anche quello, ed è un lavoro per chi gestisce il sito.
+3. **Le sitemap inviate.** Se ne trovi una che non hai creato tu, segnatela: chi ha violato il sito può averla aggiunta per far trovare le sue pagine più in fretta.
+
+## Come ripulire il sito, passo per passo
+
+Questa parte richiede chi gestisce tecnicamente il sito o l'hosting. Il tuo compito è sapere cosa chiedere e controllare che sia fatto tutto.
+
+1. **Fai una copia completa del sito prima di toccare qualcosa**, file e database. Serve per capire cosa è successo e per recuperare i tuoi contenuti.
+2. **Cambia tutte le password**: pannello del sito, hosting, accesso ai file, database, email collegata al sito. Attiva la verifica in due passaggi dove c'è.
+3. **Trova la porta d'ingresso.** Spesso è un plugin o un tema non aggiornato, un plugin scaricato da siti non ufficiali o un vecchio account amministratore dimenticato. Se non chiudi la falla, la violazione torna.
+4. **Ripulisci file e database**: togli le pagine e il codice aggiunti, sostituisci i file del sistema con copie originali, aggiorna tutto. Per WordPress la guida ufficiale [Hardening WordPress](https://developer.wordpress.org/advanced-administration/security/hardening/) elenca le protezioni da mettere dopo.
+5. **Fai sparire le pagine di spam per davvero.** Gli indirizzi creati dall'intruso devono rispondere con un errore 404 o 410, non con una pagina vuota e non con un reindirizzamento alla home. Perché è importante lo spieghiamo in [cosa fare con le pagine che non esistono più](/guide/errore-404-search-console-pagine-non-esistono).
+6. **Ricontrolla con Controllo URL** alcuni degli indirizzi annotati, per essere sicuro che Google non veda più lo spam.
+
+Un messaggio da mandare a chi gestisce il sito, da adattare:
+
+> Ciao Marco, su Google escono pagine del nostro sito che non abbiamo scritto (ti allego l'elenco degli indirizzi trovati con la ricerca site:). In Search Console c'era anche un utente che non conosciamo. Puoi fare una copia completa, capire da dove sono entrati, ripulire file e database, aggiornare plugin e tema e far rispondere con 404 tutte le pagine di spam? Le password le cambiamo noi appena ci dici che hai finito.
+
+## Ultimo passo: chiedere a Google una revisione
+
+Se il report Problemi di sicurezza segnalava qualcosa, quando il sito è pulito usa il pulsante per richiedere una revisione dallo stesso report. Google chiede di correggere **tutti** i problemi elencati, su tutte le pagine coinvolte, prima di farlo. Nella richiesta scrivi in poche righe cosa è stato trovato e cosa è stato fatto.
+
+Google avverte che il riesame dei siti compromessi con spam può richiedere anche diverse settimane. Nel frattempo le pagine di spam, se rispondono con un errore, escono dai risultati man mano che Google le visita di nuovo. Se il sito era anche sparito o sceso molto, segui i controlli in [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity, quando cercano sul web, leggono le pagine che trovano. Se il tuo dominio è pieno di pagine di spam, quelle pagine raccontano un'attività diversa dalla tua. Ripulire il sito serve quindi anche perché chi chiede di te a un assistente trovi le tue pagine vere, non lo spam. Nessuno può garantire cosa diranno, ma un sito pulito è la base.
+
+## Cosa non fare
+
+- **Non chiedere la revisione a metà lavoro**: se Google trova ancora spam, la richiesta può essere respinta e perdi tempo.
+- **Non limitarti a cancellare le pagine strane** senza capire da dove sono entrati: tornano.
+- **Non reindirizzare tutte le pagine di spam alla home**: per Google devono sparire.
+- **Non ignorare un utente sconosciuto in Search Console** perché «tanto non fa niente».
+
+## Se non hai tempo di farlo da solo
+
+Se vuoi un aiuto per capire cosa controllare sul tuo sito e in Search Console, e per tenerlo sotto controllo nel tempo, [prenota la consulenza gratuita](/#attiva).
