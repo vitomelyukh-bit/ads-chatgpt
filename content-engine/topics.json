@@ -1414,7 +1414,9 @@
     {
       "titolo": "Titoli H1, H2 e H3 in una pagina di servizio: come usarli senza esagerare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "titoli-h1-h2-h3-pagina-servizio",
+      "data": "2026-11-13"
     },
     {
       "titolo": "Schede su portali e directory di settore: servono per Google e per gli assistenti AI?",
