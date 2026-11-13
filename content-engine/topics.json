@@ -1520,7 +1520,9 @@
     {
       "titolo": "Prezzi indicativi sul sito: aiutano clienti, Google e assistenti AI a capire cosa offri?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "prezzi-indicativi-sito-clienti-google-assistenti-ai",
+      "data": "2026-11-13"
     },
     {
       "titolo": "Sito hackerato e pagine strane su Google: come accorgersene e cosa fare",
