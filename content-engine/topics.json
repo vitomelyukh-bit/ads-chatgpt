@@ -1550,7 +1550,9 @@
     {
       "titolo": "Indirizzi con parametri (?utm, ?ref): Google li vede come pagine doppie?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "indirizzi-parametri-utm-ref-google-pagine-doppie",
+      "data": "2026-11-14"
     },
     {
       "titolo": "Chatbot sul sito: aiuta Google o gli assistenti AI a capire la tua attività?",

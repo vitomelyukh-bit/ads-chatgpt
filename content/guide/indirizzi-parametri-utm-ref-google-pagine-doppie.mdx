@@ -1,0 +1,99 @@
+---
+title: "Indirizzi con ?utm e ?ref: Google vede pagine doppie? · TiTrovano"
+description: "Link con ?utm_source o ?ref nella newsletter, sui social o nei QR code: cosa fa Google con questi indirizzi, come controllarli e quando vanno sistemati."
+h1: "Indirizzi con parametri (?utm, ?ref): Google li vede come pagine doppie?"
+rispostaBreve: "Li vede come indirizzi diversi della stessa pagina, ma di solito li raggruppa e mostra nei risultati la versione pulita, senza parametri. Non è una penalizzazione e non devi smettere di usare i link tracciati. Va sistemato solo se la pagina non indica la sua versione principale o se i parametri finiscono nei link interni del tuo sito."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-14"
+dateModified: "2026-11-14"
+guideCorrelate:
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "duplicata-google-canonica-diversa-search-console"
+  - "collegare-search-console-wordpress-wix-shopify"
+faq:
+  - domanda: "Devo smettere di usare i link con utm nella newsletter e sui social?"
+    risposta: "No. Servono a capire da dove arrivano le visite e Google sa gestirli. Basta che la pagina dichiari la sua versione principale e che i parametri restino nei link esterni, non nel menu del sito."
+  - domanda: "In Search Console c'era uno strumento per i parametri: dove è finito?"
+    risposta: "Google lo ha tolto nel 2022, spiegando che ormai riconosce da solo i parametri inutili. Oggi non c'è niente da impostare lì: contano il tag canonico e i link interni puliti."
+---
+
+## Il dubbio: «Google vede tre pagine invece di una?»
+
+Mandi la newsletter con un link alla pagina delle torte su ordinazione. Metti lo stesso link nella bio di Instagram e su un volantino con il QR code. Per capire quale canale porta più visite, a ogni link aggiungi una coda diversa: `?utm_source=newsletter`, `?utm_source=instagram`, `?ref=volantino`.
+
+Poi apri Search Console, o cerchi il tuo sito su Google, e trovi proprio quegli indirizzi lunghi. Il timore è comprensibile: Google pensa che il sito abbia tre copie della stessa pagina, e magari le fa competere tra loro.
+
+Nella maggior parte dei casi non succede niente di grave. Ma ci sono due errori frequenti che vale la pena controllare.
+
+## Cosa sono quei pezzi dopo il punto interrogativo
+
+Tutto quello che viene dopo il `?` in un indirizzo è un **parametro**: un'informazione in più che il sito o un programma di statistiche può leggere. La pagina che vede il cliente resta la stessa.
+
+I più comuni sui siti delle attività locali:
+
+- **utm_source, utm_medium, utm_campaign**: li aggiungi tu per sapere in Google Analytics da quale campagna arriva una visita. Google li spiega nella guida su come [raccogliere i dati delle campagne con URL personalizzati](https://support.google.com/analytics/answer/10917952?hl=it);
+- **gclid**: lo aggiunge da solo Google Ads quando l'auto-tagging è attivo;
+- **ref** o simili: parametri scelti da te, da un programma di affiliazione o da un portale per segnare da dove arriva il cliente.
+
+## Cosa fa Google con questi indirizzi
+
+Per Google `pasticceriaferri.it/torte-su-ordinazione` e `pasticceriaferri.it/torte-su-ordinazione?utm_source=newsletter` sono due indirizzi diversi con lo stesso contenuto. Nella guida su [cos'è la canonicalizzazione](https://developers.google.com/search/docs/crawling-indexing/canonicalization?hl=it) spiega cosa fa in questi casi: raggruppa i doppioni, ne sceglie uno da mostrare nei risultati, la **pagina canonica**, e visita gli altri meno spesso.
+
+Il sito può suggerire quale versione preferisce con il tag `rel="canonical"`, una riga nel codice della pagina. Nella guida su [come indicare la pagina canonica](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it) Google usa proprio l'esempio di un indirizzo con un parametro di tracciamento, e tra i motivi per indicare la canonica mette anche avere statistiche più semplici da leggere.
+
+In pratica: se la pagina dice «la versione principale sono io, senza parametri», Google di solito le dà retta. In Search Console gli indirizzi con utm finiscono sotto «Pagina alternativa con tag canonico appropriato», uno stato normale che abbiamo spiegato in [«Pagina con reindirizzamento» e tag canonico](/guide/pagina-con-reindirizzamento-tag-canonico-search-console).
+
+## Controlla il tuo sito in cinque minuti
+
+1. Copia un tuo link tracciato, per esempio quello della newsletter.
+2. Incollalo nella barra in alto di Search Console: si apre lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it). Se non hai ancora Search Console, parti da [come collegarla al tuo sito](/guide/collegare-search-console-wordpress-wix-shopify).
+3. Nella parte sull'indicizzazione leggi **URL canonico dichiarato dall'utente**: deve essere l'indirizzo pulito, senza `?`.
+4. Leggi anche **URL canonico selezionato da Google**: se coincide, sei a posto.
+
+Un risultato corretto, per la pasticceria di fantasia dell'esempio:
+
+> URL ispezionato: pasticceriaferri.it/torte-su-ordinazione?utm_source=newsletter
+> Canonico dichiarato dall'utente: pasticceriaferri.it/torte-su-ordinazione
+> Canonico selezionato da Google: pasticceriaferri.it/torte-su-ordinazione
+
+Su WordPress il tag canonico lo scrive di solito il plugin SEO; Wix lo crea da solo per ogni pagina, come spiega la sua guida sui [tag canonici](https://support.wix.com/en/article/changing-the-canonical-tags-for-your-sites-pages). Il controllo serve proprio a scoprire se il tuo tema o un plugin lo ha tolto o lo scrive sbagliato.
+
+## Quando diventa un problema davvero
+
+### I parametri sono nei link del tuo sito
+
+È l'errore più comune. Qualcuno ha copiato un link dalla newsletter e l'ha incollato nel banner della home, nel menu o in un pulsante «Ordina ora». Così ogni visitatore, e Google, gira per il sito con indirizzi tracciati.
+
+Nella sua guida sulla [struttura degli URL per l'e-commerce](https://developers.google.com/search/docs/specialty/ecommerce/designing-a-url-structure-for-ecommerce-sites?hl=it) Google consiglia di non mettere nei link interni parametri temporanei come i codici di tracciamento. C'è anche un effetto sulle statistiche: un clic interno con utm fa sembrare arrivata dalla newsletter una persona che magari ti aveva trovato su Google.
+
+La soluzione è semplice: i link interni puntano sempre all'indirizzo pulito.
+
+### La pagina non dichiara la versione principale
+
+Se il tag canonico manca, o punta alla home invece che alla pagina stessa, Google deve scegliere da solo. Di solito sceglie bene, ma a volte nei risultati compare l'indirizzo con il parametro, e chi lo condivide lo copia così com'è. Se Search Console mostra una canonica diversa da quella che vuoi, il caso è quello della guida su [«Google ha scelto una pagina canonica diversa»](/guide/duplicata-google-canonica-diversa-search-console).
+
+### Il parametro cambia davvero la pagina
+
+Filtri, ordinamenti e varianti dei negozi online, come `?ordine=prezzo`, sono un'altra storia: lì il contenuto cambia. Ne parliamo nelle guide su [WooCommerce](/guide/woocommerce-categorie-tag-prodotti-google) e sui [filtri di Shopify](/guide/shopify-collezioni-filtri-pagine-duplicate).
+
+## Come usare bene i link tracciati
+
+Tienili per i posti fuori dal sito: newsletter, social, QR code, messaggi WhatsApp, inserzioni. E usa nomi costanti, perché in Analytics `Newsletter` e `newsletter` diventano due fonti diverse. Un esempio da copiare:
+
+> Newsletter di dicembre: pasticceriaferri.it/torte-su-ordinazione?utm_source=newsletter&utm_medium=email&utm_campaign=natale
+> Bio di Instagram: pasticceriaferri.it/torte-su-ordinazione?utm_source=instagram&utm_medium=social&utm_campaign=bio
+> Menu e pulsanti del sito: pasticceriaferri.it/torte-su-ordinazione
+
+Lo stesso vale per gli assistenti AI come ChatGPT, Gemini e Perplexity: quando leggono il web incontrano i tuoi link in giro. Se ogni versione rimanda chiaramente alla stessa pagina principale, è più facile capire qual è la pagina che descrive quel servizio.
+
+## Cosa non fare
+
+- **Bloccare i parametri nel robots.txt** per «pulire» il sito: Google sconsiglia il robots.txt per indicare la versione principale, perché poi non legge più quelle pagine e il loro tag canonico.
+- **Mettere un noindex** sulle versioni con parametri: è la stessa pagina, e rischi di togliere dai risultati anche quella buona.
+- **Reindirizzare dal server ogni link con utm** verso quello pulito senza sapere cosa fai: le statistiche di campagna possono perdersi prima di essere registrate.
+- **Cercare in Search Console lo strumento Parametri URL**: Google lo ha [ritirato nel 2022](https://developers.google.com/search/blog/2022/03/url-parameters-tool-deprecated) perché riconosce da solo i parametri inutili.
+
+## Se non hai tempo di farlo da solo
+
+Controllare tag canonici, link interni e report di Search Console pagina per pagina richiede tempo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme come Google vede gli indirizzi del tuo sito e ti diciamo cosa sistemare per primo.
