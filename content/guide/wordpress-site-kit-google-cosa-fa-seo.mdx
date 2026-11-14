@@ -1,0 +1,94 @@
+---
+title: "WordPress e Site Kit di Google: cosa fa per la SEO · TiTrovano"
+description: "Site Kit porta in WordPress i dati di Search Console, Analytics e PageSpeed Insights. Cosa mostra, cosa non fa al posto del plugin SEO e come usarlo bene."
+h1: "WordPress: Site Kit di Google, cosa fa e cosa non fa per la SEO?"
+rispostaBreve: "Site Kit è il plugin gratuito di Google che collega il sito WordPress a Search Console e ad altri servizi Google e ti mostra i loro dati dentro la bacheca: ricerche, clic, impressioni, velocità delle pagine. Non scrive titoli e descrizioni, non decide quali pagine tenere fuori da Google e non fa salire il sito. È uno strumento per leggere i dati, da affiancare a un plugin SEO e al lavoro sulle pagine."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-14"
+dateModified: "2026-11-14"
+guideCorrelate:
+  - "collegare-search-console-wordpress-wix-shopify"
+  - "yoast-o-rank-math-sito-attivita-locale"
+  - "search-console-ricerche-per-pagine-nuove"
+faq:
+  - domanda: "Se installo Site Kit posso togliere Yoast o Rank Math?"
+    risposta: "No: fanno lavori diversi. Il plugin SEO imposta titoli, descrizioni, sitemap ed esclusione delle pagine inutili; Site Kit ti mostra i dati dei servizi Google. Possono stare insieme, ma tieni un solo plugin SEO attivo."
+  - domanda: "Posso usare solo Search Console, senza Site Kit?"
+    risposta: "Sì. Site Kit è una comodità per vedere i dati dentro WordPress. Tutti i report, compresi quelli sull'indicizzazione, li trovi comunque in Search Console."
+---
+
+## Il dubbio: «ho installato Site Kit, sono a posto con Google?»
+
+Hai un sito WordPress, qualcuno ti ha detto di installare Site Kit «perché è di Google», e ora in bacheca vedi grafici e numeri. Ti chiedi se il lavoro SEO è fatto, o se il plugin sta sistemando qualcosa al posto tuo.
+
+La risposta onesta è che Site Kit ti fa **vedere** meglio cosa succede, ma non **cambia** niente di quello che Google legge nelle tue pagine. Se lo scambi per un plugin SEO, rischi di aspettare risultati da uno strumento che serve a un'altra cosa.
+
+## Cosa fa Site Kit
+
+Site Kit è il plugin ufficiale di Google per WordPress, gratuito su [wordpress.org](https://wordpress.org/plugins/google-site-kit/). Collega il sito ad alcuni servizi Google e ne porta i dati nella bacheca. Secondo la [documentazione di Site Kit](https://sitekit.withgoogle.com/documentation/getting-started/connect-services/), i servizi supportati sono Search Console, Analytics, PageSpeed Insights, Tag Manager, AdSense, Ads, Reader Revenue Manager e Sign in with Google.
+
+Per un'attività locale contano soprattutto i primi tre:
+
+- **Search Console** è obbligatorio. Durante la configurazione Site Kit verifica il sito e ti dà il ruolo di proprietario in Search Console, come spiega la [pagina su Search Console in Site Kit](https://sitekit.withgoogle.com/documentation/supported-services/search-console/). È il modo più semplice di collegarla su WordPress; le alternative sono nella guida su [come collegare Search Console](/guide/collegare-search-console-wordpress-wix-shopify).
+- **Analytics** aggiunge il codice che conta le visite, se lo colleghi.
+- **PageSpeed Insights** è attivo da subito e non aggiunge codice al sito.
+
+## Cosa vedi da WordPress
+
+La [guida alla bacheca di Site Kit](https://sitekit.withgoogle.com/documentation/using-site-kit/using-the-site-kit-dashboard/) descrive tre cose utili per chi ha un sito locale.
+
+- **Traffico dalla ricerca**: quante volte il sito è comparso nei risultati di Google (impressioni) e quante persone hanno cliccato.
+- **Ricerche principali**: le ricerche che hanno portato le persone sul sito nel periodo che scegli, prese da Search Console.
+- **Dati della singola pagina**: quando sei collegato come amministratore e apri una pagina del sito, la barra in alto mostra impressioni e clic di quella pagina. Non funziona per gli indirizzi che Site Kit non riconosce come pagine di WordPress.
+
+Per la velocità, la [pagina su PageSpeed Insights in Site Kit](https://sitekit.withgoogle.com/documentation/supported-services/pagespeed-insights/) distingue due tipi di dati: quelli di laboratorio, calcolati con un caricamento simulato, e quelli sul campo, raccolti dagli utenti reali di Chrome negli ultimi 28 giorni. Puoi passare dal telefono al computer. Se il sito ha pochi visitatori, i dati sul campo possono mancare.
+
+I numeri non sono in tempo reale. Site Kit avverte che, dopo il primo collegamento, possono servire fino a 48 ore perché compaiano, e che i dati del giorno sono provvisori: lo spiega la pagina sui [dati del giorno corrente](https://sitekit.withgoogle.com/documentation/using-site-kit/understanding-current-day-data-in-site-kit/).
+
+## Cosa non fa
+
+Nell'elenco dei servizi di Site Kit non c'è niente che intervenga sulle pagine. In pratica:
+
+- **non scrive il titolo e la meta description** che Google può mostrare nei risultati;
+- **non esclude da Google** le pagine inutili come tag, archivi autore o allegati;
+- **non crea la sitemap**: quella la fa WordPress stesso, di solito a `/wp-sitemap.xml`, oppure il plugin SEO, che la sostituisce con la sua;
+- **non aggiunge i dati strutturati** con nome, indirizzo e orari dell'attività;
+- **non scrive le pagine dei servizi** che i tuoi clienti cercano.
+
+Queste cose restano al plugin SEO e a te. Se devi ancora sceglierlo, leggi [Yoast o Rank Math per il sito di un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+
+Neanche i report più tecnici stanno in Site Kit: per sapere quali pagine Google ha escluso e perché, apri il [report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) in Search Console.
+
+## Un errore frequente: il codice di Analytics due volte
+
+Molti siti WordPress hanno già il codice di Analytics, messo dal tema, da un plugin per gli script o da un altro plugin di statistiche. Secondo la guida sul [codice inserito da Site Kit](https://sitekit.withgoogle.com/documentation/using-site-kit/managing-site-kit-placed-code/), se Site Kit trova lo stesso codice già presente non lo aggiunge di nuovo. Se invece il vecchio codice è collegato a un'altra proprietà Analytics, le visite vengono contate in tutte e due.
+
+Quando installi Site Kit su un sito che ha già qualche anno, chiedi a chi l'ha fatto dove sta il codice di Analytics e tienilo in un posto solo.
+
+## Come usarlo davvero, una volta alla settimana
+
+Site Kit è utile se lo usi per decidere cosa cambiare nelle pagine. Un esempio, con nomi di fantasia:
+
+> Studio di fisioterapia Movimento Libero, sito WordPress con Yoast e Site Kit. Aprendo la pagina «Mal di schiena», la barra in alto mostra molte impressioni e pochissimi clic. Il titolo su Google era «Servizi – Movimento Libero».
+> Prima: «Servizi – Movimento Libero»
+> Dopo: «Fisioterapia per il mal di schiena: visita e percorso · Movimento Libero»
+
+Tre controlli rapidi:
+
+1. **Pagine con tante impressioni e pochi clic.** Spesso il titolo o la descrizione non dicono cosa c'è nella pagina. Come intervenire lo spieghiamo in [titolo e descrizione su Google sbagliati](/guide/titolo-descrizione-google-sbagliati-come-cambiarli).
+2. **Ricerche principali che non hanno una pagina.** Se tra le ricerche compare un servizio di cui parli solo in una riga, può meritare una pagina sua: il metodo è nella guida su [come usare le ricerche di Search Console per scrivere pagine nuove](/guide/search-console-ricerche-per-pagine-nuove).
+3. **Velocità da telefono.** Guarda prima i dati sul campo, poi quelli di laboratorio, e parti dalla pagina più visitata.
+
+## Cosa non aspettarti
+
+Site Kit non fa salire il sito su Google e non lo fa leggere meglio a ChatGPT, Gemini o Perplexity: ti mostra solo i dati dei servizi Google. Per gli assistenti AI contano il testo delle pagine e la loro chiarezza, come spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+Due attenzioni pratiche:
+
+- **Collegalo con l'account Google dell'attività**, non con quello del collaboratore che fa l'installazione: se poi smettete di lavorare insieme, i dati restano a te.
+- **Se un giorno lo disinstalli**, controlla in Search Console che la proprietà resti verificata con un altro metodo, per esempio il record DNS.
+
+## Se non hai tempo di farlo da solo
+
+Installare Site Kit richiede pochi minuti. Leggere i dati ogni settimana e trasformarli in titoli migliori e pagine nuove è un altro lavoro. Se preferisci affidarlo a qualcuno, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito WordPress e cosa ti dicono i suoi dati.

@@ -1543,7 +1543,9 @@
     {
       "titolo": "WordPress: Site Kit di Google, cosa fa e cosa non fa per la SEO",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-site-kit-google-cosa-fa-seo",
+      "data": "2026-11-14"
     },
     {
       "titolo": "Indirizzi con parametri (?utm, ?ref): Google li vede come pagine doppie?",
