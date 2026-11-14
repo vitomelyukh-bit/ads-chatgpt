@@ -1536,7 +1536,9 @@
     {
       "titolo": "Sito di un laboratorio di analisi: pagine per esami, preparazione e orari dei prelievi",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-laboratorio-analisi-esami-preparazione-orari-prelievi",
+      "data": "2026-11-14"
     },
     {
       "titolo": "WordPress: Site Kit di Google, cosa fa e cosa non fa per la SEO",
