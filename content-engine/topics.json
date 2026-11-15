@@ -1573,7 +1573,9 @@
     {
       "titolo": "Sito di un falegname o di una falegnameria su misura: come mostrare i lavori e farsi trovare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-falegnameria-mobili-su-misura-lavori",
+      "data": "2026-11-15"
     },
     {
       "titolo": "WordPress: contenuti demo del tema rimasti online, come trovarli e toglierli da Google",
