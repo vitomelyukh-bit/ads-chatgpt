@@ -1,0 +1,94 @@
+---
+title: "Quanto ci mette Google a mostrare una pagina nuova? · TiTrovano"
+description: "Hai pubblicato una pagina nuova e su Google non c'è? Quanto tempo serve secondo Google, come controllare a che punto è e quando c'è davvero un problema."
+h1: "Quanto tempo ci vuole perché Google mostri le pagine nuove del sito?"
+rispostaBreve: "Non c'è una data fissa: Google scrive che la scansione di una pagina può richiedere da pochi giorni a qualche settimana, e che un sito nuovo può impiegare qualche settimana per essere rilevato. Nel frattempo puoi controllare a che punto è con Search Console e rendere la pagina facile da trovare, con link dal sito e la sitemap. Se dopo qualche settimana la pagina non è ancora su Google, conviene cercare la causa invece di aspettare."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-15"
+dateModified: "2026-11-15"
+guideCorrelate:
+  - "rilevata-non-indicizzata-search-console"
+  - "pagina-scansionata-non-indicizzata-search-console"
+  - "collegare-search-console-wordpress-wix-shopify"
+faq:
+  - domanda: "Se chiedo l'indicizzazione da Search Console, la pagina esce subito?"
+    risposta: "No. La richiesta dice a Google che la pagina esiste o è cambiata, ma non garantisce né tempi né l'inserimento nei risultati. C'è anche un limite di richieste, e Google scrive che ripeterla per lo stesso indirizzo non lo fa visitare prima."
+  - domanda: "Ho modificato una pagina che era già su Google: anche qui devo aspettare?"
+    risposta: "Sì. Google mostra la versione nuova solo dopo aver visitato di nuovo la pagina. Per un titolo o un testo cambiato vale lo stesso discorso: dopo la modifica puoi fare una richiesta di indicizzazione e poi aspettare."
+---
+
+## Il dubbio: «l'ho pubblicata, perché su Google non c'è?»
+
+Hai scritto la pagina «Pulizia uffici e studi professionali», l'hai messa online, l'hai cercata su Google il giorno dopo. Niente. Ti chiedi se hai sbagliato qualcosa o se basta aspettare, e soprattutto quanto.
+
+È una domanda giusta, perché finché la pagina non è su Google non porta richieste. Ma è anche facile preoccuparsi troppo presto, o al contrario aspettare mesi una pagina che ha un blocco tecnico.
+
+## Cosa deve succedere prima che la pagina compaia
+
+Una pagina nuova passa da tre momenti, e ognuno prende il suo tempo:
+
+1. **Google la trova.** Di solito da un link di un'altra pagina del tuo sito o dalla sitemap, cioè l'elenco delle pagine che il sito prepara per i motori di ricerca.
+2. **Google la visita e la legge.** È la scansione: Googlebot, il programma con cui Google legge i siti, apre la pagina.
+3. **Google decide se metterla nel suo indice.** Solo le pagine nell'indice possono comparire nei risultati.
+
+C'è poi un quarto passo, che spesso si confonde con gli altri: comparire per le ricerche dei clienti. Una pagina può essere su Google e non uscire ancora per «pulizia uffici» nella tua zona. Sono due cose diverse, e vanno controllate in modo diverso.
+
+## Quanto tempo serve, secondo Google
+
+Google non dà una data e nessuno può darla al posto suo. Dà però degli ordini di grandezza:
+
+- nella pagina su [come chiedere a Google di ripetere la scansione](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl?hl=it) scrive che la scansione può richiedere **da pochi giorni a qualche settimana**;
+- nella guida su [come mostrare il tuo sito su Google](https://developers.google.com/search/docs/fundamentals/get-on-google?hl=it) spiega che Google può impiegare **qualche settimana** per rilevare un sito nuovo o le modifiche a un sito esistente;
+- nella [guida introduttiva alla SEO](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=it) aggiunge che alcune modifiche hanno effetto in poche ore e altre in diversi mesi.
+
+In pratica: una pagina nuova su un sito che Google visita già spesso può entrare in fretta. Su un sito appena nato, o che Google visita di rado, ci vuole di più.
+
+## Come controllare a che punto è
+
+Non serve cercare il nome del servizio su Google ogni mattina. Ci sono controlli più precisi.
+
+- **La ricerca `site:`.** Scrivi su Google `site:tuodominio.it/pulizia-uffici` con l'indirizzo esatto della pagina. Se esce, la pagina è nell'indice. Se non esce non è una prova definitiva, ma è un primo segnale.
+- **Il Controllo URL di Search Console.** Incolla l'indirizzo nello [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it): ti dice se la pagina è su Google e, se no, cosa sa Google di lei. Con il test dal vivo vedi anche se Google riesce a leggerla adesso.
+- **Il report Indicizzazione delle pagine.** Nel [report di Search Console](https://support.google.com/webmasters/answer/7440203?hl=it) trovi le pagine non indicizzate con il motivo. Si aggiorna con qualche ritardo, quindi per una pagina pubblicata ieri il Controllo URL è più utile.
+
+Se non hai ancora Search Console, collegarla è il primo passo: lo spieghiamo in [come collegare Search Console a WordPress, Wix o Shopify](/guide/collegare-search-console-wordpress-wix-shopify).
+
+## Cosa fare appena pubblichi una pagina
+
+Non puoi decidere i tempi di Google, ma puoi togliere gli ostacoli. Questi controlli richiedono pochi minuti:
+
+1. **Collega la pagina dal sito.** Mettila nel menu o nella pagina dei servizi, e linkala da una o due pagine affini con un testo che dica cosa c'è dentro. Una pagina che esiste solo nella sitemap è più difficile da trovare: ne parliamo in [breadcrumb, menu e link interni](/guide/breadcrumb-menu-link-interni-google-capire-sito).
+2. **Controlla che sia nella sitemap.** WordPress con un plugin SEO, Wix, Shopify e Squarespace la aggiornano da soli, ma vale la pena aprirla e vedere che l'indirizzo ci sia.
+3. **Controlla che non sia esclusa.** Una spunta «nascondi dai motori di ricerca», una password o un'impostazione noindex rimasta dalla bozza bastano a tenerla fuori. Se Search Console te lo segnala, leggi [«Esclusa in base al tag noindex»](/guide/esclusa-tag-noindex-search-console).
+4. **Fai una richiesta di indicizzazione**, una sola, dal Controllo URL. Se pubblichi tante pagine insieme, Google suggerisce di affidarti alla sitemap invece che alle richieste una per una.
+5. **Scrivi il testo nella pagina, non in un'immagine.** Servizio, zona, contatti: se sono solo in una foto o in un PDF, Google ha poco da leggere.
+
+## Un esempio
+
+> Pulizie Rinaldi, impresa di pulizie con sito su WordPress, pubblica la pagina «Pulizia uffici e studi professionali». Il giorno stesso la aggiunge al menu Servizi e la collega dalla pagina «Pulizie per condomini». Apre la sitemap del plugin SEO e trova l'indirizzo. Nel Controllo URL il test dal vivo dice che la pagina si può indicizzare, quindi chiede l'indicizzazione una volta.
+>
+> Poi non tocca più niente. Ogni settimana controlla di nuovo con il Controllo URL, invece di cercare «pulizia uffici» su Google dal suo telefono.
+
+## Quando smettere di aspettare
+
+Se dopo qualche settimana la pagina non è ancora su Google, il tempo da solo probabilmente non basta. Guarda cosa dice il Controllo URL:
+
+- **«Rilevata, ma attualmente non indicizzata»**: Google conosce l'indirizzo ma non l'ha ancora visitata. Le cause e i rimedi sono in [questa guida](/guide/rilevata-non-indicizzata-search-console).
+- **«Scansionata, ma attualmente non indicizzata»**: Google l'ha letta e per ora l'ha lasciata fuori, di solito per il contenuto. Vedi [cosa fare in quel caso](/guide/pagina-scansionata-non-indicizzata-search-console).
+- **La pagina è su Google ma non la trovi cercando il servizio**: non è più un problema di tempi di indicizzazione, ma di quanto la pagina risponde a quella ricerca rispetto alle altre. Search Console ti mostra per quali ricerche compare: lo spieghiamo in [come usare le ricerche di Search Console](/guide/search-console-ricerche-per-pagine-nuove).
+
+## Cosa non fare
+
+- **Chiedere l'indicizzazione ogni giorno.** C'è un limite di richieste e Google scrive che ripeterle non fa visitare la pagina prima.
+- **Comprare servizi di «indicizzazione veloce» o pacchetti di link.** I link comprati per influenzare Google sono contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+- **Pubblicare decine di pagine quasi uguali** cambiando solo il nome del paese per «coprire» più zone: aumenti gli indirizzi da visitare e rischi di finire tra le pagine doorway.
+- **Riscrivere la pagina ogni due giorni** perché non è ancora uscita. Prima lasciala leggere a Google, poi valuta cosa migliorare.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity hanno sistemi propri per leggere il web, con tempi che non dipendono da Search Console e che non puoi controllare da lì. Quello che puoi fare è lo stesso: una pagina chiara, con il testo scritto nella pagina e collegata dal resto del sito. Nessuno può garantire che un assistente la trovi o faccia il tuo nome.
+
+## Se non hai tempo di farlo da solo
+
+Pubblicare una pagina e controllarla richiede poco. Farlo ogni settimana, capire perché una pagina resta fuori e scrivere quelle che mancano è un lavoro continuo. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme Search Console e ti diciamo a che punto sono le tue pagine.

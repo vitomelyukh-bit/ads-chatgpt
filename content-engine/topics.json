@@ -600,7 +600,9 @@
     {
       "titolo": "Quanto tempo ci vuole perché Google mostri le pagine nuove del sito?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "quanto-tempo-google-mostra-pagine-nuove-sito",
+      "data": "2026-11-15"
     },
     {
       "titolo": "Sito di un panificio o pasticceria: ordini, torte su misura e farsi trovare",
