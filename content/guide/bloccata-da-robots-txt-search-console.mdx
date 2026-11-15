@@ -1,0 +1,119 @@
+---
+title: "«Bloccata da robots.txt» in Search Console: che fare · TiTrovano"
+description: "Search Console segna pagine «Bloccata da robots.txt»? Come leggere il file, capire se il blocco è voluto e dove correggerlo su WordPress, Wix e Shopify."
+h1: "«Bloccata da robots.txt» in Search Console: quando è un errore e come sistemarlo?"
+rispostaBreve: "Vuol dire che il file robots.txt del tuo sito chiede a Google di non visitare quegli indirizzi, e Google rispetta la richiesta. Per carrello, area riservata o pannello di amministrazione va bene così. Se invece nell'elenco ci sono pagine dei servizi, la home o le schede prodotto, devi togliere la regola che le blocca dal plugin SEO o dalle impostazioni della piattaforma, poi chiedere a Google di rileggere il file."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-15"
+dateModified: "2026-11-15"
+guideCorrelate:
+  - "esclusa-tag-noindex-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+  - "rilevata-non-indicizzata-search-console"
+faq:
+  - domanda: "Posso usare il robots.txt per togliere una pagina da Google?"
+    risposta: "No. Google scrive che il robots.txt serve a gestire le visite dei suoi programmi, non a tenere una pagina fuori dai risultati: se altri siti la collegano, l'indirizzo può comparire lo stesso, senza descrizione. Per escluderla serve il noindex, e la pagina non deve essere bloccata, altrimenti Google non lo vede."
+  - domanda: "Ho corretto il file: quando sparisce la voce dal report?"
+    risposta: "Non subito. Google di solito tiene in memoria il robots.txt fino a 24 ore, poi deve tornare a visitare le pagine sbloccate. Con il report robots.txt puoi chiedere che rilegga il file prima, ma non è garantito che le pagine vengano visitate subito."
+---
+
+## Una voce del report che spaventa più del dovuto
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e tra i motivi per cui alcune pagine non sono indicizzate leggi «Bloccata da robots.txt». Il dubbio è il solito: il mio sito sta chiudendo la porta a Google?
+
+Il **robots.txt** è un file di testo che sta all'indirizzo tuodominio.it/robots.txt. Contiene regole per i programmi che visitano il web, come quello di Google: «questa cartella non visitarla». La [guida di Google sul robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro?hl=it) spiega che serve soprattutto a non sovraccaricare il sito di richieste, e che non è un modo per tenere una pagina fuori da Google.
+
+Quindi la voce del report non è una punizione: è Google che ti dice «il tuo file mi chiede di non entrare qui, e non entro». La domanda giusta è se quelle pagine le volevi davvero chiuse.
+
+## Quando va bene così
+
+Molti siti bloccano di proposito parti che non servono a chi cerca. Se nell'elenco trovi solo indirizzi come questi, non devi fare niente:
+
+- il pannello di amministrazione, per esempio /wp-admin/ su WordPress;
+- carrello, pagamento e area clienti di un negozio online;
+- i risultati della ricerca interna del sito;
+- indirizzi con filtri e ordinamenti, che molte piattaforme bloccano da sole.
+
+Su Shopify, per esempio, il robots.txt predefinito blocca già carrello, pagamento e alcune pagine filtrate. Lo spiega la [guida di Shopify sul robots.txt](https://help.shopify.com/docs/themes/seo/robots-txt), che dice anche che per la maggior parte dei negozi il file predefinito va bene.
+
+## Quando invece ti costa clienti
+
+Clicca sulla riga del report e scorri gli esempi. Cerca pagine che un cliente deve poter trovare:
+
+- la home;
+- le pagine dei servizi, come «Riparazione tapparelle» o «Igiene dentale»;
+- gli articoli del blog che rispondono alle domande dei clienti;
+- le schede prodotto e le collezioni, se vendi online;
+- le immagini e i file del tema, come fogli di stile e script.
+
+L'ultima voce è meno ovvia. Se Google non può scaricare i file che danno forma alla pagina, la vede incompleta. Nei [requisiti tecnici per la Ricerca](https://developers.google.com/search/docs/essentials/technical?hl=it) Google chiede di non bloccare le risorse che servono a mostrare la pagina.
+
+## Come leggere il tuo robots.txt in due minuti
+
+Apri tuodominio.it/robots.txt nel browser. Le righe che contano sono poche: «User-agent» dice a quale programma si rivolge la regola (l'asterisco vuol dire tutti), «Disallow» dice cosa non visitare, «Allow» fa un'eccezione.
+
+Un file normale di WordPress somiglia a questo:
+
+> `User-agent: *`
+> `Disallow: /wp-admin/`
+> `Allow: /wp-admin/admin-ajax.php`
+
+Un file che blocca tutto il sito, spesso rimasto dai lavori di costruzione, ha invece una riga sola che fa danni:
+
+> `User-agent: *`
+> `Disallow: /`
+
+Quella barra da sola vuol dire «non visitare niente». È uno dei primi controlli da fare quando un sito sparisce, come spieghiamo in [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+Altri errori tipici sono una regola come `Disallow: /servizi` che chiude un'intera sezione, oppure `Disallow: /wp-content/`, che su WordPress blocca immagini e file del tema.
+
+## Il caso «indicizzata, ma bloccata»
+
+Nel report puoi trovare anche pagine indicizzate nonostante il blocco. Succede perché Google non visita la pagina, ma ne conosce l'indirizzo dai link di altri siti o del tuo. Secondo la sua guida, in questi casi l'indirizzo può comparire nei risultati senza descrizione.
+
+Le strade sono due, a seconda di cosa vuoi:
+
+- **la pagina deve comparire**: togli il blocco, così Google la legge e può mostrarla con titolo e descrizione veri;
+- **la pagina deve sparire**: togli il blocco e metti il noindex. Sembra strano, ma Google deve poter entrare per leggere l'istruzione, come spieghiamo in [«Esclusa in base al tag noindex»](/guide/esclusa-tag-noindex-search-console).
+
+## Dove si corregge, piattaforma per piattaforma
+
+### WordPress
+
+WordPress crea da solo un robots.txt «virtuale». Se però nella cartella principale del sito c'è un file robots.txt vero, caricato da qualcuno, vale quello. I plugin SEO ti fanno modificare il file dalla bacheca: Rank Math lo fa dalle impostazioni generali, come spiega la sua [guida per modificare il robots.txt](https://rankmath.com/kb/how-to-edit-robots-txt/), e Yoast ha un editor di file tra i suoi strumenti. Se l'editor non c'è o le modifiche non si vedono, chiedi a chi gestisce l'hosting se c'è un file caricato a mano.
+
+### Wix
+
+Wix genera il file in automatico e lo aggiorna quando pubblichi le pagine. Dal pannello SEO c'è un editor del robots.txt e un'opzione per tornare alla versione originale, descritti nella [guida di Wix sul robots.txt](https://support.wix.com/it/article/modificare-il-file-robotstxt-del-tuo-sito). Wix avverte che è una funzione avanzata e che l'assistenza non può aiutarti con le modifiche: se qualcuno l'ha toccato e non sai perché, il ripristino è spesso la scelta più sicura.
+
+### Shopify
+
+Shopify non ha un file da modificare direttamente: le regole si cambiano aggiungendo al tema un modello chiamato robots.txt.liquid. La guida di Shopify consiglia di farlo solo con competenze di codice e di non togliere le regole predefinite. Se qualcuno l'ha aggiunto e il negozio ha pagine bloccate per errore, eliminare quel modello riporta il file predefinito, dopo averne salvato una copia.
+
+### Altre piattaforme
+
+Su piattaforme come Squarespace il file è generato in automatico. Se trovi un blocco che non capisci, chiedi al supporto della piattaforma prima di provare altre strade.
+
+## Dopo la correzione
+
+1. **Riapri tuodominio.it/robots.txt** e controlla che la regola sbagliata non ci sia più.
+2. **Prova una pagina** con lo strumento Controllo URL di Search Console, facendo il test dal vivo.
+3. **Chiedi a Google di rileggere il file** dal report robots.txt, che trovi nelle impostazioni di Search Console. La [guida al report robots.txt](https://support.google.com/webmasters/answer/6062598?hl=it) spiega che di solito non serve, ma è utile dopo una correzione importante.
+4. **Clicca «Convalida correzione»** sulla riga del report [Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it), così Google ricontrolla gli indirizzi segnalati.
+
+Google scrive che in genere tiene in memoria il robots.txt fino a 24 ore. Dopo, le pagine devono essere visitate di nuovo: per quelle meno importanti può volerci più tempo, come raccontiamo in [quanto tempo ci vuole perché Google mostri le pagine nuove](/guide/quanto-tempo-google-mostra-pagine-nuove-sito).
+
+## Un esempio da copiare
+
+> Sito di un'impresa di serramenti fatto con WordPress, online da due mesi. Nel report «Bloccata da robots.txt» compaiono la home, /finestre-pvc, /porte-blindate, /zanzariere e /contatti.
+> Causa trovata: un file robots.txt caricato a mano durante i lavori, con `Disallow: /`.
+> Correzione: tolto quel file, resta il robots.txt di WordPress gestito dal plugin SEO, che blocca solo /wp-admin/. Test dal vivo sulla home, nuova lettura del file dal report robots.txt, poi «Convalida correzione».
+
+## E gli assistenti AI?
+
+Anche ChatGPT, Gemini e Perplexity usano programmi che leggono il robots.txt, ognuno con il suo nome. Alcune piattaforme permettono di bloccarli con un'opzione dedicata: prima di attivarla, sappi che una regola contro uno di loro può impedirgli di leggere il sito quando cerca sul web. Togliere un blocco sbagliato rimuove un ostacolo, ma nessuno può promettere che un'AI faccia il tuo nome. Ne parliamo anche in [llms.txt: serve davvero?](/guide/llms-txt-serve-sito-attivita).
+
+## Se non hai tempo di farlo da solo
+
+Capire quali blocchi sono voluti e quali ti tolgono visite vuol dire leggere il file riga per riga e confrontarlo con le pagine del report. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il file e ti diciamo cosa va sistemato.
