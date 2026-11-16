@@ -1,0 +1,102 @@
+---
+title: "«Errore del server (5xx)» in Search Console: cosa fare · TiTrovano"
+description: "Search Console segnala «Errore del server (5xx)»? Come capire se è un intoppo passeggero o un problema dell'hosting e cosa chiedere a chi gestisce il sito."
+h1: "«Errore del server (5xx)» in Search Console: cosa significa per il sito di un'attività?"
+rispostaBreve: "Vuol dire che quando Google ha chiesto quelle pagine il server del sito ha risposto con un errore, oppure non ha risposto in tempo. Se è successo una volta e il test dal vivo ora funziona, di solito basta tenere d'occhio il report. Se l'errore si ripete o riguarda molte pagine, Google rallenta le visite e col tempo può togliere quelle pagine dai risultati: va sistemato con chi gestisce il sito o l'hosting."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-16"
+dateModified: "2026-11-16"
+guideCorrelate:
+  - "rilevata-non-indicizzata-search-console"
+  - "sito-sparito-da-google-cosa-fare"
+  - "bloccata-da-robots-txt-search-console"
+faq:
+  - domanda: "Il sito da me si apre bene: perché Google vede un errore?"
+    risposta: "Perché gli errori del server spesso sono intermittenti: capitano in certi orari, sotto carico o solo per alcune richieste. Può anche succedere che un firewall o un sistema di protezione blocchi le visite di Google ma non le tue. Il test dal vivo di Search Console e il report Statistiche di scansione aiutano a capire quale dei due casi è il tuo."
+  - domanda: "Devo cliccare subito «Convalida correzione»?"
+    risposta: "Solo dopo aver sistemato la causa. Se le pagine rispondono ancora con un errore, la convalida non va a buon fine e devi ricominciare. Prima controlla con il test dal vivo che le pagine si aprano, poi chiedi la convalida."
+---
+
+## Che cosa ti sta dicendo Google
+
+Apri Google Search Console, vai su **Indicizzazione delle pagine** e tra i motivi per cui alcune pagine non sono indicizzate trovi «Errore del server (5xx)». Nell'elenco magari ci sono proprio la home o le pagine dei servizi.
+
+Ogni volta che qualcuno apre una pagina, il server (il computer dove sta il sito) risponde con un codice. 200 vuol dire «tutto bene», 404 «questa pagina non c'è». I codici che iniziano con 5, come 500, 502 o 503, vogliono dire «ho un problema io». La [guida al report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) lo spiega così: quando Google ha chiesto la pagina, il server ha restituito un errore, la richiesta è andata in timeout o il sito era troppo occupato per rispondere.
+
+Non è una penalizzazione e non dipende dai testi della pagina. È un problema tecnico, che però ha conseguenze concrete.
+
+## Perché può costarti clienti
+
+Google spiega nella pagina sui [codici di stato HTTP](https://developers.google.com/crawling/docs/troubleshooting/http-status-codes) cosa fa quando riceve questi errori:
+
+- **rallenta le visite al sito**, per non peggiorare la situazione di un server in difficoltà;
+- **tiene per un po' le pagine già presenti nei risultati**, ma se l'errore continua le toglie;
+- quando il server torna a rispondere bene, **riprende le visite poco alla volta**, non tutte insieme.
+
+Tradotto per un'attività locale: un errore di un'ora una notte non cambia niente. Un sito che va giù spesso, invece, rischia di perdere proprio le pagine che portano telefonate, come «Caldaie: assistenza e manutenzione» o «Pulizia dei denti». E il cliente che trova la pagina di errore va dal concorrente.
+
+## Primo passo: capire se è un episodio o un problema che ritorna
+
+Prima di chiamare qualcuno, fai questi controlli. Bastano dieci minuti.
+
+1. **Guarda le date.** Nel report clicca sulla riga «Errore del server (5xx)»: il grafico mostra quando sono comparsi gli errori. Un picco isolato è diverso da una linea che non scende mai.
+2. **Prova una pagina dal vivo.** Copia un indirizzo dell'elenco nello strumento Controllo URL e fai il test dal vivo. Se ora la pagina risponde bene, l'errore era passeggero o è intermittente. Google stesso avverte che il test può riuscire anche se la sua visita precedente era fallita.
+3. **Apri le Statistiche di scansione.** Le trovi nelle impostazioni di Search Console, per le proprietà che coprono tutto il sito. La [guida al report Statistiche di scansione](https://support.google.com/webmasters/answer/9679690?hl=it) spiega che lo «stato dell'host» dovrebbe essere verde. Se non lo è, il report divide i problemi in tre gruppi: lettura del robots.txt, risoluzione DNS (cioè il collegamento tra il nome del dominio e il server) e connettività del server.
+
+Se gli errori sono pochi, vecchi e il test dal vivo funziona, puoi fermarti qui e ricontrollare tra qualche settimana. Se invece tornano, vai avanti.
+
+## Le cause più comuni, a seconda del sito
+
+### Sito WordPress su un hosting
+
+È il caso in cui gli errori 5xx si vedono più spesso, perché il server lo gestisci tu o chi ti ha fatto il sito. Le cause tipiche sono:
+
+- un plugin o un tema che va in errore, spesso dopo un aggiornamento;
+- un hosting con poche risorse, che regge i visitatori normali ma cede quando arrivano più richieste insieme;
+- un firewall o un plugin di sicurezza che scambia le visite di Google per un attacco e le blocca;
+- lavori di manutenzione lasciati attivi troppo a lungo.
+
+Non serve che tu sappia correggerle. Serve sapere cosa chiedere, ed è lì che il messaggio qui sotto ti aiuta.
+
+### Wix, Shopify, Squarespace
+
+Su queste piattaforme il server lo gestisce la piattaforma. Errori 5xx sparsi e brevi di solito non dipendono da te. Se però vedi errori su molte pagine per più giorni, controlla la pagina sullo stato del servizio della piattaforma e scrivi all'assistenza, allegando gli indirizzi e le date del report. Controlla anche di non avere un dominio collegato in modo sbagliato: un errore nelle impostazioni del dominio può far comparire problemi di connessione nelle Statistiche di scansione.
+
+## Il messaggio da mandare a chi gestisce il sito
+
+Più sei preciso, più è facile che il problema venga trovato in fretta. Puoi partire da qui:
+
+> Ciao Marco, in Google Search Console vedo «Errore del server (5xx)» su 14 pagine, tra cui la home, /assistenza-caldaie e /manutenzione-climatizzatori. Gli errori sono iniziati il 3 novembre, più o meno quando abbiamo aggiornato i plugin. Il test dal vivo oggi a volte va bene e a volte no.
+> Puoi controllare i log degli errori del server di quei giorni? E verificare che firewall o plugin di sicurezza non blocchino Googlebot? Se il problema è che l'hosting non regge, dimmi cosa serve per sistemarlo.
+
+I log degli errori sono il registro in cui il server annota cosa è andato storto e quando. Sono la prima cosa che un tecnico guarda.
+
+## Manutenzione e sito chiuso per qualche giorno
+
+A volte un 5xx è voluto. Nella guida per [mettere in pausa un sito](https://developers.google.com/search/docs/crawling-indexing/pause-online-business?hl=it) Google distingue due casi:
+
+- **chiusura di uno o due giorni**: va bene una pagina di avviso che risponde con il codice 503, cioè «non disponibile per ora»;
+- **chiusura più lunga**: meglio una home normale, che si apre senza errori e spiega la situazione. Un 503 lasciato per giorni porta Google a togliere le pagine dai risultati.
+
+Altre due attenzioni:
+
+- **non far rispondere con un errore anche il file robots.txt**: secondo la [guida di Google sul robots.txt](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec), se il file risponde con un 5xx Google interrompe le visite a tutto il sito, poi per un po' usa l'ultima versione che conosceva. Ne parliamo anche in [«Bloccata da robots.txt»](/guide/bloccata-da-robots-txt-search-console);
+- **la manutenzione deve durare il meno possibile**: ore, non settimane.
+
+## Dopo la correzione
+
+1. **Rifai il test dal vivo** su alcune delle pagine segnalate, compresa la home.
+2. **Controlla le Statistiche di scansione** nei giorni seguenti: lo stato dell'host dovrebbe tornare verde.
+3. **Clicca «Convalida correzione»** sulla riga del report, così Google ricontrolla gli indirizzi.
+4. **Non aspettarti tutto subito.** Google riprende le visite gradualmente. Se nel frattempo alcune pagine erano uscite dai risultati, possono servire giorni o settimane, come raccontiamo in [quanto tempo ci vuole perché Google mostri le pagine](/guide/quanto-tempo-google-mostra-pagine-nuove-sito).
+
+Se dopo la correzione molte pagine restano nello stato «Rilevata, ma attualmente non indicizzata», il motivo può essere lo stesso server lento: trovi cosa controllare in [«Rilevata, ma attualmente non indicizzata»](/guide/rilevata-non-indicizzata-search-console).
+
+## E gli assistenti AI?
+
+Anche ChatGPT, Gemini e Perplexity, quando cercano sul web, devono riuscire ad aprire le tue pagine. Un server che risponde con errori non lascia leggere niente né a Google né a loro. Un sito stabile non garantisce che un'AI faccia il tuo nome, ma un sito che va giù spesso è un ostacolo in più.
+
+## Se non hai tempo di farlo da solo
+
+Capire se gli errori sono passeggeri o un problema dell'hosting vuol dire incrociare report, date e log del server. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme Search Console e ti diciamo cosa va sistemato e a chi chiederlo.
