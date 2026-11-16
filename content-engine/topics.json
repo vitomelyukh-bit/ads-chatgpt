@@ -1604,7 +1604,9 @@
     {
       "titolo": "Sito di un agriturismo: pagine per camere, ristorante e attività che Google capisce",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-agriturismo-camere-ristorante-attivita",
+      "data": "2026-11-16"
     },
     {
       "titolo": "Wix: come creare i reindirizzamenti 301 quando cambi il nome o l'indirizzo di una pagina",
