@@ -1,0 +1,86 @@
+---
+title: "WordPress: contenuti demo del tema ancora su Google · TiTrovano"
+description: "Su Google escono «Ciao mondo!», pagine di esempio o testi finti del tema WordPress? Come trovarli tutti, cosa cancellare, cosa reindirizzare e cosa non fare."
+h1: "WordPress: contenuti demo del tema rimasti online, come trovarli e toglierli da Google?"
+rispostaBreve: "Cerca il tuo sito su Google con site: e qualche parola tipica delle demo, poi confronta con l'elenco di pagine, articoli e progetti nel pannello di WordPress. Quello che non ti serve lo cancelli: quando la pagina non esiste più, Google la toglie dai risultati alle visite successive. Se una pagina demo ha preso visite o link, riscrivila con contenuti veri oppure reindirizzala alla pagina giusta del tuo sito."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-16"
+dateModified: "2026-11-16"
+guideCorrelate:
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "errore-404-search-console-pagine-non-esistono"
+  - "sito-wordpress-non-compare-su-google"
+faq:
+  - domanda: "Se metto le pagine demo in bozza basta?"
+    risposta: "Sì, una bozza non è visibile a chi visita il sito e Google, quando ripassa, non la trova più. Ma se non ti servono, cancellarle è più pulito: le bozze dimenticate prima o poi qualcuno le pubblica per sbaglio."
+  - domanda: "Le pagine demo danneggiano tutto il sito?"
+    risposta: "Non c'è una penalizzazione per una pagina di esempio dimenticata. Il problema è pratico: un cliente che arriva lì vede testo finto e pensa che il sito sia abbandonato, e i report di Search Console si riempiono di indirizzi che non contano."
+---
+
+## Cerchi il tuo nome e trovi «Lorem ipsum»
+
+Scrivi il nome della tua attività su Google e, tra i risultati del tuo sito, esce una pagina che non hai mai scritto: «Ciao mondo!», «Pagina di esempio», un servizio che non fai, un membro dello staff con un nome inglese, un testo in latino finto. Sono i contenuti di prova di WordPress o del tema, rimasti online dopo che il sito è stato montato.
+
+Non è un'emergenza tecnica. Ma chi apre quella pagina vede un sito che sembra lasciato a metà, e un cliente può decidere di chiamare qualcun altro.
+
+## Da dove arrivano
+
+Ci sono due fonti diverse.
+
+- **WordPress stesso.** Quando lo installi, crea da solo un articolo di benvenuto (in italiano «Ciao mondo!») con un commento di prova, una «Pagina di esempio» pubblicata e una pagina Privacy Policy in bozza. Lo vedi nel [codice di installazione di WordPress](https://github.com/WordPress/wordpress-develop/blob/trunk/src/wp-admin/includes/upgrade.php), nella funzione che prepara i contenuti iniziali. L'articolo finisce nella categoria «Senza categoria».
+- **Il tema.** Molti temi offrono di importare la loro demo, per avere subito il sito uguale all'anteprima. Con un clic arrivano decine di pagine, articoli, progetti del portfolio, schede del team, prodotti, testimonianze e immagini. Chi monta il sito di solito sostituisce le pagine principali e dimentica il resto.
+
+I contenuti del tema sono i più insidiosi, perché non stanno solo tra le pagine: possono essere tipi di contenuto a parte, come «Portfolio», «Team» o «Servizi», ognuno con il suo indirizzo.
+
+## Come trovarli tutti
+
+### 1. Su Google
+
+L'operatore `site:` limita la ricerca al tuo sito. Google avverte nella pagina sull'[operatore site:](https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site?hl=it) che non mostra tutto quello che ha in archivio, quindi usalo come controllo veloce, non come elenco completo. Prova:
+
+- `site:tuodominio.it lorem ipsum`
+- `site:tuodominio.it "ciao mondo"`
+- `site:tuodominio.it "pagina di esempio"`
+- `site:tuodominio.it sample` oppure `demo`
+
+### 2. Nel pannello di WordPress
+
+Apri una per una le voci del menu laterale: Articoli, Pagine, Media e tutte le voci aggiunte dal tema o dai plugin (Portfolio, Progetti, Team, Testimonianze, Prodotti). Ordina per data: quasi sempre i contenuti demo hanno tutti la stessa data, quella dell'importazione, o una data precedente alla nascita del sito.
+
+Controlla anche i menu, i widget del piè di pagina e i moduli di contatto: spesso hanno ancora indirizzi email o numeri di telefono di esempio.
+
+### 3. In Search Console
+
+Nel report **Indicizzazione delle pagine** guarda gli esempi di indirizzi, indicizzati e no. Se trovi indirizzi come `/portfolio/` o `/team/`, l'articolo di benvenuto o nomi di servizi che non offri, sono quasi sempre resti della demo. Come leggere il report lo spiega la [guida ufficiale di Search Console](https://support.google.com/webmasters/answer/7440203?hl=it).
+
+## Cosa fare con ognuno
+
+Per ogni contenuto chiediti: **mi serve, così com'è o riscritto?**
+
+- **Non serve** (la maggior parte): cancellalo. Quando sposti un contenuto nel cestino, non è più visibile. WordPress lo tiene nel cestino per 30 giorni prima di eliminarlo per sempre, come spiega la pagina del [Codex sul cestino](https://codex.wordpress.org/Trash_status): se ti sbagli, fai in tempo a recuperarlo. L'indirizzo risponde «non trovato» e Google, ripassando, lo toglie dai risultati. Un errore 404 su una pagina che non deve esistere è normale: ne parliamo in [errori 404 in Search Console](/guide/errore-404-search-console-pagine-non-esistono).
+- **Serve, ma è scritto con testo finto**: riscrivilo con contenuti veri. La pagina «Servizi» della demo può diventare la tua, se ci metti i tuoi servizi.
+- **Ha preso visite o link**, per esempio un articolo demo che compare da mesi su Google: reindirizzalo con un 301 alla pagina vera più vicina, non alla home. Il reindirizzamento lo crei con il plugin SEO, se lo prevede, o con un plugin apposito.
+- **Tipi di contenuto che non userai mai**, come un Portfolio vuoto: dopo aver cancellato gli elementi, guarda nelle impostazioni del tema o del plugin SEO se puoi disattivarli o escluderli dalla sitemap, così non tornano.
+
+Infine apri la sitemap nel browser e controlla che dentro ci siano solo pagine vere. Le pagine dei tag, degli autori e degli allegati sono un problema simile ma diverso: le trovi in [come togliere da Google le pagine inutili di WordPress](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati).
+
+## Un esempio
+
+> Studio di fisioterapia Valli, sito WordPress fatto con un tema per centri benessere. Con `site:` escono la home e i servizi, ma anche «Yoga for Beginners», tre schede del team con nomi inglesi e una pagina «Our Pricing» con prezzi in dollari.
+>
+> Cosa fa: nel pannello trova 26 elementi importati lo stesso giorno. Cancella gli articoli e i corsi demo, trasforma la pagina del team in quella dei suoi tre fisioterapisti, toglie le testimonianze inventate e il modulo con l'email di esempio. «Yoga for Beginners» aveva qualche visita da Google: la reindirizza alla pagina «Ginnastica posturale». Poi controlla la sitemap.
+
+Nomi e dettagli sono di fantasia.
+
+## Cosa non fare
+
+- **Non lasciare le testimonianze della demo.** Sono recensioni di persone che non esistono. Anche se nessuno se ne accorge subito, sul sito di un'attività vera non devono esserci.
+- **Non usare lo strumento Rimozioni come soluzione.** Nasconde un indirizzo dai risultati per circa sei mesi, come scrive Google nella guida su come [rimuovere una pagina del tuo sito](https://developers.google.com/search/docs/crawling-indexing/remove-information?hl=it). Se la pagina è ancora online, poi torna. Va bene solo insieme alla cancellazione, quando c'è fretta.
+- **Non bloccare le pagine demo con robots.txt.** Google non le visita più e non si accorge che le hai tolte o che hanno il noindex.
+- **Non reindirizzare tutto alla home.** Per chi arriva è spiazzante e Google può trattarlo come una pagina inesistente.
+- **Non importare di nuovo la demo** per provare un altro stile. Rimette tutto online. Se vuoi cambiare aspetto, fallo su una copia di prova del sito.
+
+## Se non hai tempo di farlo da solo
+
+Trovare tutti i resti di una demo richiede un pomeriggio e un po' di attenzione per non cancellare pagine vere. Se preferisci che lo facciamo noi, insieme alle pagine dei servizi che mancano al sito, [prenota la consulenza gratuita](/#attiva).

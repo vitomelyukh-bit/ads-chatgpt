@@ -1580,7 +1580,9 @@
     {
       "titolo": "WordPress: contenuti demo del tema rimasti online, come trovarli e toglierli da Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-contenuti-demo-tema-togliere-google",
+      "data": "2026-11-16"
     },
     {
       "titolo": "«Errore del server (5xx)» in Search Console: cosa significa per il sito di un'attività",
