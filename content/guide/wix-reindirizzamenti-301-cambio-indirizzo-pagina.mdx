@@ -1,0 +1,96 @@
+---
+title: "Wix: reindirizzamenti 301 quando cambi una pagina · TiTrovano"
+description: "Hai cambiato nome o indirizzo a una pagina Wix: quando Wix crea da solo il reindirizzamento 301, quando devi farlo tu e come controllare che funzioni."
+h1: "Wix: come creare i reindirizzamenti 301 quando cambi il nome o l'indirizzo di una pagina?"
+rispostaBreve: "Se il sito ha un piano Premium e un dominio collegato, quando cambi l'indirizzo di una normale pagina Wix crea da solo un reindirizzamento 301 dal vecchio al nuovo. Non lo fa per gli articoli del blog, per le pagine eliminate o unite e per gli indirizzi di un vecchio sito: lì lo crei tu dal gestore dei reindirizzamenti, uno alla volta o con un file CSV. Poi apri il vecchio indirizzo e controlla che porti alla pagina giusta."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-17"
+dateModified: "2026-11-17"
+guideCorrelate:
+  - "errore-404-search-console-pagine-non-esistono"
+  - "wix-va-bene-per-la-seo"
+  - "wix-indirizzo-wixsite-dominio-tuo-google"
+faq:
+  - domanda: "Se ho solo cambiato il titolo della pagina nel menu serve un reindirizzamento?"
+    risposta: "Serve solo se è cambiato l'indirizzo. Apri le impostazioni SEO della pagina e guarda la parte finale dell'indirizzo: se è uguale a prima, i vecchi link funzionano ancora e non c'è niente da reindirizzare."
+  - domanda: "Posso cancellare i reindirizzamenti dopo qualche mese?"
+    risposta: "Meglio di no. Google consiglia di tenerli il più a lungo possibile, in genere almeno un anno."
+---
+
+## Hai cambiato una pagina e i vecchi link portano al vuoto
+
+Hai rinominato la pagina «Servizi» in «Riparazioni caldaie», o hai accorciato l'indirizzo di un articolo perché era troppo lungo. Nel sito tutto sembra a posto. Ma il vecchio indirizzo è ancora su Google, nei messaggi WhatsApp che hai mandato ai clienti, nel profilo Facebook e magari sul sito di un fornitore.
+
+Chi clicca quei link, se nessuno lo accompagna, trova una pagina «non trovata». Il cliente torna indietro e chiama qualcun altro. E Google, che conosceva la vecchia pagina, deve scoprire da capo quella nuova.
+
+La soluzione si chiama **reindirizzamento permanente**, in gergo «301»: un'istruzione che dice a browser e motori di ricerca che la pagina si è spostata per sempre a un altro indirizzo. Google consiglia proprio i [reindirizzamenti permanenti lato server](https://developers.google.com/search/docs/crawling-indexing/301-redirects?hl=it), ed è il tipo che crea Wix.
+
+## Cosa fa Wix da solo
+
+Su Wix una parte del lavoro è automatica. Secondo la guida di Wix sui [reindirizzamenti 301 di una pagina](https://support.wix.com/en/article/setting-up-a-301-redirect-for-a-page-on-your-site), quando cambi la parte finale dell'indirizzo di una pagina, Wix crea da solo il reindirizzamento dal vecchio al nuovo. Vale per le pagine normali del sito e per diversi tipi di pagine delle app Wix, come prodotti e categorie del negozio, servizi delle prenotazioni ed eventi.
+
+Le condizioni sono due:
+
+- il sito deve avere un **piano Premium**;
+- deve avere un **dominio tuo collegato**.
+
+Se il sito è ancora sull'indirizzo gratuito, i reindirizzamenti non si creano: il vecchio indirizzo dà semplicemente errore. Il caso del passaggio dall'indirizzo gratuito al dominio è spiegato nella guida su [wixsite e dominio tuo](/guide/wix-indirizzo-wixsite-dominio-tuo-google).
+
+C'è anche un caso di conflitto: se per quella pagina avevi già creato a mano un reindirizzamento, quello automatico può non andare a buon fine e Wix te lo segnala. Lo risolvi dal gestore dei reindirizzamenti, scegliendo quale tenere.
+
+## Quando il reindirizzamento lo devi fare tu
+
+Ci sono situazioni in cui Wix non fa niente da solo, e sono proprio quelle che si dimenticano più spesso.
+
+- **Articoli del blog.** Wix lo scrive chiaramente: se cambi l'indirizzo di un articolo, il reindirizzamento non si crea in automatico. Va fatto a mano.
+- **Pagine eliminate.** Hai tolto la pagina «Offerte estate» perché non serve più, ma esiste una pagina che ne prende il posto: va reindirizzata lì.
+- **Pagine unite.** Avevi «Manicure» e «Pedicure» separate e ora c'è una sola pagina «Mani e piedi»: entrambi i vecchi indirizzi vanno portati sulla nuova.
+- **Articoli importati da un altro sito Wix.** Secondo la guida sull'[importazione degli articoli](https://support.wix.com/en/article/wix-blog-importing-blog-posts-from-another-wix-site), Wix non crea reindirizzamenti per i post importati.
+- **Sito vecchio rifatto su Wix.** Gli indirizzi del sito precedente, magari fatto con WordPress, non li conosce nessuno tranne te: vanno elencati e reindirizzati uno per uno.
+
+## Come creare un reindirizzamento 301 su Wix
+
+Lo strumento si chiama **URL Redirect Manager** e sta nella sezione SEO del pannello di controllo del sito. Nella guida in inglese di Wix il percorso è: sezione «SEO & GEO», poi «Tools and settings», poi «URL Redirect Manager». Se usi Wix in italiano i nomi possono essere tradotti, ma la posizione è quella.
+
+1. Apri il gestore dei reindirizzamenti e crea un nuovo reindirizzamento singolo.
+2. Nel primo campo scrivi il **vecchio indirizzo**, cioè la parte dopo il dominio.
+3. Nel secondo scegli la **pagina di destinazione**.
+4. Salva, poi controlla che il reindirizzamento compaia nell'elenco.
+
+Un esempio per un idraulico che ha rifatto le pagine dei servizi:
+
+> /servizi → /riparazione-caldaie
+>
+> /blog/come-sturare-lavandino-casa-consigli → /blog/lavandino-intasato-cosa-fare
+>
+> /offerte-estate → /manutenzione-climatizzatori
+
+Ogni riga è un vecchio indirizzo e la pagina che oggi risponde davvero a quella ricerca. Se una pagina eliminata non ha un sostituto, non reindirizzarla: va bene che risponda «non trovata».
+
+## Tanti indirizzi insieme: il file CSV e i reindirizzamenti di gruppo
+
+Se hai rifatto il sito e gli indirizzi da spostare sono decine, farli a mano è lungo. Wix permette di [importare i reindirizzamenti da un file CSV](https://support.wix.com/en/article/importing-or-exporting-url-redirects-with-a-csv-file), un foglio di calcolo salvato in formato testo, con due colonne: vecchio indirizzo e nuovo indirizzo. Nella prima riga vanno le intestazioni, poi una riga per ogni reindirizzamento. Secondo Wix ogni file accetta fino a 500 reindirizzamenti, e quelli che superano il limite non vengono importati.
+
+Per gli indirizzi già reindirizzati, l'importazione non sovrascrive quelli esistenti a meno che tu non lo scelga. Se qualcosa va storto, Wix ti dà un rapporto con gli errori: lo correggi e reimporti il file.
+
+C'è poi il [reindirizzamento di gruppo](https://support.wix.com/en/article/creating-a-group-redirect-301), utile quando tanti indirizzi hanno lo stesso inizio. Per esempio, se tutti gli articoli del vecchio sito stavano sotto `/notizie/` e ora stanno sotto `/blog/`, una sola regola li sposta tutti.
+
+## Gli errori da evitare
+
+- **Mandare tutto alla home.** È la scorciatoia più comune. Google, nella sua guida sui [cambi di indirizzo del sito](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it), sconsiglia di reindirizzare molti vecchi indirizzi verso una sola destinazione che non c'entra, come la home page: per Google può valere come una pagina «non trovata». Chi cercava «riparazione caldaie» deve arrivare sulla pagina delle caldaie.
+- **Creare catene.** Se A porta a B e poi rinomini B in C, aggiorna il reindirizzamento di A perché porti direttamente a C. Google consiglia di tenere corte le catene di reindirizzamenti.
+- **Cancellarli troppo presto.** La stessa guida di Google consiglia di tenerli il più a lungo possibile, in genere almeno un anno.
+- **Dimenticare i link scritti a mano.** Se nei testi o nei pulsanti hai incollato l'indirizzo completo di una pagina, aggiornalo con quello nuovo. Il reindirizzamento salva il cliente, ma un link diretto è più pulito.
+
+## Come controllare che funzioni
+
+Apri il vecchio indirizzo in una finestra in incognito, dal telefono e dal computer. Devi arrivare sulla pagina nuova, senza passaggi strani e senza la pagina «non trovata».
+
+Poi, in Search Console, usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) sulla pagina nuova per vedere se Google la conosce e, se serve, chiederne l'indicizzazione. Nelle settimane successive guarda il report sulle pagine: se compaiono vecchi indirizzi con errore 404, sono reindirizzamenti che mancano. Come leggerli è spiegato nella guida sull'[errore 404 in Search Console](/guide/errore-404-search-console-pagine-non-esistono).
+
+Google ha bisogno di tempo per sostituire nei risultati il vecchio indirizzo con il nuovo: per un po' è normale vedere ancora quello vecchio.
+
+## Se non hai tempo di farlo da solo
+
+Se hai rifatto il sito o cambiato molti indirizzi e non sai quali reindirizzare, possiamo guardarli insieme: [prenota la consulenza gratuita](/#attiva) e controlliamo il tuo sito Wix pagina per pagina.
