@@ -1594,7 +1594,9 @@
     {
       "titolo": "Sito dietro Cloudflare: gli assistenti AI riescono a leggerlo? Cosa controllare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-cloudflare-assistenti-ai-riescono-leggerlo",
+      "data": "2026-11-17"
     },
     {
       "titolo": "Shopify: il blog del negozio, quali articoli scrivere perché portino visite",

@@ -1,0 +1,85 @@
+---
+title: "Sito dietro Cloudflare: gli assistenti AI lo leggono? · TiTrovano"
+description: "Il sito passa da Cloudflare? Cosa controllare nelle impostazioni sui crawler AI perché ChatGPT e Perplexity possano leggerlo, senza aprire il sito a tutti."
+h1: "Sito dietro Cloudflare: gli assistenti AI riescono a leggerlo? Cosa controllare"
+rispostaBreve: "Dipende da come sono impostate le regole di Cloudflare sui crawler AI: Cloudflare li divide tra ricerca, agenti e addestramento, e ognuna di queste categorie si può bloccare o lasciare passare. Per un'attività locale di solito conviene lasciare libera la ricerca, perché è quella che serve agli assistenti per leggere le pagine quando un cliente fa una domanda. L'addestramento è una scelta separata, che puoi bloccare se preferisci."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-17"
+dateModified: "2026-11-17"
+guideCorrelate:
+  - "cosa-legge-ai-del-tuo-sito"
+  - "bloccata-da-robots-txt-search-console"
+  - "llms-txt-serve-sito-attivita"
+faq:
+  - domanda: "Se il robots.txt permette tutto, gli assistenti AI possono entrare per forza?"
+    risposta: "No. Il robots.txt è una richiesta che i crawler scelgono di rispettare. Un blocco impostato su Cloudflare invece ferma il programma prima che arrivi alla pagina, anche se il robots.txt lo lascerebbe passare. Per questo vanno controllati tutti e due."
+  - domanda: "Bloccare i crawler AI su Cloudflare toglie il sito da Google?"
+    risposta: "Non dovrebbe, ma Cloudflare avverte che i crawler usati sia per la ricerca sia per l'addestramento risentono anche del blocco sull'addestramento: dopo ogni modifica, prova una pagina con il Controllo URL di Search Console."
+---
+
+## Il problema: il sito c'è, ma l'assistente non entra
+
+Hai un sito curato, i servizi scritti bene, gli orari giusti. Poi chiedi a ChatGPT o a Perplexity qualcosa sulla tua attività e la risposta sembra non sapere nulla di quello che c'è sul sito. Una delle cause possibili è tecnica e invisibile: il sito è protetto da **Cloudflare**, e Cloudflare tiene fuori proprio i programmi che leggono le pagine per conto degli assistenti.
+
+Cloudflare è un servizio che sta "davanti" al sito: lo rende più veloce e lo protegge da attacchi e traffico automatico. A volte lo attiva l'agenzia o l'hosting, e il titolare non sa nemmeno di averlo. Il blocco non si vede: tu e i tuoi clienti aprite il sito senza problemi, mentre un crawler AI può trovare la porta chiusa.
+
+## Come capire se il tuo sito passa da Cloudflare
+
+Il modo più semplice è chiederlo a chi gestisce il sito o il dominio. Se hai accesso al pannello del dominio, guarda i "server DNS" (in inglese nameserver): se finiscono con `ns.cloudflare.com`, il sito passa da Cloudflare. Se c'è un account Cloudflare a nome tuo o della tua agenzia, le impostazioni descritte qui sotto sono lì dentro.
+
+## Cosa controllare nelle impostazioni
+
+### Le tre categorie: ricerca, agenti, addestramento
+
+Cloudflare, nel suo [aggiornamento del 1° luglio 2026](https://developers.cloudflare.com/changelog/post/2026-07-01-ai-traffic-options/), ha diviso il traffico dei programmi AI in tre comportamenti, gestibili anche con il piano gratuito:
+
+- **Ricerca** (Search): programmi che leggono le pagine per mostrarle nelle risposte, come quello che ChatGPT usa per cercare sul web;
+- **Agenti** (Agent): programmi che aprono una pagina per conto di una persona, per esempio quando chiede all'assistente di guardare un sito;
+- **Addestramento** (Training): programmi che raccolgono testi per addestrare i modelli.
+
+Per ognuna puoi scegliere se bloccarla su tutte le pagine, bloccarla solo sulle pagine che mostrano pubblicità, oppure non bloccarla. Lo spiega la pagina di Cloudflare sulle [regole di accesso per crawler e agenti AI](https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/). Il nome esatto dei menu cambia spesso: cerca, nelle impostazioni di sicurezza, la parte dedicata ai bot e ai crawler AI.
+
+### Cosa conviene a un'attività locale
+
+Per chi vuole farsi trovare, la categoria che conta è la **ricerca**. OpenAI spiega nella sua [documentazione sui crawler](https://developers.openai.com/api/docs/bots) che i siti che bloccano il suo programma di ricerca, OAI-SearchBot, non vengono mostrati nelle risposte di ricerca di ChatGPT. L'addestramento, con GPTBot, è una scelta diversa: puoi bloccarlo senza chiudere la porta alla ricerca.
+
+Un'impostazione ragionevole per un idraulico, un ristorante o uno studio professionale:
+
+- ricerca: non bloccare;
+- agenti: non bloccare, se vuoi che chi chiede all'assistente di aprire il tuo sito lo trovi;
+- addestramento: decidi tu, non incide sulla ricerca.
+
+C'è un'eccezione da conoscere. Secondo il [registro delle modifiche di Cloudflare sui bot](https://developers.cloudflare.com/changelog/product/bots/), i crawler che fanno insieme ricerca e addestramento risentono anche del blocco sull'addestramento. Se blocchi l'addestramento, controlla dopo che la ricerca funzioni ancora.
+
+### Le impostazioni predefinite dei siti nuovi
+
+Dal 15 settembre 2026, scrive Cloudflare nello stesso aggiornamento di luglio, i domini appena aggiunti partono con addestramento e agenti bloccati sulle pagine con pubblicità, e la ricerca lasciata libera. Se il sito di un'attività non mostra annunci, questa impostazione in genere non dovrebbe toccarlo. Ma i siti aggiunti prima, o configurati a mano da un tecnico, possono avere regole diverse: per questo vale la pena guardarle una volta.
+
+### Il blocco per singolo crawler
+
+Oltre alle tre categorie, Cloudflare ha uno strumento chiamato **AI Crawl Control**. La sua guida su come [gestire i crawler AI](https://developers.cloudflare.com/ai-crawl-control/features/manage-ai-crawlers/) spiega che mostra quali crawler AI visitano il sito e permette di consentirli o bloccarli uno per uno. Qui puoi vedere se un programma di ricerca risulta bloccato, magari da una prova fatta tempo fa.
+
+### Il robots.txt che Cloudflare può scrivere al posto tuo
+
+Cloudflare può anche aggiungere in automatico delle righe al tuo robots.txt, rivolte ai crawler AI. La sua [pagina sull'impostazione del robots.txt](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/) descrive come funziona. Apri `tuodominio.it/robots.txt` dal browser: se trovi righe che non hai scritto tu, probabilmente arrivano da lì. Come si legge questo file lo spieghiamo in [«Bloccata da robots.txt» in Search Console](/guide/bloccata-da-robots-txt-search-console).
+
+## Un messaggio da mandare a chi gestisce il sito
+
+Se il sito lo segue un'agenzia o un tecnico, non serve entrare tu nel pannello. Puoi mandare un messaggio così:
+
+> Ciao Marco, il sito dello studio passa da Cloudflare? Se sì, mi controlli tre cose? 1) Nelle regole sui crawler AI, la categoria «Search» deve essere lasciata libera. 2) In AI Crawl Control non devono risultare bloccati i programmi di ricerca degli assistenti, come OAI-SearchBot. 3) Il robots.txt non deve bloccare questi programmi né quello di Google. L'addestramento lo possiamo bloccare, se preferisci. Grazie!
+
+## Come verificare che Google non sia stato toccato
+
+Ogni volta che si cambiano regole di sicurezza, conviene controllare anche Google. Apri Search Console, incolla l'indirizzo di una pagina di servizio nel [Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) e fai il test dal vivo: se la pagina risulta raggiungibile e la vedi come la vedono i clienti, la Ricerca di Google non ha problemi. Se invece compare un errore di accesso, il blocco è troppo largo.
+
+## Cosa non fare
+
+- **Non spegnere Cloudflare** per risolvere: protegge il sito da attacchi e traffico inutile. Basta sistemare le regole sui crawler AI.
+- **Non togliere ogni protezione contro i bot** "per sicurezza": il problema di solito è una sola regola.
+- **Non aspettarti un effetto immediato o garantito**: togliere un blocco permette agli assistenti di leggere il sito, non li obbliga a fare il tuo nome. Contano anche i testi delle pagine, come spieghiamo in [Cosa legge l'AI del tuo sito web?](/guide/cosa-legge-ai-del-tuo-sito).
+
+## Se non hai tempo di farlo da solo
+
+Controllare Cloudflare, robots.txt e Search Console richiede un po' di pazienza e qualche accesso da recuperare. Se preferisci che lo guardiamo insieme, [prenota la consulenza gratuita](/#attiva): verifichiamo cosa legge del tuo sito Google e cosa leggono gli assistenti AI.
