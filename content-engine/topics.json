@@ -1620,7 +1620,9 @@
     {
       "titolo": "Menù, listini e cataloghi in PDF: Google li legge? Quando serve una pagina vera",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "menu-listini-cataloghi-pdf-google-pagina-vera",
+      "data": "2026-11-17"
     },
     {
       "titolo": "Panoramiche AI di Google: come capire da Search Console se portano visite al tuo sito",
