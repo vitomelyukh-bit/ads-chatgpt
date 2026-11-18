@@ -1634,7 +1634,9 @@
     {
       "titolo": "SEO per un tecnico di caldaie e climatizzatori: pagine per assistenza, installazione e manutenzione",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-tecnico-caldaie-climatizzatori-assistenza",
+      "data": "2026-11-18"
     },
     {
       "titolo": "Squarespace: cambiare il design del sito senza perdere le visite da Google",
