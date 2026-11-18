@@ -1,0 +1,103 @@
+---
+title: "Azione manuale in Search Console: cosa fare · TiTrovano"
+description: "Search Console segnala un'azione manuale sul tuo sito? Come leggere il report, cosa correggere prima e come scrivere una richiesta di riesame che Google possa accogliere."
+h1: "Azione manuale in Search Console: cosa significa e come chiedere il riesame?"
+rispostaBreve: "Un'azione manuale vuol dire che una persona di Google ha controllato il sito e ha trovato una violazione delle norme anti-spam: per questo il sito, o una parte, può non comparire nei risultati. Il report Azioni manuali di Search Console dice il motivo e mostra alcune pagine di esempio. Prima correggi il problema su tutto il sito, poi chiedi il riesame dallo stesso report, spiegando cosa hai trovato, cosa hai fatto e con quale risultato."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-18"
+dateModified: "2026-11-18"
+guideCorrelate:
+  - "sito-sparito-da-google-cosa-fare"
+  - "link-altri-siti-attivita-locale-quali-evitare"
+  - "sito-hackerato-pagine-strane-google-cosa-fare"
+faq:
+  - domanda: "Se il report Azioni manuali è vuoto, il sito non ha problemi di spam?"
+    risposta: "Il report mostra solo le azioni decise da una persona di Google. Se c'è la spunta verde, il calo di visite ha un'altra causa: un blocco tecnico, un problema di sicurezza o semplicemente concorrenti più utili. Va cercata altrove, partendo dagli altri report di Search Console."
+  - domanda: "Posso mandare più richieste di riesame per fare prima?"
+    risposta: "No. Google chiede di aspettare la decisione sulla richiesta in sospeso prima di mandarne un'altra. Una seconda richiesta non accelera niente: conviene usare l'attesa per controllare di non aver dimenticato pagine."
+---
+
+## Un messaggio che nessun titolare vuole leggere
+
+Apri Search Console perché le chiamate dal sito sono calate, e trovi una voce nel report **Azioni manuali**. Oppure ti arriva un'email da Google che parla di «azione manuale» e di «norme anti-spam». È facile spaventarsi, e la reazione tipica è cambiare tutto in fretta.
+
+Prima fermati. Un'azione manuale ha un motivo scritto, e quel motivo dice cosa sistemare. Nel frattempo però costa clienti: secondo la [guida al report Azioni manuali](https://support.google.com/webmasters/answer/9044175?hl=it), un sito con un'azione manuale può non comparire, in tutto o in parte, nei risultati di Google. Chi ti cerca per un servizio trova gli altri.
+
+## Cos'è, detto semplice
+
+Google spiega nelle [norme anti-spam](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) che le violazioni vengono trovate sia da sistemi automatici sia, quando serve, da persone che esaminano i siti. Quando una persona conferma il problema, scatta un'azione manuale.
+
+Non è una multa e non è definitiva. È un blocco legato a un problema preciso, che resta finché il problema c'è e finché Google non riesamina il sito.
+
+La differenza con i problemi di sicurezza conta: se qualcuno ha bucato il sito e ci ha messo pagine di spam, il controllo da fare è un altro report. Lo spieghiamo in [sito hackerato e pagine strane su Google](/guide/sito-hackerato-pagine-strane-google-cosa-fare). Spesso conviene guardarli tutti e due, perché un sito bucato può ricevere anche un'azione manuale.
+
+## Come leggere il report
+
+In Search Console il report sta nella sezione dedicata a sicurezza e azioni manuali. In alto c'è il numero delle azioni attive; se non ce ne sono, vedi una spunta verde.
+
+Per ogni azione trovi:
+
+- **il motivo**, cioè il tipo di violazione;
+- **cosa colpisce**: tutto il sito o solo alcune pagine o sezioni;
+- **alcuni indirizzi di esempio**, che non sono l'elenco completo.
+
+Quell'ultimo punto è il più frainteso. Se Google ti mostra tre pagine, non basta sistemare quelle tre: il problema va cercato e corretto ovunque si ripete.
+
+## I casi più comuni per un piccolo sito
+
+Il report elenca molti tipi di azione. Per il sito di un'attività locale, quelli che si incontrano più spesso sono questi.
+
+**Spam generato dagli utenti.** Commenti del blog, un vecchio guestbook o un forum pieni di messaggi pubblicitari scritti da sconosciuti. Succede a molti siti WordPress con i commenti aperti da anni e mai controllati. Si risolve cancellando lo spam, chiudendo o moderando i commenti e, se restano link scritti dagli utenti, marcandoli con l'attributo `rel="ugc"`, come indica Google.
+
+**Link non naturali verso il sito.** Link comprati, scambi organizzati, pacchetti di «link per la SEO» venduti da qualcuno anni fa. Vanno fatti togliere dove possibile; per quelli che non riesci a togliere, Google prevede lo [strumento per rifiutare i link](https://support.google.com/webmasters/answer/2648487?hl=it), da usare solo dopo aver provato a farli togliere. Vale solo per i link artificiali: rifiutare link normali non aiuta. Come distinguere gli uni dagli altri lo trovi in [link da altri siti: quali evitare](/guide/link-altri-siti-attivita-locale-quali-evitare).
+
+**Dati strutturati con problemi.** Il codice che descrive la pagina a Google dice cose che la pagina non mostra, per esempio stelline di recensioni che non ci sono. Si corregge facendo in modo che i dati descrivano solo ciò che il visitatore vede: ne parliamo in [dati strutturati con errori](/guide/dati-strutturati-errori-search-console-quali-sistemare).
+
+**Contenuti sottili con poco valore.** Pagine fatte in serie per riempire il sito: decine di pagine città con lo stesso testo e il nome del paese cambiato, testi copiati, pagine create solo per mandare il visitatore altrove. Qui non basta ritoccare: le pagine vanno unite, riscritte con contenuti veri o tolte.
+
+## Prima di chiedere il riesame: correggi tutto
+
+La tentazione è mandare subito la richiesta. Non farlo. Se il problema è ancora presente, la richiesta rischia di essere respinta, e intanto hai perso tempo.
+
+Fai così:
+
+1. **Leggi il motivo** e apri la parte della guida di Google che lo descrive.
+2. **Trova tutte le pagine coinvolte**, non solo gli esempi. Per lo spam nei commenti, guarda tutti i commenti; per i link, scarica l'elenco dal report Link di Search Console; per le pagine città, elencale tutte.
+3. **Correggi** e tieni nota di cosa hai fatto, con date e numeri veri: quante pagine tolte, quali siti hai contattato, chi ha risposto.
+4. **Controlla** che le correzioni siano online e che le pagine si aprano come previsto.
+
+Se il sito l'ha fatto un'agenzia che ha comprato link o creato pagine in serie, chiedi l'elenco di cosa è stato fatto. Ti serve per correggere e per spiegarlo nella richiesta.
+
+## Come scrivere la richiesta di riesame
+
+Quando il sito è a posto, dal report usa il pulsante **Richiedi esame**. Google, nella guida al report, dice che una buona richiesta fa tre cose: spiega con precisione il problema, descrive i passi fatti per correggerlo e documenta il risultato.
+
+Un esempio, per un idraulico di fantasia con spam nei commenti:
+
+> Il sito della nostra ditta di idraulica aveva i commenti del blog aperti dal 2019 senza moderazione. Abbiamo trovato circa 1.800 commenti pubblicitari con link a siti di scommesse e farmaci, su 42 articoli.
+>
+> Abbiamo cancellato tutti i commenti di spam, controllandoli uno per uno sugli articoli coinvolti. Abbiamo chiuso i commenti sugli articoli più vecchi e attivato la moderazione su quelli nuovi: ogni commento ora viene approvato a mano. I link nei commenti approvati hanno l'attributo rel="ugc".
+>
+> Oggi sul sito non ci sono più commenti con link pubblicitari. Teniamo sotto controllo i nuovi commenti ogni settimana.
+
+I numeri nell'esempio sono inventati, ma nella tua richiesta devono essere quelli veri. Scrivi in modo semplice, senza scuse lunghe e senza promesse: chi la legge vuole capire se il problema è risolto.
+
+## Dopo l'invio
+
+Google conferma con un messaggio che l'esame è in corso e avvisa quando è finito. Non c'è un tempo fisso, e la guida chiede di aspettare la decisione prima di mandare un'altra richiesta.
+
+Se la richiesta viene accolta, l'azione sparisce dal report. Le visite non tornano per forza come prima: le pagine tolte non ci sono più, e i link rifiutati non contano più. Se viene respinta, rileggi il motivo, cerca cosa manca e correggi prima di riprovare.
+
+## Cosa non fare
+
+- **Comprare altri link** per «compensare»: è la stessa violazione.
+- **Cambiare dominio** sperando di ripartire puliti, senza correggere la causa.
+- **Mandare richieste a ripetizione** con poche modifiche ogni volta.
+- **Rifiutare tutti i link** del sito per sicurezza: togli valore anche a quelli buoni.
+
+Se non sai ancora se il calo dipende da un'azione manuale, parti dai controlli in [il mio sito è sparito da Google](/guide/sito-sparito-da-google-cosa-fare).
+
+## Se non hai tempo di farlo da solo
+
+Trovare tutte le pagine coinvolte e scrivere una richiesta chiara richiede ore di lavoro attento. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il report e ti diciamo cosa va corretto prima di chiedere il riesame.
