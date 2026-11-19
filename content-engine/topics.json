@@ -1660,7 +1660,9 @@
     {
       "titolo": "Bing Webmaster Tools: serve ancora, anche per farsi trovare dagli assistenti AI?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "bing-webmaster-tools-serve-assistenti-ai",
+      "data": "2026-11-19"
     },
     {
       "titolo": "WordPress: plugin di cache e ottimizzazione, quale usare senza rompere il sito",
