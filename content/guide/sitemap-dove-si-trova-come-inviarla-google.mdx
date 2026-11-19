@@ -1,0 +1,102 @@
+---
+title: "Sitemap: dove si trova e come inviarla a Google · TiTrovano"
+description: "Cos'è la sitemap, dove la trovi su WordPress, Wix, Shopify e Squarespace, come inviarla in Search Console e cosa vogliono dire gli stati del report."
+h1: "Sitemap: cos'è, dove si trova sul tuo sito e come inviarla a Google?"
+rispostaBreve: "La sitemap è un file con l'elenco delle pagine del sito, pensato per i motori di ricerca: WordPress, Wix, Shopify e Squarespace la creano da soli, di solito a un indirizzo come tuodominio.it/sitemap.xml. La invii una volta sola dal report Sitemap di Search Console, e poi controlli che lo stato sia «Riuscita» e che dentro ci siano le pagine giuste. Aiuta Google a scoprire le pagine, ma non garantisce che le mostri."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-19"
+dateModified: "2026-11-19"
+guideCorrelate:
+  - "collegare-search-console-wordpress-wix-shopify"
+  - "rilevata-non-indicizzata-search-console"
+  - "quanto-tempo-google-mostra-pagine-nuove-sito"
+faq:
+  - domanda: "Devo inviare di nuovo la sitemap ogni volta che pubblico una pagina?"
+    risposta: "No. Le piattaforme aggiornano la sitemap da sole e Google la rilegge per conto suo. Per una pagina nuova importante puoi chiedere l'indicizzazione dal Controllo URL, una volta sola."
+  - domanda: "Nel report c'è scritto «Riuscita»: vuol dire che tutte le pagine sono su Google?"
+    risposta: "No. Vuol dire solo che Google ha letto il file. Quali pagine sono davvero indicizzate lo vedi nel report Indicizzazione delle pagine, che puoi filtrare per sitemap."
+---
+
+## Il dubbio: «Search Console mi chiede la sitemap, ce l'ho?»
+
+Hai collegato Search Console, apri il menu e trovi la voce **Sitemap** con un campo vuoto. Oppure chi ti ha fatto il sito ti dice «la sitemap è già a posto» e non sai come controllarlo. Nel frattempo una pagina nuova, per esempio quella di un servizio che hai appena aggiunto, su Google non si vede.
+
+La sitemap non è la soluzione a tutto, ma è uno dei primi controlli da fare. Si fa in dieci minuti e non serve saper programmare.
+
+## Cos'è, in due righe
+
+La sitemap è un file, quasi sempre in formato XML, che elenca gli indirizzi delle pagine del sito. Non la legge il cliente: la leggono i motori di ricerca, per sapere quali pagine esistono e quando sono cambiate.
+
+Due cose da sapere subito, entrambe scritte da Google:
+
+- **Non garantisce niente.** Nella guida al [report Sitemap](https://support.google.com/webmasters/answer/7451001?hl=it) Google avverte che non è detto che tutti gli indirizzi della sitemap vengano scansionati o indicizzati. È un aiuto a trovarli, non un ordine.
+- **Per un sito piccolo pesa poco.** Nella stessa guida Google scrive che un sito di circa 500 pagine o meno, in cui ogni pagina si raggiunge con i link a partire dalla home, probabilmente non ne ha bisogno.
+
+Allora perché preoccuparsene? Perché le piattaforme la creano comunque, inviarla non costa nulla e il report ti dice cose utili: se Google riesce a leggerla e se dentro ci sono le pagine giuste.
+
+## Dove si trova sul tuo sito
+
+Prova a scrivere nel browser il tuo dominio seguito dall'indirizzo giusto per la tua piattaforma:
+
+- **WordPress senza plugin SEO**: dalla versione 5.5 WordPress crea da solo un indice delle sitemap all'indirizzo `/wp-sitemap.xml`, come spiega l'[annuncio sul sito degli sviluppatori di WordPress](https://make.wordpress.org/core/2020/07/22/new-xml-sitemaps-functionality-in-wordpress-5-5/).
+- **WordPress con Yoast o Rank Math**: il plugin crea la sua sitemap, di solito a `/sitemap_index.xml`. Lo descrivono la [guida di Yoast sulle sitemap](https://yoast.com/help/xml-sitemaps-in-the-wordpress-seo-plugin/) e quella di [Rank Math](https://rankmath.com/kb/configure-sitemaps/). In questo caso invia quella del plugin.
+- **Shopify**: la crea in automatico a `/sitemap.xml`, con prodotti, collezioni, pagine e articoli del blog, come indica la guida [Finding and submitting your sitemap](https://help.shopify.com/en/manual/promoting-marketing/seo/find-site-map).
+- **Squarespace e Wix**: anche qui la trovi a `/sitemap.xml`, creata e aggiornata dalla piattaforma.
+
+Se non sai quale indirizzo usa il tuo sito, apri `tuodominio.it/robots.txt`. Spesso c'è una riga che comincia con `Sitemap:` e riporta l'indirizzo esatto. È un'indicazione che Google legge, come descrive la sua [guida al file robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt?hl=it).
+
+## Come leggerla senza essere tecnici
+
+Aprila nel browser. Spesso la prima pagina è un **indice**: un elenco di altre sitemap, una per le pagine, una per gli articoli, una per i prodotti. Apri quella delle pagine e scorri.
+
+Fai tre controlli:
+
+1. **Ci sono le pagine che ti portano clienti?** I servizi, la pagina contatti, le schede dei prodotti principali. Una pagina che manca dalla sitemap spesso è una pagina impostata per non comparire su Google, a volte per errore.
+2. **C'è roba che non dovrebbe esserci?** Pagine di prova, contenuti demo del tema, archivi di tag o di autori. Su WordPress le togli come spiegato in [come togliere da Google le pagine inutili](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati).
+3. **Gli indirizzi sono quelli veri?** Devono avere il tuo dominio definitivo, con `https://`. Se vedi un vecchio dominio o un indirizzo di prova, c'è qualcosa da sistemare nelle impostazioni del sito.
+
+## Come inviarla a Google
+
+In Search Console apri il report **Sitemap**, incolla l'indirizzo della sitemap (o dell'indice) e premi Invia. La guida di Google chiarisce che inviarla vuol dire solo dire a Google dove trovarla. Se non hai ancora collegato il sito, parti da [come collegare Search Console a WordPress, Wix o Shopify](/guide/collegare-search-console-wordpress-wix-shopify).
+
+Su Wix, se hai collegato il sito con la checklist SEO, la sitemap è già stata inviata: lo spiega la guida su [come collegare il sito a Google](https://support.wix.com/en/article/connecting-your-site-to-google-in-the-wix-seo-setup-checklist). Controlla comunque che compaia nel report.
+
+Basta farlo una volta. Le piattaforme aggiornano il file quando pubblichi una pagina, e Google lo rilegge per conto suo.
+
+## Cosa vogliono dire gli stati nel report
+
+Accanto a ogni sitemap inviata Search Console mostra uno stato. Secondo la guida al report sono tre:
+
+- **Riuscita**: Google ha letto la sitemap senza errori.
+- **La Sitemap presentava errori**: Google l'ha letta solo in parte. Apri la sitemap per vedere quali righe danno problemi; su una piattaforma gestita, se l'errore resta, scrivi all'assistenza.
+- **Impossibile recuperare**: Google non è riuscito a leggere il file.
+
+Le cause più comuni di «Impossibile recuperare» sono banali:
+
+- **indirizzo scritto male**, per esempio `sitemap.xml` invece di `sitemap_index.xml`, oppure con o senza `www` in modo diverso dal sito;
+- **sito protetto da password** o negozio non ancora aperto al pubblico;
+- **plugin cambiato**: hai disattivato il plugin che creava la sitemap e il vecchio indirizzo ora dà errore.
+
+Riapri l'indirizzo nel browser: se non si apre, il problema è lì. Correggi e invia di nuovo l'indirizzo giusto. Su Squarespace la piattaforma avverte che lo stato può comparire per qualche ora mentre Google elabora il file, come ricorda la guida su [Squarespace e la SEO](/guide/squarespace-seo-impostazioni-da-controllare).
+
+Accanto allo stato trovi anche le **pagine rilevate**: quanti indirizzi Google ha letto nella sitemap. Non è il numero di pagine su Google. Per sapere quali sono indicizzate apri il [report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it) e filtralo per quella sitemap.
+
+## Un esempio
+
+> Officina Ferri, sito WordPress con Yoast. Il titolare apre `/sitemap_index.xml` e trova cinque sitemap: pagine, articoli, categorie, tag e autori. Nella sitemap delle pagine manca «Tagliando e revisione», la pagina che gli porta più telefonate: era rimasta impostata per non comparire nei risultati dopo una prova. Corregge l'impostazione, toglie dai risultati tag e autori, poi controlla in Search Console che la sitemap sia «Riuscita» e chiede l'indicizzazione della pagina dal Controllo URL.
+
+Nessuna garanzia sui tempi: come spiegato in [quanto tempo ci vuole perché Google mostri le pagine nuove](/guide/quanto-tempo-google-mostra-pagine-nuove-sito), la scansione di una pagina può richiedere da pochi giorni a qualche settimana.
+
+## Cosa non fare
+
+- **Inviare tre sitemap diverse dello stesso sito**, per esempio quella di WordPress, quella di Yoast e quella di un vecchio plugin. Tieni un solo plugin che la crea e invia solo la sua.
+- **Reinviarla ogni giorno** sperando di accelerare: non serve.
+- **Perdere tempo con priorità e frequenza di aggiornamento** dentro il file: nella guida su [come creare una sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=it) Google scrive che ignora questi valori.
+- **Contare sulla sitemap per una pagina che nessuno linka**: una pagina che esiste solo lì è spesso tra le «rilevate ma non indicizzate», come spiegato in [questa guida](/guide/rilevata-non-indicizzata-search-console). Mettila nel menu o collegala da una pagina affine.
+
+Un'ultima nota: anche Bing accetta la sitemap, e su Bing si appoggia Copilot, l'assistente di Microsoft. Se vuoi attivarlo, trovi i passaggi in [Bing Webmaster Tools: serve ancora?](/guide/bing-webmaster-tools-serve-assistenti-ai). Nessuno, però, può garantire che un assistente faccia il tuo nome.
+
+## Se non hai tempo di farlo da solo
+
+Controllare la sitemap è veloce; capire perché una pagina che dovrebbe esserci manca, o perché Google non la mostra, richiede più tempo. Se preferisci che lo guardiamo noi, [prenota la consulenza gratuita](/#attiva): apriamo insieme Search Console e ti diciamo da cosa partire.
