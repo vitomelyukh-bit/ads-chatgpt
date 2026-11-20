@@ -1669,7 +1669,9 @@
     {
       "titolo": "WordPress: plugin di cache e ottimizzazione, quale usare senza rompere il sito",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-plugin-cache-ottimizzazione-senza-rompere-sito",
+      "data": "2026-11-20"
     },
     {
       "titolo": "Sito in costruzione o in manutenzione: cosa vede Google e come non perdere le pagine",

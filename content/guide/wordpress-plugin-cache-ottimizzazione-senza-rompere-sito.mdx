@@ -1,0 +1,90 @@
+---
+title: "WordPress: plugin di cache, quale usare senza guasti · TiTrovano"
+description: "Plugin di cache su WordPress: come capire se ti serve, quale scegliere in base all'hosting, quali opzioni attivare per prime e come controllare che il sito funzioni."
+h1: "WordPress: plugin di cache e ottimizzazione, quale usare senza rompere il sito?"
+rispostaBreve: "Prima di scegliere un plugin, controlla se il tuo hosting ha già una cache: in quel caso spesso un plugin in più non serve, o è perfino sconsigliato. Se non c'è, ne basta uno solo, scelto in base al server: LiteSpeed Cache se l'hosting usa LiteSpeed, altrimenti un plugin come WP Super Cache, W3 Total Cache o WP Rocket. Attiva prima la cache delle pagine, poi le altre ottimizzazioni una alla volta, controllando ogni volta menu, moduli e carrello."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-20"
+dateModified: "2026-11-20"
+guideCorrelate:
+  - "sito-lento-da-telefono-come-misurarlo"
+  - "page-builder-elementor-divi-seo"
+  - "immagini-pesanti-sito-come-alleggerirle"
+faq:
+  - domanda: "Un plugin di cache fa salire il sito su Google?"
+    risposta: "Non da solo. Può rendere le pagine più rapide per chi le apre, e la velocità è uno dei segnali che Google considera, ma non sostituisce pagine utili per i servizi che offri. Se il sito non compare, di solito la causa è altrove."
+  - domanda: "Ho cambiato un testo ma online vedo ancora quello vecchio: è colpa della cache?"
+    risposta: "Spesso sì. Svuota la cache dal plugin e, se c'è, anche quella dell'hosting o del CDN. Poi riapri la pagina da una finestra in incognito o dal telefono con i dati mobili."
+---
+
+## Il sito è lento e tutti ti dicono «metti un plugin di cache»
+
+Hai provato il sito su PageSpeed Insights, hai visto un punteggio rosso e qualcuno ti ha consigliato un plugin di cache. Lo installi, attivi tutte le caselle e il sito sembra volare. Poi un cliente ti scrive che il modulo contatti non invia, il menu dal telefono non si apre o nel carrello compaiono prodotti di un altro.
+
+È il problema tipico di questi plugin: fanno molte cose insieme, e alcune possono rompere pezzi del sito. Il cliente che non riesce a mandarti la richiesta non ti avvisa: va dal concorrente. Il punto non è trovare il plugin «migliore», ma quello giusto per il tuo hosting, configurato con calma.
+
+## Cosa fa davvero un plugin di cache
+
+WordPress, a ogni visita, costruisce la pagina da zero: legge il database, esegue il tema e i plugin, poi manda il risultato. La **cache delle pagine** salva quel risultato già pronto e lo consegna ai visitatori successivi, senza rifare tutto il lavoro. È la parte che di solito porta il beneficio maggiore e rompe meno.
+
+Quasi tutti i plugin aggiungono poi altre **ottimizzazioni**: comprimere e unire i file CSS e JavaScript, rimandare il caricamento degli script, caricare le immagini solo quando servono. Sono utili, ma sono anche le opzioni che causano più guasti, perché cambiano il modo in cui il codice del tema e degli altri plugin viene caricato.
+
+## Primo passo: guarda cosa fa già il tuo hosting
+
+Molti hosting per WordPress hanno una cache sul server. Alcuni sconsigliano o vietano i plugin di cache proprio perché si sovrappongono alla loro: per esempio WP Engine li elenca tra i [plugin non ammessi](https://wpengine.com/support/disallowed-plugins/), spiegando che entrano in conflitto con la cache della piattaforma.
+
+Per capire la tua situazione:
+
+- **cerca nella documentazione del tuo hosting** «cache WordPress»: di solito spiega se la cache c'è già e quale plugin consiglia;
+- **apri Strumenti > Salute del sito** nella bacheca di WordPress. Dalla versione 6.1 c'è un [controllo sulla cache delle pagine](https://make.wordpress.org/core/2022/10/06/new-cache-site-health-checks-in-wordpress-6-1/) che segnala se ne trova una e se il server risponde lento. Il controllo non riconosce tutte le cache dei server, quindi prendilo come un indizio, non come una sentenza.
+
+Se la cache sul server c'è già e funziona, spesso non serve aggiungere altro.
+
+## Quale plugin scegliere
+
+Uno solo. Due plugin di cache attivi insieme si pestano i piedi: pagine che non si aggiornano, errori, schermate bianche. La scelta dipende soprattutto dal server.
+
+- **Hosting con server LiteSpeed**: [LiteSpeed Cache](https://wordpress.org/plugins/litespeed-cache/) è gratuito e la sua cache delle pagine lavora insieme al server. Secondo la [documentazione di LiteSpeed](https://docs.litespeedtech.com/lscache/lscwp/), su server diversi le ottimizzazioni funzionano, ma la cache delle pagine no: su un hosting senza LiteSpeed non è la scelta adatta.
+- **Hosting con server Apache o Nginx, senza cache propria**: [WP Super Cache](https://wordpress.org/plugins/wp-super-cache/) è gratuito e semplice, fa soprattutto la cache delle pagine; [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) ha molte più impostazioni, utile a chi sa cosa tocca; WP Rocket è a pagamento e si vende fuori da wordpress.org, con impostazioni guidate.
+- **Sito su Cloudflare o un altro CDN**: controlla prima cosa fa già la cache del CDN, per non avere due livelli che si contraddicono. Se usi Cloudflare, vale la pena leggere anche [cosa controllare perché gli assistenti AI riescano a leggere il sito](/guide/sito-cloudflare-assistenti-ai-riescono-leggerlo).
+
+Nessuno di questi è «il migliore» in assoluto: quello giusto è quello compatibile con il tuo hosting e che sai configurare.
+
+## Come attivarlo senza rompere niente
+
+Fai una copia di sicurezza del sito prima di iniziare. Poi procedi così:
+
+1. **Attiva solo la cache delle pagine**. Apri il sito da una finestra in incognito e dal telefono: home, pagine dei servizi, contatti.
+2. **Prova le cose che portano clienti**: invia il modulo contatti, tocca il pulsante per chiamare, apri il menu dal telefono, prova la prenotazione se c'è.
+3. **Attiva le altre ottimizzazioni una alla volta**: prima la compressione dei file, poi l'unione, poi il rinvio degli script. Dopo ognuna, ripeti i controlli del punto 2. Se qualcosa si rompe, sai quale opzione spegnere.
+4. **Rifai la misura** su PageSpeed Insights e confronta con il risultato di partenza, come spiegato in [come misurare la velocità dal telefono](/guide/sito-lento-da-telefono-come-misurarlo).
+
+Un esempio di appunti da tenere, per lo studio di un fisioterapista:
+
+> **Studio Fisio Marini, prove del 12 marzo.** Cache delle pagine: attiva, tutto ok. Compressione CSS e JS: ok. Unione dei file JavaScript: il calendario delle prenotazioni non si carica, opzione spenta. Rinvio degli script: il banner dei cookie compare in ritardo ma funziona, lasciato attivo. Immagini caricate al bisogno: attiva, esclusa la foto in cima alla home.
+
+Così, se tra sei mesi qualcosa smette di funzionare, sai da dove partire.
+
+## Le opzioni da maneggiare con cura
+
+- **Caricare le immagini solo quando servono** («lazy load»). Va bene per le foto più in basso, ma la foto grande in cima alla pagina va caricata subito: web.dev mostra che [rimandare anche le immagini visibili all'apertura peggiora il caricamento](https://web.dev/articles/lcp-lazy-loading). Quasi tutti i plugin permettono di escludere le prime immagini.
+- **Unire i file JavaScript e rimandarne l'esecuzione**. Sono le opzioni che più spesso bloccano menu, calendari, mappe e moduli. Se il tuo sito usa un page builder, leggi anche [cosa sapere su Elementor e Divi](/guide/page-builder-elementor-divi-seo): hanno impostazioni proprie che possono sovrapporsi a quelle del plugin.
+- **Negozio con WooCommerce**. Carrello, cassa e area «Il mio account» non vanno mai messi in cache. La [guida di WooCommerce sui plugin di cache](https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins) spiega come escluderle; alcuni plugin lo fanno da soli, altri no. Prova un acquisto da loggato e da non loggato.
+
+## Cosa cambia per Google e per gli assistenti AI
+
+Google considera i [Segnali web essenziali](https://developers.google.com/search/docs/appearance/core-web-vitals?hl=it), cioè le misure di velocità e stabilità della pagina, ma precisa che buoni valori non garantiscono buone posizioni: contano prima pagine utili e pertinenti. La cache aiuta soprattutto le persone, che vedono la pagina prima e se ne vanno meno.
+
+Per Google e per gli assistenti come ChatGPT, Gemini e Perplexity conta anche che il testo resti nella pagina. Le ottimizzazioni rimandano gli script, non tolgono il testo: ma se una pagina mostra i contenuti solo dopo un'azione del visitatore, controlla che servizi, orari e contatti siano scritti nella pagina anche senza cliccare nulla.
+
+## Cosa non fare
+
+- **Installare due o tre plugin di velocità insieme**, sperando di sommare i benefici.
+- **Attivare tutte le opzioni il primo giorno** senza provare moduli e menu.
+- **Dimenticare di svuotare la cache** dopo aver cambiato orari, prezzi o testi: il cliente continua a vedere la versione vecchia.
+- **Inseguire il 100 nel punteggio** rompendo funzioni che portano richieste.
+
+## Se non hai tempo di farlo da solo
+
+Scegliere il plugin, provarlo opzione per opzione e controllare che moduli e prenotazioni funzionino richiede qualche ora e un po' di pazienza. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito e ti diciamo cosa conviene fare.
