@@ -1681,7 +1681,9 @@
     {
       "titolo": "Sito di un imbianchino o di un decoratore: quali pagine fare per lavori e preventivi",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-imbianchino-decoratore-pagine-lavori-preventivi",
+      "data": "2026-11-20"
     },
     {
       "titolo": "Joomla: sito vecchio da aggiornare o da spostare su un'altra piattaforma senza perdere Google",
