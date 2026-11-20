@@ -1688,7 +1688,9 @@
     {
       "titolo": "Joomla: sito vecchio da aggiornare o da spostare su un'altra piattaforma senza perdere Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "joomla-sito-vecchio-aggiornare-o-spostare",
+      "data": "2026-11-20"
     },
     {
       "titolo": "Testi caricati con JavaScript: Google e gli assistenti AI vedono davvero il contenuto?",

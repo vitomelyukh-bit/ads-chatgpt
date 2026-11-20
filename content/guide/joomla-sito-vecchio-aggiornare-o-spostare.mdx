@@ -1,0 +1,85 @@
+---
+title: "Joomla vecchio: aggiornarlo o cambiare piattaforma? · TiTrovano"
+description: "Sito su Joomla 3 o 4 senza più aggiornamenti? Come scegliere tra aggiornare Joomla e cambiare piattaforma, e come non perdere le pagine che Google conosce."
+h1: "Joomla: sito vecchio da aggiornare o da spostare su un'altra piattaforma senza perdere Google?"
+rispostaBreve: "Joomla 3 non riceve aggiornamenti dall'agosto 2023 e Joomla 4 da ottobre 2025: restare lì è un rischio per la sicurezza, non per le posizioni. Puoi aggiornare Joomla alla versione attuale o spostare il sito su un'altra piattaforma: in entrambi i casi la parte delicata sono gli indirizzi delle pagine. Prima fai l'elenco di quelli che Google conosce, poi ogni indirizzo che cambia va reindirizzato in modo permanente alla pagina nuova che gli corrisponde."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-20"
+dateModified: "2026-11-20"
+guideCorrelate:
+  - "sito-vecchio-da-rifare-non-perdere-posizioni"
+  - "sito-hackerato-pagine-strane-google-cosa-fare"
+  - "errore-404-search-console-pagine-non-esistono"
+faq:
+  - domanda: "Un sito su Joomla 3 perde posizioni su Google solo perché è vecchio?"
+    risposta: "Non per la versione in sé: Google guarda le pagine, non il programma che le genera. Il problema è che un sito senza aggiornamenti di sicurezza è più esposto agli attacchi, e un sito violato può riempirsi di pagine estranee o essere segnalato da Google."
+  - domanda: "Passare da Joomla 5 a Joomla 6 è complicato come passare da Joomla 3 a 4?"
+    risposta: "No. Nell'annuncio di Joomla 6 il progetto spiega che da Joomla 5.4 a 6.0 si tratta di un aggiornamento, non di una migrazione, e che la maggior parte delle estensioni dovrebbe funzionare con il plugin di compatibilità attivo. Fai comunque una copia di sicurezza prima."
+---
+
+## Il sito funziona, ma nessuno lo aggiorna da anni
+
+Il sito l'ha fatto un tecnico tanti anni fa, su Joomla. Funziona, porta ancora qualche richiesta da Google, ma il pannello mostra avvisi di versione superata e il tecnico non risponde più. Ti chiedi se conviene aggiornarlo o rifarlo su un'altra piattaforma, e soprattutto se perderai le visite che hai.
+
+Le date contano. Il progetto Joomla ha chiuso il supporto di Joomla 3 il [17 agosto 2023](https://www.joomla.org/announcements/release-news/joomla-4-2-release.html), e la pagina dei download indica che [Joomla 4 non è più supportato](https://downloads.joomla.org/cms/joomla4): l'ultima versione è stata la 4.4.14 e il supporto è finito a ottobre 2025. Da allora le falle scoperte non vengono più corrette. Un sito violato può riempirsi di pagine estranee e farsi segnalare da Google: ne parliamo in [Sito hackerato e pagine strane su Google](/guide/sito-hackerato-pagine-strane-google-cosa-fare).
+
+## Prima di decidere: l'elenco degli indirizzi che Google conosce
+
+Che tu aggiorni o cambi piattaforma, il rischio per Google è lo stesso: pagine che cambiano indirizzo e non vengono più ritrovate. Su Joomla è un rischio alto, perché gli indirizzi vecchi hanno spesso forme strane:
+
+- **con i parametri**, tipo `/index.php?option=com_content&view=article&id=14&Itemid=112`, se gli indirizzi leggibili non erano attivi;
+- **con «index.php» in mezzo**, tipo `/index.php/corsi/hip-hop`, se era attiva l'opzione per gli indirizzi leggibili ma non la riscrittura sul server;
+- **con il suffisso .html**, tipo `/corsi/hip-hop.html`, se era attiva l'opzione che lo aggiunge.
+
+Spesso la stessa pagina risponde a più indirizzi diversi, uno per ogni voce di menu o categoria da cui la raggiungi. Per questo l'elenco va preso da Google, non dal menu. In Search Console, nel report **Rendimento**, apri la scheda **Pagine**: sono gli indirizzi che Google mostra davvero e quelli che portano clic. Esportali e aggiungi le pagine importanti che mancano. Se non hai ancora Search Console, collegala prima di tutto: i passaggi generali sono in [Search Console: come collegarla al tuo sito](/guide/collegare-search-console-wordpress-wix-shopify).
+
+## Strada uno: restare su Joomla e aggiornarlo
+
+Ha senso se il sito usa poche estensioni, se il template è ancora mantenuto o sostituibile e se qualcuno sa lavorare su Joomla.
+
+Da Joomla 3 non è un aggiornamento con un clic. La documentazione di Joomla la chiama migrazione: si porta prima il sito a Joomla 3.10, si usa il **controllo pre-aggiornamento** del componente di aggiornamento per vedere quali estensioni sono compatibili, e si sostituisce il template, perché quello predefinito di Joomla 3 non esiste più nelle versioni successive. Ogni estensione che non ha una versione compatibile va sostituita o tolta. Da Joomla 5.4 a 6, invece, secondo l'[annuncio di Joomla 6](https://www.joomla.org/announcements/release-news/joomla-6-0-and-joomla-5-4-are-here.html), è un aggiornamento normale.
+
+Per Google, i controlli dopo l'aggiornamento sono questi:
+
+- **le stesse impostazioni degli indirizzi**: indirizzi leggibili, riscrittura e suffisso come prima. Se prima c'era il .html e dopo no, cambiano tutti gli indirizzi del sito;
+- **il file di configurazione del server**: su server Apache la riscrittura funziona solo se il file `htaccess.txt` di Joomla è stato rinominato in `.htaccess`. Dopo una migrazione può mancare;
+- **gli alias delle voci di menu e degli articoli** uguali a prima: sono loro a formare gli indirizzi;
+- **titoli e descrizioni** delle pagine principali ancora compilati, nelle impostazioni delle voci di menu e degli articoli.
+
+Fai tutto su una copia del sito, non su quello online, e prova gli indirizzi della tua lista uno per uno prima di pubblicare.
+
+## Strada due: spostare il sito su un'altra piattaforma
+
+Ha senso se il sito è piccolo, se le estensioni da sostituire sono tante o se vuoi gestirlo da solo con uno strumento che conosci. Verso WordPress esistono importatori come [FG Joomla to WordPress](https://wordpress.org/plugins/fg-joomla-to-wordpress/), che nella versione gratuita trasferisce articoli, categorie e immagini. Secondo la pagina del plugin, i reindirizzamenti per la SEO fanno parte della versione a pagamento: se non la usi, li crei tu con un plugin di reindirizzamento.
+
+L'importazione sposta i testi, non decide gli indirizzi. È il momento giusto per scegliere indirizzi semplici, ma ogni indirizzo vecchio della tua lista deve portare alla pagina nuova giusta. Un esempio, per una scuola di danza di fantasia:
+
+> /index.php?option=com_content&view=article&id=14&Itemid=112 → /danza-classica-bambini/
+> /index.php/corsi/hip-hop.html → /corsi-hip-hop/
+> /index.php/contatti.html → /contatti/
+> /index.php/news/45-saggio-2019.html → nessun sostituto, nessuna visita: resta un 404
+
+Google, nella guida sugli [spostamenti con modifiche agli URL](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it), consiglia reindirizzamenti permanenti dalla pagina vecchia a quella nuova corrispondente, di evitare di mandare tutto alla home e di tenerli il più a lungo possibile, in genere almeno un anno. Se una pagina non ha un sostituto, va bene che dia errore: lo spieghiamo in [Errore 404 su Google](/guide/errore-404-search-console-pagine-non-esistono).
+
+Approfitta del passaggio anche per i titoli. Molti siti Joomla hanno la home intitolata «Home» o con il solo nome:
+
+> Prima: Home
+> Dopo: Scuola di danza Arabesque – corsi di danza per bambini e adulti
+
+La lista completa dei controlli per il giorno del lancio, valida per qualunque piattaforma, è in [Sito vecchio da rifare: come non perdere le posizioni](/guide/sito-vecchio-da-rifare-non-perdere-posizioni).
+
+## Gli assistenti AI e il sito nuovo
+
+ChatGPT, Gemini e Perplexity leggono il testo che trovano nella pagina. Dopo il passaggio, controlla che servizi, orari, zona e contatti siano scritti nella pagina e non solo dentro immagini, moduli o finestre che si aprono con un clic. Un sito ordinato aiuta Google e gli assistenti a capire cosa fai, ma nessuno può garantire che ti consiglino.
+
+## Cosa non fare
+
+- **Lasciare online il vecchio Joomla** a un altro indirizzo accanto al sito nuovo: due copie dello stesso contenuto confondono Google, e quella vecchia resta attaccabile.
+- **Aggiornare direttamente il sito online** senza una copia di sicurezza e senza provare prima su una copia.
+- **Reindirizzare tutti gli indirizzi vecchi alla home**: chi cercava un corso deve arrivare a quel corso.
+- **Riempire il sito nuovo con testi copiati** o comprare link per recuperare in fretta: vanno contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+
+## Se non hai tempo di farlo da solo
+
+L'elenco degli indirizzi, la scelta della strada e i reindirizzamenti richiedono tempo e attenzione, e vanno fatti prima di spegnere il sito vecchio. Se preferisci affidarli a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme il tuo sito Joomla e ti diciamo quale strada conviene.
