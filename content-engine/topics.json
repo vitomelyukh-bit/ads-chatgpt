@@ -1707,7 +1707,9 @@
     {
       "titolo": "Sito di una lavanderia o di una tintoria: quali servizi mettere in pagina per farsi trovare in zona",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-lavanderia-tintoria-servizi-pagine-zona",
+      "data": "2026-11-21"
     },
     {
       "titolo": "Wix: il blog di Wix, come impostare articoli, categorie e tag per Google",
