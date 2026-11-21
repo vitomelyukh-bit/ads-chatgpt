@@ -1695,7 +1695,9 @@
     {
       "titolo": "Testi caricati con JavaScript: Google e gli assistenti AI vedono davvero il contenuto?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "testi-caricati-javascript-google-assistenti-ai",
+      "data": "2026-11-21"
     },
     {
       "titolo": "Calo improvviso di clic in Search Console: stagione, aggiornamento di Google o problema del sito?",

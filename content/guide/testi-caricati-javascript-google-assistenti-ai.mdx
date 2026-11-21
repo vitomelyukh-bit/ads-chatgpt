@@ -1,0 +1,94 @@
+---
+title: "Testi caricati con JavaScript: Google li vede? · TiTrovano"
+description: "Servizi, menù o recensioni che compaiono solo dopo il caricamento: cosa vede Google, cosa rischiano di non vedere gli assistenti AI e come controllarlo."
+h1: "Testi caricati con JavaScript: Google e gli assistenti AI vedono davvero il contenuto?"
+rispostaBreve: "Google di solito sì: esegue il JavaScript prima di indicizzare la pagina, anche se a volte con un po' di ritardo. Per gli assistenti AI non c'è la stessa certezza: Google stesso ricorda che non tutti i programmi che leggono i siti eseguono JavaScript, e OpenAI non dice se i suoi lo fanno. Per questo i testi che contano, come servizi, zona, orari e contatti, conviene averli già nell'HTML che il sito invia."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-21"
+dateModified: "2026-11-21"
+guideCorrelate:
+  - "cosa-legge-ai-del-tuo-sito"
+  - "chatbot-sito-aiuta-google-assistenti-ai"
+  - "recensioni-sito-mostrarle-clienti-google"
+faq:
+  - domanda: "Il mio sito è fatto con WordPress o Wix: devo preoccuparmi?"
+    risposta: "Di solito meno. I testi che scrivi nell'editor delle pagine finiscono in genere nell'HTML che il sito invia. Il controllo serve comunque per le parti aggiunte con widget o codice esterno: recensioni, menù, listini, calendari, mappe."
+  - domanda: "Se nello strumento Controllo URL vedo il testo, sono a posto anche con gli assistenti AI?"
+    risposta: "Non per forza. Lo strumento ti mostra la pagina dopo che Google ha eseguito il JavaScript. Per sapere cosa arriva a un programma che non lo esegue, guarda il sorgente della pagina dal computer."
+---
+
+## Sul sito il testo c'è, ma forse non per tutti
+
+Apri il tuo sito e vedi tutto: l'elenco dei servizi, il menù, le recensioni, gli orari. Eppure Google mostra la pagina con una descrizione vuota, oppure un assistente AI risponde che non sa cosa fai. Una possibile causa è che quei testi non sono scritti nella pagina, ma vengono **aggiunti dopo da un programma in JavaScript**.
+
+JavaScript è il linguaggio che fa funzionare le parti "vive" di un sito: menu che si aprono, gallerie, moduli, widget presi da altri servizi. Spesso è anche quello che carica i contenuti mentre la pagina si apre. Per una persona con il telefono in mano non cambia niente. Per un programma che legge i siti in automatico, a volte cambia tutto.
+
+## Cosa fa Google
+
+Google lo spiega nella sua guida alle [basi della SEO per JavaScript](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics?hl=it). Il lavoro avviene in tre fasi: Google scarica la pagina, la mette in coda per il **rendering** (cioè la apre con un browser ed esegue il JavaScript, come farebbe il tuo telefono) e poi indicizza quello che vede alla fine.
+
+Tre cose da sapere, sempre dalla stessa guida:
+
+- **Google vede solo quello che c'è nella pagina finale.** Se un testo compare solo dopo un clic, uno scorrimento o un'azione del visitatore, può restare fuori.
+- **Il rendering può arrivare dopo.** La pagina resta in coda di solito pochi secondi, ma può volerci di più.
+- **I link devono essere link veri**, cioè elementi `<a>` con un indirizzo `href`. Un pulsante che porta a un'altra pagina solo con il JavaScript Google può non seguirlo.
+
+La stessa guida aggiunge un consiglio che riguarda anche gli assistenti: il rendering lato server, cioè la pagina che arriva già completa di testo, resta una buona idea perché rende il sito più veloce e perché **non tutti i bot riescono a eseguire JavaScript**.
+
+## Cosa fanno gli assistenti AI
+
+Qui le informazioni ufficiali sono poche. OpenAI, nella sua [documentazione sui crawler](https://developers.openai.com/docs/bots), spiega quali programmi usa per la ricerca di ChatGPT e come bloccarli o lasciarli passare, ma non dice se eseguono JavaScript.
+
+Un'[analisi pubblicata da Vercel](https://vercel.com/blog/the-rise-of-the-ai-crawler) nel dicembre 2024, che è una fonte di settore e non dei produttori degli assistenti, aveva osservato che i crawler di OpenAI, Anthropic e Perplexity scaricavano le pagine senza eseguire il JavaScript. Da allora qualcosa può essere cambiato, e non c'è una conferma ufficiale in un senso o nell'altro.
+
+La conclusione pratica è semplice: non puoi sapere con certezza cosa esegue ogni assistente. Se il testo è già nell'HTML, il problema non si pone. Come spieghiamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito), gli assistenti partono soprattutto dal testo scritto nelle pagine. Nessuno può garantire che facciano il tuo nome, ma un testo che non leggono di sicuro non ti aiuta.
+
+## Dove si nasconde di solito il JavaScript
+
+Su WordPress, Wix, Squarespace o Shopify il testo che scrivi nell'editor delle pagine arriva in genere già nell'HTML. I casi da controllare sono altri:
+
+- **widget di recensioni** presi da un servizio esterno, che caricano i testi dopo l'apertura della pagina (ne parliamo in [come mostrare le recensioni sul sito](/guide/recensioni-sito-mostrarle-clienti-google));
+- **menù, listini e cataloghi** collegati da un gestionale o da un'app;
+- **calendari e moduli di prenotazione** inseriti con un codice da copiare;
+- **schede che si aprono con un clic**, come le domande frequenti a fisarmonica, se il testo arriva solo al clic e non è già nella pagina;
+- **siti fatti su misura** da un'agenzia con un framework moderno, dove a volte l'intero sito viene costruito nel browser.
+
+## Come controllarlo in dieci minuti
+
+### 1. Guarda il sorgente della pagina
+
+Dal computer, apri la pagina e usa la funzione del browser per vedere il codice sorgente (su Chrome: tasto destro sulla pagina, poi la voce per visualizzare il sorgente). Poi cerca con Ctrl+F una frase precisa che sai essere sulla pagina, per esempio il nome di un servizio.
+
+Se la trovi, quel testo arriva già nell'HTML: lo può leggere anche un programma che non esegue JavaScript. Se non la trovi, quel testo viene aggiunto dopo.
+
+### 2. Guarda cosa vede Google
+
+In Search Console usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it): incolla l'indirizzo, scegli **Testa URL pubblicato** e poi **Visualizza pagina testata**. Nella scheda HTML trovi il [codice dopo il rendering](https://support.google.com/webmasters/answer/11626894?hl=it), e c'è anche uno screenshot.
+
+Se il testo c'è qui ma non nel sorgente, Google lo vede, gli altri forse no. Se non c'è nemmeno qui, il problema riguarda anche Google.
+
+### 3. Annota il risultato
+
+Fai la prova sulle pagine che portano clienti: home, pagine dei servizi, contatti. Basta una nota così:
+
+> **Pagina /pulizia-tappeti**: nome del servizio e prezzi indicativi nel sorgente sì. Recensioni: solo dopo il rendering. Zone servite: assenti anche nello strumento di Google, compaiono solo dopo il clic su «Dove lavoriamo».
+
+## Come sistemare senza rifare il sito
+
+Non serve togliere i widget. Serve che le informazioni importanti esistano anche come testo normale:
+
+- **scrivi nell'editor della pagina** servizi, zona, orari e contatti, anche se c'è già un widget che li mostra;
+- **porta fuori dalle schede a clic** le risposte importanti, oppure verifica che il testo sia già nella pagina e venga solo nascosto;
+- **aggiungi qualche recensione scritta** come testo, scelta da te e riportata fedelmente, accanto al widget;
+- **usa link veri** nel menu verso le pagine dei servizi.
+
+Se il sito è fatto su misura, puoi chiedere a chi lo gestisce un controllo preciso:
+
+> Ciao Luca, nel sorgente della home e della pagina /assistenza-caldaie non trovo il testo dei servizi né gli orari: compaiono solo dopo il caricamento. Puoi fare in modo che questi testi arrivino già nell'HTML, con il rendering lato server o pagine statiche? Mi interessa soprattutto per home, servizi e contatti.
+
+Non mostrare a Google un testo diverso da quello che vedono i visitatori per "aiutarlo": le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) lo considerano cloaking. Il testo nell'HTML deve essere lo stesso che legge il cliente.
+
+## Se non hai tempo di farlo da solo
+
+Se preferisci che qualcuno controlli le pagine una per una, sistemi i testi che Google e gli assistenti non vedono e ti dica cosa chiedere a chi gestisce il sito, [prenota la consulenza gratuita](/#attiva).
