@@ -1714,7 +1714,9 @@
     {
       "titolo": "Wix: il blog di Wix, come impostare articoli, categorie e tag per Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wix-blog-articoli-categorie-tag-google",
+      "data": "2026-11-21"
     },
     {
       "titolo": "Favicon sbagliata o assente nei risultati di Google: come sistemarla",
