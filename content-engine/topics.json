@@ -1735,7 +1735,9 @@
     {
       "titolo": "Sito di una sartoria o di un laboratorio di riparazioni: come farsi trovare per orli, modifiche e abiti su misura",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-sartoria-riparazioni-orli-modifiche-su-misura",
+      "data": "2026-11-22"
     },
     {
       "titolo": "WordPress: immagini senza testo alternativo, come compilarlo dalla libreria media",
