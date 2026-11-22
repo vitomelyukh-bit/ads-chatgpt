@@ -1721,7 +1721,9 @@
     {
       "titolo": "Favicon sbagliata o assente nei risultati di Google: come sistemarla",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "favicon-sbagliata-assente-risultati-google",
+      "data": "2026-11-22"
     },
     {
       "titolo": "Banner dei cookie e popup a tutta pagina: ostacolano Google o gli assistenti AI?",

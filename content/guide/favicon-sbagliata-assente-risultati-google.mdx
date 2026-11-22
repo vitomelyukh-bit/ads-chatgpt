@@ -1,0 +1,107 @@
+---
+title: "Favicon sbagliata o assente su Google: come sistemarla · TiTrovano"
+description: "Su Google accanto al tuo sito c'è un globo grigio, il logo di Wix o un'icona vecchia? Cosa chiede Google alla favicon e come cambiarla sulla tua piattaforma."
+h1: "Favicon sbagliata o assente nei risultati di Google: come sistemarla?"
+rispostaBreve: "Google prende la favicon dalla home page del sito: deve essere indicata nel codice della home, quadrata, ben leggibile anche piccola e raggiungibile da Google senza blocchi. Se manca o non rispetta le regole, Google mostra un'icona generica, mentre una favicon nuova compare solo dopo che Google ha rivisitato la home, cosa che può richiedere da qualche giorno a qualche settimana. Su WordPress, Wix, Shopify e Squarespace la carichi dalle impostazioni, senza toccare il codice."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-22"
+dateModified: "2026-11-22"
+guideCorrelate:
+  - "bloccata-da-robots-txt-search-console"
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "wix-indirizzo-wixsite-dominio-tuo-google"
+faq:
+  - domanda: "Il file deve chiamarsi per forza favicon.ico?"
+    risposta: "No. Google guarda il tag nella home page che indica dove si trova l'icona: il file può avere un altro nome ed essere, per esempio, un PNG. L'importante è che sia quadrato, raggiungibile e che il suo indirizzo non cambi di continuo."
+  - domanda: "Posso avere una favicon diversa per ogni pagina del sito?"
+    risposta: "Per Google no: ne usa una sola per sito, quella della home. Un sottodominio, come prenota.tuodominio.it, può averne una sua; una sottocartella, come tuodominio.it/negozio, no."
+---
+
+## Il problema: su Google non sembri tu
+
+Cerchi il nome della tua attività su Google. Il sito c'è, ma accanto al nome compare un globo grigio, il logo della piattaforma con cui hai fatto il sito o l'icona del vecchio logo che hai cambiato un anno fa.
+
+Sembra un dettaglio, ma è la prima immagine che il cliente vede di te nei risultati. Se cerca «Pasticceria Rinaldi» e trova un'icona generica accanto a icone riconoscibili di concorrenti e portali, rischia di non riconoscerti al primo sguardo. E un logo vecchio fa pensare a un sito trascurato.
+
+La piccola icona si chiama **favicon**. È la stessa che vedi nella scheda del browser, e Google la usa anche nei risultati di ricerca.
+
+## Cosa chiede Google alla favicon
+
+Le regole sono nella guida ufficiale di Google su [come definire la favicon mostrata nei risultati di ricerca](https://developers.google.com/search/docs/appearance/favicon-in-search?hl=it). In breve:
+
+- **Sta nella home page.** La favicon va indicata nel codice della home, nella parte iniziale chiamata intestazione, con un tag `<link rel="icon">`. Google accetta anche la forma più vecchia `rel="shortcut icon"`.
+- **Una per sito.** Google ne usa una sola per ogni nome di dominio o sottodominio. Le sottocartelle non possono avere una favicon propria.
+- **Quadrata.** Deve avere proporzioni 1:1. La misura minima indicata da Google è di 8 pixel per lato, ma consiglia un'immagine più grande di 48 per 48 pixel, così resta nitida dappertutto.
+- **Formato comune.** Vanno bene i formati più diffusi, come PNG, ICO, JPEG e GIF.
+- **Indirizzo stabile.** Non cambiare di continuo il nome o l'indirizzo del file dell'icona.
+- **Raggiungibile.** Google deve poter aprire la home page e il file dell'icona. Se sono bloccati, per esempio dal file robots.txt, la favicon non arriva.
+- **Adatta a tutti.** Google può sostituire con un'icona generica un'immagine che ritiene inappropriata.
+
+Anche rispettando tutto, Google non garantisce che mostrerà la tua favicon. Ma quasi sempre, quando non compare, il motivo è in uno di questi punti.
+
+## Come cambiarla sulla tua piattaforma
+
+### WordPress
+
+WordPress la chiama **Icona del sito**. Secondo la [guida di WordPress sulla favicon](https://wordpress.org/documentation/article/creating-a-favicon/), dalla versione 6.5 si imposta in Impostazioni › Generali. Con alcuni temi la trovi anche in Aspetto › Personalizza › Identità del sito, e con i temi a blocchi nell'editor del sito. WordPress chiede un'immagine quadrata di almeno 512 pixel per lato: è la stessa che usa come icona del browser.
+
+Se avevi già messo un'icona con un plugin o dentro il tema, controlla di non averne due: tieni quella impostata da WordPress e togli l'altra.
+
+### Wix
+
+Secondo la [guida di Wix sulla favicon](https://support.wix.com/en/article/wix-editor-changing-your-favicon), serve un piano Premium con un dominio collegato, e il sito deve essere già pubblicato. Si carica dal pannello di controllo, nelle impostazioni del sito, alla voce Favicon. Wix chiede un'immagine quadrata con lato multiplo di 48 pixel, per esempio 96 per 96, oppure un file SVG.
+
+Sui siti gratuiti Wix mostra la sua icona: se il sito è ancora sull'indirizzo gratuito, il primo passo è il dominio, come spiegato nella guida su [wixsite e dominio tuo](/guide/wix-indirizzo-wixsite-dominio-tuo-google).
+
+### Shopify
+
+Su Shopify la favicon si imposta dall'editor del tema, nelle impostazioni del tema. A seconda del tema, la voce è sotto il logo o si chiama proprio favicon. I passaggi sono nella [guida di Shopify sulla favicon](https://help.shopify.com/en/manual/online-store/images/add-favicon). Carica un'immagine quadrata e controlla il risultato sul negozio pubblicato: Shopify avverte che nell'editor del tema la favicon non si vede.
+
+### Squarespace
+
+Squarespace la chiama anche icona del browser. La [guida di Squarespace](https://support.squarespace.com/hc/en-us/articles/206542527-Add-a-favicon-or-browser-icon) consiglia un PNG quadrato tra 100 e 300 pixel per lato, non più pesante di 100 KB. Puoi aggiungere anche una versione per la modalità scura.
+
+### Sito fatto su misura
+
+Chi gestisce il sito deve aggiungere nell'intestazione della home una riga come questa:
+
+> `<link rel="icon" href="/favicon-96.png" type="image/png">`
+
+Poi deve controllare che il file si apra davvero a quell'indirizzo e che non sia bloccato.
+
+## Che immagine usare
+
+Il logo intero, ridotto a pochi pixel, di solito diventa una macchia. Funziona meglio un elemento solo:
+
+> Prima: il logo completo «Pasticceria Rinaldi dal 1987», con scritta e disegno della torta, ridotto in un quadrato.
+>
+> Dopo: una «R» bianca su fondo color nocciola, lo stesso colore dell'insegna.
+
+Guarda l'icona alla dimensione vera, nella scheda del browser e dal telefono. Se non riconosci la tua attività a colpo d'occhio, semplificala ancora.
+
+## Hai cambiato la favicon ma Google mostra ancora quella vecchia
+
+È normale per un po'. Google aggiorna la favicon solo quando torna a visitare la home page. Nella stessa guida spiega che può volerci da qualche giorno a qualche settimana.
+
+Per invitarlo a passare prima, apri Search Console, usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) sulla home page e chiedi l'indicizzazione. Se Search Console non è ancora collegata, la guida su [come collegarla al sito](/guide/collegare-search-console-wordpress-wix-shopify) spiega come fare.
+
+Nel frattempo non cambiare di nuovo il file o il suo nome: Google chiede proprio che l'indirizzo dell'icona resti stabile.
+
+## Se dopo settimane non compare ancora
+
+Controlla nell'ordine:
+
+1. **La home risponde bene?** Apri la home con il Controllo URL e guarda se Google riesce a scansionarla. Se passa da più reindirizzamenti, Google deve poterli seguire tutti.
+2. **Il file è bloccato?** Se il robots.txt blocca la cartella delle immagini, Google non legge l'icona. Come capirlo è spiegato nella guida su [«Bloccata da robots.txt»](/guide/bloccata-da-robots-txt-search-console).
+3. **C'è un sistema di protezione davanti al sito?** Alcuni filtri contro i bot bloccano anche Google. Ne parla la guida sul [sito dietro Cloudflare](/guide/sito-cloudflare-assistenti-ai-riescono-leggerlo).
+4. **L'icona è sulla home giusta?** Se il sito vive in una sottocartella, per esempio dominio.it/studio, Google guarda la home del dominio, non la tua.
+5. **Ci sono due icone diverse?** Tema e plugin a volte ne aggiungono una ciascuno. Cerca `rel="icon"` nel codice della home e tienine una.
+
+Una richiesta da mandare a chi ti fa il sito:
+
+> Ciao Luca, su Google accanto al nostro sito compare ancora la vecchia icona. Puoi controllare che nella home ci sia un solo tag `rel="icon"`, che punti al file nuovo, quadrato e più grande di 48 pixel, e che il file non sia bloccato dal robots.txt o dalla protezione del sito? Poi chiedo io l'indicizzazione della home da Search Console.
+
+## Se non hai tempo di farlo da solo
+
+Se la favicon non si aggiorna e non capisci dove si blocca, possiamo guardarlo insieme al resto del sito: [prenota la consulenza gratuita](/#attiva).
