@@ -1,0 +1,95 @@
+---
+title: "Cambio di hosting: cosa controllare per Google · TiTrovano"
+description: "Cambi hosting ma tieni dominio e indirizzi? I controlli da fare prima, durante e dopo lo spostamento perché Google continui a trovare il sito."
+h1: "Cambio di hosting: cosa controllare perché Google non perda il sito?"
+rispostaBreve: "Se cambi solo hosting e gli indirizzi delle pagine restano uguali, per Google non serve nessun reindirizzamento: basta che il sito nuovo sia identico, raggiungibile e verificato in Search Console. Prepara e prova il sito sul nuovo server prima di toccare il dominio, poi cambia i DNS e controlla per qualche giorno che tutto arrivi al server nuovo. Spegni il vecchio hosting solo quando non riceve più visite."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-23"
+dateModified: "2026-11-23"
+guideCorrelate:
+  - "cambio-dominio-non-perdere-visite-google"
+  - "errore-server-5xx-search-console"
+  - "sito-non-sicuro-https-google-come-risolvere"
+faq:
+  - domanda: "Devo usare lo strumento Cambio di indirizzo di Search Console?"
+    risposta: "No. Quello strumento serve quando cambi dominio. Se il dominio e gli indirizzi delle pagine restano uguali e cambia solo il server, Google non lo prevede: segui la sua guida sul cambio di hosting."
+  - domanda: "Il nuovo hosting più veloce mi fa salire su Google?"
+    risposta: "Non c'è da aspettarselo. Un sito più veloce è più comodo per chi lo apre dal telefono, ed è già un buon motivo. Ma la velocità è solo uno dei tanti aspetti che Google guarda, e nessuno può promettere un cambio di posizioni."
+---
+
+## Il sito è lo stesso, ma qualcosa può rompersi
+
+Cambi hosting perché il vecchio costa troppo, è lento o l'assistenza non risponde mai. Il dominio resta tuo, le pagine restano le stesse. Sembra un'operazione da tecnici che a Google non interessa.
+
+Il rischio esiste, però, ed è concreto: per qualche giorno il sito risponde male, oppure dal server nuovo arriva una versione diversa da quella vecchia. Un blocco rimasto dalla prova, il certificato HTTPS mancante, la verifica di Search Console che sparisce. Se succede proprio mentre Google ripassa, le pagine che portano telefonate possono uscire dai risultati, e chi ti cerca trova un errore.
+
+Google ha una pagina apposta per questo caso: [Modificare l'hosting](https://developers.google.com/search/docs/crawling-indexing/site-move-no-url-changes?hl=it). Vale quando gli indirizzi che vedono i clienti restano identici e cambia solo il fornitore del server o della rete che lo distribuisce. Se invece cambi anche dominio o indirizzi, la guida giusta è [come non perdere le visite dopo un cambio di dominio](/guide/cambio-dominio-non-perdere-visite-google).
+
+## Prima: prepara il sito sul server nuovo, senza toccare il dominio
+
+Il sito nuovo va copiato e provato **prima** che i clienti ci arrivino. Il nuovo hosting di solito ti dà un indirizzo provvisorio o un modo per vedere il sito in anteprima.
+
+Cosa controllare sulla copia:
+
+- **le pagine ci sono tutte**, con gli stessi indirizzi di prima: home, servizi, contatti, schede prodotto;
+- **il file robots.txt** è uguale a quello vecchio. Alcuni hosting e plugin di migrazione mettono un blocco sulle copie di prova: se rimane, Google non legge più niente (lo spieghiamo in [«Bloccata da robots.txt»](/guide/bloccata-da-robots-txt-search-console));
+- **nessun noindex** rimasto dalla prova: è il tag che chiede a Google di non mostrare la pagina. Se WordPress ha la spunta per scoraggiare i motori di ricerca, deve essere tolta (vedi [«Esclusa dal tag noindex»](/guide/esclusa-tag-noindex-search-console));
+- **il certificato HTTPS** è pronto per il tuo dominio, altrimenti il browser mostra l'avviso di sito non sicuro;
+- **moduli di contatto, prenotazioni ed email automatiche** funzionano anche dal server nuovo.
+
+Google suggerisce di controllare con lo strumento **Controllo URL** di Search Console che Googlebot riesca a raggiungere il nuovo hosting. Se hai creato un nome provvisorio per la copia, puoi verificare in Search Console anche quello.
+
+## La verifica di Search Console: non perderla per strada
+
+Search Console sa che il sito è tuo grazie a una **verifica**, e alcuni modi di verifica dipendono dal server o dai DNS. Google chiede di assicurarsi che la verifica continui a funzionare dopo lo spostamento. La pagina sui [metodi di verifica della proprietà](https://support.google.com/webmasters/answer/9008080?hl=it) li elenca tutti. In pratica:
+
+- se hai verificato con un **file HTML** caricato sul sito, quel file va copiato anche sul server nuovo;
+- se hai usato un **meta tag** nella home, deve esserci ancora nella copia;
+- se hai usato un **record DNS** e sposti anche la gestione dei DNS dal vecchio al nuovo fornitore, quel record va ricreato.
+
+Controllala il giorno dopo il cambio: se non risulta più valida, rifalla subito, perché sono i report che ti servono per accorgerti dei problemi.
+
+## Durante: il cambio dei DNS
+
+I **DNS** sono la rubrica di internet: dicono a chi digita il tuo dominio a quale server andare. Cambiare hosting vuol dire aggiornare questa rubrica perché punti al server nuovo.
+
+Ogni voce della rubrica ha un **TTL**, cioè quanto tempo gli altri possono ricordarsi il vecchio indirizzo prima di controllare di nuovo. Google consiglia di abbassarlo per tempo, prima dello spostamento, a un valore basso: così, quando cambi, il passaggio al server nuovo è più rapido per tutti, Googlebot compreso.
+
+Attenzione a un dettaglio che non riguarda Google ma ti riguarda: se sposti la gestione dei DNS, insieme al sito si spostano anche le impostazioni delle **email** del dominio. Vanno ricopiate, o il giorno dopo non ricevi più le richieste dei clienti.
+
+Un messaggio da mandare al nuovo fornitore, o a chi ti segue il sito:
+
+> Buongiorno, stiamo spostando il sito www.idraulicobassi.it sul vostro hosting. Il dominio e gli indirizzi delle pagine restano gli stessi.
+> Prima di cambiare i DNS vorrei vedere la copia completa in anteprima, con certificato HTTPS attivo e senza blocchi per i motori di ricerca nel robots.txt o nelle pagine.
+> Per favore ricopiate anche i record per le email e il record di verifica di Google Search Console. Vi chiedo di abbassare il TTL qualche giorno prima del cambio e di avvisarmi quando lo fate.
+
+## Dopo: cosa guardare nei giorni successivi
+
+Google consiglia di **tenere d'occhio il traffico su tutti e due i server**, il vecchio e il nuovo, finché il vecchio non riceve più visite. Nel frattempo:
+
+- apri le pagine principali da telefono e da computer, anche con la rete mobile, non solo con il Wi-Fi di casa;
+- in Search Console prova di nuovo il **Controllo URL** su home e pagine dei servizi;
+- guarda il report **Indicizzazione delle pagine** nelle settimane successive: un aumento di [errori del server (5xx)](/guide/errore-server-5xx-search-console) vuol dire che il nuovo hosting risponde male a Google.
+
+Secondo Google, subito dopo lo spostamento è normale che Googlebot passi per un po' meno spesso, mentre si adatta al server nuovo. Non è un segnale di allarme, se il sito risponde bene.
+
+## Quando spegnere il vecchio hosting
+
+Solo alla fine, quando sei sicuro che visitatori e Googlebot arrivano tutti al server nuovo e quello vecchio non riceve più richieste. Chiedi a chi lo gestisce di confermarlo guardando gli accessi.
+
+Spegnerlo il giorno stesso del cambio è l'errore più comune: chi ha ancora in memoria il vecchio indirizzo trova un sito che non risponde. Prima di chiudere, scarica anche una copia completa del sito e del database: se qualcosa non torna, ce l'hai.
+
+## E gli assistenti AI?
+
+ChatGPT, Gemini e Perplexity leggono il sito come una qualsiasi visita. Se dopo il cambio il server nuovo blocca le visite automatiche, per esempio con un firewall troppo severo, possono non riuscire più a leggerlo, anche se tu lo vedi benissimo. Chiedi al fornitore se ha filtri di questo tipo attivi e come sono impostati. Nessuno può promettere che un assistente farà il tuo nome, ma un sito che non si apre non lo leggono di sicuro.
+
+## Cosa non fare
+
+- **Cambiare tutto insieme**: hosting, grafica e testi nello stesso giorno. Se le visite calano, non capisci più perché.
+- **Usare lo strumento Cambio di indirizzo**: serve solo per i [cambi di dominio](https://support.google.com/webmasters/answer/9370220?hl=it).
+- **Dimenticare l'indirizzo provvisorio**: finito il cambio, la copia di prova va chiusa, perché non resti online una seconda copia del sito.
+
+## Se non hai tempo di farlo da solo
+
+I controlli prima e dopo il cambio non sono difficili, ma vanno fatti tutti, nel giorno giusto. Se preferisci affidarli a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme Search Console prima e dopo lo spostamento e ti diciamo cosa controllare con il nuovo fornitore.
