@@ -1,0 +1,105 @@
+---
+title: "WordPress: testo alternativo delle foto, dove si scrive · TiTrovano"
+description: "Immagini senza testo alternativo sul sito WordPress? Dove si scrive, perché cambiarlo nella libreria media non basta e come descrivere le foto dei tuoi lavori."
+h1: "WordPress: immagini senza testo alternativo, come compilarlo dalla libreria media?"
+rispostaBreve: "Il testo alternativo si scrive nel campo «Testo alternativo» della libreria media oppure, per un'immagine già messa in una pagina, nelle impostazioni del blocco Immagine. Attenzione: se lo cambi nella libreria, le immagini già inserite in pagine e articoli tengono il testo vecchio, quindi le pagine importanti vanno corrette una per una. Scrivi una frase breve che dica cosa mostra la foto in quella pagina, e lascia il campo vuoto solo per le immagini decorative."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-23"
+dateModified: "2026-11-23"
+guideCorrelate:
+  - "immagini-pesanti-sito-come-alleggerirle"
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "sito-wordpress-non-compare-su-google"
+faq:
+  - domanda: "Il testo alternativo fa salire il sito su Google?"
+    risposta: "Da solo no, e nessuno può prometterlo. Aiuta Google a capire cosa mostra la foto, quindi a farla trovare nella ricerca per immagini, e rende la pagina leggibile a chi usa un lettore di schermo. Le pagine dei servizi si fanno trovare soprattutto per il testo che contengono."
+  - domanda: "Posso usare lo stesso testo alternativo per tutte le foto di una galleria?"
+    risposta: "Meglio di no. Se dieci foto hanno lo stesso testo, chi usa un lettore di schermo sente dieci volte la stessa frase e Google non capisce cosa le distingue. Basta una differenza vera: la stanza, il materiale, il prima o il dopo."
+---
+
+## Il problema: foto ovunque, ma senza descrizione
+
+Hai caricato su WordPress le foto dei tuoi lavori, del locale, dello staff. Fai un test con PageSpeed Insights e, nella parte sull'accessibilità, trovi un avviso sulle immagini senza attributo alt. Oppure apri la libreria media e vedi che il campo «Testo alternativo» è vuoto quasi ovunque.
+
+Il testo alternativo è la breve descrizione che il browser legge al posto dell'immagine. Lo usa chi non vede la foto, con un lettore di schermo, e lo usa Google: nelle sue [best practice per Google Immagini](https://developers.google.com/search/docs/appearance/google-images?hl=it) spiega che si serve del testo alternativo, insieme al contenuto della pagina, per capire cosa mostra un'immagine. Una foto con il nome «IMG_4521» e nessuna descrizione, per Google, è una foto qualunque.
+
+Non è un errore che fa sparire il sito. È una cosa piccola che, sulle pagine dove le foto contano, vale la pena fare bene.
+
+## I quattro campi della libreria media, e quale conta
+
+Quando apri un'immagine nella libreria media (Media, poi clic sulla foto), WordPress mostra quattro campi. Si confondono spesso:
+
+- **Testo alternativo**: è quello che finisce nell'attributo alt dell'immagine. È il campo che conta per Google e per l'accessibilità.
+- **Titolo**: serve soprattutto a te, per ritrovare la foto nella libreria. Di solito non compare nella pagina.
+- **Didascalia**: è il testo visibile sotto la foto, se il tema lo mostra. Google legge anche quello, perché fa parte della pagina.
+- **Descrizione**: compare nella pagina dell'allegato, che su molti siti è disattivata, come spieghiamo nella guida su [come togliere da Google tag, autori e allegati](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati).
+
+Se hai tempo per un campo solo, compila il testo alternativo.
+
+## Dove si scrive: libreria media o blocco Immagine
+
+Ci sono due posti, e funzionano in modo diverso.
+
+**Nella libreria media.** Il testo che scrivi qui viene usato come valore iniziale ogni volta che inserisci quella foto in una pagina da quel momento in poi. È anche quello che usano le immagini che il tema prende dalla libreria in automatico, come l'immagine in evidenza di un articolo e, di solito, le foto dei prodotti WooCommerce.
+
+**Nel blocco Immagine dell'editor.** Quando la foto è già dentro una pagina, selezioni il blocco e nella barra delle impostazioni a destra trovi il campo del testo alternativo. Quello che scrivi lì vale solo per quella pagina.
+
+## La trappola: cambiarlo nella libreria non aggiorna le pagine
+
+Questo è il punto che sorprende quasi tutti. Se oggi compili il testo alternativo nella libreria media, **le immagini già inserite in pagine e articoli non cambiano**: tengono il testo che avevano al momento dell'inserimento, spesso vuoto. Per WordPress l'immagine inserita fa parte del contenuto della pagina. Il comportamento è discusso da tempo nel sistema di segnalazione degli sviluppatori di WordPress, per esempio nel [ticket 61613](https://core.trac.wordpress.org/ticket/61613): le pagine già pubblicate non si aggiornano da sole.
+
+In pratica:
+
+1. Compila il testo alternativo nella libreria, così le prossime volte parti già giusto.
+2. Poi apri le pagine importanti (home, servizi, lavori fatti) e controlla ogni blocco Immagine: se il campo è vuoto o vecchio, correggilo lì e aggiorna la pagina.
+3. Per verificare, apri la pagina pubblicata, clic destro sulla foto, «Ispeziona», e guarda cosa c'è dopo `alt=`.
+
+Con i page builder come Elementor il principio è simile: ogni widget immagine ha le sue impostazioni. Controlla la pagina pubblicata, non solo la libreria.
+
+## Come scriverlo: esempi da copiare
+
+Google consiglia un testo che descriva l'immagine in modo utile, nel contesto della pagina, senza elenchi di parole chiave. Una prova semplice: se la foto non si caricasse, cosa dovresti leggere al suo posto per non perderti niente?
+
+Esempi con nomi di fantasia:
+
+> **Pagina «Rifacimento bagni» di un'impresa edile**
+> Prima: alt vuoto, file IMG_2210.jpg.
+> Dopo: «Bagno rifatto con doccia a filo pavimento e piastrelle grigio chiaro, in un appartamento anni Settanta».
+
+> **Pagina «Chi siamo» di uno studio dentistico**
+> Prima: «dentista dentista migliore studio dentistico sbiancamento».
+> Dopo: «La dottoressa Marta Ricci nello studio, accanto alla poltrona del primo ambulatorio».
+
+> **Pagina «Torte su misura» di una pasticceria**
+> Prima: «torta».
+> Dopo: «Torta a due piani con panna e frutti di bosco, preparata per un battesimo».
+
+Qualche regola pratica:
+
+- **Una frase breve.** Non serve un paragrafo: chi usa un lettore di schermo la ascolta tutta.
+- **Niente «foto di» o «immagine di».** Il lettore di schermo annuncia già che è un'immagine.
+- **Il nome dell'attività solo se c'entra.** In una foto del locale o dello staff sì, ripetuto su ogni foto no.
+- **Il testo dentro l'immagine va scritto.** Se una grafica contiene orari o un'offerta, quelle parole devono stare nel testo alternativo e, meglio ancora, nella pagina.
+
+## Le immagini decorative: campo vuoto
+
+Non tutte le immagini vanno descritte. Linee, sfondi, icone accanto a un testo che dice già tutto sono decorative: la guida di web.dev sulle [alternative di testo per le immagini](https://web.dev/articles/text-alternatives-for-images?hl=it) spiega che per queste l'alt va lasciato vuoto, così il lettore di schermo le salta. Nell'editor di WordPress basta non scrivere niente nel campo: non mettere uno spazio né la parola «decorativa».
+
+Il logo, invece, di solito non è decorativo: scrivi il nome dell'attività.
+
+## Cosa non fare
+
+- **Riempirlo di parole chiave.** Google lo sconsiglia nella stessa guida sulle immagini: peggiora l'esperienza di chi usa un lettore di schermo e può essere trattato come spam, come dicono le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+- **Affidarti solo al riempimento automatico.** Alcuni plugin possono compilare gli alt mancanti con il nome del file o il titolo. Se il file si chiama «IMG_4521», il testo alternativo diventa «IMG_4521»: è come lasciarlo vuoto.
+- **Correggere mille foto prima delle pagine che contano.** Parti da home, servizi e lavori fatti. Le foto di un articolo di cinque anni fa possono aspettare.
+
+Già che riprendi in mano le foto, controlla anche quanto pesano: lo spieghiamo in [come alleggerire le immagini senza perdere qualità](/guide/immagini-pesanti-sito-come-alleggerirle).
+
+## Gli assistenti AI e le foto
+
+ChatGPT, Gemini e Perplexity, quando leggono una pagina, partono soprattutto dal testo. Un testo alternativo chiaro aggiunge un'informazione in più, ma non sostituisce quello che dovrebbe essere scritto nella pagina: cosa fai, dove, per chi. Le cose importanti mettile sempre nel testo visibile.
+
+## Se non hai tempo di farlo da solo
+
+Rivedere le immagini delle pagine principali non è difficile, ma va fatto pagina per pagina, blocco per blocco. Se preferisci affidarlo a noi, insieme alle pagine dei servizi e al resto della SEO del sito, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito WordPress come lo vede Google e ti diciamo da dove partire.

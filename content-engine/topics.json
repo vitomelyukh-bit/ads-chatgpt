@@ -1742,7 +1742,9 @@
     {
       "titolo": "WordPress: immagini senza testo alternativo, come compilarlo dalla libreria media",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-testo-alternativo-immagini-libreria-media",
+      "data": "2026-11-23"
     },
     {
       "titolo": "Cambio di hosting: cosa controllare perché Google non perda il sito",
