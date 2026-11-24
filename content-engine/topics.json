@@ -1765,7 +1765,9 @@
     {
       "titolo": "Attività con più sedi: come fare le pagine delle sedi perché Google e gli assistenti AI non le confondano",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "attivita-piu-sedi-pagine-sedi-google-assistenti-ai",
+      "data": "2026-11-24"
     }
   ]
 }
