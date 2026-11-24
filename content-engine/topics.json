@@ -1605,7 +1605,9 @@
     {
       "titolo": "Shopify: il blog del negozio, quali articoli scrivere perché portino visite",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "shopify-blog-negozio-quali-articoli-scrivere",
+      "data": "2026-11-24"
     },
     {
       "titolo": "Sito di un agriturismo: pagine per camere, ristorante e attività che Google capisce",
