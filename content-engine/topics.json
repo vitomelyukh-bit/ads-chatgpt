@@ -1758,7 +1758,9 @@
     {
       "titolo": "SEO per un maneggio o un centro equestre: pagine per lezioni, pensione cavalli e passeggiate",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "seo-maneggio-centro-equestre-lezioni-pensione-passeggiate",
+      "data": "2026-11-24"
     },
     {
       "titolo": "Attività con più sedi: come fare le pagine delle sedi perché Google e gli assistenti AI non le confondano",
