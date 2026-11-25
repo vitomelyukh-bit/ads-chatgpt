@@ -1,0 +1,100 @@
+---
+title: "Sito con e senza www, http e https: come sistemarlo · TiTrovano"
+description: "Il sito si apre con e senza www, con http e con https? Come controllarlo in cinque minuti, scegliere un solo indirizzo e sistemarlo su WordPress, Wix e Shopify."
+h1: "Il sito ha la stessa pagina con indirizzi diversi (www, senza www, http): come sistemare?"
+rispostaBreve: "Scegli una sola versione del sito, di solito https con o senza www, e fai in modo che tutte le altre portino lì con un reindirizzamento permanente, pagina per pagina. Poi metti d'accordo il resto: tag canonico, link del menu, sitemap e indirizzo nella scheda Google devono usare la stessa versione. Avere www o no non cambia nulla per Google: conta che la versione sia una."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-25"
+dateModified: "2026-11-25"
+guideCorrelate:
+  - "sito-non-sicuro-https-google-come-risolvere"
+  - "duplicata-google-canonica-diversa-search-console"
+  - "collegare-search-console-wordpress-wix-shopify"
+faq:
+  - domanda: "Meglio l'indirizzo con www o senza?"
+    risposta: "Per Google è uguale. Scegli quello che usi già sui biglietti da visita, sull'insegna e nella scheda Google, così cambi meno cose. L'importante è che l'altra versione porti sempre lì."
+  - domanda: "Se Google mostra già la versione giusta, devo fare qualcosa?"
+    risposta: "Conviene comunque controllare che le altre versioni reindirizzino. Se si aprono ancora da sole, Google può scegliere quella sbagliata per alcune pagine, e i link che ricevi restano divisi tra indirizzi diversi."
+---
+
+## Il problema: un sito, quattro indirizzi
+
+Prova a scrivere nel browser il nome del tuo sito in quattro modi: `http://officinaricci.it`, `http://www.officinaricci.it`, `https://officinaricci.it` e `https://www.officinaricci.it`. Se si aprono tutti e quattro e nella barra resta l'indirizzo che hai scritto, per Google hai quattro copie dello stesso sito.
+
+Non è una penalizzazione e non è spam. Ma Google deve scegliere da solo quale versione mostrare, pagina per pagina, e non sempre sceglie quella che usi tu. I link che altri siti fanno alla tua officina si dividono tra le versioni, i dati in Search Console si spezzano, e capita di vedere nei risultati una pagina con www e un'altra senza.
+
+Google lo spiega nella guida su [come specificare un URL canonico](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=it): quando la stessa pagina risponde a più indirizzi, conviene sceglierne uno e mandare gli altri lì, così i segnali si sommano invece di disperdersi.
+
+## Il controllo da fare in cinque minuti
+
+Ti servono solo un browser e una finestra in incognito, per evitare che il browser ricordi visite vecchie.
+
+1. **Scrivi le quattro versioni della home**, una alla volta, e guarda cosa resta nella barra dell'indirizzo dopo il caricamento.
+2. **Ripeti con una pagina interna**, per esempio quella di un servizio: `http://officinaricci.it/tagliando`. Deve arrivare a `https://www.officinaricci.it/tagliando`, non alla home.
+3. **Controlla la barra finale**: `/tagliando` e `/tagliando/` dovrebbero portare a un solo indirizzo. Se si aprono tutti e due, è lo stesso problema in piccolo.
+4. **Apri Search Console** e usa il Controllo URL su una pagina importante: nella sezione sull'indicizzazione trovi l'URL canonico scelto da Google. Ti dice quale versione Google considera quella vera.
+
+Il risultato giusto è semplice: qualunque cosa scrivi, finisci sempre sullo stesso indirizzo.
+
+## Scegli la versione da tenere
+
+Due decisioni, entrambe facili.
+
+- **https o http**: sempre https. Google preferisce le pagine https quando trova entrambe le versioni, e i browser segnalano come «Non sicuro» i siti senza. Se il tuo sito non ha ancora il certificato, parti da lì: lo spieghiamo in [il mio sito non ha HTTPS](/guide/sito-non-sicuro-https-google-come-risolvere).
+- **www o senza www**: è una scelta di gusto. Tieni quella che compare già sull'insegna, sui biglietti da visita e nella scheda Google, così hai meno cose da cambiare.
+
+Una volta scelta, scrivila da qualche parte: tutto il resto del lavoro consiste nel far dire a ogni pezzo del sito la stessa cosa.
+
+## Come sistemare, piattaforma per piattaforma
+
+### WordPress
+
+In **Impostazioni › Generali** ci sono due campi, l'indirizzo di WordPress e l'indirizzo del sito. Devono contenere esattamente la versione scelta, con https e con o senza www. La [documentazione di WordPress sul cambio di indirizzo](https://wordpress.org/documentation/article/changing-the-site-url/) consiglia di fare prima un backup: un errore in quei campi può rendere il pannello irraggiungibile.
+
+Il reindirizzamento dalle altre versioni, invece, di solito lo fa l'hosting. Molti pannelli hanno un'opzione per forzare https e una per scegliere www o senza; se non la trovi, chiedi all'assistenza un reindirizzamento permanente (301) di tutte le versioni verso quella scelta, conservando il resto dell'indirizzo. È una richiesta normale.
+
+### Wix
+
+Su Wix, con un dominio collegato, il sito risponde sempre sul dominio principale. L'aiuto di Wix sui [reindirizzamenti predefiniti](https://support.wix.com/en/article/default-url-redirects-301-redirects) spiega che chi scrive il dominio senza www viene portato in automatico alla versione con www. Se hai collegato più domini, nella sezione Domini del tuo account uno è il principale e gli altri reindirizzano lì: lo descrive la guida su [più domini e SEO](https://support.wix.com/en/article/multiple-domains-on-your-site-and-seo). Qui il controllo è soprattutto che il dominio principale sia quello giusto.
+
+### Shopify
+
+Nelle impostazioni dei domini del negozio scegli il dominio principale. L'aiuto di Shopify sul [tipo e la destinazione dei domini](https://help.shopify.com/en/manual/domains/domain-type) spiega che i domini impostati come reindirizzamento portano i visitatori al dominio principale. Assicurati che sia la versione con www sia quella senza siano collegate al negozio, e che una delle due sia principale e l'altra reindirizzi.
+
+### Squarespace e altre piattaforme
+
+Anche Squarespace collega in automatico la versione con www e quella senza, e nelle impostazioni del dominio permette di scegliere quale mostrare. Su qualunque piattaforma la domanda da fare al supporto è la stessa: «quale versione è principale, e le altre reindirizzano lì con un 301?».
+
+## Metti d'accordo il resto del sito
+
+Il reindirizzamento è il segnale più forte, ma Google guarda anche gli altri. Se dicono cose diverse, la sua scelta può restare incerta, come raccontiamo nella guida su [«Duplicata, Google ha scelto una pagina canonica diversa»](/guide/duplicata-google-canonica-diversa-search-console).
+
+- **Tag canonico**: ogni pagina deve indicare sé stessa con l'indirizzo completo nella versione scelta. Su WordPress lo scrive il plugin SEO, partendo dall'indirizzo del sito.
+- **Link interni**: menu, piè di pagina e link dentro i testi devono usare la versione scelta. Su WordPress i link scritti anni fa negli articoli possono contenere ancora `http://` o un www che non usi più.
+- **Sitemap**: deve contenere solo indirizzi della versione scelta.
+- **Fuori dal sito**: aggiorna l'indirizzo nella scheda Google, nei profili social e nei portali dove sei presente. Anche gli assistenti AI come ChatGPT, Gemini e Perplexity leggono queste pagine: un indirizzo unico ovunque riduce il rischio che trovino versioni diverse del tuo sito.
+
+Un esempio di come deve comportarsi l'officina di fantasia dopo la sistemazione:
+
+> http://officinaricci.it/tagliando → https://www.officinaricci.it/tagliando
+> https://officinaricci.it/tagliando → https://www.officinaricci.it/tagliando
+> http://www.officinaricci.it/contatti → https://www.officinaricci.it/contatti
+> Tag canonico della pagina Tagliando: https://www.officinaricci.it/tagliando
+
+## In Search Console: una proprietà che vede tutto
+
+Se in Search Console hai una proprietà con prefisso URL, per esempio solo `https://www.officinaricci.it`, vedi i dati di una sola versione. La proprietà **Dominio** comprende invece tutte le versioni, con e senza www, http e https. L'aiuto di Search Console su [come aggiungere una proprietà](https://support.google.com/webmasters/answer/34592?hl=it) spiega che si verifica con un record DNS, cioè un'impostazione che aggiungi dal pannello di chi ti ha venduto il dominio. Come collegarla passo per passo lo trovi in [Search Console su WordPress, Wix o Shopify](/guide/collegare-search-console-wordpress-wix-shopify).
+
+Dopo la sistemazione, nel report sull'indicizzazione delle pagine vedrai crescere le pagine «con reindirizzamento»: è il segno che le versioni scartate ora portano a quella giusta. Non c'è un tempo fisso per vedere tutto aggiornato: Google cambia la sua scelta quando rilegge le pagine.
+
+## Cosa non fare
+
+- **Bloccare le versioni doppie con robots.txt**: Google non riesce più a leggerle e quindi non vede nemmeno il reindirizzamento.
+- **Reindirizzare tutto alla home**: chi apre il vecchio indirizzo di un servizio deve arrivare allo stesso servizio.
+- **Mettere noindex su una delle versioni** invece di reindirizzarla: rischi di togliere da Google pagine che vuoi far trovare.
+- **Creare reindirizzamenti che si rimandano a vicenda**, per esempio la versione con www che porta a quella senza e viceversa: il sito smette di aprirsi.
+
+## Se non hai tempo di farlo da solo
+
+Il controllo richiede pochi minuti, la sistemazione a volte una telefonata con l'hosting e un giro tra i vecchi link del sito. Se preferisci che ce ne occupiamo noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme come risponde il tuo sito e cosa va sistemato.

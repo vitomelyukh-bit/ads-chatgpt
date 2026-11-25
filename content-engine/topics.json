@@ -465,7 +465,9 @@
     {
       "titolo": "Il sito ha la stessa pagina con indirizzi diversi (www, senza www, http): come sistemare",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "stessa-pagina-indirizzi-diversi-www-http-come-sistemare",
+      "data": "2026-11-25"
     },
     {
       "titolo": "Sito di un'enoteca o di un produttore di vino: vendere e farsi trovare",
