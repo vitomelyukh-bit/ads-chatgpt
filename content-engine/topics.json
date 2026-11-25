@@ -1649,7 +1649,9 @@
     {
       "titolo": "Squarespace: cambiare il design del sito senza perdere le visite da Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "squarespace-cambiare-design-senza-perdere-visite-google",
+      "data": "2026-11-25"
     },
     {
       "titolo": "Azione manuale in Search Console: cosa significa e come chiedere il riesame",
@@ -1772,6 +1774,156 @@
       "stato": "fatto",
       "slug": "attivita-piu-sedi-pagine-sedi-google-assistenti-ai",
       "data": "2026-11-24"
+    },
+    {
+      "titolo": "WordPress.com o WordPress.org: cosa cambia per la SEO del sito di un'attività locale",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Google mostra un nome del sito diverso da quello dell'attività: come correggerlo",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un servizio NCC con conducente: pagine per transfer, aeroporti ed eventi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix: il sito è lento da telefono, cosa si può alleggerire davvero",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Prenotazioni e ordini su un'app esterna: cosa vedono Google e gli assistenti AI del tuo sito",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Due domini, .it e .com, con le stesse pagine: quale tenere e come reindirizzare l'altro",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un installatore di fotovoltaico: pagine per impianti, batterie e pratiche senza promettere risparmi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify con negozio fisico: come far capire a Google che vendi anche in negozio",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Tante pagine con lo stesso titolo e la stessa descrizione: come trovarle e correggerle",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Prenotazione online sul sito: cosa serve perché gli assistenti AI capiscano come prenotare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un podologo: pagine per i problemi dei piedi rispettando le regole sulla pubblicità sanitaria",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Squarespace: gallerie e portfolio senza testo, come farli leggere a Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Blog con pagine /page/2, /page/3: vanno indicizzate o no?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un installatore di allarmi, videosorveglianza e antenne: quali pagine creare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Pagine dietro un login o un modulo: cosa resta invisibile a Google e agli assistenti AI",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Webflow: pagine delle collezioni CMS vuote o doppie, come evitarle su Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Il sito di prova o la copia di sviluppo è finita su Google: come toglierla",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un centro riparazione smartphone e computer: pagine per modelli e guasti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Wix Multilingual: sito in due lingue, cosa controllare perché Google mostri la versione giusta",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Stesso nome di un'altra attività in un'altra zona: come aiutare Google e le AI a non confonderti",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Indirizzi delle pagine con maiuscole, accenti o spazi: creano problemi su Google?",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di uno studio notarile: pagine per atti, documenti da preparare e tempi",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Shopify: spedizioni e resi nei risultati di Google, cosa impostare nel negozio",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Le immagini del sito non compaiono su Google Immagini: cosa controllare",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "La home in una riga: cosa scrivere perché un assistente AI capisca subito cosa fai e dove",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un centro ripetizioni e doposcuola: pagine per materie, livelli e orari",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "WordPress: menu, widget e piè di pagina pieni di link, cosa tenere per Google",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Hai cambiato nome all'attività: cosa aggiornare sul sito perché Google se ne accorga",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Sito di un caseificio o di un produttore con spaccio aziendale: pagine per prodotti, orari e visite",
+      "tema": "seo",
+      "stato": "da-fare"
+    },
+    {
+      "titolo": "Tante pagine simili sul sito: come scegliere quali tenere perché Google e le AI capiscano quale conta",
+      "tema": "seo",
+      "stato": "da-fare"
     }
   ]
 }

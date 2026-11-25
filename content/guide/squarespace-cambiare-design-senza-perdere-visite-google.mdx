@@ -1,0 +1,101 @@
+---
+title: "Squarespace: cambiare design senza perdere Google · TiTrovano"
+description: "Vuoi rifare la grafica del sito Squarespace? Cosa cambia tra 7.0 e 7.1, cosa si perde con template e aggiornamento e cosa controllare prima e dopo."
+h1: "Squarespace: come cambiare il design del sito senza perdere le visite da Google?"
+rispostaBreve: "Google non guarda i colori o i caratteri: quello che rischi di perdere sono gli indirizzi delle pagine, i testi e i titoli SEO. Prima di toccare il design, segnati le pagine che portano visite con indirizzo, titolo e descrizione. Poi scegli la strada giusta per la tua versione di Squarespace, metti un reindirizzamento per ogni indirizzo che cambia e, dopo la pubblicazione, controlla in Search Console che le pagine vecchie portino a quelle nuove."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-25"
+dateModified: "2026-11-25"
+guideCorrelate:
+  - "squarespace-seo-impostazioni-da-controllare"
+  - "sito-vecchio-da-rifare-non-perdere-posizioni"
+  - "errore-404-search-console-pagine-non-esistono"
+faq:
+  - domanda: "Cambiare solo colori e caratteri su Squarespace fa perdere posizioni su Google?"
+    risposta: "Di per sé no: colori, caratteri e spaziature non cambiano gli indirizzi né i testi delle pagine. Il rischio arriva quando, insieme alla grafica, si cancellano pagine, si cambiano gli slug o si spostano i testi dentro le immagini."
+  - domanda: "Dopo l'aggiornamento alla versione 7.1 posso tornare alla 7.0?"
+    risposta: "No. Secondo l'aiuto di Squarespace, una volta pubblicato l'aggiornamento non si può annullare. Per questo conviene controllare bene l'anteprima e salvare prima l'elenco delle pagine con titoli e descrizioni."
+---
+
+## Il sito è vecchio, ma da Google arrivano clienti
+
+Il tuo sito Squarespace ha qualche anno. La grafica non ti piace più, ma qualche richiesta da Google arriva: la pagina «Ritratti aziendali» o «Foto per matrimoni» esce quando qualcuno cerca in zona. Vuoi rinnovarlo senza ritrovarti, tra due mesi, con il telefono che non squilla.
+
+La buona notizia: a Google il design interessa poco. Quello che conta sono **gli indirizzi delle pagine, i testi, i titoli e le descrizioni SEO**. Le visite si perdono quando, rifacendo la grafica, una pagina cambia indirizzo senza reindirizzamento, sparisce o perde il testo. Su Squarespace questo può succedere in modi diversi a seconda della versione del sito.
+
+## Prima di tutto: quale versione hai?
+
+Squarespace ha due versioni, la 7.0 e la 7.1, e funzionano in modo diverso proprio per il design. Come capire quale hai lo spiega la pagina [Find your site's version and template](https://support.squarespace.com/hc/en-us/articles/115005308187-Find-your-site-s-version-and-template).
+
+- **Versione 7.1**: non ci sono template da cambiare. Secondo la pagina su [come funzionano i template nelle due versioni](https://support.squarespace.com/hc/en-us/articles/216562268-How-site-templates-work-in-versions-7-0-and-7-1), tutti i siti 7.1 hanno la stessa struttura: il look si cambia con colori, caratteri, sezioni e tipi di pagina.
+- **Versione 7.0**: puoi installare un altro template, oppure passare alla 7.1 con lo strumento di aggiornamento.
+
+## Il lavoro da fare prima, in ogni caso
+
+Apri Search Console, report **Rendimento**, scheda delle pagine, e guarda quali pagine hanno ricevuto clic negli ultimi mesi. Per ognuna salva in un foglio queste informazioni:
+
+> **Pagina:** /ritratti-aziendali
+> **Titolo SEO:** Ritratti aziendali e foto del team in studio o in ufficio | Studio Luce Riva
+> **Descrizione:** Foto per profili professionali, sito e brochure. Scattiamo in studio o nella tua sede, con consegna delle immagini già pronte per il web.
+> **Titolo visibile:** Ritratti aziendali
+> **Note:** testo di circa due schermate, galleria di lavori, modulo contatti in fondo
+
+Questo foglio serve due volte: per non perdere niente durante il lavoro e per controllare il risultato dopo. Se il report è vuoto, vuol dire che Search Console non è collegato: lo spieghiamo in [Squarespace e SEO: quali impostazioni controllare](/guide/squarespace-seo-impostazioni-da-controllare).
+
+## Versione 7.1: cambiare stili e pagine
+
+Qui il design si cambia dagli stili del sito. Attenzione a un dettaglio: le [domande frequenti sulle modifiche di stile](https://support.squarespace.com/hc/en-us/articles/206544597-Style-changes-FAQ) spiegano che, quando salvi, le modifiche sono pubbliche appena un visitatore ricarica la pagina, e che non si torna a una versione precedente se non ripristinando gli stili predefiniti.
+
+Per provare senza toccare il sito vero, Squarespace suggerisce nella guida alle [pagine di layout](https://support.squarespace.com/hc/en-us/articles/206543687-Layout-pages) di duplicare la pagina, renderla privata e usarla come prova. Sui piani Premium ed Enterprise ci sono anche le [bozze delle pagine](https://support.squarespace.com/hc/en-us/articles/13016368545165-Drafting-pages-Premium-Enterprise), che però non includono le impostazioni di tutto il sito, come intestazione, piè di pagina e stili.
+
+L'errore tipico sulla 7.1 non è lo stile: è **rifare una pagina da zero**. Crei una pagina nuova più bella, cancelli la vecchia, e l'indirizzo cambia da `/ritratti-aziendali` a `/ritratti-aziendali-1`. Se lavori su una copia, alla fine riporta nella pagina definitiva lo stesso slug, titolo SEO e descrizione della vecchia. Se l'indirizzo deve cambiare davvero, aggiungi un [reindirizzamento con gli URL mappings](https://support.squarespace.com/hc/en-us/articles/205815308-URL-mappings):
+
+> /ritratti-aziendali -> /servizi/ritratti-aziendali 301
+
+## Versione 7.0: cambiare template
+
+La guida su come [cambiare template nella versione 7.0](https://support.squarespace.com/hc/en-us/articles/205815598-Switching-templates-in-version-7-0) spiega che il nuovo template si vede prima in anteprima, visibile solo a te quando hai fatto l'accesso. I contenuti delle pagine restano, ma alcune parti si azzerano: barre laterali, immagini di sfondo, intestazioni e piè di pagina delle pagine. Se lì c'erano testi utili, come orari o zone servite, vanno rimessi.
+
+Due avvertenze dalla stessa guida:
+
+- alcune modifiche specifiche del template possono arrivare sul sito vero già durante l'anteprima;
+- se non ti serve più una pagina, durante l'anteprima spostala tra le pagine non collegate invece di cancellarla.
+
+Se il tuo template è tra quelli dismessi, Squarespace consiglia di sceglierne un altro prima di passare alla 7.1.
+
+## Da 7.0 a 7.1 con lo strumento di aggiornamento
+
+La pagina su come [passare dalla 7.0 alla 7.1 con lo strumento di aggiornamento](https://support.squarespace.com/hc/en-us/articles/360038270572-Moving-from-Squarespace-version-7-0-to-version-7-1) dice che restano dati SEO, domini e reindirizzamenti già impostati. Ma ci sono punti da controllare prima di iniziare:
+
+- **Sotto-pagine dentro le pagine indice**: perdono le impostazioni, compresi titoli e descrizioni SEO, e i link verso di loro smettono di funzionare. Squarespace consiglia di spostarle fuori dalle pagine indice prima dell'aggiornamento.
+- **Sotto-pagine disattivate** dentro una pagina indice: nella 7.1 non si vedranno. Attivale o spostale prima.
+- **Indirizzi dei prodotti**: nella 7.1 contengono sempre `/p/` prima dello slug. La guida agli URL mappings mostra come reindirizzare i vecchi indirizzi.
+- **Limite**: lo strumento funziona per siti fino a 150 pagine.
+- **Nessun ritorno**: dopo la pubblicazione dell'aggiornamento non si torna alla 7.0.
+
+Prima di pubblicare, apri nell'anteprima le pagine del tuo foglio una per una e confronta titolo, testo e indirizzo.
+
+## Rifare tutto su un sito nuovo
+
+C'è anche chi preferisce un sito nuovo, partendo da una prova o [duplicando il sito](https://support.squarespace.com/hc/en-us/articles/360039396131-Duplicating-a-site). Squarespace precisa che il duplicato è un sito a sé, con un suo piano, e che il dominio non viene copiato: lo sposti tu alla fine.
+
+È il caso più delicato, perché quasi sempre cambiano molti indirizzi. Google lo tratta come uno spostamento con cambio di URL e nella sua guida agli [spostamenti di siti](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=it) chiede una mappa dai vecchi indirizzi ai nuovi e reindirizzamenti permanenti, diretti alla destinazione finale, senza passaggi intermedi. Sul sito nuovo, quindi, una riga negli URL mappings per ogni pagina del foglio che cambia indirizzo. Lo stesso metodo, per qualsiasi piattaforma, è in [sito vecchio da rifare](/guide/sito-vecchio-da-rifare-non-perdere-posizioni).
+
+## Dopo la pubblicazione
+
+- Apri nel browser i vecchi indirizzi del foglio: ognuno deve portare alla pagina giusta, non alla home e non a un errore.
+- Usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) sulle pagine principali per vedere cosa legge Google.
+- Nelle settimane dopo, guarda il [report Indicizzazione delle pagine](https://support.google.com/webmasters/answer/7440203?hl=it): se crescono le pagine «Non trovata (404)», manca qualche reindirizzamento. Come sistemarle lo spieghiamo in [errore 404 su Google](/guide/errore-404-search-console-pagine-non-esistono).
+
+Qualche oscillazione nelle prime settimane è normale. Nella guida agli spostamenti Google scrive che deve rileggere gli indirizzi vecchi e nuovi, e per un sito di medie dimensioni possono servire alcune settimane o più.
+
+## Cosa non fare
+
+- **Mandare tutti i vecchi indirizzi alla home**: per chi arriva è spiazzante e Google può trattarli come soft 404, cioè come pagine inesistenti.
+- **Accorciare i testi** per far spazio a foto grandi: la pagina diventa più bella, ma risponde a meno domande.
+- **Mettere i testi dentro le immagini** della nuova grafica: Google e gli assistenti AI capiscono la pagina dal testo scritto, e una scritta dentro una foto non vale come testo.
+
+## Se non hai tempo di farlo da solo
+
+Preparare il foglio delle pagine e controllare i reindirizzamenti richiede qualche ora di attenzione. Se preferisci che lo seguiamo noi mentre rifai il design, [prenota la consulenza gratuita](/#attiva): guardiamo il tuo sito Squarespace e ti diciamo cosa controllare prima di cambiare.
