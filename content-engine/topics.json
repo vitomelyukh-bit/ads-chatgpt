@@ -1778,7 +1778,9 @@
     {
       "titolo": "WordPress.com o WordPress.org: cosa cambia per la SEO del sito di un'attività locale",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "wordpress-com-o-wordpress-org-seo-attivita-locale",
+      "data": "2026-11-25"
     },
     {
       "titolo": "Google mostra un nome del sito diverso da quello dell'attività: come correggerlo",
