@@ -1790,7 +1790,9 @@
     {
       "titolo": "Sito di un servizio NCC con conducente: pagine per transfer, aeroporti ed eventi",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-ncc-noleggio-con-conducente-transfer-aeroporti-eventi",
+      "data": "2026-11-26"
     },
     {
       "titolo": "Wix: il sito è lento da telefono, cosa si può alleggerire davvero",
