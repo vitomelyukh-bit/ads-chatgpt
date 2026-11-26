@@ -1804,7 +1804,9 @@
     {
       "titolo": "Prenotazioni e ordini su un'app esterna: cosa vedono Google e gli assistenti AI del tuo sito",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "prenotazioni-ordini-app-esterna-google-assistenti-ai",
+      "data": "2026-11-26"
     },
     {
       "titolo": "Due domini, .it e .com, con le stesse pagine: quale tenere e come reindirizzare l'altro",

@@ -1,0 +1,106 @@
+---
+title: "Prenotazioni su app esterna: cosa vede Google del sito · TiTrovano"
+description: "Prenotazioni o ordini passano da un'app esterna? Cosa resta sul tuo sito per Google e gli assistenti AI, come controllarlo e cosa scrivere nelle pagine."
+h1: "Prenotazioni e ordini su un'app esterna: cosa vedono Google e gli assistenti AI del tuo sito?"
+rispostaBreve: "Vedono le tue pagine, non l'app: servizi, menu, prezzi e disponibilità caricati solo nella piattaforma di prenotazione o di consegna stanno sul sito della piattaforma, non sul tuo. Google non clicca il pulsante «Prenota» e non compila moduli. Tieni l'app per prenotare, ma scrivi nelle tue pagine cosa offri e come si prenota, con un link vero verso l'app."
+ordine: 100
+tema: "seo"
+datePublished: "2026-11-26"
+dateModified: "2026-11-26"
+guideCorrelate:
+  - "cosa-legge-ai-del-tuo-sito"
+  - "sito-ristorante-google-thefork-invece-del-sito"
+  - "chatbot-sito-aiuta-google-assistenti-ai"
+faq:
+  - domanda: "Devo smettere di usare l'app di prenotazione per farmi trovare meglio su Google?"
+    risposta: "No. L'app fa bene il suo lavoro: calendario, promemoria, pagamenti. Il problema nasce solo quando tutte le informazioni stanno lì e le pagine del sito restano vuote. Tieni l'app e riempi le pagine."
+  - domanda: "Se metto il calendario dell'app dentro la pagina, Google legge i miei servizi?"
+    risposta: "Non contarci. Il calendario incorporato è caricato dal sito della piattaforma, e spesso mostra i servizi solo dopo che qualcuno sceglie un giorno o un trattamento. Scrivi i servizi principali come testo nella tua pagina, sopra o accanto al calendario."
+---
+
+## Il dubbio: il pulsante «Prenota» porta fuori dal sito
+
+Hai un salone, uno studio, un ristorante. Per comodità usi un'app esterna: una piattaforma di prenotazione per gli appuntamenti, un sistema per i tavoli, un servizio di consegna a domicilio. Sul sito c'è un pulsante «Prenota» o «Ordina» che apre l'app, o un calendario incorporato nella pagina.
+
+Funziona, i clienti prenotano. Ma intanto l'elenco dei trattamenti, il menu con i prezzi, la durata delle sedute, le zone di consegna li hai caricati solo nell'app. E sul sito sono rimaste la home con due foto e il pulsante.
+
+Il rischio è concreto: chi cerca «laminazione ciglia sabato pomeriggio» o «pizza senza glutine a domicilio» trova le pagine di chi l'ha scritto. Spesso, la pagina della piattaforma invece della tua.
+
+## Cosa vede Google: le pagine, non l'app
+
+Google legge il testo, i titoli e i link delle tue pagine. Non tocca pulsanti, non sceglie un giorno sul calendario, non mette piatti nel carrello. Lo dice nella guida sui [contenuti caricati in differita](https://developers.google.com/search/docs/crawling-indexing/javascript/lazy-loading?hl=it): la Ricerca Google non interagisce con la pagina per far comparire i contenuti.
+
+Quindi:
+
+- **quello che hai caricato nell'app** vive sul sito della piattaforma. Può anche comparire su Google, ma come pagina loro, con il loro nome sopra;
+- **un calendario incorporato** nella tua pagina è un riquadro caricato da un altro sito, e spesso mostra i servizi solo dopo una scelta del visitatore. Non è testo tuo su cui puoi contare;
+- **la tua pagina** resta quella che hai scritto tu. Se dice solo «Prenota ora», per Google dice poco.
+
+Se ti succede già di vedere il portale prima del tuo sito, cercando il nome della tua attività, il caso dei ristoranti lo trovi in [perché su Google esce TheFork e non il tuo sito](/guide/sito-ristorante-google-thefork-invece-del-sito).
+
+## E gli assistenti AI?
+
+Vale lo stesso. Quando ChatGPT, Gemini o Perplexity aprono il tuo sito per rispondere a una domanda, partono dal testo delle pagine. Non prenotano per provare il calendario e non entrano nell'app. Ne parliamo in [cosa legge l'AI del tuo sito](/guide/cosa-legge-ai-del-tuo-sito).
+
+C'è un dettaglio in più. Un assistente spesso risponde anche a «come si prenota da loro?». Se il sito non lo dice a parole, la risposta può essere vaga o sbagliata. Nessuno può garantire che un assistente faccia il tuo nome, ma puoi rendergli chiaro cosa offri e come ti si raggiunge.
+
+## Come controllare cosa vede Google
+
+Usa lo [strumento Controllo URL di Search Console](https://support.google.com/webmasters/answer/9012289?hl=it):
+
+1. incolla l'indirizzo della pagina servizi o della pagina «Prenota»;
+2. avvia il test dell'URL pubblicato;
+3. apri la pagina testata e guarda lo screenshot e il codice HTML.
+
+Cerca nel codice un servizio preciso, per esempio «ricostruzione unghie» o «tagliata di manzo». Se non c'è, Google non lo trova sulla tua pagina. Se Search Console non è ancora collegato, parti da [come collegarla al tuo sito](/guide/collegare-search-console-wordpress-wix-shopify).
+
+## Cosa sistemare, passo per passo
+
+### 1. Riporta servizi e menu nelle tue pagine
+
+Non serve copiare tutto il listino dell'app. Serve una pagina per i servizi che le persone cercano per nome, con quello che chiedono prima di prenotare: in cosa consiste, quanto dura, per chi è adatto, da quanto parte il prezzo se lo indichi anche nell'app.
+
+> Prima, nella pagina «Trattamenti»: «Scopri tutti i nostri trattamenti e prenota online!» e il pulsante.
+>
+> Dopo: «Laminazione ciglia: dura circa un'ora, l'effetto si vede subito e nelle prime 24 ore non vanno bagnate. La facciamo dal martedì al sabato, anche il sabato pomeriggio. Prenoti dal pulsante qui sotto, che apre il nostro calendario online, oppure chiamando il salone.»
+
+Per un ristorante vale per il menu: scritto come testo, in una pagina sua, non solo nella piattaforma di consegna.
+
+### 2. Il pulsante deve essere un link vero
+
+Google segue i link fatti nel modo standard, un elemento `<a>` con l'indirizzo nell'attributo `href`, come spiega nella guida sui [link scansionabili](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=it). Un pulsante che apre l'app solo con uno script potrebbe non essere letto come link. Su WordPress, Wix, Shopify e Squarespace i pulsanti con un indirizzo collegato di solito sono già link veri; se il sito è fatto su misura, chiedilo a chi lo gestisce.
+
+Scrivi anche un testo chiaro sul pulsante: «Prenota un appuntamento online» dice più di «Clicca qui».
+
+### 3. Spiega a parole come si prenota
+
+Una riga basta, nella pagina contatti e in fondo alle pagine dei servizi.
+
+> «Puoi prenotare online dal nostro calendario, che si apre in una pagina esterna e ti manda la conferma via SMS, oppure chiamando dal martedì al sabato. Per disdire basta il link nel messaggio di conferma.»
+
+> «Consegniamo a domicilio la sera tramite un servizio di consegna esterno, nelle zone che vedi quando inserisci l'indirizzo. Per l'asporto chiama: è pronto in circa venti minuti.»
+
+Sono le risposte che un cliente, o un assistente AI, cerca prima di decidere.
+
+### 4. Collega l'app anche alla scheda Google
+
+Nel Profilo dell'attività puoi aggiungere i link per prenotare o ordinare, e scegliere quale mostrare per primo: lo spiega la guida su come [gestire i link delle attività locali](https://support.google.com/business/answer/6218037?hl=it). Il link del sito nella scheda, invece, lascialo alla tua home o alla pagina principale, non all'app.
+
+### 5. Tieni le informazioni uguali ovunque
+
+Orari, servizi e prezzi devono coincidere tra sito, app e scheda Google. Se l'app dice che il lunedì sei aperto e il sito dice chiuso, chi legge non sa a chi credere, e nemmeno un assistente AI. Quando cambi un orario, aggiornalo in tutti e tre i posti lo stesso giorno.
+
+### 6. Aggiungi i dati strutturati dell'attività
+
+I dati strutturati ripetono a Google, in un formato ordinato, nome, indirizzo, orari e tipo di attività. La [guida di Google per le attività locali](https://developers.google.com/search/docs/appearance/structured-data/local-business?hl=it) prevede anche il link al menu per chi fa ristorazione. Come aggiungerli senza programmare lo spieghiamo nella guida sui [dati strutturati per un'attività locale](/guide/dati-strutturati-attivita-locale-senza-programmare).
+
+## Cosa non fare
+
+- **Mettere il sito della piattaforma come unico sito** nella scheda Google: le visite e le ricerche col tuo nome finiscono su una pagina che non controlli.
+- **Copiare le descrizioni standard dell'app** uguali in tutte le pagine: scrivi con le tue parole come lavori tu.
+- **Nascondere testo «per Google»** sotto il calendario: le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it) considerano spam il testo invisibile ai visitatori.
+- **Fare tante pagine vuote**, una per ogni servizio del listino con due righe ciascuna: meglio poche pagine piene per i servizi che contano.
+
+## Se non hai tempo di farlo da solo
+
+Riportare servizi, menu e istruzioni per prenotare dall'app alle pagine del sito è un lavoro di testi, più che di tecnica. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo insieme cosa vede oggi Google del tuo sito e da quali pagine partire.
