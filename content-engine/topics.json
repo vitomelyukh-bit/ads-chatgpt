@@ -1840,7 +1840,9 @@
     {
       "titolo": "Sito di un podologo: pagine per i problemi dei piedi rispettando le regole sulla pubblicità sanitaria",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "sito-podologo-pagine-problemi-piedi-pubblicita-sanitaria",
+      "data": "2026-11-27"
     },
     {
       "titolo": "Squarespace: gallerie e portfolio senza testo, come farli leggere a Google",
