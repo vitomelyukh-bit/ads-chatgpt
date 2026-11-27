@@ -1,0 +1,100 @@
+---
+title: "Pagine con titolo e descrizione uguali: come correggerle · TiTrovano"
+description: "Su Google tante pagine del tuo sito escono con lo stesso titolo o la stessa descrizione? Come trovarle tutte, capire da dove nascono e correggerle una volta sola."
+h1: "Tante pagine con lo stesso titolo e la stessa descrizione: come trovarle e correggerle?"
+rispostaBreve: "Quando tante pagine hanno lo stesso titolo o la stessa descrizione, quasi sempre la causa è una sola: un modello del tema, del plugin SEO o della piattaforma che scrive lo stesso testo ovunque. Trovale con una ricerca site: su Google o con un programma che scansiona il sito, raggruppale per causa e correggi prima la regola generale, poi a mano le pagine che portano clienti. Le pagine che non servono non vanno riscritte: vanno tolte dai risultati."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-27"
+dateModified: "2026-11-27"
+guideCorrelate:
+  - "titolo-descrizione-google-sbagliati-come-cambiarli"
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "wix-titoli-descrizioni-indirizzi-pagine"
+faq:
+  - domanda: "Search Console mi dice quali pagine hanno il titolo doppio?"
+    risposta: "No, non c'è un report che elenca titoli o descrizioni ripetuti. Search Console serve dopo, per chiedere a Google di rileggere le pagine corrette con lo strumento Controllo URL. Per trovarle usa la ricerca site: o un programma che scansiona il sito."
+  - domanda: "Due pagine con lo stesso titolo sono una penalizzazione?"
+    risposta: "Non è una violazione delle norme di Google. Il danno è più semplice: chi cerca non distingue una pagina dall'altra, e Google può decidere di riscrivere i titoli da solo prendendo altro testo dalla pagina."
+---
+
+## Il problema: su Google le tue pagine sembrano tutte uguali
+
+Cerchi il tuo sito su Google e vedi una fila di risultati identici. «Servizi | Idraulica Ferri», «Servizi | Idraulica Ferri», «Servizi | Idraulica Ferri». Sotto, sempre la stessa frase: «Da trent'anni al servizio delle famiglie».
+
+Per chi cerca uno spurgo o una caldaia che perde, quei risultati non dicono niente. Non sa quale pagina parla del suo problema, quindi apre il risultato di un altro idraulico che lo dice chiaramente. Il problema non è una pagina sbagliata: è un difetto che si ripete su tutto il sito.
+
+## Cosa dice Google sui titoli e le descrizioni ripetuti
+
+Google è esplicito. Nella guida su [come influenzare i link del titolo](https://developers.google.com/search/docs/appearance/title-link?hl=it) chiede un testo distinto nel titolo di ogni pagina, che ne descriva il contenuto. Indica come pratica scorretta anche i titoli «boilerplate», cioè lunghi testi fissi in cui cambia una sola informazione. L'esempio che fa è un negozio che intitola ogni pagina «Prodotti economici in vendita»: impossibile capire la differenza tra una pagina e l'altra.
+
+Per le descrizioni vale lo stesso. La guida su [snippet e meta description](https://developers.google.com/search/docs/appearance/snippet?hl=it) chiede descrizioni diverse per pagine diverse e mostra come esempio sbagliato la stessa descrizione usata per tutti gli articoli. Per i siti con molte pagine simili, come i cataloghi, suggerisce di generare le descrizioni in automatico partendo dai dati di ogni pagina.
+
+Se il titolo non aiuta, Google può sostituirlo con altro testo della pagina, come il titolo principale visibile. A volte va bene, a volte esce una frase che non avresti scelto. Su come Google sceglie cosa mostrare trovi i dettagli nella guida su [titolo e descrizione sbagliati su Google](/guide/titolo-descrizione-google-sbagliati-come-cambiarli). Qui ci occupiamo di un'altra cosa: trovare e correggere i doppioni su tutto il sito.
+
+## Passo 1: trova le pagine doppie
+
+Search Console non ha un report che elenca i titoli ripetuti. Hai due strade.
+
+**La ricerca site: su Google.** Scrivi nella barra di ricerca `site:tuodominio.it` seguito da una parola del titolo sospetto, per esempio `site:idraulicaferri.it servizi`. Vedi subito quali pagine escono con lo stesso titolo. Google avverte che l'[operatore site:](https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site?hl=it) non mostra per forza tutte le pagine indicizzate: è un controllo veloce, non un elenco completo.
+
+**Un programma che scansiona il sito.** Sono strumenti che visitano il sito come fa Google e mettono in una lista titolo e descrizione di ogni pagina, così vedi i doppioni affiancati. Uno dei più usati, Screaming Frog SEO Spider, nella versione gratuita scansiona fino a 500 indirizzi, come spiega la sua [guida alla scansione](https://www.screamingfrog.co.uk/guides/crawling/). Per il sito di un'attività locale di solito bastano.
+
+Scrivi le pagine doppie in un foglio, una per riga, con titolo e descrizione accanto. Ti serve per il passo dopo.
+
+## Passo 2: raggruppa per causa
+
+Guardando la lista noterai che i doppioni non sono sparsi a caso. Di solito nascono da poche cause:
+
+- **Il modello del plugin SEO o della piattaforma.** Il titolo è costruito con una regola fissa, e se la pagina non ha un titolo suo esce sempre la stessa cosa.
+- **Pagine create duplicando un'altra.** Hai copiato la pagina «Riparazione caldaie» per fare «Installazione caldaie» e hai cambiato il testo, ma non titolo e descrizione nelle impostazioni SEO.
+- **Pagine fatte in serie dal sito**: tag, archivi, pagine 2, 3 e 4 del blog, filtri del negozio, varianti di prodotto.
+- **Il titolo del tema** che sostituisce quello del plugin, spesso dopo un cambio di grafica.
+
+Ogni gruppo si corregge in un modo diverso. Per questo conviene raggruppare prima di mettere mano alle pagine.
+
+## Passo 3: correggi la regola, poi le pagine che contano
+
+### Sistema il modello generale
+
+Se la causa è una regola, cambiala una volta e sistemi decine di pagine.
+
+- **WordPress con Yoast SEO**: i titoli si costruiscono con variabili come `%%title%%` (il titolo della pagina) e `%%sitename%%` (il nome del sito), elencate nella guida di Yoast sulle [variabili degli snippet](https://yoast.com/help/list-available-snippet-variables-yoast-seo/). Controlla che il modello di pagine e articoli contenga il titolo della pagina, e non solo il nome del sito. Se usi Rank Math o non hai ancora scelto, leggi [Yoast o Rank Math per un'attività locale](/guide/yoast-o-rank-math-sito-attivita-locale).
+- **Wix**: le regole per tutto il sito stanno nelle impostazioni SEO, come spieghiamo nella guida su [titoli, descrizioni e indirizzi in Wix](/guide/wix-titoli-descrizioni-indirizzi-pagine).
+- **Shopify**: ogni prodotto, collezione e pagina ha la sua sezione per l'anteprima nei motori di ricerca, dove scrivi titolo e descrizione, come indica l'aiuto di Shopify sulle [parole chiave per la SEO](https://help.shopify.com/manual/promoting-marketing/seo/adding-keywords).
+
+### Scrivi a mano le pagine che portano clienti
+
+La regola automatica dà un titolo diverso a ogni pagina, ma non per forza un buon titolo. Le pagine dei servizi principali, la home e la pagina contatti meritano un titolo e una descrizione scritti da te.
+
+> Prima, su tre pagine: «Servizi | Idraulica Ferri» con la descrizione «Da trent'anni al servizio delle famiglie.»
+>
+> Dopo:
+>
+> «Riparazione caldaie a domicilio · Idraulica Ferri» — «Caldaia in blocco o che perde acqua? Interveniamo a casa tua in giornata nei comuni della zona. Preventivo prima di iniziare.»
+>
+> «Spurgo e disostruzione scarichi · Idraulica Ferri» — «Lavandino o WC intasato? Disostruiamo scarichi di cucina e bagno senza rompere le piastrelle, anche il sabato.»
+>
+> «Installazione caldaie a condensazione · Idraulica Ferri» — «Sostituzione della vecchia caldaia: sopralluogo, scelta del modello e pratiche. Ti spieghiamo prima cosa serve fare.»
+
+Ogni titolo dice cosa trova chi apre la pagina. Ogni descrizione risponde al problema di chi cerca. Scrivi solo quello che fai davvero: se non intervieni in giornata, non scriverlo.
+
+### Togli dai risultati le pagine che non servono
+
+Tag, archivi per autore o per data, pagine di una sola foto: non ha senso inventare titoli diversi per pagine che nessun cliente vuole aprire. Meglio escluderle dai risultati con l'impostazione noindex del plugin SEO. Su WordPress lo spieghiamo nella guida su [come togliere tag, autori e allegati da Google](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati). Per i negozi con filtri e varianti valgono le guide su [collezioni e filtri di Shopify](/guide/shopify-collezioni-filtri-pagine-duplicate) e sulle [varianti di prodotto](/guide/shopify-varianti-prodotto-taglie-colori-google).
+
+## Passo 4: controlla e fai rileggere le pagine
+
+Rifai la scansione o la ricerca site: e verifica che i doppioni siano spariti dalla lista. Poi apri lo [strumento Controllo URL di Search Console](https://support.google.com/webmasters/answer/9012289?hl=it) per le pagine più importanti e chiedi l'indicizzazione. Google mostrerà i testi nuovi quando visiterà di nuovo le pagine, e non c'è un tempo fisso.
+
+## Cosa non fare
+
+- **Non risolvere aggiungendo nomi di paesi** a ogni titolo per renderlo diverso: titoli pieni di parole chiave vanno contro le [norme anti-spam di Google](https://developers.google.com/search/docs/essentials/spam-policies?hl=it).
+- **Non cambiare una sola parola** lasciando il resto identico: è proprio il titolo «boilerplate» che Google sconsiglia.
+- **Non riscrivere a mano pagine inutili** invece di toglierle dai risultati.
+
+Titoli e descrizioni chiari, diversi da pagina a pagina, aiutano anche gli assistenti AI come ChatGPT, Gemini e Perplexity a capire di cosa parla ogni pagina. Nessuno però può promettere che un'AI faccia il tuo nome.
+
+## Se non hai tempo di farlo da solo
+
+Trovare i doppioni è la parte più veloce. Correggere le regole e scrivere bene le pagine che contano richiede più tempo, e va ricontrollato ogni volta che il sito cresce. Se preferisci affidarlo a noi, [prenota la consulenza gratuita](/#attiva): guardiamo come appaiono le tue pagine su Google e ti diciamo da dove partire.

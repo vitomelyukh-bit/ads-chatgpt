@@ -1828,7 +1828,9 @@
     {
       "titolo": "Tante pagine con lo stesso titolo e la stessa descrizione: come trovarle e correggerle",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "pagine-stesso-titolo-descrizione-trovarle-correggerle",
+      "data": "2026-11-27"
     },
     {
       "titolo": "Prenotazione online sul sito: cosa serve perché gli assistenti AI capiscano come prenotare",
