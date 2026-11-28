@@ -1847,7 +1847,9 @@
     {
       "titolo": "Squarespace: gallerie e portfolio senza testo, come farli leggere a Google",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "squarespace-gallerie-portfolio-senza-testo-google",
+      "data": "2026-11-28"
     },
     {
       "titolo": "Blog con pagine /page/2, /page/3: vanno indicizzate o no?",
