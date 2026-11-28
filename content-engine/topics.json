@@ -1854,7 +1854,9 @@
     {
       "titolo": "Blog con pagine /page/2, /page/3: vanno indicizzate o no?",
       "tema": "seo",
-      "stato": "da-fare"
+      "stato": "fatto",
+      "slug": "blog-pagine-page-2-paginazione-indicizzare",
+      "data": "2026-11-28"
     },
     {
       "titolo": "Sito di un installatore di allarmi, videosorveglianza e antenne: quali pagine creare",

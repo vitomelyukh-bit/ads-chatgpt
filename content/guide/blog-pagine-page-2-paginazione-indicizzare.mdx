@@ -1,0 +1,101 @@
+---
+title: "Blog con pagine /page/2, /page/3: indicizzarle o no? · TiTrovano"
+description: "Nel sito compaiono /page/2/, /page/3/ del blog e non sai se metterle in noindex? Cosa dice Google, cosa lasciare com'è e cosa sistemare davvero."
+h1: "Blog con pagine /page/2, /page/3: vanno indicizzate o no?"
+rispostaBreve: "Di solito vanno lasciate come sono: indicizzabili, ognuna con il proprio indirizzo e con il canonico che punta a sé stessa, non alla prima pagina. Sono la strada con cui Google arriva agli articoli più vecchi, quindi metterle in noindex o bloccarle con robots.txt fa più danni che altro. Il lavoro vero è un altro: link normali tra le pagine, titoli distinti e articoli raggiungibili anche da categorie e pagine di servizio."
+tema: "seo"
+ordine: 100
+datePublished: "2026-11-28"
+dateModified: "2026-11-28"
+guideCorrelate:
+  - "wordpress-togliere-pagine-inutili-tag-autori-allegati"
+  - "pagina-con-reindirizzamento-tag-canonico-search-console"
+  - "blog-sito-non-porta-visite-argomenti-giusti"
+faq:
+  - domanda: "Se Google non mostra mai /page/3/ nei risultati, è un problema?"
+    risposta: "No. Nessuno cerca «pagina 3 del blog»: quella pagina serve a far arrivare Google agli articoli che elenca. Conta che gli articoli siano indicizzati, non l'elenco."
+  - domanda: "Devo mettere le pagine /page/2/ nella sitemap?"
+    risposta: "Non serve. Nella sitemap vanno gli articoli e le pagine che vuoi vedere su Google."
+---
+
+## Il dubbio: «Google ha trovato /page/7/ del mio blog»
+
+Apri Search Console, oppure cerchi `site:tuodominio.it` su Google, e tra le pagine del sito trovi indirizzi come `/blog/page/2/`, `/blog/page/3/`, a volte fino a `/page/12/`. Su Shopify lo stesso succede con `?page=2` in fondo all'indirizzo del blog. Non le hai create tu: sono le pagine che la piattaforma genera quando gli articoli non stanno tutti in una pagina sola.
+
+Poi arriva il consiglio sentito da qualche parte: «mettile in noindex», «fai puntare il canonico alla prima pagina», «bloccale». Sembra pulizia. In realtà, se lo fai, rischi che gli articoli più vecchi del blog smettano di essere visitati da Google, cioè proprio i contenuti che hai scritto per farti trovare.
+
+## Cosa dice Google sulle pagine numerate
+
+Google spiega come trattarle nella guida su [paginazione e caricamento progressivo delle pagine](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading?hl=it). È pensata per i negozi online, ma vale uguale per un blog. I punti che contano:
+
+- **Ogni pagina ha il suo indirizzo**, per esempio `/page/2/` o `?page=2`. Google le considera pagine diverse.
+- **Ogni pagina ha il canonico su sé stessa.** Il canonico è l'indicazione, nascosta nel codice, di quale indirizzo è quello «vero». Google sconsiglia di usare la prima pagina come canonico di tutta la serie: la pagina 2 elenca articoli diversi dalla pagina 1, quindi non è un suo doppione.
+- **Le pagine sono collegate con link normali**: «Pagina successiva», «2», «3» devono essere link veri, che Google può seguire. Come riconoscerli lo spiega la guida sui [link che Google può seguire](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=it).
+- **Niente numeri di pagina dopo il simbolo #**: Google ignora quella parte dell'indirizzo, quindi `/blog#pagina-2` per lui è la stessa pagina di `/blog`.
+
+Un dettaglio che trovi ancora in vecchi articoli: i tag `rel="next"` e `rel="prev"`. Nel 2019 Google ha detto pubblicamente che da tempo non li usava più per l'indicizzazione. Se il tuo tema li ha, puoi lasciarli; non sono la cosa da sistemare.
+
+## Quindi noindex sì o no?
+
+Per un blog normale, **no**. Anche Yoast, plugin SEO per WordPress, nella sua [guida alla paginazione](https://yoast.com/pagination-seo/) consiglia di dare a ogni pagina il canonico su sé stessa e non mettere in noindex le pagine dalla seconda in poi.
+
+Il motivo è pratico. Un articolo di tre anni fa, magari «Caldaia in blocco: cosa controllare prima di chiamare il tecnico», spesso è linkato solo da `/page/6/`. Se quella pagina esce dall'indice e Google la visita sempre meno, anche l'articolo diventa più difficile da raggiungere.
+
+Ancora peggio il **blocco con robots.txt**: Google non apre più quelle pagine e non segue i link che contengono.
+
+È invece normale, e non è un errore, che Search Console metta alcune pagine numerate tra quelle non indicizzate. Google può decidere di non mostrarle nei risultati perché non rispondono a nessuna ricerca. L'importante è che segua i loro link.
+
+## Cosa sistemare davvero
+
+### 1. Controlla il canonico di /page/2/
+
+In Search Console usa lo [strumento Controllo URL](https://support.google.com/webmasters/answer/9012289?hl=it) sull'indirizzo della pagina 2 del blog. Nella parte sull'indicizzazione guarda la **canonica dichiarata dall'utente**: deve essere `/page/2/`, non la prima pagina del blog. Se punta alla prima pagina, di solito c'è dietro un'impostazione del tema o di un plugin, da cercare e togliere.
+
+### 2. Controlla che i numeri di pagina siano link
+
+Apri il blog dal telefono e scorri in fondo. Se c'è un pulsante «Carica altri» o lo scorrimento infinito, chiedi a chi ha fatto il sito se, oltre al pulsante, esistono anche indirizzi `/page/2/` raggiungibili con un link normale. Se gli articoli vecchi compaiono solo dopo un clic gestito da uno script, Google può non vederli mai. Il problema è spiegato meglio nella guida sui [testi caricati con JavaScript](/guide/testi-caricati-javascript-google-assistenti-ai).
+
+### 3. Dai un titolo diverso a ogni pagina
+
+Spesso la pagina 2 ha lo stesso titolo della pagina 1, e i controlli SEO segnalano titoli doppi. Non è grave, ma è facile da evitare: nei plugin SEO il modello del titolo degli archivi di solito può includere il numero di pagina. Controlla che ci sia.
+
+> Prima: «Blog - Idraulica Benvenuti»
+>
+> Dopo, per la pagina 2: «Blog - Pagina 2 di 6 - Idraulica Benvenuti»
+
+Se hai molte pagine con titoli uguali, il metodo per trovarle tutte è nella guida su [pagine con lo stesso titolo e la stessa descrizione](/guide/pagine-stesso-titolo-descrizione-trovarle-correggerle).
+
+### 4. Riduci il numero di pagine, non nasconderle
+
+Se il blog mostra tre articoli per pagina, con sessanta articoli ottieni venti pagine numerate, e quelli in fondo sono lontanissimi dalla home. Su WordPress il numero di articoli per pagina si cambia nelle [impostazioni di lettura](https://wordpress.org/documentation/article/settings-reading-screen/). Portarlo a dieci o dodici riduce le pagine senza togliere niente.
+
+### 5. Collega gli articoli anche da altre strade
+
+La paginazione non deve essere l'unica via. Gli articoli importanti vanno linkati anche:
+
+- dalle **pagine di servizio** a cui si riferiscono («Leggi anche: perché la caldaia va in blocco»);
+- da **poche categorie curate**, ognuna con due righe di introduzione;
+- da altri articoli sullo stesso argomento.
+
+Questo aiuta anche gli assistenti AI come ChatGPT, Gemini e Perplexity: quando leggono un sito, quello che gli serve è il testo dell'articolo, raggiungibile e nell'HTML, non l'elenco numerato.
+
+## Un esempio
+
+> Idraulica Benvenuti ha un blog WordPress con 58 articoli, sei per pagina: dieci pagine numerate. Un plugin di «ottimizzazione» installato anni fa fa puntare il canonico di tutte le pagine alla prima.
+>
+> Cosa fa: disattiva quell'opzione e verifica con Controllo URL che /blog/page/2/ abbia il canonico su sé stessa. Porta gli articoli per pagina da sei a dodici: le pagine scendono a cinque. Controlla che il plugin SEO metta «Pagina 2 di 5» nei titoli. Infine aggiunge in ogni pagina di servizio due link agli articoli che rispondono alle domande più frequenti dei clienti.
+
+Nomi e dettagli sono di fantasia.
+
+## Cosa non fare
+
+- **Non far puntare il canonico di tutte le pagine alla prima.** Google lo sconsiglia in modo esplicito.
+- **Non bloccare `/page/` nel file robots.txt.** Google smette di seguire i link agli articoli più vecchi.
+- **Non confondere paginazione e filtri.** Gli indirizzi che riordinano o filtrano lo stesso elenco, come `?orderby=date`, sono doppioni: qui Google, nella stessa guida sulla paginazione, suggerisce noindex o robots.txt. Le pagine numerate dell'elenco principale no.
+- **Non aspettarti salti nei risultati.** Sistemare la paginazione aiuta Google a raggiungere gli articoli; se poi li mostra e per quali ricerche lo decide lui.
+
+Diverso è il caso delle pagine numerate di **tag, autori e archivi per data**: se hai deciso di togliere quegli archivi da Google, le loro pagine numerate seguono la stessa sorte. Come farlo è nella guida su come [togliere da Google tag, autori e allegati](/guide/wordpress-togliere-pagine-inutili-tag-autori-allegati).
+
+## Se non hai tempo di farlo da solo
+
+Sono controlli da fare una volta, ma toccano impostazioni del tema e dei plugin che è facile sbagliare. Se preferisci che ce ne occupiamo noi, insieme alle pagine e alle guide che mancano al tuo sito, [prenota la consulenza gratuita](/#attiva): guardiamo il blog come lo vede Google e ti diciamo cosa sistemare.
